@@ -13,7 +13,8 @@ import {LocalStorageService} from '../../local-storage/local-storage.service';
 
 export class LanguageService {
   private uuid: any;
-  baseUrl = 'http://ns3012518.ip-149-202-74.eu:8762/wind-billing/invoice/languages';
+  //baseUrl = 'http://ns3012518.ip-149-202-74.eu:8762/wind-billing/invoice/languages';
+  baseUrl = 'http://localhost:9800/invoice/languages';
   languageResult: Language;
 
   constructor(private http: HttpClient,

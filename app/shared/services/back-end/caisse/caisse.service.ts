@@ -18,7 +18,8 @@ import {VirementResult} from '../../../model/response-payload/caisse/virement-re
   providedIn: 'root'
 })
 export class CaisseService {
-  baseUrl = 'http://ns3012518.ip-149-202-74.eu:8762/wind-fund';
+  //baseUrl = 'http://ns3012518.ip-149-202-74.eu:8762/wind-fund';
+  baseUrl = 'http://localhost:8200';
   addResult: BehaviorSubject<string> = new BehaviorSubject(null);
   compteResultList: Array<CompteResult>;
   virementResultList: Array<VirementResult>;
@@ -42,24 +43,24 @@ export class CaisseService {
   addcompte() {
     const payload = {
       ref: this.parametersAddCaisse.ref.value,
-      label: this.parametersAddCaisse.libelle.value,
-      accountType: this.parametersAddCaisse.typecompte.value,
+      label: this.parametersAddCaisse.label.value,
+      accountType: this.parametersAddCaisse.accountType.value,
       currency: {
-         uuid:  this.parametersAddCaisse.devise.value
+         uuid:  this.parametersAddCaisse.currency.value
       },
-      state: this.parametersAddCaisse.etat.value,
+      state: this.parametersAddCaisse.state.value,
       country: this.parametersAddCaisse.country.value,
       comment: this.parametersAddCaisse.comment.value,
-      initial_amount: this.parametersAddCaisse.soldeinitial.value,
-      account_date: moment().toDate(),
-      minimal_amount: this.parametersAddCaisse.soldeminimumautorise.value,
-      bank_name: this.parametersAddCaisse.bank.value,
-      account_number: this.parametersAddCaisse.accountNumber.value,
+      initialAmount: this.parametersAddCaisse.initialAmount.value,
+      accountDate: moment().toDate(),
+      minimalAmount: this.parametersAddCaisse.minimalAmount.value,
+      bankName: this.parametersAddCaisse.bankName.value,
+      accountNumber: this.parametersAddCaisse.accountNumber.value,
       swift: this.parametersAddCaisse.swift.value,
-      owner_name: this.parametersAddCaisse.ownerName.value,
-      owner_address: this.parametersAddCaisse.ownerAddress.value,
-      accounting_account: this.parametersAddCaisse.comptecomptable.value,
-      accounting_account_code: this.parametersAddCaisse.codejournalcomptable.value,
+      ownerName: this.parametersAddCaisse.ownerName.value,
+      ownerAddress: this.parametersAddCaisse.ownerAddress.value,
+      accountingAccount: this.parametersAddCaisse.accountingAccount.value,
+      accountingAccountCode: this.parametersAddCaisse.accountingAccountCode.value,
      };
     return this.http.post(`${this.baseUrl}/bank-accounts-fund`, payload).pipe(
       timeout(60000),
@@ -187,16 +188,16 @@ export class CaisseService {
   // Paiement
   addpaiemet() {
     const payload = {
-      payment_date: this.parametersAddPaiement.datepaiement.value,
-      value_date: this.parametersAddPaiement.datevaleur.value,
-      label: this.parametersAddPaiement.libelle.value,
+      paymentDate: this.parametersAddPaiement.paymentDate.value,
+      valueDate: this.parametersAddPaiement.valueDate.value,
+      label: this.parametersAddPaiement.label.value,
       sens: this.parametersAddPaiement.sens.value,
-      bank_account: {
-        uuid: this.parametersAddPaiement.compte.value
+      bankAccount: {
+        uuid: this.parametersAddPaiement.bankAccount.value
       },
-      amount: this.parametersAddPaiement.montant.value,
-      payment_mode: this.parametersAddPaiement.mode.value,
-      check_number: '',
+      amount: this.parametersAddPaiement.amount.value,
+      paymentMode: this.parametersAddPaiement.paymentMode.value,
+      checkNumber: '',
       project: this.parametersAddPaiement.projet.value,
       idpaiement: 0,
     };

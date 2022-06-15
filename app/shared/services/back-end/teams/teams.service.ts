@@ -15,7 +15,8 @@ import {TeamModel} from '../../../model/response-payload/collaborators/teams/tea
 
 export class TeamsService {
 
-  baseUrl: string = 'http://ns3012518.ip-149-202-74.eu:8762/wind-sirh';
+  //baseUrl: string = 'http://ns3012518.ip-149-202-74.eu:8762/wind-sirh';
+  baseUrl: string = 'http://localhost:9200';
   public uuid: any;
   teamsResultList: Array<TeamModel>;
   public teamResult: any;

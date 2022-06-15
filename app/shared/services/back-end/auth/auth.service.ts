@@ -18,7 +18,8 @@ import {LocalStorageService} from '../../local-storage/local-storage.service';
 })
 export class AuthService {
 
-  baseUrl: string = 'http://ns3012518.ip-149-202-74.eu:8762/wind-auth';
+ // baseUrl: string = 'http://ns3012518.ip-149-202-74.eu:8762/wind-auth';
+  baseUrl: string = 'http://localhost:9100';
   authenticationToken: Token;
   isAuthenticated = false;
   public role: string;

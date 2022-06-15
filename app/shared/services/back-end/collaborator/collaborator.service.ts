@@ -23,7 +23,8 @@ export class CollaboratorService {
   formData = new FormData();
   public role: any;
   // baseUrl: string = 'http://vps-dc5e7b86.vps.ovh.net:8762';
-  baseUrl: string = 'http://ns3012518.ip-149-202-74.eu:8762/wind-sirh';
+  //baseUrl: string = 'http://ns3012518.ip-149-202-74.eu:8762/wind-sirh';
+  baseUrl: string = 'http://localhost:9200';
 
   constructor(private http: HttpClient,
               private localSt: LocalStorageService) {

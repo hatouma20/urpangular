@@ -1206,7 +1206,7 @@ export class AddCaisseComponent implements OnInit {
     }
   ];
   selected: any;
-  typecomptes = CompteTypeEnum;
+  accountType = CompteTypeEnum;
   keytypecomptes = [];
   compteList: Array<CompteResult> = [];
   compteListcount = 0;
@@ -1239,7 +1239,7 @@ export class AddCaisseComponent implements OnInit {
       pageLength: 10
     };
     this.dateSent = moment().toDate();
-    this.keytypecomptes = Object.keys(this.typecomptes).filter(k => !isNaN(Number(k)));
+    this.keytypecomptes = Object.keys(this.accountType).filter(k => !isNaN(Number(k)));
 
 
 /**/
@@ -1248,8 +1248,12 @@ export class AddCaisseComponent implements OnInit {
       this.compteListcount = 1;
 
       this.dtTrigger.next();
+        console.log('*************', this.compteList);
+
     }
-     );
+
+
+         );
  /**/
 
 
@@ -1258,15 +1262,15 @@ export class AddCaisseComponent implements OnInit {
   }
   getselectedtype(event: any) {
     this.selected = event.target.value;
-    this.caisseForm.typecompte.value = this.typecomptes[this.selected];
+    this.caisseForm.accountType.value = this.accountType[this.selected];
   }
   getselectedstatus(event: any) {
     this.selected = event.target.value;
-    this.caisseForm.etat.value = this.selected;
+    this.caisseForm.state.value = this.selected;
   }
   getselectedcurrency(event: any) {
     this.selected = event.target.value;
-    this.caisseForm.devise.value = this.selected;
+    this.caisseForm.currency.value = this.selected;
   }
   getselectedcountry(event: any) {
     this.selected = event.target.value;
@@ -1274,11 +1278,11 @@ export class AddCaisseComponent implements OnInit {
   }
   getselectedcomptecomtable(event: any) {
     this.selected = event.target.value;
-    this.caisseForm.comptecomptable.value = this.selected.toUpperCase();
+    this.caisseForm.accountingAccount.value = this.selected.toUpperCase();
   }
   getselectedcodecomtable(event: any) {
     this.selected = event.target.value;
-    this.caisseForm.codejournalcomptable.value = this.selected.toUpperCase();
+    this.caisseForm.accountingAccountCode.value = this.selected.toUpperCase();
   }
   onAddcompteFormSubmit() {
   this.caisseservice.parametersAddCaisse = this.caisseForm;

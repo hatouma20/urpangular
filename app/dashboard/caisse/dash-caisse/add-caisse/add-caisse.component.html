@@ -108,7 +108,7 @@
                   <div class="form-group focused" style="display: flex;">
                     <label class="col-4" style="font-weight: bold;">Libelle compte ou caisse</label>
                     <div class=" col-8 input-group input-group-alternative ">
-                      <input   [(ngModel)]="caisseForm.libelle.value"
+                      <input   [(ngModel)]="caisseForm.label.value"
                                id="alternativeName"
                                name="alternativeName"
                                class="form-control"
@@ -139,7 +139,7 @@
                   <div class="form-group focused" style="display: flex;">
                     <label class="col-4" style="font-weight: bold;">Solde initial</label>
                     <div class=" col-8 input-group input-group-alternative ">
-                      <input [(ngModel)]="caisseForm.soldeinitial.value"
+                      <input [(ngModel)]="caisseForm.initialAmount.value"
                              [defaultValue]="0"
                              min="1"
                              [ngModelOptions]="{standalone: true}"
@@ -153,7 +153,7 @@
                   <div class="form-group focused" style="display: flex;">
                     <label class="col-4" style="font-weight: bold;">Solde minimum autorisé</label>
                     <div class=" col-8 input-group input-group-alternative ">
-                      <input [(ngModel)]="caisseForm.soldeminimumautorise.value"
+                      <input [(ngModel)]="caisseForm.minimalAmount.value"
                              [defaultValue]="0"
                              min="1"
                              [ngModelOptions]="{standalone: true}"
@@ -171,7 +171,7 @@
                     <label class="col-4" style="font-weight: bold;">Type compte  </label>
                     <div class=" col-8 input-group input-group-alternative ">
                       <select class="form-control" (change)="getselectedtype($event)">
-                        <option *ngFor="let key of keytypecomptes" [value]="key" [label]="typecomptes[key]"></option>
+                        <option *ngFor="let key of keytypecomptes" [value]="key" [label]="accountType[key]"></option>
                       </select>
                     </div>
                   </div>
@@ -211,7 +211,7 @@
                     <div class=" col-8 input-group input-group-alternative ">
                       <input class="form-control"
                              name="bank" id="bank"
-                             [(ngModel)]="caisseForm.bank.value"
+                             [(ngModel)]="caisseForm.bankName.value"
                              type="text">
                     </div>
                   </div>
@@ -313,12 +313,13 @@
             <tr *ngFor="let item of compteList; let id = index">
               <td>
                 <span>
-                <a (click)="getcompte(item.uuid)"data-toggle="tooltip" style="color: red;" title="profile">{{item.account_number}}</a>
+                <a (click)="getcompte(item.uuid)"data-toggle="tooltip" style="color: red;" title="profile">{{item.accountNumber}}</a>
+
                 </span>
               </td>
               <td>
-  <span (blur)="updateList(id, 'bank_name', $event)" (keyup)="changeValue(id, 'bank_name', $event)"
-        contenteditable="true">{{item.bank_name}}</span>
+  <span (blur)="updateList(id, 'bankName', $event)" (keyup)="changeValue(id, 'bankName', $event)"
+        contenteditable="true">{{item.bankName}}</span>
               </td>
               <td>
   <span (blur)="updateList(id, 'label', $event)" (keyup)="changeValue(id, 'label', $event)"
@@ -329,8 +330,8 @@
         contenteditable="true">{{item.state}}</span>
               </td>
               <td>
-  <span (blur)="updateList(id, 'initial_amount', $event)" (keyup)="changeValue(id, 'initial_amount', $event)"
-        contenteditable="true">{{item.initial_amount}}</span>
+  <span (blur)="updateList(id, 'initialAmount', $event)" (keyup)="changeValue(id, 'initialAmount', $event)"
+        contenteditable="true">{{item.initialAmount}}</span>
               </td>
               <td>
   <span class="table-remove">

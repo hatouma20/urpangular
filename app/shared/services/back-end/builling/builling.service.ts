@@ -1,12 +1,12 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import * as JWT from 'jwt-decode';
 import {Observable} from 'rxjs';
 import {catchError, map, timeout} from 'rxjs/operators';
+import {AUTHENTICATION_KEY} from '../../../constants/local-storage-keys';
 import {PayrollResult} from '../../../model/response-payload/payroll/payroll';
 import {PayrollNumberResult} from '../../../model/response-payload/payroll/payrollnumber';
-import {LocalStorageService} from "../../local-storage/local-storage.service";
-import {AUTHENTICATION_KEY} from "../../../constants/local-storage-keys";
-import * as JWT from "jwt-decode";
+import {LocalStorageService} from '../../local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,8 @@ import * as JWT from "jwt-decode";
 
 export class BuillingService {
 
-  baseUrl = 'http://ns3012518.ip-149-202-74.eu:8762/wind-billing';
+  //baseUrl = 'http://ns3012518.ip-149-202-74.eu:8762/wind-billing';
+  baseUrl = 'http://localhost:9800';
   payroll: PayrollResult;
   billingnumber: PayrollNumberResult;
   public uuid: any;

@@ -29,8 +29,9 @@ export class LeavesService {
     {value: null, dirty: false, class: '', error: ''},
     true
   );
-  baseUrl: string = 'http://ns3012518.ip-149-202-74.eu:8762/wind-leaves';
+ // baseUrl: string = 'http://ns3012518.ip-149-202-74.eu:8762/wind-leaves';
   // baseUrl: string = 'http://ns3012518.ip-149-202-74.eu:8762/';
+  baseUrl: string = 'http://localhost:9500';
   public CompanyHolidayList: Array<CompanyHoliday>;
 
   constructor(private http: HttpClient) {

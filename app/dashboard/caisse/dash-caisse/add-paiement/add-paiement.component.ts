@@ -58,12 +58,12 @@ export class AddPaiementComponent implements OnInit {
   }
   getselectedcompteorigin(event: any) {
     this.selectedtype = event.target.value;
-    this.payForm.compte.value = this.selectedtype;
+    this.payForm.bankAccount.value = this.selectedtype;
     console.log(this.selectedtype);
   }
   getselectedtypepayment(event: any) {
     this.selected = event.target.value;
-    this.payForm.mode.value = this.typecomptes[this.selected];
+    this.payForm.paymentMode.value = this.typecomptes[this.selected];
   }
   onAddpaiementFormSubmit() {
     console.log('hello');

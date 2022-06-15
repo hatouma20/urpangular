@@ -32,7 +32,7 @@
                       <input
                         class="form-control"
                         name="libelle" id="libelle"
-                        [(ngModel)]="payForm.libelle.value"
+                        [(ngModel)]="payForm.label.value"
                         type="text">
                     </div>
                   </div>
@@ -46,7 +46,7 @@
                              id="datevaleur"
                              name="datevaleur"
                              class="form-control"
-                             [(ngModel)]="payForm.datevaleur.value"
+                             [(ngModel)]="payForm.valueDate.value"
                              required>
                     </div>
                   </div>
@@ -120,7 +120,7 @@
                   <div class="form-group focused" style="display: flex;">
                     <label class="col-4" style="font-weight: bold;">Montant</label>
                     <div class=" col-8 input-group input-group-alternative ">
-                      <input           [(ngModel)]="payForm.montant.value"
+                      <input           [(ngModel)]="payForm.amount.value"
                                        [defaultValue]="0"
                                        [ngModelOptions]="{standalone: true}"
                                        class="form-control" name="montant"
@@ -181,7 +181,7 @@
             <tr *ngFor="let item of paiementList; let id = index">
               <td>
   <span (blur)="updateList(id, 'compte', $event)" (keyup)="changeValue(id, 'compte', $event)"
-        contenteditable="true">{{item.bank_account.uuid}}</span>
+        contenteditable="true">{{item.bankAccount.uuid}}</span>
               </td>
               <td>
   <span (blur)="updateList(id, 'label', $event)" (keyup)="changeValue(id, 'label', $event)"
@@ -189,11 +189,11 @@
               </td>
               <td>
   <span (blur)="updateList(id, 'payment_date', $event)" (keyup)="changeValue(id, 'payment_date', $event)"
-        contenteditable="true">{{item.payment_date}}</span>
+        contenteditable="true">{{item.paymentDate}}</span>
               </td>
               <td>
   <span (blur)="updateList(id, 'payment_mode', $event)" (keyup)="changeValue(id, 'payment_mode', $event)"
-        contenteditable="true">{{item.payment_mode}}</span>
+        contenteditable="true">{{item.paymentMode}}</span>
               </td>
               <td>
   <span (blur)="updateList(id, 'amount', $event)" (keyup)="changeValue(id, 'amount', $event)"
