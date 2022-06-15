@@ -1,0 +1,774 @@
+<div class="header" style="background: #c1c1c12e">
+  <div class="container-fluid">
+    <div class="header-body" style="margin-left: 1%">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h3
+            class="d-inline-block mb-0"
+            style="font-weight: bold; font-family: monospace"
+          >
+            Profil fournisseur
+          </h3>
+          <p
+            aria-current="page"
+            class="breadcrumb-item active"
+            style="font-family: monospace"
+          >
+            Fournisseurs > Profil
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div class="accordion" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo1">
+      <h2 class="mb-0">
+        <button
+          aria-controls="collapseTwo"
+          aria-expanded="true"
+          class="btn btn-link collapsed"
+          data-target="#collapseTwo1"
+          data-toggle="collapse"
+          style="font-weight: bold; font-family: monospace; color: #2d2d44"
+          type="button"
+        >
+          <img
+            src="https://static.thenounproject.com/png/703781-200.png"
+            style="width: 40px"
+          />
+          Fiche Tiers: {{ fournisseurResult.name }}
+        </button>
+      </h2>
+    </div>
+    <div
+      aria-labelledby="headingTwo1"
+      class="collapse show"
+      data-parent="#accordionExample"
+      id="collapseTwo1"
+    >
+      <div class="card-body">
+        <br />
+        <form id="form1" role="form">
+          <p class="breadcrumb-item active" style="font-family: monospace">
+            Tiers &gt; Information
+          </p>
+          <div class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Nom du tiers</label
+                  >
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('name').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('name').placeholder"
+                      [ngModel]="fournisseurResult.name"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Nom alternatif</label
+                  >
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="
+                        form.getField('alternative_Name').asFormControl
+                      "
+                      class="form-control"
+                      [placeholder]="
+                        form.getField('alternative_Name').placeholder
+                      "
+                      [ngModel]="fournisseurResult.alternative_Name"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold">Fax</label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('fax').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('fax').placeholder"
+                      [ngModel]="fournisseurResult.fax"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Téléphone</label
+                  >
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('phone').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('phone').placeholder"
+                      [ngModel]="fournisseurResult.phone"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold">Email</label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('email').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('email').placeholder"
+                      [ngModel]="fournisseurResult.email"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold">Web</label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('web').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('web').placeholder"
+                      [ngModel]="fournisseurResult.web"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="new5" style="border: 1px solid #d2d2d2" />
+
+          <p class="breadcrumb-item active" style="font-family: monospace">
+            Tiers &gt; Proscpect Client
+          </p>
+          <div class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Prospect/client</label
+                  >
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('nature').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('nature').placeholder"
+                      [ngModel]="fournisseurResult.nature"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Code Client</label
+                  >
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('code').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('code').placeholder"
+                      [ngModel]="fournisseurResult.code"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--<div  class="row">-->
+          <!--<div class="col-12" style="display: flex">-->
+          <!--<div class="col-6">-->
+          <!--<div class="form-group focused" style="display: flex;">-->
+          <!--<label class="col-4" style="font-weight: bold;">Register de commerce</label>-->
+          <!--<div class=" col-8 input-group input-group-alternative ">-->
+          <!--<input-->
+          <!--[(ngModel)]="fournisseurForm.rc.value"-->
+          <!--id="rc"-->
+          <!--name="rc"-->
+          <!--class="form-control"-->
+          <!--type="text">-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="col-6">-->
+          <!--<div class="form-group focused" style="display: flex;">-->
+          <!--<label class="col-4" style="font-weight: bold;">Matricule Fiscale</label>-->
+          <!--<div class=" col-8 input-group input-group-alternative ">-->
+          <!--<input-->
+          <!--[(ngModel)]="fournisseurForm.taxRegistration.value"-->
+          <!--id="taxRegistration"-->
+          <!--name="taxRegistration"-->
+          <!--class="form-control"-->
+          <!--type="text">-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+
+          <div class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Assujetti à la TVA
+                  </label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('vat_Liable').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('vat_Liable').placeholder"
+                      [ngModel]="fournisseurResult.vat_Liable"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold">Num TVA</label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('vat_Number').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('vat_Number').placeholder"
+                      [ngModel]="fournisseurResult.vat_Number"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Date début
+                  </label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="
+                        form.getField('vat_Start_Date').asFormControl
+                      "
+                      class="form-control"
+                      [placeholder]="
+                        form.getField('vat_Start_Date').placeholder
+                      "
+                      [ngModel]="fournisseurResult.vat_Start_Date"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Date fin
+                  </label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="
+                        form.getField('vat_End_Date').asFormControl
+                      "
+                      class="form-control"
+                      [placeholder]="form.getField('vat_End_Date').placeholder"
+                      [ngModel]="fournisseurResult.vat_End_Date"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="new5" style="border: 1px solid #d2d2d2" />
+
+          <p class="breadcrumb-item active" style="font-family: monospace">
+            Tiers &gt; Type Tiers
+          </p>
+
+          <div class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Type Tiers
+                  </label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('tiers_Type').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('tiers_Type').placeholder"
+                      [ngModel]="fournisseurResult.tiers_Type"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Type d'entité légale</label
+                  >
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('type_LegEnt').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('type_LegEnt').placeholder"
+                      [ngModel]="fournisseurResult.type_LegEnt"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold"
+                    >Salarié
+                  </label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('employee').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('employee').placeholder"
+                      [ngModel]="fournisseurResult.employee"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold">Capital</label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <div class="input-group input-group-alternative">
+                      <input
+                        [formControl]="form.getField('capital').asFormControl"
+                        class="form-control"
+                        [placeholder]="form.getField('capital').placeholder"
+                        [ngModel]="fournisseurResult.capital"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold">Pays </label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('country').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('country').placeholder"
+                      [ngModel]="fournisseurResult.country"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-4" style="font-weight: bold">Etat</label>
+                  <div class="col-8 input-group input-group-alternative">
+                    <input
+                      [formControl]="form.getField('state').asFormControl"
+                      class="form-control"
+                      [placeholder]="form.getField('state').placeholder"
+                      [ngModel]="fournisseurResult.state"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo11">
+      <h2 class="mb-0">
+        <button
+          aria-controls="collapseTwo11"
+          aria-expanded="true"
+          class="btn btn-link collapsed"
+          data-target="#collapseTwo11"
+          data-toggle="collapse"
+          style="font-weight: bold; font-family: monospace; color: #2d2d44"
+          type="button"
+        >
+          <img
+            src="https://static.thenounproject.com/png/703781-200.png"
+            style="width: 40px"
+          />
+          Contacts/ Adresses
+        </button>
+      </h2>
+    </div>
+    <div
+      aria-labelledby="headingTwo11"
+      class="collapse"
+      data-parent="#accordionExample"
+      id="collapseTwo11"
+    >
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12 col-5 text-right">
+            <a
+              class="btn btn-sm btn-neutral"
+              (click)="add(fournisseurResult.uuid)"
+              style="
+                color: black;
+                background: #ffcf03;
+                border: #ffcf03;
+                padding: 1%;
+                margin-bottom: 2%;
+              "
+              ><i aria-hidden="true" class="fa fa-plus"></i> Ajouter Adresse</a
+            >
+          </div>
+        </div>
+        <div class="table-editable" id="table">
+          <table
+            class="
+              table table-bordered table-responsive-md table-striped
+              text-center
+            "
+            datatable
+            style="font-family: monospace"
+          >
+            <thead>
+              <tr>
+                <th class="text-center">Nom du responsable</th>
+                <th class="text-center">Fonction du responsable</th>
+                <th class="text-center">Code postale</th>
+                <th class="text-center">Ville</th>
+                <th class="text-center">Département</th>
+                <th class="text-center">Numéro Téléphone</th>
+                <th class="text-center">Email</th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let item of fournisseurResult.tiers_address;
+                  let id = index
+                "
+              >
+                <td>
+                  <span
+                    (blur)="updateList(id, 'first_name', $event)"
+                    (keyup)="changeValue(id, 'first_name', $event)"
+                    contenteditable="true"
+                    >{{ item.first_name }}</span
+                  >
+                </td>
+                <td>
+                  <span
+                    (blur)="updateList(id, 'function', $event)"
+                    (keyup)="changeValue(id, 'function', $event)"
+                    contenteditable="true"
+                    >{{ item.function }}</span
+                  >
+                </td>
+                <td>
+                  <span
+                    (blur)="updateList(id, 'zipCode', $event)"
+                    (keyup)="changeValue(id, 'zipCode', $event)"
+                    contenteditable="true"
+                    >{{ item.zipCode }}</span
+                  >
+                </td>
+                <td>
+                  <span
+                    (blur)="updateList(id, 'city', $event)"
+                    (keyup)="changeValue(id, 'city', $event)"
+                    contenteditable="true"
+                    >{{ item.city }}</span
+                  >
+                </td>
+                <td>
+                  <span
+                    (blur)="updateList(id, 'department', $event)"
+                    (keyup)="changeValue(id, 'department', $event)"
+                    contenteditable="true"
+                    >{{ item.department }}</span
+                  >
+                </td>
+                <td>
+                  <span
+                    (blur)="updateList(id, 'profPhone', $event)"
+                    (keyup)="changeValue(id, 'profPhone', $event)"
+                    contenteditable="true"
+                    >{{ item.profPhone }}</span
+                  >
+                </td>
+                <td>
+                  <span
+                    (blur)="updateList(id, 'email', $event)"
+                    (keyup)="changeValue(id, 'email', $event)"
+                    contenteditable="true"
+                    >{{ item.email }}</span
+                  >
+                </td>
+
+                <td>
+                  <span class="table-remove">
+                    <a
+                      (click)="remove(item.uuid)"
+                      class="delete"
+                      data-toggle="tooltip"
+                      style="color: red"
+                      title="Delete"
+                      ><i aria-hidden="true" class="fa fa-trash"></i
+                    ></a>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <span class="table-add float-right" style="padding: 0"> </span>
+          <!--<table class="table table-bordered table-responsive-md table-striped text-center" datatable>-->
+          <!--<thead>-->
+          <!--<tr>-->
+          <!--<th class="text-center">Nom du responsable</th>-->
+          <!--<th class="text-center">Fonction du responsable</th>-->
+          <!--<th class="text-center">Code postale</th>-->
+          <!--<th class="text-center">Ville</th>-->
+          <!--<th class="text-center">Département</th>-->
+          <!--<th class="text-center">Numéro Téléphone</th>-->
+          <!--<th class="text-center">Email</th>-->
+          <!--<th class="text-center"></th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+          <!--<tr *ngFor="let item of fournisseurResult.tiers_address; let id = index">-->
+          <!--<td>-->
+          <!--<span (blur)="updateList(id, 'first_name', $event)" (keyup)="changeValue(id, 'first_name', $event)"-->
+          <!--contenteditable="true">{{item.first_name}}</span>-->
+          <!--</td>-->
+          <!--<td>-->
+          <!--<span (blur)="updateList(id, 'function', $event)" (keyup)="changeValue(id, 'function', $event)"-->
+          <!--contenteditable="true">{{item.function}}</span>-->
+          <!--</td>-->
+          <!--<td>-->
+          <!--<span (blur)="updateList(id, 'zipCode', $event)" (keyup)="changeValue(id, 'zipCode', $event)"-->
+          <!--contenteditable="true">{{item.zipCode}}</span>-->
+          <!--</td>-->
+          <!--<td>-->
+          <!--<span (blur)="updateList(id, 'city', $event)" (keyup)="changeValue(id, 'city', $event)"-->
+          <!--contenteditable="true">{{item.city}}</span>-->
+          <!--</td>-->
+          <!--<td>-->
+          <!--<span (blur)="updateList(id, 'department', $event)" (keyup)="changeValue(id, 'department', $event)"-->
+          <!--contenteditable="true">{{item.department}}</span>-->
+          <!--</td>-->
+          <!--<td>-->
+          <!--<span (blur)="updateList(id, 'profPhone', $event)" (keyup)="changeValue(id, 'profPhone', $event)"-->
+          <!--contenteditable="true">{{item.profPhone}}</span>-->
+          <!--</td>-->
+          <!--<td>-->
+          <!--<span (blur)="updateList(id, 'email', $event)" (keyup)="changeValue(id, 'email', $event)"-->
+          <!--contenteditable="true">{{item.email}}</span>-->
+          <!--</td>-->
+
+          <!--<td>-->
+          <!--<span class="table-remove">-->
+          <!--<a (click)="remove(item.uuid)" class="delete" data-toggle="tooltip" style="    color: red;"-->
+          <!--title="Delete"><i-->
+          <!--aria-hidden="true" class="fa fa-trash"></i></a>-->
+          <!--</span>-->
+          <!--</td>-->
+          <!--</tr>-->
+          <!--</tbody>-->
+          <!--</table>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo111">
+      <h2 class="mb-0">
+        <button
+          aria-controls="collapseTwo111"
+          aria-expanded="true"
+          class="btn btn-link collapsed"
+          data-target="#collapseTwo111"
+          data-toggle="collapse"
+          style="font-weight: bold; font-family: monospace; color: #2d2d44"
+          type="button"
+        >
+          <img
+            src="https://static.thenounproject.com/png/703781-200.png"
+            style="width: 40px"
+          />
+          Comptes Bancaires
+        </button>
+      </h2>
+    </div>
+    <div
+      aria-labelledby="headingTwo111"
+      class="collapse"
+      data-parent="#accordionExample"
+      id="collapseTwo111"
+    >
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12 col-5 text-right">
+            <a
+              class="btn btn-sm btn-neutral"
+              (click)="addcompte(fournisseurResult.uuid)"
+              style="
+                color: black;
+                background: #ffcf03;
+                border: #ffcf03;
+                padding: 1%;
+                margin-bottom: 2%;
+              "
+              ><i aria-hidden="true" class="fa fa-plus"></i> Ajouter Compte
+              Bancaire</a
+            >
+          </div>
+        </div>
+
+        <div class="table-editable" id="table1">
+          <table
+            class="
+              table table-bordered table-responsive-md table-striped
+              text-center
+            "
+            datatable
+            style="font-family: monospace"
+          >
+            <thead>
+              <tr>
+                <th class="text-center">Nom du Bank</th>
+                <th class="text-center">Numero Compte</th>
+                <th class="text-center">Iban</th>
+                <th class="text-center">Code Bic</th>
+                <th class="text-center">domiciliation</th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let item of fournisseurResult.tiers_Bank_Accounts;
+                  let id = index
+                "
+              >
+                <td>
+                  <span
+                    (blur)="updateList(id, 'bank', $event)"
+                    (keyup)="changeValue(id, 'bank', $event)"
+                    contenteditable="true"
+                    >{{ item.bank }}</span
+                  >
+                </td>
+                <td>
+                  <span
+                    (blur)="updateList(id, 'account_Number', $event)"
+                    (keyup)="changeValue(id, 'account_Number', $event)"
+                    contenteditable="true"
+                    >{{ item.account_Number }}</span
+                  >
+                </td>
+                <td>
+                  <span
+                    (blur)="updateList(id, 'iban', $event)"
+                    (keyup)="changeValue(id, 'iban', $event)"
+                    contenteditable="true"
+                    >{{ item.iban }}</span
+                  >
+                </td>
+                <td>
+                  <span
+                    (blur)="updateList(id, 'bic_Code', $event)"
+                    (keyup)="changeValue(id, 'bic_Code', $event)"
+                    contenteditable="true"
+                    >{{ item.bic_Code }}</span
+                  >
+                </td>
+                <td>
+                  <span
+                    (blur)="updateList(id, 'domiciliation', $event)"
+                    (keyup)="changeValue(id, 'domiciliation', $event)"
+                    contenteditable="true"
+                    >{{ item.domiciliation }}</span
+                  >
+                </td>
+                <td>
+                  <span class="table-remove">
+                    <a
+                      (click)="removecompte(item.uuid)"
+                      class="delete"
+                      data-toggle="tooltip"
+                      style="color: red"
+                      title="Delete"
+                      ><i aria-hidden="true" class="fa fa-trash"></i
+                    ></a>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

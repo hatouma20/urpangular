@@ -1,0 +1,87 @@
+.card-info {
+  margin: 1%;
+  border: none;
+  background: transparent;
+}
+
+.card-info-header {
+  border-bottom: none;
+  background: #f0f8ff8a;
+  box-shadow: 0em 6px 0.5em 6px #c7c7c7;
+}
+
+@media all and (min-width: 768px) {
+
+  tr, td {
+    vertical-align: middle !important;
+  }
+
+  span {
+    padding: 1rem 1rem;
+  }
+}
+
+.show {
+  display: block !important;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+  border-bottom: none !important;
+}
+
+table.dataTable.no-footer {
+  border-bottom: none !important;
+}
+
+.card-stats:hover {
+  transform: scale(0.9, 0.9);
+  box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
+  -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+}
+
+.card-stats {
+  border-radius: 10px !important;
+  box-shadow: 5px 5px 12px 1px rgba(0, 0, 0, 0.25), -5px -5px 30px 2px rgba(0, 0, 0, 0.22);
+}
+
+.focus {
+  border: #0b90a8 solid 1px;
+}
+
+/*.modal.show .modal-dialog {*/
+/*  max-width: 65% !important;*/
+/*}*/
+.tooltip1 {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip1 .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 80%;
+  left: 0%;
+  margin-left: -60px;
+}
+
+.tooltip1 .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext {
+  visibility: visible;
+}

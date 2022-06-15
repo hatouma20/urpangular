@@ -1,0 +1,158 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Congé
+            :</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Congé
+            autorisé par l'entreprise</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Liste des Congés autorisés par l'entreprise
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body "
+           style="display: -webkit-flex;-webkit-flex-wrap: wrap;-webkit-justify-content: center;width:100%;">
+        <table class="table table-bordered table-responsive-md table-striped text-center" >
+          <thead>
+          <tr>
+            <th class="text-center">Type</th>
+            <th class="text-center">Nombre de jours en avance</th>
+            <th class="text-center">Deductible</th>
+            <th class="text-center">Toute la journée</th>
+            <th class="text-center">Active/ Inactive</th>
+            <th class="text-center">Une partie de la journée</th>
+            <th class="text-center">Crédit Négatif</th>
+            <th class="text-center">simultaneouslylimit</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let conge of companyEnabledLeaveList; let id = index">
+            <td>
+                <span *ngIf="!isOtherLeave[id]">{{conge.type.value}}</span>
+              <span *ngIf="isOtherLeave[id]" > {{conge.custom_type.value}}</span>
+            </td>
+            <td>
+                <span *ngIf="conge.type.value!='SICK_LEAVE'" >{{conge.days_in_advance.value}}</span>
+                <span *ngIf="conge.type.value==='SICK_LEAVE'" >_</span>
+            </td>
+            <td>
+              <label *ngIf="conge.deductible.value" class="custom-toggle">
+                <input disabled
+                       [formControl]="form.getField('deductible').asFormControl"
+                       [ngModel]="companyEnabledLeave.deductible.value"
+                       [type]="form.getField('deductible').type"
+                       checked="">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+              <label *ngIf="!conge.deductible.value" class="custom-toggle">
+                <input disabled
+                       [formControl]="form.getField('deductible').asFormControl"
+                       [ngModel]="companyEnabledLeave.deductible.value"
+                       [type]="form.getField('deductible').type">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+            </td>
+            <td>
+              <label *ngIf="conge.full_day.value" class="custom-toggle">
+                <input disabled
+                       [formControl]="form.getField('full_day').asFormControl"
+                       [ngModel]="companyEnabledLeave.full_day.value"
+                       [type]="form.getField('full_day').type"
+                       checked="">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+              <label *ngIf="!conge.full_day.value" class="custom-toggle">
+                <input disabled
+                       [formControl]="form.getField('full_day').asFormControl"
+                       [ngModel]="companyEnabledLeave.full_day.value"
+                       [type]="form.getField('full_day').type">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+            </td>
+            <td>
+              <label *ngIf="conge.active.value" class="custom-toggle">
+                <input [formControl]="form.getField('active').asFormControl"
+                       [ngModel]="companyEnabledLeave.active.value"
+                       [type]="form.getField('active').type"
+                       checked=""
+                       disabled>
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+              <label *ngIf="!conge.active.value" class="custom-toggle">
+                <input disabled
+                       [formControl]="form.getField('active').asFormControl"
+                       [ngModel]="companyEnabledLeave.active.value"
+                       [type]="form.getField('active').type">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+            </td>
+            <td>
+              <label *ngIf="conge.partial_day.value" class="custom-toggle">
+                <input disabled
+                       [formControl]="form.getField('partial_day').asFormControl"
+                       [ngModel]="companyEnabledLeave.partial_day.value"
+                       [type]="form.getField('partial_day').type"
+                       checked="">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+              <label *ngIf="!conge.partial_day.value" class="custom-toggle">
+                <input disabled
+                       [formControl]="form.getField('partial_day').asFormControl"
+                       [ngModel]="companyEnabledLeave.partial_day.value"
+                       [type]="form.getField('partial_day').type">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+            </td>
+            <td>
+              <label *ngIf="conge.negative_credit.value" class="custom-toggle">
+                <input disabled
+                       [formControl]="form.getField('negative_credit').asFormControl"
+                       [ngModel]="companyEnabledLeave.negative_credit.value"
+                       [type]="form.getField('negative_credit').type"
+                       checked="">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+              <label *ngIf="!conge.negative_credit.value" class="custom-toggle">
+                <input disabled
+                       [formControl]="form.getField('negative_credit').asFormControl"
+                       [ngModel]="companyEnabledLeave.negative_credit.value"
+                       [type]="form.getField('negative_credit').type">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+            </td>
+            <td>
+                <span >{{conge.simultaneously_limit.value}}</span>
+            </td>
+            <td>
+
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

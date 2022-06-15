@@ -1,0 +1,114 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Congé
+            :</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Historique de
+            Congés
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Historique de Congés
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body "
+           style="display: -webkit-flex;-webkit-flex-wrap: wrap;-webkit-justify-content: center;width:100%;height: 500px">
+        <form id="form1" role="form" class="mt-5 mb-5 col-12" style="margin-left: 30%;" [formGroup]="myForm">
+
+
+            <div class="col-9" style="margin: 0; padding: 0;display: flex">
+
+                <div class="col-lg-8 col-12" style="display: flex">
+
+                    <label class="col-4" style="font-weight: bold;margin-top: 2%;">Chef de département <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <ng-multiselect-dropdown
+                        style=" width: 100%;"
+                        [settings]="dropdownSettings"
+                        [placeholder]="'Select Collaborator'"
+                        [data]="collaboratorList | async"
+                        formControlName="city"
+                        [disabled]="disabled"
+                        (onSelect)="onItemSelect($event)"
+                        (onDeSelect)="onItemDeSelect($event)"
+                        [(ngModel)]="coll">
+                      </ng-multiselect-dropdown>
+
+                    </div>
+
+                </div>
+               <div class="col-lg-4 col-12">
+
+                    <a (click)="search()"
+                       class="btn btn-sm btn-neutral"
+                       style=" color: black; background: #ffcf03; border: #ffcf03; padding: 4%; ">Recherche</a>
+
+              </div>
+
+
+
+            </div>
+
+        </form>
+
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <tr>
+            <th class="text-center">Nom</th>
+            <th class="text-center">Solde de congés payés</th>
+            <th class="text-center">Solde de congés maladie</th>
+
+          </tr>
+          <tr *ngFor="let conge of congeList; let id = index">
+            <td>
+                <span>{{conge.collaboratorname}}</span>
+            </td>
+            <td>
+                <span>{{conge.current_payed_leave_credit}}</span>
+            </td>
+            <td>
+              <span >{{conge.current_sick_leave_credit}}</span>
+            </td>
+            <td>
+            <span class="table-remove">
+               <a (click)="onselectCollaborator(conge)" class="delete" data-toggle="tooltip" style="    color: blue;"
+                  title="Detail"><i
+                 aria-hidden="true" class="fa fa-eye"></i></a>
+
+            </span>
+            </td>
+            <!--<td>-->
+            <!--<span class="table-remove">-->
+               <!--<a class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i-->
+                 <!--aria-hidden="true" class="fa fa-trash"></i></a>-->
+
+            <!--</span>-->
+            <!--</td>-->
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,967 @@
+<!--<div class="header " style="    background: #c1c1c12e;">-->
+<!--  <div class="container-fluid">-->
+<!--    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">-->
+<!--      <div class="row align-items-center py-4">-->
+<!--        <div class="col-lg-6 col-7">-->
+<!--          <h6 class="h2  d-inline-block mb-0"-->
+<!--              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">-->
+<!--            Facturation:</h6>-->
+<!--          <br>-->
+<!--          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">-->
+<!--            Facture Entrante</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="accordion mt-5 ml-5 mr-5" id="accordionExample">-->
+<!--  <div class="card card-info" style=" background: transparent; border: 0px;">-->
+
+<!--    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">-->
+<!--      <div class="card-body" style="    padding: 0;">-->
+
+
+<!--        <mat-horizontal-stepper [linear]="isLinear" #stepper>-->
+<!--          <mat-step [stepControl]="firstFormGroup" style="">-->
+<!--            <form  [formGroup]="firstFormGroup" style="display: grid;padding: 5%;padding-top: 0;">-->
+<!--              <ng-template matStepLabel>Etape 1</ng-template>-->
+
+<!--              <div style="display: flex">-->
+<!--                <div class="col-4" style="display: flex;;">-->
+<!--                  <mat-form-field style="margin-right: 50px;" class="example-full-width col-11">-->
+<!--                    <input placeholder="fournisseur"   type="text" #autoCompleteInput formControlName="firstCtrl"-->
+<!--                           matInput id="name"-->
+<!--                           [matAutocomplete]="auto" required-->
+<!--                           (keyup)="_filter($event)"-->
+<!--                           [(ngModel)]="nomfournisseur" name="nomfournisseur" value="">-->
+<!--                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="select()">-->
+<!--                      <mat-option *ngFor="let option1 of filteredfournisseurList | async" [value]="option1.name">-->
+<!--                        {{option1.name}}-->
+<!--                      </mat-option>-->
+<!--                    </mat-autocomplete>-->
+<!--                  </mat-form-field>-->
+<!--                  <span class="table-add float-right newfournisseur" style="display: none; margin-top: 45px;" data-toggle="tooltip"  title="Ajouter un nouveau fournisseur">-->
+<!--                    <a (click)="addFournisseur(content)" style="    color: #efcc0b;">-->
+<!--                      <i aria-hidden="true" class="fa fa-plus"></i>-->
+<!--                    </a>-->
+<!--                  </span>-->
+<!--                  <ng-template #content let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">-->
+<!--                    <div class="modal-body">-->
+<!--                      &lt;!&ndash;                             table collaborator leave&ndash;&gt;-->
+<!--                      <wind-fournisseur></wind-fournisseur>-->
+<!--                      &lt;!&ndash;                             end table collaborator leave&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="modal-footer">-->
+<!--                      <input (click)="d('Cross click')" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;padding: 1% 5%;float: right;font-family: monospace;" value="OK">-->
+<!--                    </div>-->
+<!--                  </ng-template>-->
+<!--                </div>-->
+<!--                <mat-form-field class="example-full-width col-4">-->
+<!--                  <input placeholder="code fournisseur"-->
+<!--                         matInput [(ngModel)]="codefournisseur" name="codefournisseur"-->
+<!--                         [formControl]="myControl"-->
+<!--                         [matAutocomplete]="auto2" required id="code"-->
+<!--                         (keyup)="_filter2($event)" value=""  (blur)="defaultSelect()">-->
+<!--                  <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" (optionSelected)="selectCode()" >-->
+<!--                    <mat-option *ngFor="let option of filteredcodefournisseurList | async" [value]="option.code" >-->
+<!--                      {{option.code}}-->
+<!--                    </mat-option>-->
+<!--                  </mat-autocomplete>-->
+<!--                </mat-form-field>-->
+<!--                <mat-form-field  class="example-full-width col-4" >-->
+<!--                  <input placeholder="Type d'Achat"-->
+<!--                         matInput formControlName="thirdCtrl"-->
+<!--                         [matAutocomplete]="auto3" required-->
+<!--                         [(ngModel)]="type" name="type" value=""-->
+<!--                         (keyup)="_filterbyType($event)">-->
+<!--                  <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete" >-->
+<!--                    <mat-option *ngFor="let option2 of typeAchatList | async" [value]="option2">-->
+<!--                      {{option2}}-->
+<!--                    </mat-option>-->
+<!--                  </mat-autocomplete>-->
+<!--                </mat-form-field>-->
+<!--              </div>-->
+
+<!--              &lt;!&ndash;_______________________Select adresse et RIB_________________________&ndash;&gt;-->
+<!--              <div *ngIf="showinfofournisseur" style=" margin-left: 15px; margin-right: 50px; ">-->
+
+<!--                <div style="display: flex; z-index: 1;">-->
+<!--                <div (click)="open(contentadd)" style="position: absolute;left: 6%; top: 33%;">-->
+<!--                  <a  class="delete" data-toggle="tooltip" style="float: right;" ><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png" style="width: 20px;"></a>-->
+<!--                </div>-->
+<!--                <div (click)="open(contentaddrib)"  style="position: absolute;right: 8%;top: 33%;">-->
+<!--                  <a  class="delete" data-toggle="tooltip" style=" float: right;" ><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png" style="width: 20px;"></a>-->
+<!--                </div>-->
+<!--                </div>-->
+
+
+<!--                <div style="display: flex;    margin-top: 0%;">-->
+<!--                &lt;!&ndash;___Select adresse___&ndash;&gt;-->
+<!--              <mat-form-field class="col-6">-->
+
+<!--                <input matInput placeholder="" style="display: none"  >-->
+<!--                <ng-multiselect-dropdown-->
+<!--                  style=" width: 50%;"-->
+<!--                  [settings]="dropdownSettings"-->
+<!--                  [placeholder]="'Adresse de fournisseur'"-->
+<!--                  [data]="fournisseurAddressList | async"-->
+<!--                  formControlName="city"-->
+<!--                  (onSelect)="onItemSelectAddress($event)"-->
+<!--                  (onDeSelect)="onItemDeSelectAddress($event)"-->
+<!--                  (click)="adressedelect()"-->
+<!--                  [(ngModel)]="coll">-->
+<!--                </ng-multiselect-dropdown>-->
+
+<!--              </mat-form-field>-->
+
+
+<!--              &lt;!&ndash;___Select RIB___&ndash;&gt;-->
+
+<!--              <mat-form-field class="col-6">-->
+
+
+<!--                <input matInput placeholder="" style="display: none">-->
+<!--                <ng-multiselect-dropdown-->
+<!--                  style=" width: 50%;"-->
+<!--                  [settings]="dropdownSettings"-->
+<!--                  [placeholder]="'RIB de fournisseur'"-->
+<!--                  [data]="fournisseurRibList | async"-->
+<!--                  formControlName="city"-->
+<!--                  (onSelect)="onItemSelectRib($event)"-->
+<!--                  (onDeSelect)="onItemDeSelectRib($event)"-->
+<!--                  (click)="ribselect()"-->
+<!--                  [(ngModel)]="coll">-->
+<!--                </ng-multiselect-dropdown>-->
+<!--              </mat-form-field>-->
+<!--                </div>-->
+<!--              </div>-->
+
+
+<!--                &lt;!&ndash;_______________________Select adresse et RIB_________________________&ndash;&gt;-->
+
+
+<!--              <div style="display: flex">-->
+<!--                <mat-form-field style="margin-left: 2em;width: 26%">-->
+<!--                  <mat-label style="  color: #757575;">Assujetti à la TVA</mat-label>-->
+<!--                  <input matInput placeholder="Last name, First name"  formControlName="firsttCtrl" required style="display: none">-->
+<!--                  <label class="custom-toggle" style="float:right">-->
+<!--                    <input type="checkbox" (change)="gettvacheck(checkboxValue = !checkboxValue)" />-->
+<!--                    <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>-->
+<!--                  </label>-->
+
+<!--                </mat-form-field>-->
+<!--                <div style="width:30px"></div>-->
+<!--                <mat-form-field   style="width: 32%;margin-top: -12px;">-->
+<!--                <mat-label style="color: #2d2d44;"></mat-label>-->
+<!--                <input matInput placeholder="Last name, First name" style="display: none">-->
+<!--<br>-->
+<!--                <div class="nav-wrapper" style=" width: 100%; margin: 0; text-align: left; padding-bottom: 0px;">-->
+<!--                  <div class="sl-nav">-->
+
+<!--                    <ul>-->
+<!--                      <li style="background: transparent;color: #757575; width: 400px" (click)="toggle()">{{this.languetext}} <i class="fa fa-angle-down" aria-hidden="false" style="float:right"></i>-->
+<!--                        <div *ngIf="show">-->
+<!--                        <div class="triangle"></div>-->
+<!--                        <ul style="    width: 400px;">-->
+<!--                          <li class="languehover" (click)="langue('')"> <span>Sélectionner la langue de facture</span></li>-->
+<!--                          <li class="languehover" (click)="langue('fr')"><i class="sl-flag flag-de"><div id="francais"></div></i> <span>Francais</span></li>-->
+<!--                          <li class="languehover" (click)="langue('en')"><i class="sl-flag flag-usa"><div id="english"></div></i> <span>English</span></li>-->
+<!--                          <li class="languehover" (click)="langue('ar')"><i class="sl-flag flag-tun"><div id="arabe"></div></i> <span>العربية</span></li>-->
+
+<!--                        </ul>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+
+
+
+<!--              </mat-form-field>-->
+<!--              </div>-->
+
+
+
+<!--              <div>-->
+<!--                <div *ngIf="alertshow" style=" color: #a94442; background-color: #f2dede; border-color: #ebccd1; padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; ">-->
+<!--                  Les champs selectionner <b>adresse de fournisseur</b> et <b>selectionner RIB de fournisseur</b> sont obligatoires-->
+<!--                </div>-->
+
+<!--                <button (click)="goForward(stepper)" type="button" style="margin-top: 6%;color: black;background: #efcc0b;box-sizing: border-box;position: relative;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor: pointer;outline: 0;border: none;-webkit-tap-highlight-color: transparent;display: inline-block;white-space: nowrap;text-decoration: none;vertical-align: baseline;text-align: center;margin: 0;min-width: 64px;line-height: 36px;border-radius: 4px;overflow: visible;margin-top: 6%;padding: 5px; ">-->
+<!--                  Next-->
+<!--                </button>-->
+<!--&lt;!&ndash;                <button mat-button matStepperNext style="margin-top:6%;padding: 5px;color: black;background: #efcc0b; "  >Next</button>&ndash;&gt;-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </mat-step>-->
+
+
+<!--&lt;!&ndash;______________________________________________________________&ndash;&gt;-->
+<!--          <mat-step  *ngIf="translatefrancais">-->
+<!--            <form>-->
+<!--              <ng-template matStepLabel>Etape 2</ng-template>-->
+<!--              <mat-form-field   style="display:none">-->
+<!--                &lt;!&ndash;                <mat-label>Numéro de facture</mat-label>&ndash;&gt;-->
+<!--                <input matInput placeholder="Numéro de facture" value=" 20200044-WE"   formControlName="secondCtrl" >-->
+<!--              </mat-form-field>-->
+
+<!--              &lt;!&ndash;___________________Francais et anglais______________________&ndash;&gt;-->
+<!--              <div   style="width: 100vw;display: flex;height: 100%;padding-left: 15em;">-->
+<!--                <div id="payslip">-->
+<!--                  <div >-->
+
+<!--                    <div class="row col-12" style="display: flex;padding: 3em;">-->
+<!--                      <div class="col-6">-->
+<!--                        <img style="width: 11em" src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png">-->
+<!--                      </div>-->
+<!--                      <div class="col-6">-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="row col-12" style="display: flex;padding-left: 3em;padding-top: 1em;">-->
+<!--                      <div class="col-8" style="border: 1px solid #0f65b5;  border-radius: 16px; padding-left: 2.5em;">-->
+<!--                                                                 <span>-->
+<!--                                                                   <b>Client: </b>-->
+
+<!--                                                                   <b>{{this.clientfacture}}</b>-->
+<!--                                                                 </span>-->
+<!--                        <br><br>-->
+<!--                        <span>-->
+<!--                                                                   <b>Adresse: </b>-->
+
+<!--                          {{this.Addressfacture}}-->
+<!--                                                                 </span>-->
+<!--                        <br>-->
+<!--                        <span><b>RC: </b><b style="color: black;">{{this.fournisseur.rc}}</b></span><br>-->
+<!--                        <span><b>MF: </b><b style="color: black;">{{this.fournisseur.tax_Registration}}</b></span>-->
+<!--                        <br><br>-->
+<!--                      </div>-->
+<!--                      <div class="col-4">-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="row col-12" style="display: flex;padding: 3em; padding-bottom: 0em;">-->
+<!--                      <div class="col-4">-->
+
+<!--                      </div>-->
+<!--                      <div class="col-8">-->
+<!--                        <div style="display: flex">-->
+<!--                          <h5  style=" font-weight: bold; color: #0f65b5; ">Facture Pro-Forma N° : </h5>-->
+
+
+<!--                          <h5 style=" font-weight: bold; color: #0f65b5; text-transform: uppercase " > {{this.facturenumber}} </h5>-->
+
+<!--                        </div>-->
+<!--                        <div style="display: flex"><p><span    style="color: black;">ville</span><span>, le </span><span>{{dateTime}}</span></p></div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="row col-12" style="padding:3em;padding-top:0em;padding-bottom: 0;">-->
+<!--                      <table class="customers"  style="    font-size: 13px;">-->
+<!--                        <tr>-->
+<!--                          <th style="width: 166px;">-->
+<!--                            <span>Désignation</span>-->
+
+<!--                          </th>-->
+<!--                          <th style="    width: 166px;">-->
+<!--                            <span>Quantité</span>-->
+
+<!--                          </th>-->
+<!--                          <th style="    width: 166px;">-->
+<!--                            <span> Prix Unitaire HT en TND</span>-->
+<!--                          </th>-->
+<!--                          <th style="   width: 166px;">-->
+<!--                            <span> Prix Totale H.T.T.C en TND</span>-->
+<!--                          </th>-->
+<!--                          <th style="width: 166px;">TVA</th>-->
+<!--                          <th>-->
+<!--                            <span> Totale Net en TND</span>-->
+<!--                          </th>-->
+
+
+<!--                        </tr>-->
+<!--                                                                   <tr *ngFor="let product of products; let id = index">-->
+
+<!--                                                                     <td><input placeholder="entrer nom de produit" style="border: 0;background: transparent;" [value]='product.productname'></td>-->
+
+<!--                                                                     <td style="color: black;"><input placeholder="entrer quantité" style="border: 0;background: transparent;" [value]='product.quantite' (keyup)="calcultotal(id, 'quantite', $event)" ></td>-->
+<!--                                                                     <td style="color: black;"><input placeholder="entrer prix unitaire" style="border: 0;background: transparent;"  [value]='product.prixunitaire' (keyup)="calcultotal(id, 'prixunitaire', $event)" ></td>-->
+<!--                                                                     <td style="color: black;"><input placeholder="entrer prix total" style="border: 0;background: transparent;" disabled [value]='product.prixtotal' ></td>-->
+<!--                                                                     <td>-->
+<!--                                                                       <input *ngIf="this.checkboxValue==true" placeholder="entrer unité" style="border: 0;background: transparent; width: 25px"  [value]='product.tva' (keyup)="calcultotal(id, 'tva', $event)">-->
+<!--                                                                       <input *ngIf="this.checkboxValue==false" placeholder="entrer unité" style="border: 0;background: transparent; width: 25px;" value="0" disabled>%</td>-->
+<!--                                                                     <td style="color: black;"><input disabled style="border: 0;background: transparent;" [value]='product.totalnet'></td>-->
+
+<!--                                                                   </tr>-->
+<!--                      </table>-->
+<!--                                                             <p *ngIf="showadd" (click)="appendline(this.idline)" style=" float: right; position: absolute; right: 0; top: 4em;">-->
+<!--                                                               <img style="width: 20px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png">-->
+<!--                                                             </p>-->
+
+<!--                                                               <p *ngIf="showremove" (click)="suppline()" style=" float: right; position: absolute; right: -2em; top: 4em;"><img style="width: 20px;" src="https://pngimage.net/wp-content/uploads/2018/06/minus-icon-png-6.png"></p>-->
+
+
+<!--                    </div>-->
+<!--                    <div class="row col-12" style="padding:3em;padding-top:0em">-->
+<!--                      <table class="customers" style="    font-size: 13px;">-->
+
+<!--                        <tr>-->
+<!--                          <td style="width: 166px;border-right:none "></td>-->
+<!--                          <td style="width: 166px;border-right:none; border-left:none "></td>-->
+<!--                          <td style="    width: 166px;border-right:none; border-left:none"></td>-->
+<!--                          <td style="    width: 240px;border-left:none"></td>-->
+<!--                          <td style="    width: 170px;">-->
+<!--                            <b>Totale HT</b>-->
+
+<!--                          </td>-->
+<!--                          <td    style="color: black;"><input placeholder="enter total" style="border: 0;background: transparent;" disabled [value]='this.TotalHT'></td>-->
+
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                          <td style="width: 166px;border-right:none "></td>-->
+<!--                          <td style="width: 166px;border-right:none; border-left:none "></td>-->
+<!--                          <td style="    width: 166px;border-right:none; border-left:none"></td>-->
+<!--                          <td style="    width: 188px;border-left:none"></td>-->
+<!--                          <td style="    width: 170px;">-->
+<!--                            <b>Timbre</b>-->
+
+<!--                          </td>-->
+<!--                          <td    style="color: black;"><input placeholder="enter total" style="border: 0;background: transparent; " disabled value="0.600"></td>-->
+
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                          <td style="width: 166px;border-right:none "></td>-->
+<!--                          <td style="width: 166px;border-right:none; border-left:none "></td>-->
+<!--                          <td style="    width: 166px;border-right:none; border-left:none"></td>-->
+<!--                          <td style="    width: 188px;border-left:none"></td>-->
+<!--                          <td style="    width: 170px;">-->
+<!--                            <b>Totale TTC</b>-->
+<!--                          </td>-->
+<!--                          <td style="color: black;"><input placeholder="enter total" style="border: 0;background: transparent; " disabled  [value]='this.word'></td>-->
+
+<!--                        </tr>-->
+<!--                      </table>-->
+
+
+<!--                    </div>-->
+<!--                    <p style="padding-left: 3em; padding-right: 3em;">-->
+<!--                      <span>Le montant Total de la présente facture s'elève à la somme de : </span>-->
+<!--                      <span>{{this.totalLetter}}</span>-->
+<!--                    </p>-->
+
+<!--                    <div class="row col-12" style="display: flex;padding-left: 3em; padding-right: 3em;">-->
+<!--                      <div class="col-12">-->
+<!--                        <p style="margin-bottom: 0px;    font-size: 14px;">-->
+<!--                          <span style="font-weight: bold;">Modalité de paiement: </span>-->
+<!--                          <span    style="color: black;"> entrer mode de paiement</span></p>-->
+<!--                        <p style="margin-bottom: 0px;    font-size: 14px;">-->
+<!--                          <span style="font-weight: bold;">RIB de la société </span>-->
+<!--                          &lt;!&ndash;el societe eli connecté&ndash;&gt;-->
+<!--                          <span style="font-weight: bold;"> <b    style="color: black;">entrer nom de votre sociéte :</b> </span> <span    style="color: black;">entrer rib de votre sociéte</span></p>-->
+<!--                      </div>-->
+
+<!--                    </div>-->
+
+
+<!--                    <div class="row col-12" style="padding-left: 5em;padding-right: 2em;font-size: 12px;text-align: center;    margin-top: 4em;">-->
+<!--                      <hr style=" border: 1px solid black; width: 100%; ">-->
+<!--                      <div>-->
+<!--                        <span>Sural au capital de  </span>-->
+<!--                        <span    style="color: black;">entrer capital</span>-->
+<!--                        <span>- </span>-->
+<!--                        <span>Siege Social: </span>-->
+<!--                        <span    style="color: black;">{{this.fournisseur.alternative_Name}}</span>-->
+
+<!--                        <br><br>-->
+
+<!--                        <span>R.C: </span>-->
+<!--                        <span    style="color: black;">entrer RC</span>-->
+<!--                        <span> /MF: </span>-->
+<!--                        <span    style="color: black;">entrer MF </span>-->
+<!--                        <span> Tel: </span>-->
+<!--                        <span    style="color: black;"> entrer numéro de téléphone </span>-->
+<!--                        <span> -Email: </span>-->
+<!--                        <span    style="color: black;"> entrer email </span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+
+<!--                 </div>-->
+
+<!--               </div>-->
+
+
+<!--               <div>-->
+
+<!--                 <button mat-button matStepperPrevious style=" padding: 5px; color: white; background: #2d2d44; margin-right: 1em; ">Back</button>-->
+<!--                 <button mat-button matStepperNext style="padding: 5px;color: black;background: #efcc0b;">Next</button>-->
+<!--               </div>-->
+<!--             </form>-->
+<!--           </mat-step>-->
+
+<!--          <mat-step *ngIf="translateanglais">-->
+<!--            <form>-->
+<!--              <ng-template matStepLabel>Etape 3</ng-template>-->
+<!--              <mat-form-field   style="display:none">-->
+<!--                &lt;!&ndash;                <mat-label>Numéro de facture</mat-label>&ndash;&gt;-->
+<!--                <input matInput placeholder="Numéro de facture" value=" 20200044-WE"   formControlName="secondCtrl" >-->
+<!--              </mat-form-field>-->
+
+<!--              &lt;!&ndash;___________________Francais et anglais______________________&ndash;&gt;-->
+<!--              <div   style="width: 100vw;display: flex;height: 100%;padding-left: 15em;">-->
+<!--                <div id="payslip">-->
+
+<!--                                      <div class="row col-12" style="display: flex;padding: 3em;">-->
+<!--                                        <div class="col-6">-->
+<!--                                          <img style="width: 11em" src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png">-->
+<!--                                        </div>-->
+<!--                                        <div class="col-6">-->
+<!--                                        </div>-->
+<!--                                      </div>-->
+
+<!--                                      <div class="row col-12" style="display: flex;padding-left: 3em;padding-top: 1em;">-->
+<!--                                        <div class="col-8" style="border: 1px solid #0f65b5;  border-radius: 16px; padding-left: 2.5em;">-->
+<!--                                                                                   <span>-->
+<!--                                                                                     <b>Client: </b>-->
+<!--                                                                                     <b>{{this.clientfacture}}</b>-->
+<!--                                                                                   </span>-->
+<!--                                          <br><br>-->
+<!--                                          <span>-->
+<!--                                                                                     <b>Address: </b>-->
+<!--                                            {{this.Addressfacture}}-->
+<!--                                                                                   </span>-->
+<!--                                          <br>-->
+<!--                                          <span><b>RC: </b><b style="color: black;">{{this.fournisseur.rc}}</b></span><br>-->
+<!--                                          <span><b>MF: </b><b style="color: black;">{{this.fournisseur.tax_Registration}}</b></span>-->
+<!--                                          <br><br>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-4">-->
+<!--                                        </div>-->
+<!--                                      </div>-->
+
+<!--                                      <div class="row col-12" style="display: flex;padding: 3em; padding-bottom: 0em;">-->
+<!--                                        <div class="col-4">-->
+
+<!--                                        </div>-->
+<!--                                        <div class="col-8">-->
+<!--                                          <div style="display: flex">-->
+<!--                                            <h5 style=" font-weight: bold; color: #0f65b5; ">Pro-Forma Invoice Number : </h5>-->
+
+<!--                                            <h5 style=" font-weight: bold; color: #0f65b5; text-transform: uppercase " > {{this.facturenumber}} </h5>-->
+
+<!--                                          </div>-->
+<!--                                          <div style="display: flex"><p><span    style="color: black;">ville</span><span>, le </span><span>{{dateTime}}</span></p></div>-->
+<!--                                        </div>-->
+<!--                                      </div>-->
+
+<!--                                      <div class="row col-12" style="padding:3em;padding-top:0em;padding-bottom: 0;">-->
+<!--                                        <table class="customers"  style="    font-size: 13px;">-->
+<!--                                          <tr>-->
+<!--                                            <th style="width: 166px;">-->
+<!--                                              <span>Designation</span>-->
+<!--                                            </th>-->
+<!--                                            <th style="    width: 166px;">-->
+<!--                                              <span>Amount</span>-->
+<!--                                            </th>-->
+<!--                                            <th style="    width: 166px;">-->
+<!--                                              <span> Unit Price HT in TND</span>-->
+<!--                                            </th>-->
+<!--                                            <th style="   width: 166px;">-->
+<!--                                              <span> Total Price H.T.T.C in TND</span>-->
+<!--                                            </th>-->
+<!--                                            <th style="width: 166px;">TVA</th>-->
+<!--                                            <th>-->
+<!--                                              <span> Total Net in TND</span>-->
+<!--                                            </th>-->
+
+
+<!--                                          </tr>-->
+<!--                                                                                     <tr *ngFor="let product of products; let id = index">-->
+
+<!--                                                                                       <td><input placeholder="enter product" style="border: 0;background: transparent;" [value]='product.productname'></td>-->
+
+<!--                                                                                       <td style="color: black;"><input placeholder="enter Amount" style="border: 0;background: transparent;" [value]='product.quantite' (keyup)="calcultotal(id, 'quantite', $event)" ></td>-->
+<!--                                                                                       <td style="color: black;"><input placeholder="enter Unit Price" style="border: 0;background: transparent;"  [value]='product.prixunitaire' (keyup)="calcultotal(id, 'prixunitaire', $event)" ></td>-->
+<!--                                                                                       <td style="color: black;"><input placeholder="enter Total Price" style="border: 0;background: transparent;" disabled [value]='product.prixtotal' ></td>-->
+<!--                                                                                       <td>-->
+<!--                                                                                         <input *ngIf="this.checkboxValue==true" placeholder="enter unit" style="border: 0;background: transparent; width: 25px"  [value]='product.tva' (keyup)="calcultotal(id, 'tva', $event)">-->
+<!--                                                                                         <input *ngIf="this.checkboxValue==false" placeholder="enter unit" style="border: 0;background: transparent; width: 25px;" value="0" disabled>%</td>-->
+<!--                                                                                       <td style="color: black;"><input disabled style="border: 0;background: transparent;" [value]='product.totalnet'></td>-->
+
+<!--                                                                                     </tr>-->
+<!--                                        </table>-->
+<!--                                                                               <p *ngIf="showadd" (click)="appendline(this.idline)" style=" float: right; position: absolute; right: 0; top: 4em;">-->
+<!--                                                                                      <img style="width: 20px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png">-->
+<!--                                                                               </p>-->
+<!--                                                                                 <p *ngIf="showremoveen" (click)="supplineen()" style=" float: right; position: absolute; right: -2em; top: 4em;"><img style="width: 20px;" src="https://pngimage.net/wp-content/uploads/2018/06/minus-icon-png-6.png"></p>-->
+
+
+<!--                                      </div>-->
+<!--                                      <div class="row col-12" style="padding:3em;padding-top:0em">-->
+<!--                                        <table class="customers" style="    font-size: 13px;">-->
+
+<!--                                          <tr>-->
+<!--                                            <td style="width: 166px;border-right:none "></td>-->
+<!--                                            <td style="width: 166px;border-right:none; border-left:none "></td>-->
+<!--                                            <td style="    width: 166px;border-right:none; border-left:none"></td>-->
+<!--                                            <td style="    width: 240px;border-left:none"></td>-->
+<!--                                            <td style="    width: 170px;">-->
+<!--                                              <b>Total HT</b>-->
+<!--                                            </td>-->
+<!--                                            <td    style="color: black;"><input placeholder="enter total" style="border: 0;background: transparent;" disabled [value]='this.TotalHT'></td>-->
+
+<!--                                          </tr>-->
+<!--                                          <tr>-->
+<!--                                            <td style="width: 166px;border-right:none "></td>-->
+<!--                                            <td style="width: 166px;border-right:none; border-left:none "></td>-->
+<!--                                            <td style="    width: 166px;border-right:none; border-left:none"></td>-->
+<!--                                            <td style="    width: 188px;border-left:none"></td>-->
+<!--                                            <td style="    width: 170px;">-->
+<!--                                              <b>Stamped</b>-->
+<!--                                            </td>-->
+<!--                                            <td    style="color: black;"><input placeholder="enter total" style="border: 0;background: transparent; " disabled value="0.600"></td>-->
+
+<!--                                          </tr>-->
+<!--                                          <tr>-->
+<!--                                            <td style="width: 166px;border-right:none "></td>-->
+<!--                                            <td style="width: 166px;border-right:none; border-left:none "></td>-->
+<!--                                            <td style="    width: 166px;border-right:none; border-left:none"></td>-->
+<!--                                            <td style="    width: 188px;border-left:none"></td>-->
+<!--                                            <td style="    width: 170px;">-->
+<!--                                              <b>Total TTC</b>-->
+<!--                                            </td>-->
+<!--                                            <td style="color: black;"><input placeholder="enter total" style="border: 0;background: transparent; " disabled  [value]='this.word'></td>-->
+
+<!--                                          </tr>-->
+<!--                                        </table>-->
+
+
+<!--                                      </div>-->
+<!--                                      <p style="padding-left: 3em; padding-right: 3em;">-->
+<!--                                        <span>The Total amount of this invoice is the sum of : </span>-->
+<!--                                        <span>{{this.totalLetter}}</span>-->
+<!--                                      </p>-->
+
+<!--                                      <div class="row col-12" style="display: flex;padding-left: 3em; padding-right: 3em;">-->
+<!--                                        <div class="col-12">-->
+<!--                                          <p style="margin-bottom: 0px;    font-size: 14px;">-->
+<!--                                            <span style="font-weight: bold;">Method of payment: </span>-->
+<!--                                            <span    style="color: black;"> entrer mode de paiement</span></p>-->
+<!--                                          <p style="margin-bottom: 0px;    font-size: 14px;">-->
+<!--                                            <span   style="font-weight: bold;">RIB of the company </span>-->
+<!--                                            &lt;!&ndash;el societe eli connecté&ndash;&gt;-->
+<!--                                            <span style="font-weight: bold;"> <b    style="color: black;">entrer nom de votre sociéte :</b> </span> <span    style="color: black;">entrer rib de votre sociéte</span></p>-->
+<!--                                        </div>-->
+
+<!--                                      </div>-->
+
+
+<!--                                      <div class="row col-12" style="padding-left: 5em;padding-right: 2em;font-size: 12px;text-align: center;    margin-top: 4em;">-->
+<!--                                        <hr style=" border: 1px solid black; width: 100%; ">-->
+<!--                                        <div>-->
+<!--                                          <span>Sural au capital de  </span>-->
+<!--                                          <span    style="color: black;">entrer capital</span>-->
+<!--                                          <span>- </span>-->
+<!--                                          <span>Siege Social: </span>-->
+<!--                                          <span    style="color: black;">{{this.fournisseur.alternative_Name}}</span>-->
+
+<!--                                          <br><br>-->
+
+<!--                                          <span>R.C: </span>-->
+<!--                                          <span    style="color: black;">entrer RC</span>-->
+<!--                                          <span> /MF: </span>-->
+<!--                                          <span    style="color: black;">entrer MF </span>-->
+<!--                                          <span> Tel: </span>-->
+<!--                                          <span    style="color: black;"> entrer numéro de téléphone </span>-->
+<!--                                          <span> -Email: </span>-->
+<!--                                          <span    style="color: black;"> entrer email </span>-->
+<!--                                        </div>-->
+<!--                                      </div>-->
+
+
+
+<!--                </div>-->
+
+<!--              </div>-->
+
+
+<!--              <div>-->
+
+<!--                <button mat-button matStepperPrevious style=" padding: 5px; color: white; background: #2d2d44; margin-right: 1em; ">Back</button>-->
+<!--                <button mat-button matStepperNext style="padding: 5px;color: black;background: #efcc0b;">Next</button>-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </mat-step>-->
+
+<!--          <mat-step  *ngIf="translatearabe">-->
+<!--            <form>-->
+<!--              <ng-template matStepLabel>Etape 3</ng-template>-->
+<!--              <mat-form-field   style="display:none">-->
+<!--                &lt;!&ndash;                <mat-label>Numéro de facture</mat-label>&ndash;&gt;-->
+<!--                <input matInput placeholder="Numéro de facture" value=" 20200044-WE"   formControlName="secondCtrl" >-->
+<!--              </mat-form-field>-->
+
+<!--              &lt;!&ndash;___________________arabe______________________&ndash;&gt;-->
+<!--              <div   style="width: 100vw;display: flex;height: 100%;padding-left: 15em;">-->
+<!--                <div id="payslip">-->
+<!--                  <div>-->
+
+<!--                    <div class="row col-12" style="display: flex;padding: 3em;">-->
+<!--                      <div class="col-6">  </div>-->
+<!--                      <div class="col-6">-->
+<!--                        <img style="    float: right; width: 11em" src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png">-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="row col-12" style="display: flex;padding-left: 3em;padding-top: 1em;">-->
+<!--                      <div class="col-4">-->
+<!--                      </div>-->
+<!--                      <div class="col-8" style="float:right; border: 1px solid #0f65b5;  border-radius: 16px; padding-left: 2.5em;">-->
+<!--                          <span style="float:right;">-->
+<!--                             <b>{{this.clientfacture}}</b>-->
+<!--                             <b> : الزبون   </b>-->
+<!--                          </span>-->
+<!--                        <br><br>-->
+<!--                        <span style="float:right;">-->
+<!--                          {{this.Addressfacture}}-->
+<!--                           <b> : العنوان  </b>-->
+<!--                       </span>-->
+<!--                        <br>-->
+<!--                        <span  style="float:right;"><b style="color: black;">{{this.fournisseur.rc}}</b><b>: السجل التجاري</b></span><br>-->
+<!--                        <span  style="float:right;"><b style="color: black;">{{this.fournisseur.tax_Registration}}</b><b>: رقم التسجيل الضريبي</b></span>-->
+<!--                        <br><br>-->
+<!--                      </div>-->
+
+<!--                    </div>-->
+
+<!--                    <div class="row col-12" style="display: flex;padding: 3em; padding-bottom: 0em;">-->
+<!--                      <div class="col-4">-->
+
+<!--                      </div>-->
+<!--                      <div class="col-8">-->
+<!--                        <div style="display: flex ;    float: right;">-->
+<!--                          <h5 style=" font-weight: bold; color: #0f65b5; text-transform: uppercase " > {{this.facturenumber}} </h5>-->
+<!--                          <h5  style=" font-weight: bold; color: #0f65b5; ">  : رقم الفاتورة المبدئية   </h5>-->
+<!--                        </div>-->
+<!--                        <br>-->
+<!--                        <div style="display: flex; "><p> <span    style="color: black;"> اسم المدينة</span> <span> في </span><span>{{dateTime}}</span></p></div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="row col-12" style="padding:3em;padding-top:0em;padding-bottom: 0;">-->
+<!--                      <table class="customers"  style="    font-size: 13px;">-->
+<!--                        <tr>-->
+
+
+
+
+
+<!--                          <th style="text-align: end;">-->
+<!--                            <span> إجمالي صافي د.ت </span>-->
+<!--                          </th>-->
+<!--                          <th style="text-align: end;width: 166px;">TVA</th>-->
+<!--                          <th style=" text-align: end;  width: 166px;">-->
+<!--                            <span>  السعر الإجمالي بدون ضرائب د.ت </span>-->
+<!--                          </th>-->
+<!--                          <th style="  text-align: end;  width: 166px;">-->
+<!--                            <span> سعر الوحدة بدون ضرائب د.ت </span>-->
+<!--                          </th>-->
+<!--                          <th style=" text-align: end;   width: 166px;">-->
+<!--                            <span>الكمية</span>-->
+
+<!--                          </th>-->
+<!--                          <th style="text-align: end;width: 166px;">-->
+<!--                            <span>المنتوج</span>-->
+
+<!--                          </th>-->
+
+<!--                        </tr>-->
+<!--                                                                   <tr *ngFor="let product of products; let id = index">-->
+
+<!--                                                                     <td style="text-align: end;color: black;"><input disabled style="text-align: end;border: 0;background: transparent;" [value]='product.totalnet'></td>-->
+<!--                                                                     <td style="text-align: end;">-->
+<!--                                                                       <input *ngIf="this.checkboxValue==true" placeholder="أدخل الوحدة" style="text-align: end;border: 0;background: transparent; width: 25px"  [value]='product.tva' (keyup)="calcultotal(id, 'tva', $event)">-->
+<!--                                                                       <input *ngIf="this.checkboxValue==false" placeholder="أدخل الوحدة" style="text-align: end;border: 0;background: transparent; width: 25px;" value="0" disabled>%</td>-->
+<!--                                                                     <td style="text-align: end;color: black;"><input placeholder="أدخل السعر الإجمالي" style="text-align: end;border: 0;background: transparent;" disabled [value]='product.prixtotal' ></td>-->
+<!--                                                                     <td style="text-align: end;color: black;"><input placeholder="أدخل سعر الوحدة" style="text-align: end;border: 0;background: transparent;"  [value]='product.prixunitaire' (keyup)="calcultotal(id, 'prixunitaire', $event)" ></td>-->
+<!--                                                                     <td style="text-align: end;color: black;"><input placeholder="أدخل الكمية" style="text-align: end;border: 0;background: transparent;" [value]='product.quantite' (keyup)="calcultotal(id, 'quantite', $event)" ></td>-->
+<!--                                                                     <td style="text-align: end;"><input placeholder="أدخل رقم المنتج" style="text-align: end;border: 0;background: transparent;" [value]='product.productname'></td>-->
+
+<!--                                                                   </tr>-->
+<!--                      </table>-->
+<!--                                                             <p *ngIf="showadd" (click)="appendline(this.idline)" style=" float: right; position: absolute; right: 0; top: 4em;">-->
+<!--                                                               <img style="width: 20px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png">-->
+<!--                                                             </p>-->
+
+<!--                                                               <p *ngIf="showremove" (click)="suppline()" style=" float: right; position: absolute; right: -2em; top: 4em;"><img style="width: 20px;" src="https://pngimage.net/wp-content/uploads/2018/06/minus-icon-png-6.png"></p>-->
+
+
+<!--                    </div>-->
+<!--                    <div class="row col-12" style="padding:3em;padding-top:0em">-->
+<!--                      <table class="customers" style="    font-size: 13px;">-->
+
+<!--                        <tr>-->
+<!--                          <td style="text-align: end;width: 166px;border-right:none "></td>-->
+<!--                          <td style="text-align: end;width: 166px;border-right:none; border-left:none "></td>-->
+<!--                          <td style=" text-align: end;   width: 166px;border-right:none; border-left:none"></td>-->
+<!--                          <td style=" text-align: end;   width: 240px;border-left:none"></td>-->
+<!--                          <td    style="text-align: end;color: black;"><input placeholder="enter total" style="    text-align: end;border: 0;background: transparent;" disabled [value]='this.TotalHT'></td>-->
+<!--                          <td style="   text-align: end; width: 182px;">-->
+<!--                            <b > لإجمالي بدون الضريبة</b>-->
+<!--                          </td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                          <td style="text-align: end;width: 166px;border-right:none "></td>-->
+<!--                          <td style="text-align: end;width: 166px;border-right:none; border-left:none "></td>-->
+<!--                          <td style="text-align: end;    width: 166px;border-right:none; border-left:none"></td>-->
+<!--                          <td style="text-align: end;    width: 188px;border-left:none"></td>-->
+<!--                          <td    style="text-align: end;color: black;"><input placeholder="enter total" style="text-align: end; border: 0;background: transparent; " disabled value="0.600"></td>-->
+<!--                          <td style="text-align: end;    width: 170px;">-->
+<!--                            <b>الختم</b>-->
+<!--                          </td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                          <td style="text-align: end;width: 166px;border-right:none "></td>-->
+<!--                          <td style="text-align: end;width: 166px;border-right:none; border-left:none "></td>-->
+<!--                          <td style="text-align: end;    width: 166px;border-right:none; border-left:none"></td>-->
+<!--                          <td style="text-align: end;    width: 188px;border-left:none"></td>-->
+<!--                          <td style="color: black;"><input placeholder="enter total" style="text-align: end;border: 0;background: transparent; " disabled  [value]='this.word'></td>-->
+<!--                          <td style="text-align: end;    width: 170px;">-->
+<!--                            <b>المجموع</b>-->
+<!--                          </td>-->
+
+<!--                        </tr>-->
+<!--                      </table>-->
+
+
+<!--                    </div>-->
+<!--                    <p style="text-align: end;padding-left: 3em; padding-right: 3em;">-->
+<!--                      <span style="text-align: end;">  المبلغ الإجمالي لهذه الفاتورة هو مجموع  </span>-->
+<!--                      <span>{{this.totalLetter}}</span>-->
+
+<!--                    </p>-->
+
+<!--                    <div class="row col-12" style="display: flex;padding-left: 3em; padding-right: 3em;">-->
+<!--                      <div class="col-12">-->
+<!--                        <p style="    float: right; margin-bottom: 0px;    font-size: 14px;">-->
+<!--                          <span style="font-weight: bold;     float: right;">  : طريقة الدفع</span>-->
+<!--                          <span    style="    float: right;color: black;"> entrer mode de paiement</span></p>-->
+
+<!--                        <br><br>-->
+<!--                        <p style="    float: right;margin-bottom: 0px;    font-size: 14px;">-->
+<!--                          <span style="    float: right;font-weight: bold;">  رقم الحساب البنكي للشركة  </span>-->
+<!--                          <span style="    float: right;font-weight: bold;">-->
+<!--                            <b    style="    float: right;color: black;">  entrer nom de votre sociéte  </b>-->
+<!--                          </span>-->
+<!--                          <span  style="    float: right;color: black;">  entrer rib de votre sociéte  </span></p>-->
+
+<!--                          &lt;!&ndash;el societe eli connecté&ndash;&gt;-->
+
+<!--                      </div>-->
+
+<!--                    </div>-->
+
+
+<!--                    <div class="row col-12" style="padding-left: 5em;padding-right: 2em;font-size: 12px;text-align: center;    margin-top: 4em;">-->
+<!--                      <hr style=" border: 1px solid black; width: 100%; ">-->
+<!--                      <div class=" col-12">-->
+<!--                        <span>Sural au capital de  </span>-->
+<!--                        <span    style="color: black;">entrer capital</span>-->
+<!--                        <span>- </span>-->
+<!--                        <span>Siege Social: </span>-->
+<!--                        <span    style="color: black;">{{this.fournisseur.alternative_Name}}</span>-->
+
+<!--                        <br><br>-->
+
+<!--                        <span>R.C: </span>-->
+<!--                        <span    style="color: black;">entrer RC</span>-->
+<!--                        <span> /MF: </span>-->
+<!--                        <span    style="color: black;">entrer MF </span>-->
+<!--                        <span> Tel: </span>-->
+<!--                        <span    style="color: black;"> entrer numéro de téléphone </span>-->
+<!--                        <span> -Email: </span>-->
+<!--                        <span    style="color: black;"> entrer email </span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+
+
+
+<!--                </div>-->
+
+<!--              </div>-->
+
+
+<!--              <div>-->
+
+<!--                <button mat-button matStepperPrevious style=" padding: 5px; color: white; background: #2d2d44; margin-right: 1em; ">Back</button>-->
+<!--                <button mat-button matStepperNext style="padding: 5px;color: black;background: #efcc0b;">Next</button>-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </mat-step>-->
+
+<!--&lt;!&ndash;______________________________________________________________&ndash;&gt;-->
+
+<!--          <mat-step>-->
+<!--             <ng-template matStepLabel>Préview et Imprimer</ng-template>-->
+<!--             <div style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">-->
+<!--               <div id="print" style="width: calc( 9.5in - 80px );height: calc( 12in - 60px );background: #fbf0f0;    border: 1px solid;">-->
+<!--                 <div class="row col-12" style="display: flex;padding: 3em;">-->
+<!--                   <div class="col-6">-->
+<!--                     <img style="width: 11em" src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png">-->
+<!--                   </div>-->
+<!--                   <div class="col-6">-->
+
+<!--                   </div>-->
+<!--                 </div>-->
+<!--                 <div class="row col-12" style="display: flex;padding-left: 3em;padding-top: 1em;">-->
+<!--                   <div class="col-8" style="border: 1px solid #0f65b5;  border-radius: 16px;    padding-left: 2.5em;">-->
+<!--                     <span><b>Client: </b><b>Wevioo</b></span>-->
+<!--                     <br><br>-->
+<!--                     <span><b>Adresse: </b><span style="font-size: 12px">Lot 31 zone industrielle Chortana, 2036 Ariana Tunisie</span></span><br>-->
+<!--                     <span><b>RC: </b><b>6958458</b></span><br>-->
+<!--                     <span><b>MF: </b><b>0058458 V/A/M/000</b></span><br><br>-->
+<!--                   </div>-->
+<!--                   <div class="col-4">-->
+
+<!--                   </div>-->
+<!--                 </div>-->
+
+<!--                 <div class="row col-12" style="display: flex;padding: 3em; padding-bottom: 0em;">-->
+<!--                   <div class="col-4">-->
+
+<!--                   </div>-->
+<!--                   <div class="col-8">-->
+<!--                     <div style="display: flex"><h5 style=" font-weight: bold; color: #0f65b5; ">Facture Pro-Forma N° : </h5> <h5 style=" font-weight: bold; color: #0f65b5; ">20200044-WE </h5></div>-->
+<!--                     <div style="display: flex"><p><span>Mahia (Tunisie)</span><span>, le </span><span>03 Aout 2020</span></p></div>-->
+<!--                   </div>-->
+<!--                 </div>-->
+
+<!--                 <div class="row col-12" style="padding:3em;padding-top:0em">-->
+<!--                   <table class="customers" style="    font-size: 13px;">-->
+<!--                     <tr>-->
+<!--                       <th style="    width: 35%;">Désignation</th>-->
+<!--                       <th>Unité</th>-->
+<!--                       <th>Quantité</th>-->
+<!--                       <th>Prix Unitaire HT en TND</th>-->
+<!--                       <th>Prix Total H.T.V.A en TND</th>-->
+<!--                       <th>Total Net en TND</th>-->
+<!--                     </tr>-->
+<!--                     <tr>-->
+<!--                       <td><b>Prestation de service</b></td>-->
+<!--                       <td>H/J</td>-->
+<!--                       <td    style="color: black;"><input placeholder="enter quantité" style="border: 0;background: transparent;" disabled></td>-->
+<!--                       <td    style="color: black;"><input placeholder="enter prix" style="border: 0;background: transparent;" disabled></td>-->
+<!--                       <td></td>-->
+<!--                       <td    style="color: black;"><input placeholder="enter total" style="border: 0;background: transparent;" disabled ></td>-->
+<!--                     </tr>-->
+<!--                     <tr>-->
+<!--                       <td></td>-->
+<!--                       <td></td>-->
+<!--                       <td></td>-->
+<!--                       <td></td>-->
+<!--                       <td><b>Total HT</b></td>-->
+<!--                       <td>6300</td>-->
+<!--                     </tr>-->
+<!--                     <tr>-->
+<!--                       <td></td>-->
+<!--                       <td></td>-->
+<!--                       <td></td>-->
+<!--                       <td></td>-->
+<!--                       <td><b>Timbre</b></td>-->
+<!--                       <td>0.600</td>-->
+<!--                     </tr>-->
+<!--                     <tr>-->
+<!--                       <td></td>-->
+<!--                       <td></td>-->
+<!--                       <td></td>-->
+<!--                       <td></td>-->
+<!--                       <td><b>Total TTC</b></td>-->
+<!--                       <td>6300.6</td>-->
+<!--                     </tr>-->
+<!--                   </table>-->
+<!--                 </div>-->
+
+<!--                 <p style="padding-left: 3em; padding-right: 3em;">-->
+<!--                   <span>Le montant Total de la présente facture s'elève à la somme de : </span>-->
+<!--                   <span>Six mille trois cent dinar et six cent millimes. </span>-->
+<!--                 </p>-->
+
+<!--                 <div class="row col-12" style="display: flex;padding-left: 3em; padding-right: 3em;">-->
+<!--                   <div class="col-12">-->
+<!--                     <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par virement</span></p>-->
+<!--                     <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">RIB </span><span style="font-weight: bold;"> <b>Wind Consulting :</b> </span><span>2500000000100002550000</span></p>-->
+<!--                   </div>-->
+
+<!--                 </div>-->
+<!--               <div class="row col-12" style="font-size:12px; position: absolute; bottom: 8em;display: inherit;">-->
+<!--                 <hr style="border: 1px solid;width: 50%;margin-left: 3em;margin-bottom: 1em;">-->
+
+<!--                 <div style=" text-align: center; margin-left: 5em; width: 45%;">-->
+<!--                 <span>Sural au capital de  </span>-->
+<!--                 <span>1000D</span>-->
+<!--                 <span>- </span>-->
+<!--                 <span>Siege Social: </span>-->
+<!--                 <span>Mahdia Rue Chaanbi Rondpoint Birrjab Immeuble Ben Nahia, étape 1 appartement 2, Mahdia 5150</span>-->
+
+<!--                 <br><br>-->
+
+<!--                 <span>R.C: </span>-->
+<!--                 <span>B1612212017</span>-->
+<!--                 <span> /MF: </span>-->
+<!--                 <span>1493899b </span>-->
+<!--                 <span> Tel: </span>-->
+<!--                 <span> (+216) 31538340 </span>-->
+<!--                 <span> -Email: </span>-->
+<!--                 <span> direction@wind-consulting-tunisia.com </span>-->
+<!--                 </div>-->
+
+<!--               </div>-->
+<!--               </div>-->
+<!--             </div>-->
+<!--             <div>-->
+<!--               <button mat-button matStepperPrevious style=" padding: 5px; color: white; background: #2d2d44; margin-right: 1em; ">Back</button>-->
+<!--               <button mat-button (click)="print()" style=" padding: 5px; color: white; background: darkgreen; margin-right: 1em; ">Print</button>-->
+<!--               &lt;!&ndash;<button mat-button (click)="stepper.reset()" style=" padding: 5px; color: white; background: darkgreen; margin-right: 1em; ">Reset</button>&ndash;&gt;-->
+<!--             </div>-->
+<!--           </mat-step>-->
+<!--         </mat-horizontal-stepper>-->
+
+<!--       </div>-->
+<!--     </div>-->
+<!--   </div>-->
+<!-- </div>-->
+
+
+
+
+
+
+<!--<ng-template #contentadd let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">-->
+
+<!--  <div class="modal-body">-->
+<!--    <div class="modal-header" style="border-bottom: none;">-->
+<!--&lt;!&ndash;      <h4 class="modal-title" id="modal-basic-title3">Ajouter une adresse </h4>&ndash;&gt;-->
+<!--      <a class="lightbox__close" (click)="reloadrules(contentadd)" >X</a>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;                             table collaborator leave&ndash;&gt;-->
+<!--    <wind-contactadresse [uuidtier]=uuidtier></wind-contactadresse>-->
+<!--    &lt;!&ndash;                             end table collaborator leave&ndash;&gt;-->
+<!--  </div>-->
+<!--</ng-template>-->
+
+
+<!--<ng-template #contentaddrib let-c="close" let-d="dismiss" style=" width: 100%; margin-left: 30%; ">-->
+<!--  <div class="modal-body">-->
+<!--    <div class="modal-header" style="border-bottom: none;">-->
+<!--&lt;!&ndash;      <h4 class="modal-title" id="modal-basic-title4">Ajouter un RIB </h4>&ndash;&gt;-->
+<!--      <a class="lightbox__close" (click)="reloadrules(contentaddrib)" >X</a>-->
+<!--    </div>-->
+
+<!--    <wind-bank-accounts [uuidtier]=uuidtier></wind-bank-accounts>-->
+
+<!--  </div>-->
+<!--</ng-template>-->

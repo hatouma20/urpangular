@@ -1,0 +1,84 @@
+
+
+<div class="invoice-form-wrapper">
+  <div class="px-3" style="padding: 0;">
+
+    <div>
+    <div>
+        <p>Devise</p>
+    </div>
+    <div class="border">
+      <select class="form-control inputdesign" [(ngModel)]="deviseInvoice" (change)="changedevise($event)">
+        <option value="TND"> Dinar Tunisien </option>
+        <option value="$"> Dollar Américain </option>
+        <option value="€"> Euro </option>
+      </select>
+    </div>
+    </div>
+    <br>
+    <div>
+      <div>
+        <p> Modèle</p>
+      </div>
+      <div class="border">
+        <div class="sl-nav">
+<!--          <mat-select [(value)]="selectedCityName" [(ngModel)]="selectedCityName" name="option">-->
+<!--            <mat-option  *ngFor="let option of modeleinvoice" [value]="option.id">{{option.name}}-->
+<!--              <img with="10" height="10" [src]="option.avatar">-->
+
+<!--            </mat-option>-->
+<!--          </mat-select>-->
+
+          <ng-select [items]="modeleinvoice"  (change)="getmodel($event)"
+                     bindLabel="name"
+                     bindValue="name"
+                     [ngModel]="selectedCityName">
+            <ng-template ng-header-tmp >
+            </ng-template>
+            <ng-template ng-label-tmp let-item="item">
+              <img style="width: 150px; height: 150px;     padding: 5%;     margin-top: 10%;" [src]="item.avatar" [src]=" selectedCityName != undefined ? '../../../../../assets/img/invoice/invoice1.png' : item.avatar"/>
+              <b>{{item.name}}</b>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-index="index">
+              <img style="width: 150px; height: 150px;     padding: 5%;" [src]="item.avatar"/>
+              <b>{{item.name}}</b>
+            </ng-template>
+            <ng-template ng-footer-tmp>
+
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div>
+      <div>
+        <p>Design Template</p>
+      </div>
+      <div class="border">
+          <div class="row">
+<!--            ng-reflect-color-picker="#367a0c"-->
+            <div class="col-md-12" style="    padding: 5%; margin-left: 5%;">
+              <input style="border: 0;"
+                [style.background]="colorInvoice"
+                [(colorPicker)]="colorInvoice"
+                [cpOKButton] = "true"
+                [cpOKButtonText] = "'Select'"
+                [cpCancelButton] = "true"
+                [cpSaveClickOutside] = "'false'"
+                [cpDisableInput]="false"
+                [cpAlphaChannel]="'disabled'"
+                [cpOutputFormat]="'hex'"
+                [cpPresetColors]="presetValues"
+                [cpAddColorButton]="true"
+                     (colorPickerClose)="setcolorvalue($event)"
+              />
+              <span style="    padding-left: 3%;">Changer</span>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>

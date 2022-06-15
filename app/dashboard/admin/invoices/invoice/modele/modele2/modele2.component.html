@@ -1,0 +1,1318 @@
+<div id="printinvoice" class="print">
+  <div *ngIf="tableofpage.length === 1" class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+    <div class="back" style="width: 900px ; height:1100px; background: #dadada99;    border: 1px solid; position: relative">
+      <div class="row col-12 logorow" style="    margin-bottom: 5%; display: flex;padding: 3em;     height: 150px;">
+        <div class="col-6">
+          <img style="width: 11em; height: 7em" src="{{clientimage}}">
+        </div>
+        <div class="col-6 logorowsociete">
+          <img style="width: 11em; height: 7em;    float: right;" src="{{clientModel.logo}}">
+        </div>
+      </div>
+
+      <div class="row col-12 "  style="display: flex;padding-left: 3em;padding-top: 1em;      width: 860px;   height: 150px;">
+        <div class="col-5" style=" margin:0px;  padding: 0px; display: flex" >
+          <div style="position: relative; width: 300px">
+            <div class="" style=" border-top: 2px solid ; border-left: 2px solid #ef486e; height: 75px; width: 65px;     position: absolute;" [style.border-color]="color"></div>
+            <div class="" style="padding: 0;position: absolute;margin-left: 10%;">
+            <br>
+            <h5><b>Facture: </b></h5>
+            <span><b>N°: </b><span style="font-size: 12px">{{facturenumber}}</span></span><br>
+            <span><b>Date: </b><span style="font-size: 12px">{{dateFrom}}</span></span><br><br>
+          </div>
+            <div class="" style=" border-bottom: 2px solid ; border-right: 2px solid #ef486e; height: 75px;position: absolute; left: 83%; top: 44%;    width: 65px; " [style.border-color]="color"></div>
+        </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5 logorowsociete2" style=" display: flex">
+          <div style="position: relative; width: 300px">
+            <div class="" style=" border-top: 2px solid ; border-left: 2px solid #ef486e; height: 75px; width: 65px;    position: absolute;" [style.border-color]="color"></div>
+            <div class="" style="padding: 0;position: absolute;margin-left: 10%;">
+            <br>
+            <h5><b>Client: </b><b>{{clientModel.rc}}</b></h5>
+
+            <span><b>{{clientModel.name}} </b></span>
+            <span>{{clientModel.adresse}} </span><br>
+            <span>Matricule Fiscal:  {{clientModel.mf}}</span><br><br>
+          </div>
+            <div class="" style=" border-bottom: 2px solid ; border-right: 2px solid #ef486e; height: 75px;position: absolute; left: 83%; top: 44%;    width: 65px; " [style.border-color]="color"></div>
+        </div>
+        </div>
+      </div>
+<div class="tableslength">
+      <div class="row col-12"  style="display: flex;padding-bottom: 0em;">
+        <br>
+      </div>
+
+
+      <div class="row col-12"   style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+        <table class="customers tableslength"style="  width: 800px;  font-size: 13px; border:1px solid"  [style.border-color]="color">
+          <tr>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px; border-right: 1px solid #ddd;"> Référence</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white ;  padding: 1px;">Designation</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Qté</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Prix U. HT</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Montant HT</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px;">TVA</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;" >Prix U TTC</th>
+          </tr>
+          <tr  *ngFor="let line of linestotallist ">
+
+            <td [style]="line.productname == 'commentaire'?'display:revert': 'display: none'">REF-0{{line.id}}</td>
+            <td [style]="line.productname == 'subtotal'?'display:revert': 'display: none'" >REF-0{{line.id}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'" >REF-0{{line.id}}</td>
+
+            <td [style]="line.productname == 'commentaire'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+            <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+            <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+            <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+            <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+
+          </tr>
+
+        </table>
+      </div>
+
+      <div class="row col-12"  style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+        <table class="customers col-4 tabletva"  style=" font-size: 13px; margin-top:5%; margin-bottom: 1%;  border-radius: 10px;">
+          <thead>
+          <tr>
+            <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;  border-top-left-radius: 10px; border-bottom-left-radius: 10px; border:0px">Base</th>
+            <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;border:0px">Taux</th>
+            <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;  border-top-right-radius: 10px; border-bottom-right-radius: 10px;border:0px">Montant</th>
+          </tr>
+          </thead>
+          <tr style="border:none">
+            <td style="border:none"></td>
+            <td style="border:none"></td>
+            <td style="border:none"></td>
+          </tr>
+          <tbody style="border: 1px solid #ddd;">
+
+          <tr *ngFor="let tva of tvaListResume ">
+            <td  style=" padding: 1px; text-align: center;border: none;border-left: 1px solid #ddd;border-top: 1px solid #ddd;">{{tva.sumMontantHt}}</td>
+            <td  style=" padding: 1px;text-align: center;border: none;border-top: 1px solid #ddd;">{{tva.item}} %</td>
+            <td  style=" padding: 1px;text-align: center;border: none;border-top: 1px solid #ddd;border-right: 1px solid #ddd;">{{tva.sumPrixTotal}}</td>
+          </tr>
+
+          </tbody>
+        </table>
+
+        <div class="customers col-4 tabletva"  style="text-align: center; font-size: 13px; margin-top:5%; margin-bottom: 1%; ">
+          <div [style.border-color]="color" style="border: 2px solid; height: 150px;border-radius: 10px; "><span>Cachet et signature</span></div>
+        </div>
+
+        <table class="customers col-4 tabletva"  style=" font-size: 13px; margin-top:5%; margin-bottom: 1%;height: 150px;">
+
+          <tr>
+            <td style="padding: 1px; "><b>Total HT</b></td>
+            <td style="padding: 1px;text-align: end; ">{{getSumht()}}</td>
+          </tr>
+
+          <tr>
+            <td style="padding: 1px;"><b>Total TVA</b></td>
+            <td style="padding: 1px; text-align: end;">{{totalsumPrixTotal}}</td>
+          </tr>
+          <tr>
+            <td style="padding: 1px;"><b>Timbre Fiscal</b></td>
+            <td style="padding: 1px; text-align: end;">0.600</td>
+          </tr>
+          <tr>
+            <td style="padding: 1px;"><b>Net à Payer</b></td>
+            <td style="padding: 1px; text-align: end;">{{getSumtva()}}</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p  style="padding-left: 3em;  height: 50px; padding-right: 3em;">
+        note:
+        <span [innerHTML]=note>  </span>
+      </p>
+
+      <div  style="padding-left: 3em; padding-right: 3em; height: 50px;">
+        <p style="margin-bottom: 0px;"><b>Arretée la présente facture à la somme de : </b></p>
+        <p style="margin-bottom: 0px;">{{totalLetter}} </p>
+        <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par {{payementype}}</span></p>
+      </div>
+
+
+      <div class="row col-12 tableslength bottomm"  style="    height: 120px;font-size: 12px;display: inherit; position: absolute; bottom: 0px; width: 900px;">
+
+        <div style="display: flex">
+          <div class="" style="margin-left: 2%; width: 300px">
+            <h5 style="    font-size: 1.1rem;"><img style="width: 25px;" src="https://img.icons8.com/ios/452/domain.png">
+              {{patternResult.web_site}}  </h5>
+            <h5 style="    font-size: 1.1rem;"> <img  style="width: 25px;" src="https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png">
+              {{patternResult.email}}</h5>
+          </div>
+
+          <div class="" [style.backgroundColor]="color" style="color: white;padding: 1%; width: 800px">
+            <div style="display: flex;">
+              <div class="col-6" style="border-right: 1px solid white; width: 50%; max-width: 50%; ">
+                <span> Siege Social: </span>
+                <span> {{partnerDefaulAddress}}</span>
+                <p style="font-size: 1px;  margin: 0;"></p>
+                <span> Tél: </span>
+                <span>{{patternResult.phone_number}}  </span>
+
+              </div>
+              <div class="col-6" style="width: 50%; max-width: 50%; margin-left: 2%;">
+                <span>{{clientModel.name}}: </span>
+                <span>{{clientModel.adresse}}</span>
+                <p></p>
+                <span> Tél: </span>
+                <span>{{clientModel.phonenumber}}</span>
+              </div>
+            </div>
+            <br>
+            <div style="    text-align: center;">
+              <b>Matricule Fiscale: </b><span>{{patternResult.patent}} </span>
+              <b style="margin-left: 5%;">RIB: </b><span>{{partnerDefaulRib}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+<div *ngIf="tableofpage.length === 2" class="page2" >
+  <!--Page number :1-->
+  <div class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+  <div class="back" style="width: 900px ; height:1100px; background: #dadada99;    border: 1px solid; position: relative">
+    <div class="row col-12 logorow" style="    margin-bottom: 5%; display: flex;padding: 3em;     height: 150px;">
+      <div class="col-6">
+        <img style="width: 11em; height: 7em" src="{{clientimage}}">
+      </div>
+      <div class="col-6 logorowsociete">
+        <img style="width: 11em; height: 7em;    float: right;" src="{{clientModel.logo}}">
+      </div>
+    </div>
+
+
+    <div class="tableslength">
+      <div class="row col-12"  style="display: flex;padding-bottom: 0em;">
+        <br>
+      </div>
+
+
+      <div class="row col-12"   style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+        <table class="customers tableslength"style="  width: 800px;  font-size: 13px; border:1px solid"  [style.border-color]="color">
+          <tr>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px; border-right: 1px solid #ddd;"> Référence</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white ;  padding: 1px;">Designation</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Qté</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Prix U. HT</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Montant HT</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px;">TVA</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;" >Prix U TTC</th>
+          </tr>
+          <tr  *ngFor="let line of tableofpage[0] ">
+
+            <td [style]="line.productname == 'commentaire'?'display:block': 'display: none'">REF-0{{line.id}}</td>
+            <td [style]="line.productname == 'subtotal'?'display:revert': 'display: none'" >REF-0{{line.id}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" >REF-0{{line.id}}</td>
+
+            <td [style]="line.productname == 'commentaire'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+            <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+            <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+            <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+            <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+
+          </tr>
+
+
+
+
+
+        </table>
+      </div>
+
+
+
+      <p  style="padding-left: 3em;  height: 50px; padding-right: 3em;">
+        note:
+        <span [innerHTML]=note>  </span>
+      </p>
+
+      <div  style="padding-left: 3em; padding-right: 3em; height: 50px;">
+        <p style="margin-bottom: 0px;"><b>Arretée la présente facture à la somme de : </b></p>
+        <p style="margin-bottom: 0px;">{{totalLetter}} </p>
+        <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par {{payementype}}</span></p>
+      </div>
+
+
+      <div class="row col-12 tableslength bottomm"  style="    height: 120px;font-size: 12px;display: inherit; position: absolute; bottom: 0px; width: 900px;">
+
+        <div style="display: flex">
+          <div class="" style="margin-left: 2%; width: 300px">
+            <h5 style="    font-size: 1.1rem;"><img style="width: 25px;" src="https://img.icons8.com/ios/452/domain.png">
+              {{patternResult.web_site}}  </h5>
+            <h5 style="    font-size: 1.1rem;"> <img  style="width: 25px;" src="https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png">
+              {{patternResult.email}}</h5>
+          </div>
+
+          <div class="" [style.backgroundColor]="color" style="color: white;padding: 1%; width: 800px">
+            <div style="display: flex;">
+              <div class="col-6" style="border-right: 1px solid white; width: 50%; max-width: 50%; ">
+                <span> Siege Social: </span>
+                <span> {{partnerDefaulAddress}}</span>
+                <p style="font-size: 1px;  margin: 0;"></p>
+                <span> Tél: </span>
+                <span>{{patternResult.phone_number}}  </span>
+
+              </div>
+              <div class="col-6" style="width: 50%; max-width: 50%; margin-left: 2%;">
+                <span>{{clientModel.name}}: </span>
+                <span>{{clientModel.adresse}}</span>
+                <p></p>
+                <span> Tél: </span>
+                <span>{{clientModel.phonenumber}}</span>
+              </div>
+            </div>
+            <br>
+            <div style="    text-align: center;">
+              <b>Matricule Fiscale: </b><span>{{patternResult.patent}} </span>
+              <b style="margin-left: 5%;">RIB: </b><span>{{partnerDefaulRib}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+    <br>
+  <!--Page number :2-->
+  <div *ngFor="let page of tableofpage  | slice:1 , let i = index; ">
+    <div class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+  <div class="back" style="width: 900px ; height:1100px; background: #dadada99;    border: 1px solid; position: relative">
+    <div class="row col-12 logorow" style="    margin-bottom: 5%; display: flex;padding: 3em;     height: 150px;">
+      <div class="col-6">
+        <img style="width: 11em" src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png">
+      </div>
+      <div class="col-6 logorowsociete">
+        <img style="width: 11em;     float: right;" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Logo_Societe.png">
+      </div>
+    </div>
+
+    <div class="row col-12 "  style="display: flex;padding-left: 3em;padding-top: 1em;      width: 860px;   height: 150px;">
+      <div class="col-5" style=" margin:0px;  padding: 0px; display: flex" >
+        <div style="position: relative; width: 300px">
+          <div class="" style=" border-top: 2px solid ; border-left: 2px solid #ef486e; height: 75px; width: 65px;     position: absolute;" [style.border-color]="color"></div>
+          <div class="" style="padding: 0;position: absolute;margin-left: 10%;">
+            <br>
+            <h5><b>Facture: </b></h5>
+            <span><b>N°: </b><span style="font-size: 12px">{{facturenumber}}</span></span><br>
+            <span><b>Date: </b><span style="font-size: 12px">{{dateFrom}}</span></span><br><br>
+          </div>
+          <div class="" style=" border-bottom: 2px solid ; border-right: 2px solid #ef486e; height: 75px;position: absolute; left: 83%; top: 44%;    width: 65px; " [style.border-color]="color"></div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+      <div class="col-5 logorowsociete2" style=" display: flex">
+        <div style="position: relative; width: 300px">
+          <div class="" style=" border-top: 2px solid ; border-left: 2px solid #ef486e; height: 75px; width: 65px;    position: absolute;" [style.border-color]="color"></div>
+          <div class="" style="padding: 0;position: absolute;margin-left: 10%;">
+            <br>
+            <h5><b>Client: </b><b>{{clientModel.rc}}</b></h5>
+
+            <span><b>{{clientModel.name}} </b></span>
+            <span>{{clientModel.adresse}} </span><br>
+            <span>Matricule Fiscal:  {{clientModel.mf}}</span><br><br>
+          </div>
+          <div class="" style=" border-bottom: 2px solid ; border-right: 2px solid #ef486e; height: 75px;position: absolute; left: 83%; top: 44%;    width: 65px; " [style.border-color]="color"></div>
+        </div>
+      </div>
+    </div>
+    <div class="tableslength">
+      <div class="row col-12"  style="display: flex;padding-bottom: 0em;">
+        <br>
+      </div>
+
+
+      <div class="row col-12"   style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+        <table class="customers tableslength"style="  width: 800px;  font-size: 13px; border:1px solid"  [style.border-color]="color">
+          <tr>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px; border-right: 1px solid #ddd;"> Référence</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white ;  padding: 1px;">Designation</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Qté</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Prix U. HT</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Montant HT</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px;">TVA</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;" >Prix U TTC</th>
+          </tr>
+          <tr  *ngFor="let line of tableofpage[i+1] ">
+
+            <td [style]="line.productname == 'commentaire'?'display:block': 'display: none'">REF-0{{line.id}}</td>
+            <td [style]="line.productname == 'subtotal'?'display:revert': 'display: none'" >REF-0{{line.id}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" >REF-0{{line.id}}</td>
+
+            <td [style]="line.productname == 'commentaire'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+            <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+            <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+            <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+            <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+
+          </tr>
+
+
+        </table>
+      </div>
+
+      <div class="row col-12"  style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+        <table class="customers col-4 tabletva"  style=" font-size: 13px; margin-top:5%; margin-bottom: 1%;  border-radius: 10px;">
+          <thead>
+          <tr>
+            <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;  border-top-left-radius: 10px; border-bottom-left-radius: 10px; border:0px">Base</th>
+            <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;border:0px">Taux</th>
+            <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;  border-top-right-radius: 10px; border-bottom-right-radius: 10px;border:0px">Montant</th>
+          </tr>
+          </thead>
+          <tr style="border:none">
+            <td style="border:none"></td>
+            <td style="border:none"></td>
+            <td style="border:none"></td>
+          </tr>
+          <tbody style="border: 1px solid #ddd;">
+
+          <tr *ngFor="let tva of tvaListResume ">
+            <td  style=" padding: 1px; text-align: center;border: none;border-left: 1px solid #ddd;border-top: 1px solid #ddd;">{{tva.sumMontantHt}}</td>
+            <td  style=" padding: 1px;text-align: center;border: none;border-top: 1px solid #ddd;">{{tva.item}} %</td>
+            <td  style=" padding: 1px;text-align: center;border: none;border-top: 1px solid #ddd;border-right: 1px solid #ddd;">{{tva.sumPrixTotal}}</td>
+          </tr>
+
+          </tbody>
+        </table>
+
+        <div class="customers col-4 tabletva"  style="text-align: center; font-size: 13px; margin-top:5%; margin-bottom: 1%; ">
+          <div [style.border-color]="color" style="border: 2px solid; height: 150px;border-radius: 10px; "><span>Cachet et signature</span></div>
+        </div>
+
+        <table class="customers col-4 tabletva"  style=" font-size: 13px; margin-top:5%; margin-bottom: 1%;height: 150px;">
+
+          <tr>
+            <td style="padding: 1px; "><b>Total HT</b></td>
+            <td style="padding: 1px;text-align: end; ">{{getSumht()}}</td>
+          </tr>
+
+          <tr>
+            <td style="padding: 1px;"><b>Total TVA</b></td>
+            <td style="padding: 1px; text-align: end;">{{totalsumPrixTotal}}</td>
+          </tr>
+          <tr>
+            <td style="padding: 1px;"><b>Timbre Fiscal</b></td>
+            <td style="padding: 1px; text-align: end;">0.600</td>
+          </tr>
+          <tr>
+            <td style="padding: 1px;"><b>Net à Payer</b></td>
+            <td style="padding: 1px; text-align: end;">{{getSumtva()}}</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p  style="padding-left: 3em;  height: 50px; padding-right: 3em;">
+        note:
+        <span [innerHTML]=note>  </span>
+      </p>
+
+      <div  style="padding-left: 3em; padding-right: 3em; height: 50px;">
+        <p style="margin-bottom: 0px;"><b>Arretée la présente facture à la somme de : </b></p>
+        <p style="margin-bottom: 0px;">{{totalLetter}} </p>
+        <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par {{payementype}}</span></p>
+      </div>
+
+
+      <div class="row col-12 tableslength bottomm"  style="    height: 120px;font-size: 12px;display: inherit; position: absolute; bottom: 0px; width: 900px;">
+
+        <div style="display: flex">
+          <div class="" style="margin-left: 2%; width: 300px">
+            <h5 style="    font-size: 1.1rem;"><img style="width: 25px;" src="https://img.icons8.com/ios/452/domain.png">
+              {{patternResult.web_site}}  </h5>
+            <h5 style="    font-size: 1.1rem;"> <img  style="width: 25px;" src="https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png">
+              {{patternResult.email}}</h5>
+          </div>
+
+          <div class="" [style.backgroundColor]="color" style="color: white;padding: 1%; width: 800px">
+            <div style="display: flex;">
+              <div class="col-6" style="border-right: 1px solid white; width: 50%; max-width: 50%; ">
+                <span> Siege Social: </span>
+                <span> {{partnerDefaulAddress}}</span>
+                <p style="font-size: 1px;  margin: 0;"></p>
+                <span> Tél: </span>
+                <span>{{patternResult.phone_number}}  </span>
+
+              </div>
+              <div class="col-6" style="width: 50%; max-width: 50%; margin-left: 2%;">
+                <span>{{clientModel.name}}: </span>
+                <span>{{clientModel.adresse}}</span>
+                <p></p>
+                <span> Tél: </span>
+                <span>{{clientModel.phonenumber}}</span>
+              </div>
+            </div>
+            <br>
+            <div style="    text-align: center;">
+              <b>Matricule Fiscale: </b><span>{{patternResult.patent}} </span>
+              <b style="margin-left: 5%;">RIB: </b><span>{{partnerDefaulRib}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+    </div>
+  </div>
+
+<div *ngIf="tableofpage.length > 2" class="pagesup2" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+  <!--Page number :1-->
+  <div class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+    <div class="back" style="width: 900px ; height:1100px; background: #dadada99;    border: 1px solid; position: relative">
+      <div class="row col-12 logorow" style="    margin-bottom: 5%; display: flex;padding: 3em;     height: 150px;">
+        <div class="col-6">
+          <img style="width: 11em" src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png">
+        </div>
+        <div class="col-6 logorowsociete">
+          <img style="width: 11em;     float: right;" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Logo_Societe.png">
+        </div>
+      </div>
+
+
+      <div class="tableslength">
+        <div class="row col-12"  style="display: flex;padding-bottom: 0em;">
+          <br>
+        </div>
+
+
+        <div class="row col-12"   style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+          <table class="customers tableslength"style="  width: 800px;  font-size: 13px; border:1px solid"  [style.border-color]="color">
+            <tr>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px; border-right: 1px solid #ddd;"> Référence</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white ;  padding: 1px;">Designation</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Qté</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Prix U. HT</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Montant HT</th>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px;">TVA</th>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;" >Prix U TTC</th>
+            </tr>
+            <tr  *ngFor="let line of tableofpage[0] ">
+
+              <td [style]="line.productname == 'commentaire'?'display:block': 'display: none'">REF-0{{line.id}}</td>
+              <td [style]="line.productname == 'subtotal'?'display:revert': 'display: none'" >REF-0{{line.id}}</td>
+              <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" >REF-0{{line.id}}</td>
+
+              <td [style]="line.productname == 'commentaire'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+              <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+              <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+              <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+              <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+              <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+
+            </tr>
+
+
+
+
+
+          </table>
+        </div>
+
+
+
+        <p  style="padding-left: 3em;  height: 50px; padding-right: 3em;">
+          note:
+          <span [innerHTML]=note>  </span>
+        </p>
+
+        <div  style="padding-left: 3em; padding-right: 3em; height: 50px;">
+          <p style="margin-bottom: 0px;"><b>Arretée la présente facture à la somme de : </b></p>
+          <p style="margin-bottom: 0px;">{{totalLetter}} </p>
+          <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par {{payementype}}</span></p>
+        </div>
+
+
+        <div class="row col-12 tableslength bottomm"  style="    height: 120px;font-size: 12px;display: inherit; position: absolute; bottom: 0px; width: 900px;">
+
+          <div style="display: flex">
+            <div class="" style="margin-left: 2%; width: 300px">
+              <h5 style="    font-size: 1.1rem;"><img style="width: 25px;" src="https://img.icons8.com/ios/452/domain.png">
+                {{patternResult.web_site}}  </h5>
+              <h5 style="    font-size: 1.1rem;"> <img  style="width: 25px;" src="https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png">
+                {{patternResult.email}}</h5>
+            </div>
+
+            <div class="" [style.backgroundColor]="color" style="color: white;padding: 1%; width: 800px">
+              <div style="display: flex;">
+                <div class="col-6" style="border-right: 1px solid white; width: 50%; max-width: 50%; ">
+                  <span> Siege Social: </span>
+                  <span> {{partnerDefaulAddress}}</span>
+                  <p style="font-size: 1px;  margin: 0;"></p>
+                  <span> Tél: </span>
+                  <span>{{patternResult.phone_number}}  </span>
+
+                </div>
+                <div class="col-6" style="width: 50%; max-width: 50%; margin-left: 2%;">
+                  <span>{{clientModel.name}}: </span>
+                  <span>{{clientModel.adresse}}</span>
+                  <p></p>
+                  <span> Tél: </span>
+                  <span>{{clientModel.phonenumber}}</span>
+                </div>
+              </div>
+              <br>
+              <div style="    text-align: center;">
+                <b>Matricule Fiscale: </b><span>{{patternResult.patent}} </span>
+                <b style="margin-left: 5%;">RIB: </b><span>{{partnerDefaulRib}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <!--other page-->
+  <div *ngFor="let page of tableofpage  | slice:1 : lenght, let i = index; ">
+    <div class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+      <div class="back" style="width: 900px ; height:1100px; background: #dadada99;    border: 1px solid; position: relative">
+        <div class="row col-12 logorow" style="    margin-bottom: 5%; display: flex;padding: 3em;     height: 150px;">
+          <div class="col-6">
+            <img style="width: 11em" src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png">
+          </div>
+          <div class="col-6 logorowsociete">
+            <img style="width: 11em;     float: right;" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Logo_Societe.png">
+          </div>
+        </div>
+
+        <div class="row col-12 "  style="display: flex;padding-left: 3em;padding-top: 1em;      width: 860px;   height: 150px;">
+          <div class="col-5" style=" margin:0px;  padding: 0px; display: flex" >
+            <div style="position: relative; width: 300px">
+              <div class="" style=" border-top: 2px solid ; border-left: 2px solid #ef486e; height: 75px; width: 65px;     position: absolute;" [style.border-color]="color"></div>
+              <div class="" style="padding: 0;position: absolute;margin-left: 10%;">
+                <br>
+                <h5><b>Facture: </b></h5>
+                <span><b>N°: </b><span style="font-size: 12px">{{facturenumber}}</span></span><br>
+                <span><b>Date: </b><span style="font-size: 12px">{{dateFrom}}</span></span><br><br>
+              </div>
+              <div class="" style=" border-bottom: 2px solid ; border-right: 2px solid #ef486e; height: 75px;position: absolute; left: 83%; top: 44%;    width: 65px; " [style.border-color]="color"></div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+          <div class="col-5 logorowsociete2" style=" display: flex">
+            <div style="position: relative; width: 300px">
+              <div class="" style=" border-top: 2px solid ; border-left: 2px solid #ef486e; height: 75px; width: 65px;    position: absolute;" [style.border-color]="color"></div>
+              <div class="" style="padding: 0;position: absolute;margin-left: 10%;">
+                <br>
+                <h5><b>Client: </b><b>{{clientModel.rc}}</b></h5>
+
+                <span><b>{{clientModel.name}} </b></span>
+                <span>{{clientModel.adresse}} </span><br>
+                <span>Matricule Fiscal:  {{clientModel.mf}}</span><br><br>
+              </div>
+              <div class="" style=" border-bottom: 2px solid ; border-right: 2px solid #ef486e; height: 75px;position: absolute; left: 83%; top: 44%;    width: 65px; " [style.border-color]="color"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tableslength">
+          <div class="row col-12"  style="display: flex;padding-bottom: 0em;">
+            <br>
+          </div>
+
+
+          <div class="row col-12"   style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+            <table class="customers tableslength"style="  width: 800px;  font-size: 13px; border:1px solid"  [style.border-color]="color">
+              <tr>
+                <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px; border-right: 1px solid #ddd;"> Référence</th>
+                <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white ;  padding: 1px;">Designation</th>
+                <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Qté</th>
+                <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Prix U. HT</th>
+                <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Montant HT</th>
+                <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px;">TVA</th>
+                <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;" >Prix U TTC</th>
+              </tr>
+              <tr  *ngFor="let line of tableofpage[i+1] ">
+
+                <td [style]="line.productname == 'commentaire'?'display:block': 'display: none'">REF-0{{line.id}}</td>
+                <td [style]="line.productname == 'subtotal'?'display:revert': 'display: none'" >REF-0{{line.id}}</td>
+                <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" >REF-0{{line.id}}</td>
+
+                <td [style]="line.productname == 'commentaire'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+                <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+                <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+                <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+                <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+                <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+                <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+                <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+                <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+                <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+                <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+                <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+                <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+                <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+                <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+                <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+                <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+                <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+
+              </tr>
+
+
+            </table>
+          </div>
+
+
+
+
+          <div class="row col-12 tableslength bottomm"  style="    height: 120px;font-size: 12px;display: inherit; position: absolute; bottom: 0px; width: 900px;">
+
+            <div style="display: flex">
+              <div class="" style="margin-left: 2%; width: 300px">
+                <h5 style="    font-size: 1.1rem;"><img style="width: 25px;" src="https://img.icons8.com/ios/452/domain.png">
+                  {{patternResult.web_site}}  </h5>
+                <h5 style="    font-size: 1.1rem;"> <img  style="width: 25px;" src="https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png">
+                  {{patternResult.email}}</h5>
+              </div>
+
+              <div class="" [style.backgroundColor]="color" style="color: white;padding: 1%; width: 800px">
+                <div style="display: flex;">
+                  <div class="col-6" style="border-right: 1px solid white; width: 50%; max-width: 50%; ">
+                    <span> Siege Social: </span>
+                    <span> {{partnerDefaulAddress}}</span>
+                    <p style="font-size: 1px;  margin: 0;"></p>
+                    <span> Tél: </span>
+                    <span>{{patternResult.phone_number}}  </span>
+
+                  </div>
+                  <div class="col-6" style="width: 50%; max-width: 50%; margin-left: 2%;">
+                    <span>{{clientModel.name}}: </span>
+                    <span>{{clientModel.adresse}}</span>
+                    <p></p>
+                    <span> Tél: </span>
+                    <span>{{clientModel.phonenumber}}</span>
+                  </div>
+                </div>
+                <br>
+                <div style="    text-align: center;">
+                  <b>Matricule Fiscale: </b><span>{{patternResult.patent}} </span>
+                  <b style="margin-left: 5%;">RIB: </b><span>{{partnerDefaulRib}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <!--Last Page number-->
+  <div class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+    <div class="back" style="width: 900px ; height:1100px; background: #dadada99;    border: 1px solid; position: relative">
+      <div class="row col-12 logorow" style="    margin-bottom: 5%; display: flex;padding: 3em;     height: 150px;">
+        <div class="col-6">
+          <img style="width: 11em" src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png">
+        </div>
+        <div class="col-6 logorowsociete">
+          <img style="width: 11em;     float: right;" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Logo_Societe.png">
+        </div>
+      </div>
+
+      <div class="row col-12 "  style="display: flex;padding-left: 3em;padding-top: 1em;      width: 860px;   height: 150px;">
+        <div class="col-5" style=" margin:0px;  padding: 0px; display: flex" >
+          <div style="position: relative; width: 300px">
+            <div class="" style=" border-top: 2px solid ; border-left: 2px solid #ef486e; height: 75px; width: 65px;     position: absolute;" [style.border-color]="color"></div>
+            <div class="" style="padding: 0;position: absolute;margin-left: 10%;">
+              <br>
+              <h5><b>Facture: </b></h5>
+              <span><b>N°: </b><span style="font-size: 12px">{{facturenumber}}</span></span><br>
+              <span><b>Date: </b><span style="font-size: 12px">{{dateFrom}}</span></span><br><br>
+            </div>
+            <div class="" style=" border-bottom: 2px solid ; border-right: 2px solid #ef486e; height: 75px;position: absolute; left: 83%; top: 44%;    width: 65px; " [style.border-color]="color"></div>
+          </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5 logorowsociete2" style=" display: flex">
+          <div style="position: relative; width: 300px">
+            <div class="" style=" border-top: 2px solid ; border-left: 2px solid #ef486e; height: 75px; width: 65px;    position: absolute;" [style.border-color]="color"></div>
+            <div class="" style="padding: 0;position: absolute;margin-left: 10%;">
+              <br>
+              <h5><b>Client: </b><b>{{clientModel.rc}}</b></h5>
+
+              <span><b>{{clientModel.name}} </b></span>
+              <span>{{clientModel.adresse}} </span><br>
+              <span>Matricule Fiscal:  {{clientModel.mf}}</span><br><br>
+            </div>
+            <div class="" style=" border-bottom: 2px solid ; border-right: 2px solid #ef486e; height: 75px;position: absolute; left: 83%; top: 44%;    width: 65px; " [style.border-color]="color"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tableslength">
+        <div class="row col-12"  style="display: flex;padding-bottom: 0em;">
+          <br>
+        </div>
+
+
+        <div class="row col-12"   style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+          <table class="customers tableslength"style="  width: 800px;  font-size: 13px; border:1px solid"  [style.border-color]="color">
+            <tr>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px; border-right: 1px solid #ddd;"> Référence</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white ;  padding: 1px;">Designation</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Qté</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Prix U. HT</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Montant HT</th>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px;">TVA</th>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;" >Prix U TTC</th>
+            </tr>
+            <tr  *ngFor="let line of tableofpage[tableofpage.length - 1] ">
+
+              <td [style]="line.productname == 'commentaire'?'display:block': 'display: none'">REF-0{{line.id}}</td>
+              <td [style]="line.productname == 'subtotal'?'display:revert': 'display: none'" >REF-0{{line.id}}</td>
+              <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" >REF-0{{line.id}}</td>
+
+              <td [style]="line.productname == 'commentaire'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+              <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+              <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+              <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+              <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+              <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+
+            </tr>
+
+
+          </table>
+        </div>
+
+        <div class="row col-12"  style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+          <table class="customers col-4 tabletva"  style=" font-size: 13px; margin-top:5%; margin-bottom: 1%;  border-radius: 10px;">
+            <thead>
+            <tr>
+              <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;  border-top-left-radius: 10px; border-bottom-left-radius: 10px; border:0px">Base</th>
+              <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;border:0px">Taux</th>
+              <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;  border-top-right-radius: 10px; border-bottom-right-radius: 10px;border:0px">Montant</th>
+            </tr>
+            </thead>
+            <tr style="border:none">
+              <td style="border:none"></td>
+              <td style="border:none"></td>
+              <td style="border:none"></td>
+            </tr>
+            <tbody style="border: 1px solid #ddd;">
+
+            <tr *ngFor="let tva of tvaListResume ">
+              <td  style=" padding: 1px; text-align: center;border: none;border-left: 1px solid #ddd;border-top: 1px solid #ddd;">{{tva.sumMontantHt}}</td>
+              <td  style=" padding: 1px;text-align: center;border: none;border-top: 1px solid #ddd;">{{tva.item}} %</td>
+              <td  style=" padding: 1px;text-align: center;border: none;border-top: 1px solid #ddd;border-right: 1px solid #ddd;">{{tva.sumPrixTotal}}</td>
+            </tr>
+
+            </tbody>
+          </table>
+
+          <div class="customers col-4 tabletva"  style="text-align: center; font-size: 13px; margin-top:5%; margin-bottom: 1%; ">
+            <div [style.border-color]="color" style="border: 2px solid; height: 150px;border-radius: 10px; "><span>Cachet et signature</span></div>
+          </div>
+
+          <table class="customers col-4 tabletva"  style=" font-size: 13px; margin-top:5%; margin-bottom: 1%;height: 150px;">
+
+            <tr>
+              <td style="padding: 1px; "><b>Total HT</b></td>
+              <td style="padding: 1px;text-align: end; ">{{getSumht()}}</td>
+            </tr>
+
+            <tr>
+              <td style="padding: 1px;"><b>Total TVA</b></td>
+              <td style="padding: 1px; text-align: end;">{{totalsumPrixTotal}}</td>
+            </tr>
+            <tr>
+              <td style="padding: 1px;"><b>Timbre Fiscal</b></td>
+              <td style="padding: 1px; text-align: end;">0.600</td>
+            </tr>
+            <tr>
+              <td style="padding: 1px;"><b>Net à Payer</b></td>
+              <td style="padding: 1px; text-align: end;">{{getSumtva()}}</td>
+            </tr>
+
+          </table>
+        </div>
+
+        <p  style="padding-left: 3em;  height: 50px; padding-right: 3em;">
+          note:
+          <span [innerHTML]=note>  </span>
+        </p>
+
+        <div  style="padding-left: 3em; padding-right: 3em; height: 50px;">
+          <p style="margin-bottom: 0px;"><b>Arretée la présente facture à la somme de : </b></p>
+          <p style="margin-bottom: 0px;">{{totalLetter}} </p>
+          <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par {{payementype}}</span></p>
+        </div>
+
+
+        <div class="row col-12 tableslength bottomm"  style="    height: 120px;font-size: 12px;display: inherit; position: absolute; bottom: 0px; width: 900px;">
+
+          <div style="display: flex">
+            <div class="" style="margin-left: 2%; width: 300px">
+              <h5 style="    font-size: 1.1rem;"><img style="width: 25px;" src="https://img.icons8.com/ios/452/domain.png">
+                {{patternResult.web_site}}  </h5>
+              <h5 style="    font-size: 1.1rem;"> <img  style="width: 25px;" src="https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png">
+                {{patternResult.email}}</h5>
+            </div>
+
+            <div class="" [style.backgroundColor]="color" style="color: white;padding: 1%; width: 800px">
+              <div style="display: flex;">
+                <div class="col-6" style="border-right: 1px solid white; width: 50%; max-width: 50%; ">
+                  <span> Siege Social: </span>
+                  <span> {{partnerDefaulAddress}}</span>
+                  <p style="font-size: 1px;  margin: 0;"></p>
+                  <span> Tél: </span>
+                  <span>{{patternResult.phone_number}}  </span>
+
+                </div>
+                <div class="col-6" style="width: 50%; max-width: 50%; margin-left: 2%;">
+                  <span>{{clientModel.name}}: </span>
+                  <span>{{clientModel.adresse}}</span>
+                  <p></p>
+                  <span> Tél: </span>
+                  <span>{{clientModel.phonenumber}}</span>
+                </div>
+              </div>
+              <br>
+              <div style="    text-align: center;">
+                <b>Matricule Fiscale: </b><span>{{patternResult.patent}} </span>
+                <b style="margin-left: 5%;">RIB: </b><span>{{partnerDefaulRib}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+ </div>
+<!--<div class="row">-->
+<!--  <div class="column">-->
+
+<!--  </div>-->
+<!--  <div class="column" style="text-align: center">-->
+<!--    <button [printStyle]="-->
+<!--{-->
+<!-- '.page' : {'padding-left': '0em !important'},-->
+<!-- '.back' : {-->
+<!--    'width': '950px  !important',-->
+<!--    'height':'1300px !important',-->
+<!--    'background': '#fff !important',-->
+<!--    'border': '0px solid !important'-->
+<!-- },-->
+<!-- '.tableslength': { 'width': '1100px  !important'},-->
+<!-- '.logorowsociete' : { 'margin-left': '55%'},-->
+<!-- '.logorowsociete2' : { 'margin-left': '45%'},-->
+<!-- '.tabletva' : {'margin-right': '2%'},-->
+<!-- '.bottomm': {'bottom' : '-16em !important'},-->
+<!-- '.row': {-->
+<!--    'display': 'flex'-->
+<!--    },-->
+<!-- 'td' : {-->
+<!--    'border': ' 1px solid #ddd',-->
+<!--    'padding': '8px'-->
+<!--    },-->
+<!-- 'th' : {-->
+<!--    'border': ' 1px solid #ddd' ,-->
+<!--    'padding': '8px' ,-->
+<!--    'padding-top': '12px',-->
+<!--    'padding-bottom': '12px',-->
+<!--    'text-align': 'left',-->
+<!--    'background-color': '#2270ba',-->
+<!--    'color': 'white'-->
+<!--    },-->
+<!--    '.mat-form-field' : {-->
+<!--      'margin-top': '16px'-->
+<!--    },-->
+<!--    '.customers' : {-->
+<!--      'border-collapse': 'collapse',-->
+<!--      'width': '100%'-->
+<!--    },-->
+<!--    '.customers td, .customers th' : {-->
+<!--      'border': '1px solid #ddd',-->
+<!--      'padding': '8px'-->
+<!--    },-->
+<!--    '.customers th' : {-->
+<!--      'padding-top': '12px',-->
+<!--      'padding-bottom': '12px',-->
+<!--      'text-align': 'left',-->
+<!--      'background-color': '#2270ba',-->
+<!--      'color': 'white'-->
+<!--    }-->
+<!-- }"-->
+<!-- printSectionId="printinvoice" ngxPrint class="printbutton">print</button>-->
+
+<!--    <button class="printbutton" (click)="saveInvoice()" style="background: #0c4c00; color: white;">Save</button>-->
+
+<!--  </div>-->
+<!--  <div class="column">-->
+
+<!--  </div>-->
+<!--</div>-->
+
+<div style="float: right;">
+  <button mat-button  (click)="saveInvoice()" style=" padding: 5px; color: white; background: #2d2d44; margin-right: 1em; ">Save</button>
+
+  <button [printStyle]="
+{
+ '.page' : {'padding-left': '0em !important'},
+ '.back' : {
+    'width': '950px  !important',
+    'height':'1300px !important',
+    'background': '#fff !important',
+    'border': '0px solid !important'
+ },
+ '.tableslength': { 'width': '1100px  !important'},
+ '.logorowsociete' : { 'margin-left': '55%'},
+ '.logorowsociete2' : { 'margin-left': '45%'},
+ '.tabletva' : {'margin-right': '2%'},
+ '.bottomm': {'bottom' : '-16em !important'},
+ '.row': {
+    'display': 'flex'
+    },
+ 'td' : {
+    'border': ' 1px solid #ddd',
+    'padding': '8px'
+    },
+ 'th' : {
+    'border': ' 1px solid #ddd' ,
+    'padding': '8px' ,
+    'padding-top': '12px',
+    'padding-bottom': '12px',
+    'text-align': 'left',
+    'background-color': '#2270ba',
+    'color': 'white'
+    },
+    '.mat-form-field' : {
+      'margin-top': '16px'
+    },
+    '.customers' : {
+      'border-collapse': 'collapse',
+      'width': '100%'
+    },
+    '.customers td, .customers th' : {
+      'border': '1px solid #ddd',
+      'padding': '8px'
+    },
+    '.customers th' : {
+      'padding-top': '12px',
+      'padding-bottom': '12px',
+      'text-align': 'left',
+      'background-color': '#2270ba',
+      'color': 'white'
+    }
+ }"
+    printSectionId="printinvoice" ngxPrint class="printbutton" type="button" style="margin-top: 6%;color: black;background: #efcc0b;box-sizing: border-box;position: relative;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor: pointer;outline: 0;border: none;-webkit-tap-highlight-color: transparent;display: inline-block;white-space: nowrap;text-decoration: none;vertical-align: baseline;text-align: center;margin: 0;min-width: 64px;line-height: 36px;border-radius: 4px;overflow: visible;margin-top: 6%;padding: 5px; ">
+   Print
+  </button>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+  <div class="col-lg-12 col-12">
+    <div class="alert alert-success alert-success-create" style="display: none">
+      <strong>Succès!</strong> la création est effectuée avec succès .
+    </div>
+    <div class="alert alert-success alert-success-update" style="display: none">
+      <strong>Succès!</strong> l'edition est effectuée avec succès .
+    </div>
+
+  </div>
+
+</div>
+<div style="visibility: hidden; height: 10px;">
+
+  <br><br><br>
+  <div style="width: 100vw;display: flex;height: 100%;padding-left: 20em; ">
+    <div id="" style="width: 900px ; height:1100px; background: #dadada99;    border: 1px solid;">
+      <div class="row col-12" id ='logo' style="    margin-bottom: 5%; display: flex;padding: 3em;     height: 150px;">
+        <div class="col-6">
+          <img style="width: 11em" src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png">
+        </div>
+        <div class="col-6">
+          <img style="width: 11em;     float: right;" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Logo_Societe.png">
+        </div>
+      </div>
+      <div class="row col-12" id ='clientdetail' style="display: flex;padding-left: 3em;padding-top: 1em;      width: 860px;   height: 150px;">
+        <div class="col-5" style=" margin:0px;  padding: 0px; display: flex" >
+            <div class="col-2" style=" border-top: 2px solid ; border-left: 2px solid #ef486e; height: 75px; width: 65px" [style.border-color]="color"></div>
+            <div class="col-8" style="padding: 0;position: absolute;margin-left: 10%;">
+              <br>
+              <h5><b>Facture: </b></h5>
+          <span><b>N°: </b><span style="font-size: 12px">{{facturenumber}}</span></span><br>
+          <span><b>Date: </b><span style="font-size: 12px">{{dateFrom}}</span></span><br><br>
+            </div>
+            <div class="col-2" style=" border-bottom: 2px solid ; border-right: 2px solid #ef486e; height: 75px;position: absolute; left: 83%; top: 44%; " [style.border-color]="color"></div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5" style=" display: flex">
+            <div class="col-2" style=" border-top: 2px solid ; border-left: 2px solid #ef486e; height: 75px; width: 65px" [style.border-color]="color"></div>
+            <div class="col-8" style="padding: 0;position: absolute;margin-left: 10%;">
+          <br>
+          <h5><b>Client: </b><b>{{clientModel.rc}}</b></h5>
+
+          <span><b>{{clientModel.name}} </b></span>
+          <span>{{clientModel.adresse}} </span><br>
+          <span>Matricule Fiscal:  {{clientModel.mf}}</span><br><br>
+          </div>
+            <div class="col-2" style=" border-bottom: 2px solid ; border-right: 2px solid #ef486e; height: 75px;position: absolute; left: 83%; top: 44%; " [style.border-color]="color"></div>
+        </div>
+      </div>
+
+      <div class="row col-12" id ='facturenumber' style="display: flex;padding-bottom: 0em;">
+<br>
+      </div>
+
+
+      <div class="row col-12"  id ='tableline' style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+        <table class="customers tableslength"style="  width: 800px;  font-size: 13px;">
+          <tr>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px; border-right: 1px solid #ddd;"> Référence</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white ;  padding: 1px;">Designation</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Qté</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Prix U. HT</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;">Montant HT</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;  padding: 1px;">TVA</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align:center; color: white;   padding: 1px;" >Prix U TTC</th>
+          </tr>
+          <tr  *ngFor="let line of linestotallist , let id = index;" [id]="'trid_' +line.id">
+
+            <td [style]="line.productname == 'commentaire'?'display:block': 'display: none'">REF-0{{line.id}}</td>
+            <td [style]="line.productname == 'subtotal'?'display:revert': 'display: none'" >REF-0{{line.id}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" >REF-0{{line.id}}</td>
+
+            <td [style]="line.productname == 'commentaire'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+            <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+            <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+            <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd; border-bottom: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+            <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+
+          </tr>
+
+        </table>
+      </div>
+
+      <div class="row col-12"  id ='tabletotal' style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+        <table class="customers col-4"  style=" font-size: 13px; margin-top:5%; margin-bottom: 1%;  border-radius: 10px;">
+          <thead>
+          <tr>
+            <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;  border-top-left-radius: 10px; border-bottom-left-radius: 10px; border:0px">Base</th>
+            <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;border:0px">Taux</th>
+            <th [style.backgroundColor]="color" style="text-align: center; padding: 8px;  border-top-right-radius: 10px; border-bottom-right-radius: 10px;border:0px">Montant</th>
+          </tr>
+          </thead>
+          <br>
+          <tbody style="border: 1px solid #ddd;">
+          <tr *ngFor="let tva of tvaListResume ">
+            <td  style=" padding: 1px; text-align: center;border: none;border-left: 1px solid #ddd;border-top: 1px solid #ddd;">{{tva.sumMontantHt}}</td>
+            <td  style=" padding: 1px;text-align: center;border: none;border-top: 1px solid #ddd;">{{tva.item}} %</td>
+            <td  style=" padding: 1px;text-align: center;border: none;border-top: 1px solid #ddd;border-right: 1px solid #ddd;">{{tva.sumPrixTotal}}</td>
+          </tr>
+
+          </tbody>
+        </table>
+
+        <div class="customers col-4"  style="text-align: center; font-size: 13px; margin-top:5%; margin-bottom: 1%; ">
+          <div [style.border-color]="color" style="border: 2px solid; height: 150px;border-radius: 10px; "><span>Cachet et signature</span></div>
+        </div>
+
+        <table class="customers col-4"  style=" font-size: 13px; margin-top:5%; margin-bottom: 1%;height: 150px;">
+
+          <tr>
+            <td style="padding: 1px; "><b>Total HT</b></td>
+            <td style="padding: 1px;text-align: end; ">{{getSumht()}}</td>
+          </tr>
+
+          <tr>
+            <td style="padding: 1px;"><b>Total TVA</b></td>
+            <td style="padding: 1px; text-align: end;">4.790</td>
+          </tr>
+          <tr>
+            <td style="padding: 1px;"><b>Timbre Fiscal</b></td>
+            <td style="padding: 1px; text-align: end;">0.600</td>
+          </tr>
+          <tr>
+            <td style="padding: 1px;"><b>Net à Payer</b></td>
+            <td style="padding: 1px; text-align: end;">{{getSumtva()}}</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p id ='note' style="padding-left: 3em;  height: 50px; padding-right: 3em;">
+        note:
+        <span [innerHTML]=note>  </span>
+      </p>
+
+      <div id ='sommelettre' style="padding-left: 3em; padding-right: 3em; height: 50px;">
+        <p style="margin-bottom: 0px;"><b>Arretée la présente facture à la somme de : </b></p>
+        <p style="margin-bottom: 0px;">{{totalLetter}} </p>
+        <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par {{payementype}}</span></p>
+      </div>
+
+<!--      <div class="row col-12"  id ='payement' style="display: flex;padding-left: 3em; height: 50px; padding-right: 3em;">-->
+<!--        <div class="col-12">-->
+<!--          <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par virement</span></p>-->
+<!--          <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">RIB </span><span style="font-weight: bold;"> <b>Wind Consulting :</b> </span><span>2500000000100002550000</span></p>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+      <div class="row col-12"  id ='footer' style="    height: 120px;font-size: 12px;display: inherit;position: absolute;bottom: 30px; width: 900px;">
+
+        <div style="display: flex">
+        <div class="col-4" style="width: 300px">
+          <h5 style="    font-size: 1.1rem;"><img style="width: 25px;" src="https://img.icons8.com/ios/452/domain.png">
+            www.alarabia.com.tn  </h5>
+          <h5 style="    font-size: 1.1rem;"> <img  style="width: 25px;" src="https://www.iconpacks.net/icons/1/free-mail-icon-142-thumb.png">
+            contact@alarabia.com.tn</h5>
+        </div>
+
+        <div class="col-8" [style.backgroundColor]="color" style="color: white;padding: 1%;">
+          <div style="display: flex;">
+            <div class="col-6" style="border-right: 1px solid white;">
+            <span> Siege Social: </span>
+            <span> Mahdia Rue Chaanbi Rondpoint Birrjab Immeuble Ben Nahia</span>
+              <p style="font-size: 1px;  margin: 0;"></p>
+            <span> Tél: </span>
+            <span>73 671 611 / 73 458 201 </span>
+
+          </div>
+            <div class="col-6">
+            <span>{{clientModel.name}}: </span>
+            <span>{{clientModel.adresse}}</span>
+              <p></p>
+            <span> Tél: </span>
+            <span>73 671 611 / 73 458 201 </span>
+          </div>
+          </div>
+          <br>
+            <div style="    text-align: center;">
+            <b>Matricule Fiscale: </b><span>1198127 /N/B/M/0000</span>
+            <b style="margin-left: 5%;">RIB: </b><span>17-5030222222255285</span>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

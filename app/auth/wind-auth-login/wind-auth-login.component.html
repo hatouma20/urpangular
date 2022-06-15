@@ -1,0 +1,181 @@
+
+
+<div class="container_login">
+  <img src="./../../../assets/img/loginbackgroud.png" class="back_login " alt="Snow" style="width:100%;">
+  <div class="bottom-left"></div>
+  <div class="top-left"><img class="media_image" src="./../../../assets/img/logo.png"></div>
+
+  <div class="bottom-right"><p class="login_footer" style="color:#898989">© 2020 Copyright: Wind RH</p></div>
+  <div class=" topleft media_topleft" style="   ">
+  <div class="  col-md-12 col-sm-12 col-lg-12">
+    <div class="card_login " style="background-color: white; border-radius: 1.25rem;">
+
+      <div class="card_login_title" style=" padding: 5%;">
+        <h3 style="    text-align: center;">CONNEXION</h3>
+      </div>
+
+      <form id="form1" (ngSubmit)="login()" [formGroup]="form.asFormGroup"role="form" #loginform="ngForm" ngNativeValidate>
+      <div class="card_login_details" style=" padding: 10%; padding-top: 0;">
+
+        <input  [formControl]="form.getField('login').asFormControl"  class="form-control input_Login"  placeholder="E-mail" type="email" required>
+        <span *ngIf="loginrequired"
+              class="error-hint">Ce champ est obligatoire</span>
+
+        <input [formControl]="form.getField('password').asFormControl"
+        [type]="form.getField('password').type"
+        class="form-control input_Login"
+        placeholder="Mot de passe" required>
+        <span *ngIf="passwordrequired"
+              class="error-hint">Ce champ est obligatoire</span>
+
+        <div class="custom-control custom-control-alternative custom-checkbox" style="display: flex">
+          <div class="col-2"></div>
+        <div class="col-8" style="text-align: center;">
+        <label><a href="#/auth/reset" style="color:black ;font-family: monospace;">* Mot de passe oublié?</a></label>
+        </div>
+          <div class="col-2"></div>
+        </div>
+
+
+
+
+        <div class="text-center">
+                      <input class="btn btn-primary my-4" style="background-color: #efcc0b; border-color: #efcc0b; color: white; width: 100%; "  type="submit" value="Se connecter">
+
+                    </div>
+
+        <div *ngIf="errorcnx"class="alert alert-danger " style="color: red; font-family: monospace; background: #f3d4d4; padding: 1%;border-radius: 5px;">
+                   <span
+                     class="error-hint">Tentative de connexion non valide.</span>
+        </div>
+                    <div class="custom-control custom-control-alternative text-center">
+                      <label><span>Pas encore membre?</span> &nbsp;&nbsp;&nbsp;<a href="#/auth/register">cliquez ici </a><span>pour vous inscrire</span>
+                      </label>
+                    </div>
+
+
+      </div>
+
+
+
+
+
+      </form>
+
+    </div>
+
+</div>
+</div>
+  <div class="centered media_text">
+    <h1 class="login_h1" >Une solution
+      <a class="login_a" href="#" style="">RH</a>  globale,<br>
+      adaptée aux PME</h1>
+
+    <ul class="login_ul" style="">
+      <li> <label style="padding-left: 10px;">Simplifiez la vie de tous les salariés</label></li>
+      <li><label style="padding-left: 10px;">Pour une gestion de vos ressources Humaine </label></li>
+      <li class="li_nocontent"> <label style="color: #efcc0b;">SANS CONTRAINTE ! </label></li>
+    </ul>
+
+  </div>
+
+</div>
+
+
+
+<!--<section class="section" style="background: url('./../../../assets/img/loginbackgroud.png') 100% 100%;height: 100%;background-repeat: no-repeat;background-size: cover;">-->
+
+
+
+
+
+  <!--<div class="shape shape-style-1 shape-default">-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+  <!--</div>-->
+  <!--<div class="container">-->
+    <!--<div class="row align-items-center" style="margin-top: 8rem !important;">-->
+      <!--<div class="col-lg-2  mx-md-auto">-->
+
+      <!--</div>-->
+
+      <!--<div class="col-lg-8">-->
+        <!--<div class=" justify-content-md-center">-->
+
+          <!--<div class="col-lg-12 col-12 ">-->
+            <!--<div class="">-->
+              <!--<div class="card  shadow border-0" style="border-radius: 20px">-->
+                <!--<div class="card-header bg-white"-->
+                     <!--style="border-radius: 20px 20px 0 0px;background: #5dade2 !important;">-->
+                  <!--<div class="text-center " style="color: white !important;font-size: 23px;"><strong>CONNEXION</strong>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="card-body px-lg-6 py-lg-5">-->
+
+                  <!--<form (ngSubmit)="login()" [formGroup]="form.asFormGroup" role="form">-->
+
+                    <!--<div class="form-group mb-3">-->
+                      <!--<div class="input-group input-group-alternative">-->
+                        <!--<div class="input-group-prepend">-->
+                                                    <!--<span class="input-group-text"><i-->
+                                                      <!--class="ni ni-circle-08"></i></span>-->
+                        <!--</div>-->
+                        <!--<input [formControl]="form.getField('login').asFormControl"-->
+                               <!--[placeholder]="form.getField('login').placeholder"-->
+                               <!--[type]="form.getField('login').type"-->
+                               <!--class="form-control">-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group focused">-->
+                      <!--<div class="input-group input-group-alternative">-->
+                        <!--<div class="input-group-prepend">-->
+                                                    <!--<span class="input-group-text"><i-->
+                                                      <!--class="ni ni-lock-circle-open"></i></span>-->
+                        <!--</div>-->
+                        <!--<input [formControl]="form.getField('password').asFormControl"-->
+                               <!--[placeholder]="form.getField('password').placeholder"-->
+                               <!--[type]="form.getField('password').type"-->
+                               <!--class="form-control">-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="custom-control custom-control-alternative custom-checkbox" style="display: flex">-->
+                      <!--<div class="col-6">-->
+                        <!--<input class="custom-control-input" id=" customCheckLogin2" type="checkbox">-->
+                        <!--<label class="custom-control-label" for=" customCheckLogin2"><span>Se souvenir de moi</span>-->
+                        <!--</label>-->
+                      <!--</div>-->
+                      <!--<div class="col-6">-->
+                        <!--<label><a href="#" style="color: red;padding: 4px;">* Mot de passe oublié?</a></label>-->
+                      <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="text-center">-->
+                      <!--<button class="btn btn-primary my-4" style=" background-color: #0e83e6; border-color: #0e83e6; "-->
+                              <!--type="submit">Se connecter-->
+                      <!--</button>-->
+                    <!--</div>-->
+                    <!--<div class="custom-control custom-control-alternative text-center">-->
+                      <!--<label><span>Pas encore membre?</span> &nbsp;&nbsp;&nbsp;<a href="#">cliquez ici </a><span>pour vous inscrire</span>-->
+                      <!--</label>-->
+                    <!--</div>-->
+                  <!--</form>-->
+
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col-lg-2  mx-md-auto">-->
+
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</section>-->

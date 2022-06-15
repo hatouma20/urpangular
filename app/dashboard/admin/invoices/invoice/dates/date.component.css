@@ -1,0 +1,16 @@
+.border{
+  border: thin solid rgba(0,0,0,.12);
+  border-radius: 4px;
+}
+
+.inputdesign{
+  border: 0;
+  padding: 4%;
+  width: 100%;
+}
+p{
+  margin-left: -20px;
+  margin-bottom: 5px;
+  color: #32325d;
+  font-weight: bold;
+}

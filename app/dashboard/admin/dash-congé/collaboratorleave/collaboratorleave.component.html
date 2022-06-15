@@ -1,0 +1,268 @@
+<!--<div class="header " style="    background: #c1c1c12e;">-->
+<!--  <div class="container-fluid">-->
+<!--    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">-->
+<!--      <div class="row align-items-center py-4">-->
+<!--        <div class="col-lg-6 col-7">-->
+<!--          <h6 class="h2  d-inline-block mb-0"-->
+<!--              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Congé-->
+<!--            :</h6>-->
+<!--          <br>-->
+<!--          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info-->
+<!--            Congé > Congé de Collaborateur</p>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="accordion mt-5" id="accordionExample">-->
+<!--  <div class="card card-info">-->
+<!--    <div class="card-header card-info-header" id="headingOne">-->
+<!--      <h2 class="mb-0">-->
+<!--        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"-->
+<!--                data-toggle="collapse" style="color: #0080ad;" type="button">-->
+<!--          Liste des Congés de Collaborateurs-->
+<!--        </button>-->
+<!--      </h2>-->
+<!--    </div>-->
+
+<!--    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">-->
+<!--      <div class="card-body">-->
+<!--        <div class="container">-->
+<!--          <div class="month-picker">-->
+<!--            <div class="card">-->
+<!--              &lt;!&ndash;    <div class="card-header">&ndash;&gt;-->
+<!--              &lt;!&ndash;      <div class="d-flex align-items-center">&ndash;&gt;-->
+
+<!--              &lt;!&ndash;        <button class="btn mr-auto" (click)="decrement()">&ndash;&gt;-->
+<!--              &lt;!&ndash;          <i class="fa fa-chevron-left"></i>&ndash;&gt;-->
+<!--              &lt;!&ndash;        </button>&ndash;&gt;-->
+
+<!--              &lt;!&ndash;        <button class="btn" (click)="toggleShowYears()">&ndash;&gt;-->
+<!--              &lt;!&ndash;          {{model.selectedYearText}}&ndash;&gt;-->
+<!--              &lt;!&ndash;        </button>&ndash;&gt;-->
+
+<!--              &lt;!&ndash;        <button class="btn ml-auto" (click)="increment()">&ndash;&gt;-->
+<!--              &lt;!&ndash;          <i class="fa fa-chevron-right"></i>&ndash;&gt;-->
+<!--              &lt;!&ndash;        </button>&ndash;&gt;-->
+
+<!--              &lt;!&ndash;      </div>&ndash;&gt;-->
+<!--              &lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--              <div class="card-body">-->
+<!--                <div class="month-picker-body">-->
+
+<!--                  <div *ngIf="!isShowYears" class="row">-->
+<!--                    <div *ngFor="let month of model.months; let i = index" class="col col-4">-->
+<!--                      <div class="month-picker-cell">-->
+<!--                        <button (click)="selectMonth(i)"-->
+<!--                                [attr.data-target]="'#exampleModal'+i"-->
+<!--                                [disabled]="isDisabled(i)"-->
+<!--                                class="btn btn-block"-->
+<!--                                data-toggle="modal"-->
+<!--                                style="height: 60px;margin-bottom: 15px;background: #e3e3e4;" type="button">-->
+<!--                          <span>{{month.month.value}}-->
+<!--                            <div style="display: flex">-->
+<!--                              <div *ngFor="let collaborator of month.collaborator; let i = index">-->
+<!--                              <img src="{{collaborator.logo}}"-->
+<!--                                   style="width: 20px;height: 20px;border-radius: 24px;background: #b8babf;">-->
+<!--                            </div>-->
+<!--                            </div>-->
+<!--                          </span>-->
+<!--                        </button>-->
+<!--                      </div>-->
+<!--                      &lt;!&ndash;modal&ndash;&gt;-->
+<!--                      <div [id]="'exampleModal'+i" aria-hidden="true" aria-labelledby="exampleModalLabel"-->
+<!--                           class="modal fade" role="dialog" tabindex="-1">-->
+<!--                        <div class="modal-dialog" role="document">-->
+<!--                          <div class="modal-content">-->
+<!--                            <div class="modal-header">-->
+<!--                              <h5 class="modal-title" id="exampleModalLabel"-->
+<!--                                  style=" color: #006b91; font-weight: bold; ">Le mois du {{month.month.value}}</h5>-->
+<!--                              <button aria-label="Close" class="close" data-dismiss="modal" type="button">-->
+<!--                                <span aria-hidden="true">&times;</span>-->
+<!--                              </button>-->
+<!--                            </div>-->
+<!--                            <div class="modal-body">-->
+<!--                              &lt;!&ndash;                             table collaborator leave&ndash;&gt;-->
+<!--                              <div class="table-editable" id="table">-->
+<!-- <span class="table-add float-right" style="padding: 0">-->
+
+<!--      </span>-->
+<!--                                <table class="table table-bordered table-responsive-md table-striped text-center"-->
+<!--                                       datatable>-->
+<!--                                  <thead>-->
+<!--                                  <tr>-->
+<!--                                    <th class="text-center">Collaborateur</th>-->
+<!--                                    <th class="text-center">Congé</th>-->
+<!--                                    <th class="text-center"></th>-->
+<!--                                  </tr>-->
+<!--                                  </thead>-->
+<!--                                  <tbody>-->
+<!--                                  <tr *ngFor="let collaborator of month.collaborator; let id = index">-->
+<!--                                    <td>-->
+<!--                <span (blur)="updateList(i,id, 'collleave', $event)" (keyup)="changeValue(i, id, 'collleave', $event)"-->
+<!--                      contenteditable="true">{{collaborator.collLeave.value}}</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                <span (blur)="updateList(i,id, 'range', $event)" (keyup)="changeValue(i, id, 'rate', $event)"-->
+<!--                      contenteditable="true">{{collaborator.rate.value}}</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--            <span class="table-remove">-->
+<!--               <a (click)="remove(i, id)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i-->
+<!--                 aria-hidden="true" class="fa fa-trash"></i></a>-->
+<!--            </span>-->
+<!--                                    </td>-->
+<!--                                  </tr>-->
+<!--                                  </tbody>-->
+<!--                                </table>-->
+<!--                              </div>-->
+<!--                              &lt;!&ndash;                             end table collaborator leave&ndash;&gt;-->
+<!--                            </div>-->
+<!--                            <div class="modal-footer">-->
+<!--                              <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      &lt;!&ndash; end Modal&ndash;&gt;-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+
+<!--                  <div *ngIf="isShowYears" class="row">-->
+<!--                    <div *ngFor="let year of years; let i = index" class="col col-4">-->
+<!--                      <div class="month-picker-cell">-->
+<!--                        <button [disabled]="isDisabledYear(year)"-->
+<!--                                [ngClass]="{'btn-primary': isSelectedYear(year)}"-->
+<!--                                class="btn btn-block"-->
+
+<!--                        >-->
+<!--                          <small>{{year}}</small>-->
+<!--                        </button>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--              </div>-->
+
+<!--            </div>-->
+<!--          </div>-->
+
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="card card-info">-->
+<!--    <div class="card-header card-info-header" id="headingTwo">-->
+<!--      <h2 class="mb-0">-->
+<!--        <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"-->
+<!--                data-target="#collapseTwo" data-toggle="collapse" style="color: #0080ad;" type="button">-->
+<!--          Ajout Congé pour un Collaborateur-->
+<!--        </button>-->
+<!--      </h2>-->
+<!--    </div>-->
+<!--    <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionExample" id="collapseTwo">-->
+<!--      <div class="card-body">-->
+<!--        <form role="form">-->
+
+<!--          <div style="display: flex">-->
+<!--            <div class="col-6" style="margin: 0; padding: 0">-->
+<!--              <div class="row">-->
+<!--                <div class="col-lg-12 col-12">-->
+<!--                  <div class="form-group focused" style="display: flex">-->
+<!--                    <label class="col-4" style="font-weight: bold;">collaborator <span-->
+<!--                      style="color: red;padding: 4px;">*</span></label>-->
+<!--                    <div class=" input-group input-group-alternative ">-->
+<!--                      <input [(ngModel)]="month.collaborator.value" [ngModelOptions]="{standalone: true}"-->
+<!--                             class="form-control" name="collaborator"/>-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+<!--              <div class="row">-->
+<!--                <div class="col-lg-12 col-12">-->
+<!--                  <div class="form-group focused" style="display: flex">-->
+<!--                    <label class="col-4" style="font-weight: bold;">Mois <span-->
+<!--                      style="color: red;padding: 4px;">*</span></label>-->
+<!--                    <div class=" input-group input-group-alternative ">-->
+<!--                      <select [(ngModel)]="month.month.value" [ngModelOptions]="{standalone: true}"-->
+<!--                              class="form-control" name="month" placeholder="Title">-->
+<!--                        <option value="0">janvier</option>-->
+<!--                        <option value="1">fevrier</option>-->
+<!--                        <option value="2">Mars</option>-->
+<!--                        <option value="3">Avril</option>-->
+<!--                        <option value="4">Mai</option>-->
+<!--                        <option value="5">Juin</option>-->
+<!--                        <option value="6">Juillet</option>-->
+<!--                        <option value="7">Aout</option>-->
+<!--                        <option value="8">Septembre</option>-->
+<!--                        <option value="9">Octobre</option>-->
+<!--                        <option value="10">Novembre</option>-->
+<!--                        <option value="11">Decembre</option>-->
+<!--                      </select>-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+<!--              <div class="row">-->
+<!--                <div class="col-lg-12 col-12">-->
+<!--                  <div class="form-group focused" style="display: flex">-->
+<!--                    <label class="col-4" style="font-weight: bold;">Solde Congé <span-->
+<!--                      style="color: red;padding: 4px;">*</span></label>-->
+<!--                    <div class=" input-group input-group-alternative">-->
+<!--                      <input [(ngModel)]="month.rate.value" [ngModelOptions]="{standalone: true}"-->
+<!--                             class="form-control" name="rate" type="number">-->
+
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+<!--              <div class="row">-->
+<!--                <div class="col-lg-12 col-12">-->
+<!--                  <div class="form-group focused" style="display: flex">-->
+<!--                    <div class="col-12 text-right" style="float: right">-->
+<!--                      <a (click)="onFormSubmit()"-->
+<!--                         class="btn btn-sm btn-neutral"-->
+<!--                         style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Ajouter</a>-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+<!--              <div class="row">-->
+<!--                <div class="col-lg-12 col-12">-->
+<!--                  <div class="alert alert-success " style="display: none">-->
+<!--                    <strong>Succès!</strong> la Durée de Contrat est ajoutée avec succès .-->
+<!--                  </div>-->
+<!--                  <div class="alert alert-danger " style="display: none">-->
+<!--                    <span *ngIf="month.collaborator.dirty" class="error-hint">{{month.collaborator.error}}</span><br>-->
+<!--                    <span *ngIf="month.month.dirty" class="error-hint">{{month.month.error}}</span><br>-->
+<!--                    <span *ngIf="month.rate.dirty" class="error-hint">{{month.rate.error}}</span>-->
+<!--                  </div>-->
+
+<!--                </div>-->
+
+<!--              </div>-->
+
+<!--            </div>-->
+
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+

@@ -1,0 +1,559 @@
+<div class="header" style="background: #c1c1c12e">
+  <div class="container-fluid">
+    <div class="header-body" style="margin-right: 5%; margin-left: 5%">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6
+            class="h2 d-inline-block mb-0"
+            style="
+              color: #1c1c2b !important;
+              font-family: auto;
+              font-size: 25px;
+              font-weight: bold;
+            "
+          >
+            Congé :
+          </h6>
+          <br />
+          <p
+            aria-current="page"
+            class="breadcrumb-item active"
+            style="color: #0080ad; font-weight: bold"
+          >
+            Règles de Congé
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+
+<div
+  [class.accordionRegle]="rule === true"
+  class="accordion mt-5"
+  id="accordionExample"
+>
+  <div class="card card-info card-info-regle">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button
+          aria-controls="collapseOne"
+          aria-expanded="true"
+          class="btn btn-link"
+          data-target="#collapseOne"
+          data-toggle="collapse"
+          style="color: #0080ad"
+          type="button"
+        >
+          Liste des Règles de Congé
+        </button>
+      </h2>
+    </div>
+
+    <div
+      aria-labelledby="headingOne"
+      class="collapse show"
+      data-parent="#accordionExample"
+      id="collapseOne"
+    >
+      <div
+        class="card-body"
+        style="
+          display: -webkit-flex;
+          -webkit-flex-wrap: wrap;
+          -webkit-justify-content: center;
+          width: 100%;
+        "
+      >
+        <table
+          class="
+            table table-bordered table-responsive-md table-striped
+            text-center
+          "
+        >
+          <tr>
+            <th class="text-center">Nom</th>
+            <th class="text-center">Nombre de jours</th>
+          </tr>
+          <tr *ngFor="let rule of congeRulesList; let id = index">
+            <td>
+              <span
+                (blur)="updateList(id, 'name', $event)"
+                (keyup)="changeValue(id, 'name', $event)"
+                contenteditable="true"
+                >{{ rule.name }}</span
+              >
+            </td>
+            <td>
+              <span>{{ rule.total }}</span>
+            </td>
+            <td>
+              <span class="table-remove">
+                <a
+                  (click)="open(content, id)"
+                  class="delete"
+                  data-toggle="tooltip"
+                  style="color: blue"
+                  title="Details"
+                  ><i aria-hidden="true" class="fa fa-eye"></i
+                ></a>
+              </span>
+
+              <ng-template
+                #content
+                let-c="close"
+                let-d="dismiss"
+                style="max-width: 65%; margin-left: 20%"
+              >
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">
+                    La règle de congé : {{ rule.name }}
+                  </h4>
+                  <a class="lightbox__close" (click)="d('Cross click')">X</a>
+                </div>
+                <div class="modal-body">
+                  <!--                             table collaborator leave-->
+                  <div class="table-editable" id="table">
+                    <span class="table-add float-right" style="padding: 0">
+                    </span>
+                    <table
+                      class="
+                        table table-bordered table-responsive-md table-striped
+                        text-center
+                      "
+                      style="font-family: monospace"
+                    >
+                      <thead>
+                        <tr>
+                          <th class="text-center">janvier</th>
+                          <th class="text-center">février</th>
+                          <th class="text-center">Mars</th>
+                          <th class="text-center">Avril</th>
+                          <th class="text-center">Mai</th>
+                          <th class="text-center">Juin</th>
+                          <th class="text-center">Juillet</th>
+                          <th class="text-center">Aout</th>
+                          <th class="text-center">Septembre</th>
+                          <th class="text-center">Octobre</th>
+                          <th class="text-center">Nouvembre</th>
+                          <th class="text-center">Décembre</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td
+                            *ngFor="
+                              let value of rule.listleaveperday;
+                              let i = index
+                            "
+                          >
+                            <span
+                              (blur)="updateListConge(i, id, 'value', $event)"
+                              contenteditable="true"
+                              [innerHTML]="value"
+                            ></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!--                             end table collaborator leave-->
+                </div>
+                <div class="modal-footer">
+                  <input
+                    (click)="d('Cross click')"
+                    class="btn btn-outline-dark"
+                    type="button"
+                    style="
+                      color: black;
+                      background: #ffcf03;
+                      border: #ffcf03;
+                      padding: 1% 5%;
+                      float: right;
+                      font-family: monospace;
+                    "
+                    value="OK"
+                  />
+                </div>
+              </ng-template>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info card-info-regle">
+    <div class="card-header card-info-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button
+          aria-controls="collapseTwo"
+          aria-expanded="false"
+          class="btn btn-link collapsed"
+          data-target="#collapseTwo"
+          data-toggle="collapse"
+          style="color: #0080ad"
+          type="button"
+        >
+          Ajout d'une Règle de Congé
+        </button>
+      </h2>
+    </div>
+    <div
+      aria-labelledby="headingTwo"
+      class="collapse"
+      data-parent="#accordionExample"
+      id="collapseTwo"
+    >
+      <div class="card-body">
+        <form
+          id="form1"
+          (ngSubmit)="onFormSubmit()"
+          role="form"
+          #testForm="ngForm"
+          ngNativeValidate
+        >
+          <div>
+            <div class="col-12" style="margin: 0; padding: 0">
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-3" style="font-weight: bold"
+                      >Type
+                      <span style="color: red; padding: 4px">*</span></label
+                    >
+                    <div class="input-group input-group-alternative">
+                      <select
+                        [(ngModel)]="leave.uuid.value"
+                        [ngModelOptions]="{ standalone: true }"
+                        name="uuid"
+                        class="form-control"
+                        required
+                      >
+                        <option
+                          *ngFor="let type of companyEnabledLeaveList"
+                          [value]="type.uuid.value"
+                        >
+                          {{ type.type.value }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-3" style="font-weight: bold"
+                      >Titre
+                      <span style="color: red; padding: 4px">*</span></label
+                    >
+                    <div class="input-group input-group-alternative">
+                      <input
+                        [(ngModel)]="companyEnabledRule.name.value"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control"
+                        required
+                        name="name"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-3" style="font-weight: bold"
+                      >Total
+                      <span style="color: red; padding: 4px">*</span></label
+                    >
+                    <div class="input-group input-group-alternative">
+                      <input
+                        [(ngModel)]="totalLaeveDays"
+                        [ngModelOptions]="{ standalone: true }"
+                        class="form-control"
+                        required
+                        type="number"
+                        name="totalLaeveDays"
+                        (keyup)="onChangeTotaldays()"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused">
+                    <label class="col-3" style="font-weight: bold"
+                      >Nombre de jours
+                      <span style="color: red">(*)</span></label
+                    >
+                    <br />
+                    <div class="col-12 input-group style=display:flex">
+                      <div class="col-1"></div>
+                      <div class="col-10 table-editable" id="table2">
+                        <span class="table-add float-right"> </span>
+                        <table
+                          class="
+                            table
+                            table-bordered
+                            table-responsive-md
+                            table-striped
+                            text-center
+                          "
+                          style="font-family: monospace"
+                        >
+                          <thead>
+                            <tr>
+                              <th class="text-center">janvier</th>
+                              <th class="text-center">février</th>
+                              <th class="text-center">Mars</th>
+                              <th class="text-center">Avril</th>
+                              <th class="text-center">Mai</th>
+                              <th class="text-center">Juin</th>
+                              <th class="text-center">Juillet</th>
+                              <th class="text-center">Aout</th>
+                              <th class="text-center">Septembre</th>
+                              <th class="text-center">Octobre</th>
+                              <th class="text-center">Nouvembre</th>
+                              <th class="text-center">Décembre</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td *ngFor="let value of months; let i = index">
+                                <input
+                                  [(ngModel)]="leaveDaysInMonths.days.value[i]"
+                                  [ngModelOptions]="{ standalone: true }"
+                                  class="form-control"
+                                  name="days"
+                                  style="width: 60px"
+                                  (change)="onChangeLeaveForMonth(i)"
+                                />
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="col-1"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <div
+                      class="col-12 text-right"
+                      style="float: right; padding-right: 0px"
+                    >
+                      <!--                      <a (click)="onFormSubmit()"-->
+                      <!--                         class="btn btn-sm btn-neutral"-->
+                      <!--                         style=" color: black; background: #ffcf03; border: #ffcf03; padding: 1%; ">Ajouter</a>-->
+                      <input
+                        type="submit"
+                        style="
+                          color: black;
+                          background: #ffcf03;
+                          border: #ffcf03;
+                          padding: 1%;
+                          float: right;
+                          font-family: monospace;
+                        "
+                        value="Ajouter"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-12">
+                <div
+                  class="alert alert-success alert-regle"
+                  style="display: none"
+                >
+                  <strong>Succès!</strong> la regle de congé est ajoutée avec
+                  succès .
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  [class.cardcollaborator]="rule === true"
+  class="card-body"
+  style="display: none"
+>
+  <form
+    id="form1"
+    (ngSubmit)="onFormSubmit()"
+    role="form"
+    #testForm="ngForm"
+    ngNativeValidate
+  >
+    <div>
+      <div class="col-12" style="margin: 0; padding: 0">
+        <div class="row">
+          <div class="col-lg-12 col-12">
+            <div class="form-group focused" style="display: flex">
+              <label class="col-3" style="font-weight: bold"
+                >Type <span style="color: red; padding: 4px">*</span></label
+              >
+              <div class="input-group input-group-alternative">
+                <select
+                  [(ngModel)]="leave.uuid.value"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="uuid"
+                  class="form-control"
+                  required
+                >
+                  <option
+                    *ngFor="let type of companyEnabledLeaveList"
+                    [value]="type.uuid.value"
+                  >
+                    {{ type.type.value }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-12">
+            <div class="form-group focused" style="display: flex">
+              <label class="col-3" style="font-weight: bold"
+                >Titre <span style="color: red; padding: 4px">*</span></label
+              >
+              <div class="input-group input-group-alternative">
+                <input
+                  [(ngModel)]="companyEnabledRule.name.value"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control"
+                  required
+                  name="name"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-12">
+            <div class="form-group focused" style="display: flex">
+              <label class="col-3" style="font-weight: bold"
+                >Total <span style="color: red; padding: 4px">*</span></label
+              >
+              <div class="input-group input-group-alternative">
+                <input
+                  [(ngModel)]="totalLaeveDays"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="form-control"
+                  required
+                  type="number"
+                  name="totalLaeveDays"
+                  (keyup)="onChangeTotaldays()"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-12">
+            <div class="form-group focused">
+              <label class="col-3" style="font-weight: bold"
+                >Nombre de jours <span style="color: red">(*)</span></label
+              >
+              <br />
+              <div class="col-12 input-group style=display:flex">
+                <div
+                  class="col-9 table-editable"
+                  id="table2"
+                  style="margin-left: -2%"
+                >
+                  <span class="table-add float-right"> </span>
+                  <table
+                    class="
+                      table table-bordered table-responsive-md table-striped
+                      text-center
+                    "
+                    style="font-family: monospace"
+                  >
+                    <thead>
+                      <tr>
+                        <th class="text-center">janvier</th>
+                        <th class="text-center">février</th>
+                        <th class="text-center">Mars</th>
+                        <th class="text-center">Avril</th>
+                        <th class="text-center">Mai</th>
+                        <th class="text-center">Juin</th>
+                        <th class="text-center">Juillet</th>
+                        <th class="text-center">Aout</th>
+                        <th class="text-center">Septembre</th>
+                        <th class="text-center">Octobre</th>
+                        <th class="text-center">Nouvembre</th>
+                        <th class="text-center">Décembre</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td *ngFor="let value of months; let i = index">
+                          <input
+                            [(ngModel)]="leaveDaysInMonths.days.value[i]"
+                            [ngModelOptions]="{ standalone: true }"
+                            class="form-control"
+                            name="days"
+                            style="width: 60px"
+                            (change)="onChangeLeaveForMonth(i)"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-12">
+            <div class="form-group focused" style="display: flex">
+              <div
+                class="col-12 text-right"
+                style="float: right; padding-right: 0px"
+              >
+                <!--                      <a (click)="onFormSubmit()"-->
+                <!--                         class="btn btn-sm btn-neutral"-->
+                <!--                         style=" color: black; background: #ffcf03; border: #ffcf03; padding: 1%; ">Ajouter</a>-->
+                <input
+                  type="submit"
+                  style="
+                    color: black;
+                    background: #ffcf03;
+                    border: #ffcf03;
+                    padding: 1%;
+                    float: right;
+                    font-family: monospace;
+                  "
+                  value="Ajouter"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-12">
+          <div class="alert alert-success alert-regle2" style="display: none">
+            <strong>Succès!</strong> la regle de congé est ajoutée avec succès .
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

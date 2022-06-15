@@ -1,0 +1,58 @@
+
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">
+            Paie:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Fiches de paie</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info" style=" background: transparent; border: 0px;">
+    <div *ngIf="this.ficheList.length === 0"><p style="text-align: center;">Vous n'avez pas des données enregistrés</p></div>
+
+
+    <div class="table-editable" style="margin-top: 2%;">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover "   style="  font-family: monospace;     margin: 0 !important;">
+        <thead  *ngIf="this.ficheList.length != 0" >
+        <tr>
+          <th  scope="col" class="text-center">Collaborateur</th>
+          <th  scope="col" class="text-center">Document</th>
+
+          <th  scope="col" class="text-center">Prévisualiser</th>
+        </tr>
+        </thead>
+        <tbody  *ngIf="this.ficheList.length != 0">
+        <tr *ngFor="let fiche of ficheList, let id = index;">
+          <td scope="col" >
+                <span
+                >
+              {{fiche.collaborator}}
+                </span>
+          </td>
+          <td scope="col">
+                <span
+                >
+               {{fiche.document}}
+                </span>
+          </td>
+          <td scope="col" >
+                <span
+                >
+              aaa
+                </span>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+</div>

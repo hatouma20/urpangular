@@ -1,0 +1,7 @@
+export enum TiersNatureEnum {
+  PROSPECT_CLIENT,
+  PROSPECT_PROVIDER,
+  NONE,
+  CLIENT,
+  PROVIDER
+}

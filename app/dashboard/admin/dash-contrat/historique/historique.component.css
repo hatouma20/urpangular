@@ -1,0 +1,7 @@
+table.dataTable thead th, table.dataTable thead td {
+  border-bottom: none !important;
+}
+
+table.dataTable.no-footer {
+  border-bottom: none !important;
+}

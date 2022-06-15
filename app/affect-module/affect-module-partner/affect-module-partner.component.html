@@ -1,0 +1,45 @@
+
+<div >
+  <div class="card-body" >
+    <h3 style="text-align: center; margin-top: 10%">Vous devez choisir les modules que vous voulez l'acheter</h3>
+    <br>
+    <br>
+    <form (ngSubmit)="onFormSubmit();" role="form" #testForm="ngForm"  ngNativeValidate >
+      <div style="display: flex">
+      <div class="col-2"></div>
+    <div class="col-6">
+      <ul class="module">
+        <li  *ngFor="let module of firstmodules; let id1 = index;">
+          <input type="checkbox" id="cb{{id1}}" name="{{module.name}}"  (click)="checkmodulefirstList(id1)"/>
+          <label for="cb{{id1}}"><p style=" text-align:center; font-size: 22px; text-shadow: 2px 4px 3px rgb(0 0 0 / 95%); color: white; text-transform: capitalize; ">{{module.name}}</p></label>
+        </li>
+      </ul>
+         </div>
+        <div class="col-1"></div>
+    <div class="col-2">
+      <ul class="secondmodule">
+        <li   *ngFor="let module of secondmodules; let id2 = index;"><input (click)="checkmodulefirstList(id2+12)" type="checkbox" id="sm{{id2}}" name="{{module.name}}"/>
+          <label for="sm{{id2}}" ><p style=" text-align:center; font-size: 22px; text-shadow: 2px 4px 3px rgb(0 0 0 / 95%); color: white; text-transform: capitalize; ">{{module.name}}</p></label>
+        </li>
+      </ul>
+    </div>
+      <div class="col-1"></div>
+      </div>
+      <div class="col-11" style="margin-bottom: 6%">
+        <input type='submit'  style="color: black;background: #ffcf03;border: #ffcf03;padding: 1% 7%;float: right;font-family: monospace;" value="Acheter"/>
+
+      </div>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-lg-9 col-8">
+          <div class="alert alert-success " style="display: none">
+            <strong>Succès!</strong> L'achat est effectué avec succès. Si vous voulez accèdez à votre espace <a href="#/dashboard/admin/profile">Cliquer ici</a>
+          </div>
+
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </form>
+
+  </div>
+</div>

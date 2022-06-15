@@ -1,0 +1,215 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+
+    <div class="header-body" style="margin-left: 1%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h3 class="d-inline-block mb-0"style="font-weight: bold;font-family: monospace;">Cheques</h3>
+          <p aria-current="page" class="breadcrumb-item active" style="font-family: monospace;">
+            Caisse > Cheques à Déposer </p>
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+<div class="accordion" id="accordionExample">
+  <div class="card card-info">
+
+    <div aria-labelledby="headingTwo1" class="collapse show" data-parent="#accordionExample" id="collapseTwo1">
+      <div class="card-body">
+        <br>
+        <form id="form1" role="form">
+          <p   class="breadcrumb-item active" style="font-family: monospace;"> Caisse &gt; Ajouter Cheques à Déposer </p>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-lg-12 col-12" style="   padding-left: 0;">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-2" style="font-weight: bold;">Chèque N°</label>
+                  <div class=" input-group input-group-alternative ">
+                    <input
+                      class="form-control"
+                      name="numcheque" id="numcheque"
+                      [(ngModel)]="chequForm.numcheque.value"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex">
+
+            <div class="col-6" style="margin: 0; padding: 0">
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Date réception chèque</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input type="date"
+                             min="{{dateSent|date:'yyyy-MM-dd'}}"
+                             id="datecheque"
+                             name="datecheque"
+                             class="form-control"
+                             [(ngModel)]="chequForm.datecheque.value"
+                             required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+               <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">	Emetteur</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                        class="form-control"
+                        name="transmitter" id="transmitter"
+                        [(ngModel)]="chequForm.transmitter.value"
+                        type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+               <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">RIB Compte bancaire</label>
+                    <div class=" input-group input-group-alternative ">
+                      <select class="form-control"  (change)="getselectedcompteorigin($event)">
+                        <option hidden selected>select compte </option>
+                        <option [value]="item.uuid" *ngFor="let item of comptelist"> {{item.account_number}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6" >
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Règlement	</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                        class="form-control"
+                        name="reglement" id="reglement"
+                        [(ngModel)]="chequForm.reglement.value"
+                        type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                 <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Paiement à faire </label>
+                    <div class=" input-group input-group-alternative ">
+                      <select class="form-control"  (change)="getselectedpayment($event)">
+                        <option hidden selected>select paiement </option>
+                        <option [value]="item.uuid" *ngFor="let item of paymentlist"> {{item.label}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Montant	</label>
+                    <div class="input-group input-group-alternative ">
+                      <input           [(ngModel)]="chequForm.montant.value"
+                                       [defaultValue]="0"
+                                       min="1"
+                                       [ngModelOptions]="{standalone: true}"
+                                       class="form-control" name="montant"
+                                       type="montant">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="col-lg-12 col-5 text-right">
+            <a class="btn btn-sm btn-neutral"
+               (click)="onAddchequeFormSubmit()"
+               style=" color: black; background: #ffcf03; border: #ffcf03; padding: 1%; ">Nouveau Chéque</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+
+        <button aria-controls="collapseOne1" aria-expanded="false" class="btn btn-link" data-target="#collapseOne1"
+                data-toggle="collapse" style="font-weight: bold; font-family: monospace; color: #2d2d44;" type="button">
+
+          <img src="https://static.thenounproject.com/png/703781-200.png" style="width: 40px;">  Liste des Cheques
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingOne" class="collapse" data-parent="#accordionExample1" id="collapseOne1">
+      <div class="card-body">
+        <div class="table-editable" id="table">
+  <span class="table-add float-right" style="padding: 0">
+  </span>
+
+          <div *ngIf="this.chequesList.length == 0"><p style="text-align: center;">Vous n'avez pas des cheques enregistrés</p></div>
+
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;">
+          <thead *ngIf="this.chequesList.length != 0">
+          <tr>
+            <th class="text-center">Emetteur</th>
+          <th class="text-center">Chèque N°</th>
+          <th class="text-center">Date réception</th>
+          <th class="text-center">Règlement</th>
+          <th class="text-center">Montant</th>
+          <th class="text-center"></th>
+          </tr>
+          </thead>
+          <tbody *ngIf="this.chequesList.length != 0">
+          <tr *ngFor="let item of chequesList; let id = index">
+          <td>
+          <span (blur)="updateList(id, 'transmitter', $event)" (keyup)="changeValue(id, 'transmitter', $event)"
+          contenteditable="true">{{item.transmitter}}</span>
+          </td>
+          <td>
+          <span (blur)="updateList(id, 'check_number', $event)" (keyup)="changeValue(id, 'check_number', $event)"
+          contenteditable="true">{{item.check_number}}</span>
+          </td>
+          <td>
+          <span (blur)="updateList(id, 'check_date', $event)" (keyup)="changeValue(id, 'check_date', $event)"
+          contenteditable="true">{{item.check_date}}</span>
+          </td>
+          <td>
+          <span (blur)="updateList(id, 'rule', $event)" (keyup)="changeValue(id, 'rule', $event)"
+          contenteditable="true">{{item.rule}}</span>
+          </td>
+            <td>
+          <span (blur)="updateList(id, 'amount', $event)" (keyup)="changeValue(id, 'amount', $event)"
+          contenteditable="true">{{item.amount}}</span>
+          </td>
+          <td>
+          <span class="table-remove">
+          <a (click)="remove(item.uuid)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+          aria-hidden="true" class="fa fa-trash"></i></a>
+          </span>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

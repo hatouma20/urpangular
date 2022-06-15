@@ -1,0 +1,11 @@
+<input (keyup)="filter()" [formControl]="formElement.asFormControl" [matAutocomplete]="autocomplete"
+       [type]="formElement.type" class="form-control" matInput
+       placeholder="Enter Location">
+<mat-autocomplete #autocomplete="matAutocomplete">
+  <mat-option (onSelectionChange)="onSelected(option)" *ngFor="let option of options" [value]="option.value">
+    {{option.label}}
+  </mat-option>
+  <mat-option *ngIf="!options.length && !loading" [disabled]="true">No results found...</mat-option>
+  <mat-option *ngIf="loading" [disabled]="true">loading data...<span class="fa fa-spinner fa-pulse"></span>
+  </mat-option>
+</mat-autocomplete>

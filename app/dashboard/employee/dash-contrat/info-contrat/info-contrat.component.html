@@ -1,0 +1,95 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Fiche
+            collaborateur:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info
+            Contrat</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Contrat
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body">
+        <div class="table-editable" id="table">
+ <span class="table-add float-right" style="padding: 0">
+
+      </span>
+<!--          <table class="table table-bordered table-responsive-md table-striped text-center">-->
+<!--            <tr>-->
+<!--              <th class="text-center">Type de contrat</th>-->
+<!--              <th class="text-center">Date de Debut de contrat</th>-->
+<!--              <th class="text-center">Date de fin de contrat</th>-->
+<!--              <th class="text-center">Date de fin PE</th>-->
+<!--              <th class="text-center">Date de sortie</th>-->
+<!--            </tr>-->
+<!--            <tr *ngFor="let person of personList; let id = index">-->
+<!--              <td>-->
+<!--                <span>{{person.typecontrat}}</span>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <span>{{person.datedebut}}</span>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <span>{{person.datefin}}</span>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <span>{{person.datefinPE}}</span>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <span>{{person.datesortie}}</span>-->
+<!--              </td>-->
+
+<!--            </tr>-->
+<!--          </table>-->
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filtrer" style="margin-bottom: 1%;">
+          <table id="example" class="display" mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
+
+            <ng-container matColumnDef="Type de Contrat">
+              <th mat-header-cell *matHeaderCellDef> Type de Contrat </th>
+              <td mat-cell *matCellDef="let element"> {{element.contractType.type}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Durée du contrat">
+              <th mat-header-cell *matHeaderCellDef> Durée du contrat </th>
+              <td mat-cell *matCellDef="let element"> {{element.contractDuration.duation}} {{element.contractDuration.unit}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Salaire">
+              <th mat-header-cell *matHeaderCellDef> Salaire </th>
+              <td mat-cell *matCellDef="let element"> {{element.salary.baseSalary}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Periode de Test">
+              <th mat-header-cell *matHeaderCellDef> Periode de Test </th>
+              <td mat-cell *matCellDef="let element"> {{element.trialPeriod.duation}}  {{element.trialPeriod.unit}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

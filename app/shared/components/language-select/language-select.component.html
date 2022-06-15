@@ -1,0 +1,12 @@
+<div class="" ngbDropdown>
+  <a class="btn btn-secondary dropdown-toggle " id="languageDropdown" ngbDropdownToggle>
+    <wind-language-item [item]="currentLanguage"></wind-language-item>
+  </a>
+  <ul aria-labelledby="languageDropdown" class="" ngbDropdownMenu>
+    <li *ngFor="let language of languagesMinusCurrent">
+      <a (click)="onLanguageSelect(language)" class="dropdown-item" href="javascript:void(0)">
+        <wind-language-item (selected)="onLanguageSelect($event)" [item]="language"></wind-language-item>
+      </a>
+    </li>
+  </ul>
+</div>

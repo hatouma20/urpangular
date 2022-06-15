@@ -1,0 +1,268 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">
+            Contrat:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info
+            Contrat</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Contrat
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body">
+        <div class="table-editable" id="table">
+ <span class="table-add float-right" style="padding: 0">
+        <a (click)="add()" class="text-success">
+          <i aria-hidden="true" class="fa fa-plus"></i>
+        </a>
+      </span>
+          <table class="table table-bordered table-responsive-md table-striped text-center">
+            <tr>
+              <th class="text-center">Type de contrat</th>
+              <th class="text-center">Date de Debut de contrat</th>
+              <th class="text-center">Date de fin de contrat</th>
+              <th class="text-center">Date de fin PE</th>
+              <th class="text-center">Date de sortie</th>
+            </tr>
+            <tr *ngFor="let person of personList; let id = index">
+              <td>
+                <span (blur)="updateList(id, 'typecontrat', $event)" (keyup)="changeValue(id, 'typecontrat', $event)"
+                      contenteditable="true">{{person.typecontrat}}</span>
+              </td>
+              <td>
+                <span (blur)="updateList(id, 'datedebut', $event)" (keyup)="changeValue(id, 'datedebut', $event)"
+                      contenteditable="true">{{person.datedebut}}</span>
+              </td>
+              <td>
+                <span (blur)="updateList(id, 'datefin', $event)" (keyup)="changeValue(id, 'datefin', $event)"
+                      contenteditable="true">{{person.datefin}}</span>
+              </td>
+              <td>
+                <span (blur)="updateList(id, 'datefinPE', $event)" (keyup)="changeValue(id, 'datefinPE', $event)"
+                      contenteditable="true">{{person.datefinPE}}</span>
+              </td>
+              <td>
+                <span (blur)="updateList(id, 'datesortie', $event)" (keyup)="changeValue(id, 'datesortie', $event)"
+                      contenteditable="true">{{person.datesortie}}</span>
+              </td>
+              <td>
+            <span class="table-remove">
+               <a (click)="remove(id)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+                 aria-hidden="true" class="fa fa-trash"></i></a>
+
+            </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"
+                data-target="#collapseTwo" data-toggle="collapse" style="color: #0080ad;" type="button">
+          Fonction
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionExample" id="collapseTwo">
+      <div class="card-body">
+        <form id="form1" role="form">
+
+          <div style="display: flex">
+            <div class="col-6" style="margin: 0; padding: 0">
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Entité juridique <span style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative">
+                      <select class="form-control" placeholder="Title">
+                        <option>TALAN Tunisie</option>
+                        <option>--</option>
+                        <option>---</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Date d'ancienneté <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <input class="form-control" type="date">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Date d'entrée <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <input class="form-control" type="date">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Fonction <span style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative">
+                      <select class="form-control" placeholder="Title">
+                        <option>Consultant</option>
+                        <option>--</option>
+                        <option>---</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Type ressource/ tx d'activité <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group ">
+                      <select class="form-control input-group-alternative mr-3" placeholder="Title">
+                        <option>Production</option>
+                        <option>--</option>
+                        <option>---</option>
+                      </select>
+                      <input class="form-control input-group-alternative " type="text">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">BU/ Manager RH <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group ">
+                      <select class="form-control input-group-alternative mr-3" placeholder="Title">
+                        <option>TTC</option>
+                        <option>--</option>
+                        <option>---</option>
+                      </select>
+                      <input class="form-control input-group-alternative " type="text">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Formation <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative">
+                      <select class="form-control" placeholder="Title">
+                        <option>Bac +3</option>
+                        <option>Bac +5</option>
+                        <option>BTS</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Ecole <span style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group ">
+                      <select class="form-control input-group-alternative mr-3" placeholder="Title">
+                        <option>Tunisie</option>
+                        <option>France</option>
+                        <option>Almagne</option>
+                      </select>
+                      <select class="form-control input-group-alternative " placeholder="Title">
+                        <option>FST- Fac de Science Tunis</option>
+                        <option>ISET</option>
+                        <option>IPEIM</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Profil <span style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group ">
+                      <select class="form-control input-group-alternative " placeholder="Title">
+                        <option>MOE- Développeur</option>
+                        <option>Technicien</option>
+                        <option>---</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Date 1ère expérience <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <input class="form-control" type="date">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Expérience Professionnelle <span style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group  ">
+                      <input class="form-control input-group-alternative mr-1" type="text">ans
+                      <input class="form-control input-group-alternative mr-1" type="text">mois
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

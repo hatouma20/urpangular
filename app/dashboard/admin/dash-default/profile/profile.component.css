@@ -1,0 +1,13 @@
+.show {
+  display: block !important;
+}
+.custom-width-show{
+  width: 60%;
+}
+.hoverablecin {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: 150px;
+  width: 240px;
+}

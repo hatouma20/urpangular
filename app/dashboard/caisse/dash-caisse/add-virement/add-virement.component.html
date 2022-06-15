@@ -1,0 +1,361 @@
+<div class="header" style="background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style="margin-left: 1%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h3 class="d-inline-block mb-0"style="font-weight: bold;font-family: monospace;">Ordre de Virement</h3>
+          <p aria-current="page" class="breadcrumb-item active" style="font-family: monospace;">
+            Caisse >  Ordre Virement </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="accordion" >
+  <div class="card card-info">
+
+    <div aria-labelledby="headingTwo1" class="collapse show" data-parent="#accordionExample" id="collapseTwo1">
+      <div class="card-body">
+        <br>
+        <form id="form1" role="form">
+          <div>
+            <p   class="breadcrumb-item active" style="font-family: monospace;">Caisse >  Ajouter Ordre de Virement </p>
+            <div  class="row">
+              <div class="col-12" style="display: flex">
+                <div class="col-3">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Numéro</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <input
+                        [(ngModel)]="virementForm.transfernumber.value"
+                        id="transfernumber"
+                        name="transfernumber"
+                        class="form-control"
+                        type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">De</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <select class="form-control"  (change)="getselectedcompteorigin($event)">
+                        <option hidden selected>select compte origin</option>
+                        <option [value]="item.uuid" *ngFor="let item of comptelist"> {{item.account_number}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Date</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <input type="date"
+                             min="{{dateSent|date:'yyyy-MM-dd'}}"
+                             name="datevirement"
+                             class="form-control"
+                             [(ngModel)]="virementForm.datevirement.value"
+                             required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Raison Social</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+
+                        <input
+                          [(ngModel)]="virementForm.socialreason.value"
+                          id="socialreason"
+                          name="socialreason"
+                          class="form-control"
+                          type="text">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <table class="table table-bordered table-responsive-md table-striped text-center" style="font-family: monospace;">
+            <thead>
+            <tr>
+              <th class="text-center">Nom bénéficiaire</th>
+              <th class="text-center">Num Compte bénéficiaire</th>
+              <th class="text-center">Objet du virement</th>
+              <th class="text-center">Montant</th>
+              <th class="text-center">
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let field of fieldArray; let i = index">
+              <td>
+                <input
+                  [(ngModel)]="virementForm.beneficiarys.values[i].beneficiaryName"
+                  name="beneficiaryName" id="beneficiaryName"
+                  class="form-control"
+                  type="text">
+              </td>
+              <td>
+                <div class="ng-autocomplete">
+                  <ng-autocomplete
+                    [data]="comptelist"
+                    [searchKeyword]="keyword"
+                    (selected)='selectEvent($event,i)'
+                    (inputChanged)='onChangeSearch($event)'
+                    (inputFocused)='onFocused($event)'
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate">
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.account_number"></a>
+                  </ng-template>
+
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+              </td>
+              <td>
+                <input
+                  [(ngModel)]="virementForm.beneficiarys.values[i].description"
+                  name="description" id="description"
+                  class="form-control"
+                  type="text">
+              </td>
+              <td>
+                <input
+                  [(ngModel)]="virementForm.beneficiarys.values[i].amount"
+                  name="amount" id="amount"
+                  class="form-control"
+                  min="1"
+                  #box (keyup.enter)="onEnter(box.value)"
+                  type="number">
+              </td>
+              <td>
+                            <span class="table-remove" style="padding: 0px;">
+                            <a (click)="deleteFieldValue(i,virementForm.beneficiarys.values[i].amount)" data-toggle="tooltip" style="color: #f76c6c;" title="Delete"><i
+                              aria-hidden="true" class="fa fa-trash"></i></a>
+                               <a (click)="addFieldValue(i)" data-toggle="tooltip" style="color: #5d5d6d;margin-left: 10%;"><i
+                                 aria-hidden="true" class="fa fa-plus"></i></a>
+                            </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <br>
+          <br>
+          <table class="table table-bordered table-responsive-md table-striped text-center"  style="font-family: monospace;">
+            <thead>
+            <tr>
+              <th class="text-center">Nombre total des virements</th>
+              <th class="text-center">Montant total en chiffres</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                {{totalvirement}}
+              </td>
+              <td>
+                {{totalamount}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <br>
+          <br>
+          <div class="col-lg-12 col-5 text-right">
+            <a class="btn btn-sm btn-neutral"
+               (click)="onAddvirementFormSubmit()"
+               style=" color: black; background: #ffcf03; border: #ffcf03; padding: 1%; ">Ajouter</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<div class="accordion mt-5" id="accordionExample">-->
+  <!--<div class="card card-info">-->
+    <!--<div class="card-header card-info-header" id="headingTwo1">-->
+      <!--<h2 class="mb-0">-->
+        <!--<button aria-controls="collapseTwo" aria-expanded="true" class="btn btn-link collapsed"-->
+                <!--data-target="#collapseTwo1" data-toggle="collapse" style="color: #0080ad;" type="button">-->
+         <!--Ajouter Ordre de  Virement(s)-->
+        <!--</button>-->
+      <!--</h2>-->
+    <!--</div>-->
+    <!--<div aria-labelledby="headingTwo1" class="collapse show" data-parent="#accordionExample" id="collapseTwo1">-->
+      <!--<div class="card-body">-->
+        <!--<br>-->
+        <!--<form role="form">-->
+          <!--<div style="display: flex">-->
+             <!--<div class="col-12" >-->
+                <!--<br>-->
+              <!--<div class="row">-->
+                <!--<div class="col-lg-3 col-12">-->
+                  <!--<div class="form-group focused" style="display: flex">-->
+                    <!--<label class="col-6" style="font-weight: bold;">Numéro</label>-->
+                    <!--<div class=" input-group input-group-alternative ">-->
+                      <!--<input-->
+                        <!--[(ngModel)]="virementForm.transfernumber.value"-->
+                        <!--id="transfernumber"-->
+                        <!--name="transfernumber"-->
+                        <!--class="form-control"-->
+                        <!--type="text">-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-lg-3 col-12">-->
+                  <!--<div class="form-group focused" style="display: flex">-->
+                    <!--<label class="col-4" style="font-weight: bold;">De</label>-->
+                    <!--<div class=" input-group input-group-alternative ">-->
+                      <!--<select class="form-control"  (change)="getselectedcompteorigin($event)">-->
+                        <!--<option hidden selected>select compte origin</option>-->
+                        <!--<option [value]="item.uuid" *ngFor="let item of comptelist"> {{item.account_number}}</option>-->
+                      <!--</select>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                 <!--<div class="col-lg-3 col-12">-->
+                  <!--<div class="form-group focused" style="display: flex">-->
+                    <!--<label class="col-4" style="font-weight: bold;">Date</label>-->
+                    <!--<div class=" input-group input-group-alternative ">-->
+                      <!--<input type="date"-->
+                             <!--min="{{dateSent|date:'yyyy-MM-dd'}}"-->
+                             <!--id="datevirement"-->
+                             <!--name="datevirement"-->
+                             <!--class="form-control"-->
+                             <!--[(ngModel)]="virementForm.datevirement.value"-->
+                             <!--required>-->
+
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-lg-3 col-12">-->
+                  <!--<div class="form-group focused" style="display: flex">-->
+                    <!--<label class="col-6" style="font-weight: bold;">Raison Social</label>-->
+                    <!--<div class=" input-group input-group-alternative ">-->
+                      <!--<input-->
+                        <!--[(ngModel)]="virementForm.socialreason.value"-->
+                        <!--id="socialreason"-->
+                        <!--name="socialreason"-->
+                        <!--class="form-control"-->
+                        <!--type="text">-->
+                     <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+               <!--</div>-->
+               <!--<br>-->
+             <!--</div>-->
+          <!--</div>-->
+          <!--<table class="table table-bordered table-responsive-md table-striped text-center">-->
+            <!--<thead>-->
+            <!--<tr>-->
+              <!--<th class="text-center">Nom bénéficiaire</th>-->
+              <!--<th class="text-center">Num Compte bénéficiaire</th>-->
+              <!--<th class="text-center">Objet du virement</th>-->
+              <!--<th class="text-center">Montant</th>-->
+              <!--<th class="text-center">-->
+              <!--</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr *ngFor="let field of fieldArray; let i = index">-->
+              <!--<td>-->
+                                    <!--<input-->
+                                       <!--[(ngModel)]="virementForm.beneficiarys.values[i].beneficiaryName"-->
+                            <!--name="beneficiaryName" id="beneficiaryName"-->
+                          <!--class="form-control"-->
+                          <!--type="text">-->
+              <!--</td>-->
+              <!--<td>-->
+                <!--<div class="ng-autocomplete">-->
+                  <!--<ng-autocomplete-->
+                    <!--[data]="comptelist"-->
+                    <!--[searchKeyword]="keyword"-->
+                    <!--(selected)='selectEvent($event,i)'-->
+                    <!--(inputChanged)='onChangeSearch($event)'-->
+                    <!--(inputFocused)='onFocused($event)'-->
+                    <!--[itemTemplate]="itemTemplate"-->
+                    <!--[notFoundTemplate]="notFoundTemplate">-->
+                  <!--</ng-autocomplete>-->
+
+                  <!--<ng-template #itemTemplate let-item>-->
+                    <!--<a [innerHTML]="item.account_number"></a>-->
+                  <!--</ng-template>-->
+
+                  <!--<ng-template #notFoundTemplate let-notFound>-->
+                    <!--<div [innerHTML]="notFound"></div>-->
+                  <!--</ng-template>-->
+                <!--</div>-->
+              <!--</td>-->
+              <!--<td>-->
+                            <!--<input-->
+                              <!--[(ngModel)]="virementForm.beneficiarys.values[i].description"-->
+                              <!--name="description" id="description"-->
+                              <!--class="form-control"-->
+                              <!--type="text">-->
+              <!--</td>-->
+              <!--<td>-->
+                            <!--<input-->
+                              <!--[(ngModel)]="virementForm.beneficiarys.values[i].amount"-->
+                              <!--name="amount" id="amount"-->
+                              <!--class="form-control"-->
+                              <!--min="1"-->
+                              <!--#box (keyup.enter)="onEnter(box.value)"-->
+                              <!--type="number">-->
+              <!--</td>-->
+              <!--<td>-->
+                            <!--<span class="table-remove">-->
+                            <!--<a (click)="deleteFieldValue(i,virementForm.beneficiarys.values[i].amount)" data-toggle="tooltip" style="    color: red;" title="Delete"><i-->
+                              <!--aria-hidden="true" class="fa fa-trash"></i></a>-->
+                               <!--<a (click)="addFieldValue(i)" data-toggle="tooltip" style="color: #2dce5a;margin-left: 10%;"><i-->
+                                 <!--aria-hidden="true" class="fa fa-plus"></i></a>-->
+                            <!--</span>-->
+              <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+          <!--</table>-->
+          <!--<br>-->
+          <!--<br>-->
+          <!--<table class="table table-bordered table-responsive-md table-striped text-center">-->
+            <!--<thead>-->
+            <!--<tr>-->
+              <!--<th class="text-center">Nombre total des virements</th>-->
+              <!--<th class="text-center">Montant total en chiffres</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr>-->
+              <!--<td>-->
+                <!--{{totalvirement}}-->
+              <!--</td>-->
+              <!--<td>-->
+                <!--{{totalamount}}-->
+              <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+          <!--</table>-->
+          <!--<br>-->
+          <!--<br>-->
+          <!--<div class="col-lg-6 col-5 text-right">-->
+            <!--<a class="btn btn-sm btn-neutral"-->
+               <!--(click)="onAddvirementFormSubmit()"-->
+               <!--style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Ajouter</a>-->
+          <!--</div>-->
+        <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

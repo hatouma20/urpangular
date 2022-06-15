@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>Title</title>
+</head>
+<body style="width: 100vw;height: 100vh;display: flex;justify-content: center; padding: 20px; height: 100%;">
+<div id="payslip" style="width: calc( 8.5in - 80px );height: calc( 71em - 60px );background: #fff; border: 1px solid black;">
+
+
+  <div class="row">
+    <div class="column" style="font-family: 'Roboto',sans-serif;font-size: 12px;color: #444; text-align: center; float: left; width: 33.33%; padding: 10px; border: 1px solid #000;border-left: 0px solid #000; height: 100px; box-sizing: border-box;">
+      <img style="width:70px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGcAAAA6CAYAAACtUUfQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAE6WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIiB4bXA6Q3JlYXRlRGF0ZT0iMjAxOS0wOS0yM1QxMDozODo1MSswMTowMCIgeG1wOk1vZGlmeURhdGU9IjIwMTktMDktMjNUMTE6MDA6NTArMDE6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMTktMDktMjNUMTE6MDA6NTArMDE6MDAiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjc0ZmQ2NDM2LTE1ZDQtODc0MS04MmQ2LTU4ODgwYzI3OTFkNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1w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" alt="Red dot" />
+
+      <p style="margin-bottom: 0px;"><b>Wind Consulting</b></p>
+      <p style="text-align: left;margin-top: 1px;"><label>Matricule fiscale</label><label style="float: right;">CNSS</label></p>
+
+    </div>
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 12px;color: #444; float: left; width: 33.33%; padding: 10px; height: 100px; box-sizing: border-box;text-align: center;" >
+      <p></p>
+      <h1 style=" font-size: 15px;">BULLETIN DE PAIE</h1>
+      <p>Période du 01/09/2019 au 30/09/2019</p>
+    </div>
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 12px;color: #444;float: left;width: 33.33%;padding: 10px;border: 1px solid #000; border-right: 0px solid #000;
+			text-align: center;height: 100px;box-sizing: border-box;">
+      <p>Nom de salarié</p>
+      <p>Adresse de salarié</p>
+    </div>
+  </div>
+
+  <div class="row" style="padding-top: 7em;">
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 10px;color: #444; float: left; width: 33.33%;  border: 1px solid #000; border-left: 0px; border-right: 0px;height: 95px; box-sizing: border-box;">
+      <p><b style="padding-left: 1em;">Emploi:</b><label style="float: right;
+    padding-right: 1em;">14225255</label></p>
+      <p><b style="padding-left: 1em;">Qualification:</b><label style="float: right;
+    padding-right: 1em;">14225255</label></p>
+      <p><b style="padding-left: 1em;">Affectation:</b><label style="float: right;
+    padding-right: 1em;">14225255BB</label></p>
+    </div>
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 10px;color: #444; float: left; width: 16.66%;  border: 1px solid #000; border-right: 0px;height: 95px; box-sizing: border-box;" >
+      <p><b style="padding-left: 1em;">Convetion collective</b></p>
+      <p><b style="padding-left: 1em;">salaire minimum</b></p>
+      <p><b style="padding-left: 1em;">Heures mensuelles</b></p>
+      <p><b style="padding-left: 1em;">Heures hebdomadaire</b></p>
+    </div>
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 10px;color: #444; float: left; width: 16.66%; border: 1px solid #000; border-right: 0px;height: 95px; box-sizing: border-box;" >
+      <p><label style="padding-left: 1em;">Convetion collective</label></p>
+      <p><label style="padding-left: 1em;">salaire minimum</label></p>
+      <p><label style="padding-left: 1em;">Heures mensuelles</label></p>
+      <p><label style="padding-left: 1em;">Heures hebdomadaire</label></p>
+    </div>
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 10px;color: #444;float: left;width: 33.33%;border: 1px solid #000; border-right: 0px;height: 95px;box-sizing: border-box;">
+      <p><b style="padding-left: 1em;">Matricule:</b><label style="float: right;
+    padding-right: 1em;">14225255</label></p>
+      <p><b style="padding-left: 1em;">N° CNSS:</b><label style="float: right;
+    padding-right: 1em;">14225255</label></p>
+      <p><b style="padding-left: 1em;">Date d'entrée:</b><label style="float: right;
+    padding-right: 1em;">10/8/2013</label></p>
+      <p><b style="padding-left: 1em;">Date d'encienneté:</b><label style="float: right;
+    padding-right: 1em;">10/10/2015</label></p>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 7em;">
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 10px;color: #444;float: left;box-sizing: border-box;width: 100%;display: flex;height: auto;padding: 0;" >
+      <table style=" font-family: 'Roboto', sans-serif;font-size: 10px;color: #444; border-collapse: collapse; width: 100%;">
+        <tr style="background: #b9b9b9;">
+          <th style="text-align: left; padding: 8px;">Répubrique</th>
+          <th style="text-align: left; padding-left: 8px;">Base ou nombre</th>
+          <th style="text-align: left; padding-left: 8px;">Taux salarial</th>
+          <th style="text-align: left; padding-left: 8px;">Part salarial</th>
+          <th style="text-align: left; padding-left: 8px;">Part salarial patronal</th>
+        </tr>
+        <tr>
+          <td style="text-align: center; padding-left: 8px;">Salaire de base</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">569.692</td>
+          <td style="text-align: left; padding-left: 8px;">100%</td>
+          <td style="background: #e1e1e1;text-align: left; padding-left: 8px;">569.692</td>
+          <td style="text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="  text-align: left; padding-left: 8px;">Prime exceptionnelle</td>
+          <td style=" background: #e1e1e1; text-align: left; padding: 8px;"></td>
+          <td style=" text-align: left; padding: 8px;"></td>
+          <td style=" background: #e1e1e1; text-align: left; padding-left: 8px;">100</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Retenue congé payés</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">2</td>
+          <td style="text-align: left; padding-left: 8px;">100%</td>
+          <td style="background: #e1e1e1;text-align: left; padding-left: 8px;">569.692</td>
+          <td style="text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Indemnité de congé payés</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">2</td>
+          <td style="text-align: left; padding-left: 8px;">100%</td>
+          <td style="background: #e1e1e1;text-align: left; padding-left: 8px;">569.692</td>
+          <td style="text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b>BRUT TOTAL</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b>1930</b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b style="color:white">BRUT TOTAL</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b style="color:white">BRUT TOTAL</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b>SANTE</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b style="color:white">BRUT TOTAL</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b style="color:white">santé</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+
+
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Sécurité sociale-Maladie Maternité Invalidité Décès</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">1930</td>
+          <td style="text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">-135.10</td>
+        </tr>
+
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b style="color:white">BRUT TOTAL</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Complémentaire Incapacité Invalidité Décès</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">1930</td>
+          <td style=" text-align: left; padding-left: 8px;">0.51%</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">-9.75</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">-9.75</td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Complémentaire santé</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">90.8</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">36.21</td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b>ACCIDENT DE TRAVAIL - MALADIE PROFESSIONNELLES</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">1930</td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">-30.88</td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b>RETRAITE</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Sécurité Sociale Plafonné</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">1930</td>
+          <td style=" text-align: left; padding-left: 8px;">6.90%</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">-130.17</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">-36</td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Sécurité sociale Déplafonné</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">1930</td>
+          <td style=" text-align: left; padding-left: 8px;">0.40%</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">90.8</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">-6.21</td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Complémentaire Tranche 1</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">1930</td>
+          <td style=" text-align: left; padding-left: 8px;">0.40%</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">90.8</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">-6.21</td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b>FAMILLE</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">1930</td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b>ASSURANCE CHOMAGE</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Chomage</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">1930</td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">0.00</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">-81.06</td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b>AUTRES CONTRIBUTIONS DUES PAR L'EMPLOYEUR</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">-18.65</td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b>CSG De l'impot du revenu </b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">1942.18</td>
+          <td style=" text-align: left; padding-left: 8px;">6.35</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">132.55</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b>CSG/CRDS non déductable De l'impot sur revenu  </b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">1942.18</td>
+          <td style=" text-align: left; padding-left: 8px;">6.35</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">132.55</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b style="color:white">*</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b>TOTAL DES COTISATIONS ET CONTRIBUTIONS</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">-560.2</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">-18.65</td>
+        </tr>
+
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b style="color:white">*</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Remboursement de frais professionnels</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;">259</td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b style="color:white">*</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b style="color:white">*</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;">Congé payés du 02/09/2019 au 03/09/2019</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="text-align: left; padding-left: 8px;"><b style="color:white">*</b></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"><b></b></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;"></td>
+        </tr>
+        <tr style=" background: #e1e1e1; border-top: 1px solid #000000; ">
+          <td style="text-align: left; padding: 8px;">NET A PAYER AVANT IMPLOTS SUR REVENU</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">1681.77</td>
+        </tr>
+        <tr style=" background: #e1e1e1; border-bottom: 1px solid #000000;font-size: 8px; ">
+          <td style="text-align: left; padding-left: 8px;">dont évolution de la rénumération liés à la supprission des cotisations salariales chomage  et maladie</td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" text-align: left; padding-left: 8px;"></td>
+          <td style="background: #e1e1e1; text-align: left; padding-left: 8px;"></td>
+          <td style=" border-right: 1px solid #000000; text-align: left; padding-left: 8px;">11.77</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row" style="margin-top: 31em;">
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 10px;color: #444;float: left;box-sizing: border-box;width: 100%;display: flex;height: auto;padding: 0;" >
+      <table style=" font-family: 'Roboto', sans-serif;font-size: 10px;color: #444; border-collapse: collapse; width: 100%;">
+        <tr style="background: #e1e1e1;">
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;">Impot dur le revenu</th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;">Base</th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;">Taux</th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;">Montant</th>
+        </tr>
+        <tr>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">Impot dur le revenu prélevé de la source</td>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">1569.692</td>
+          <td style="text-align: left;    border: 1px solid black; padding-left: 8px;">3.8%</td>
+          <td style="text-align: center;     border: 1px solid black;padding-left: 8px;">-64.692</td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 34em;">
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 10px;color: #444;float: left;box-sizing: border-box;width: 100%;display: flex;height: auto;padding: 0;" >
+      <table style=" font-family: 'Roboto', sans-serif;font-size: 10px;color: #444; border-collapse: collapse; width: 100%;">
+        <tr>
+          <th style="text-align: left;     border-top: 1px solid black;padding-left: 8px;"><b>TOTAL VERSE PAR L'EMPLOYEUR</b></th>
+          <th style="text-align: left;     border-top: 1px solid black;padding-left: 8px;"></th>
+          <th style="text-align: left;     border-top: 1px solid black;padding-left: 8px;"></th>
+          <th style="text-align: left;     border-top: 1px solid black;padding-left: 8px;"><b>2390.07</b></th>
+        </tr>
+        <tr>
+          <td style="text-align: left;    border-bottom: 1px solid black; padding-left: 8px;"><b>ALLEGEMENT DE CONTISATIONS</b></td>
+          <td style="text-align: left;    border-bottom: 1px solid black; padding-left: 8px;"></td>
+          <td style="text-align: left;    border-bottom: 1px solid black; padding-left: 8px;"></td>
+          <td style="text-align: left;     border-bottom: 1px solid black;padding-left: 8px;"><b>386.38</b></td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 37em;">
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 10px;color: #444;float: left;box-sizing: border-box;width: 100%;display: flex;height: auto;padding: 0;" >
+      <table style=" font-family: 'Roboto', sans-serif;font-size: 10px;color: #444; border-collapse: collapse; width: 100%;">
+        <tr style="background: #e1e1e1;">
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;"><b>MONTANT BRUT DU MOIS</b></th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;"><b>CUMMUL BRUT</b></th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;"><b>NET IMPOSABLE MOIS</b></th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;"><b>CUMMUL IMPOSABLE</b></th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;"><b>BASE CONGE PAYES</b></th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;"><b>NET A PAYES</b></th>
+        </tr>
+        <tr>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">Impot dur le revenu prélevé de la source</td>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">1930</td>
+          <td style="text-align: left;    border: 1px solid black; padding-left: 8px;">23160</td>
+          <td style="text-align: center;     border: 1px solid black;padding-left: 8px;">1515.2</td>
+          <td style="text-align: center;     border: 1px solid black;padding-left: 8px;">7720</td>
+          <td style="text-align: center;     border: 1px solid black;padding-left: 8px;">1634.69</td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-top: 630px;">
+    <div class="column" style="font-family: 'Roboto',sans-serif;font-size: 12px;color: #444; text-align: center; float: left; width: 50%;border-left: 0px solid #000; height: 73px; box-sizing: border-box;">
+
+      <table style=" font-family: 'Roboto', sans-serif;font-size: 10px;color: #444; border-collapse: collapse; width: 100%;">
+        <tr>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;"></th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;"><b>Acquis</b></th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;">Prix</th>
+          <th style="text-align: center;     border: 1px solid black;padding-left: 8px;">Solde</th>
+        </tr>
+        <tr>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">Congés payés N </td>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">10</td>
+          <td style="text-align: left;    border: 1px solid black; padding-left: 8px;">2</td>
+          <td style="text-align: center;     border: 1px solid black;padding-left: 8px;">15</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">Congés payés N-1 </td>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">1</td>
+          <td style="text-align: left;    border: 1px solid black; padding-left: 8px;">23</td>
+          <td style="text-align: center;     border: 1px solid black;padding-left: 8px;">1</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">RTT </td>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">1</td>
+          <td style="text-align: left;    border: 1px solid black; padding-left: 8px;">1</td>
+          <td style="text-align: center;     border: 1px solid black;padding-left: 8px;">1</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">Répos compensateur </td>
+          <td style="text-align: center;    border: 1px solid black; padding-left: 8px;">0</td>
+          <td style="text-align: left;    border: 1px solid black; padding-left: 8px;">0</td>
+          <td style="text-align: center;     border: 1px solid black;padding-left: 8px;">0</td>
+        </tr>
+      </table>
+
+
+    </div>
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 12px;color: #444; float: left; width: 24%; padding: 10px; height: 73px; box-sizing: border-box;" >
+
+    </div>
+    <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 12px;color: #444;float: left;width: 26%;padding: 10px;border: 1px solid #000; border-right: 0px solid #000;
+			text-align: left;height: 73px;box-sizing: border-box;">
+      <p>Reglement le:</p>
+      <p>Par Virement:</p>
+    </div>
+  </div>
+  <div class="column" style="font-family: 'Roboto', sans-serif;font-size: 12px;color: #444; float: left; width: 100%; padding: 10px; height: 73px; box-sizing: border-box; display:flex;   " >
+    <h2 style="width:50%;  font-weight: initial;">La direction:</h2>
+    <h2 style=" font-weight: initial;">Le salarié:</h2>
+  </div>
+
+  <p style="
+    font-size: 9px;
+    text-align: center;
+    margin-top: 808px;    margin-bottom: 3px;
+">Dans votre interet et pour faire valoir vos droits, concerver ce bulletin de paie sans limitation de durée</p>
+  <p style="
+    font-size: 9px;
+    text-align: center;
+        margin-top: 0px;
+">Pour la définition des termes employé, se reporter au site internet www.windconsulting-tunisia.tn</p>
+</div>
+</body>
+</html>

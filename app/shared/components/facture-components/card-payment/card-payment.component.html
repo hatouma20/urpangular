@@ -1,0 +1,52 @@
+
+<div class="accordion" id="accordionExample" style=" border-top: none; border-bottom: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; border-left: 1px solid #e0e0e0; border-radius: 3px; ">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingpayment{{lastIndex}}" [attr.aria-controls]="'collapsepayment'+ lastIndex" aria-expanded="false" class="btn btn-link collapsed"
+         [attr.data-target]="'#collapsepayment'+ lastIndex" data-toggle="collapse" style="display: flex">
+      <div   class="p-2">#{{lastIndex +1}} Carte</div>
+      <div   class="p-2 ml-auto">
+        <div   class="m-2 title-amount-body"> MONTANT : <span   class="m-2 montant">{{line.amount}} {{line.devise}}</span></div>
+      </div>
+      <div   class="p-2 collapse-blue">
+        <i-feather name="chevron-down"></i-feather>
+      </div>
+    </div>
+  </div>
+  <div [attr.aria-labelledby]="'collapsepayment'+ lastIndex"  class="collapse" data-parent="#accordionExample" id="collapsepayment{{lastIndex}}" style="margin-top: 2%">
+    <div   class="card-body">
+      <div    class="row">
+<!--        <form   class="form-group col-12 ng-touched ng-pristine ng-valid" novalidate="">-->
+<!--          <div   class="form-group row">-->
+<!--            <label   class="col-md-3 label-form-payment text-right" for="">Montant</label>-->
+<!--            <div   class="input-group p-l-0 p-r-0 col-md-8">-->
+<!--              <div   class="input-group-prepend" style="        margin-left: -1.3%;"><span   class="input-group-text" style="height: 46px;">TND</span></div>-->
+<!--              <input id="editable0" [disabled]="disabled" (change)="saisirMontant(lastIndex)" [(ngModel)]="line.amount"  style="padding-left: 2%" class="form-control input-form-payment ng-touched ng-pristine ng-valid"  min="1" name="montant" type="number">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash;&ndash;&gt;-->
+<!--          <div   class="form-group row ng-star-inserted">-->
+<!--            <label   class="col-md-3 label-form-payment text-right text-right" for="">Caisse destinataire</label>-->
+<!--            <select [disabled]="disabled" id="editable1" appearance="outline" bindlabel="name" bindvalue="id" class="form-control input-form-payment col-md-8 ng-touched ng-pristine ng-valid flatpickr-input" formcontrolname="balance" role="listbox">-->
+<!--              <option>Primary balance</option>-->
+<!--              <option>Secondary balance</option>-->
+<!--            </select>-->
+<!--          </div>-->
+<!--          &lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;-->
+<!--          <div   class="form-group row">-->
+<!--            <label   class="col-md-3 label-form-payment text-right text-right" for="">Date de règlement</label>-->
+<!--            <input [disabled]="disabled" id="editable2" class="form-control input-form-payment col-md-8 ng-touched ng-pristine ng-valid flatpickr-input"  type="date" >-->
+<!--          </div>-->
+<!--          <div   class="form-group row">-->
+<!--            <label   class="col-md-3 label-form-payment text-right text-right" for=""></label>-->
+<!--            <div class="alert alert-danger " id ="alert-danger{{lastIndex}}" style=" display:none; color: red; font-family: monospace; background: #f3d4d4; padding: 1%;border-radius: 5px;">-->
+<!--              <span class="error-hint">Le montant que vous avez saisi est plus grand que le montant reste à payer !!</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash;&ndash;&gt;-->
+<!--        </form>-->
+      </div>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<!-- Header -->
+<div>
+  <div class="header " style="    background: #c1c1c12e;">
+    <div class="container-fluid">
+      <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2  d-inline-block mb-0"
+                style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Fiche
+              collaborateur:</h6>
+            <br>
+            <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">
+              Coordonnées Personnelles</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid ">
+    <div class="" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center" style="margin-top: 4rem !important;">
+
+
+        <div class="col-lg-12">
+          <div class=" justify-content-md-center">
+
+            <div class="col-lg-12 col-12 ">
+              <div class="">
+                <div class=" ">
+                  <div class="card-body mt-3" style="padding: 0">
+                    <!-- Editable table -->
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="table-editable" id="table">
+ <span class="table-add float-right" style="padding: 0">
+        <a (click)="add()" class="text-success">
+          <i aria-hidden="true" class="fa fa-plus"></i>
+        </a>
+      </span>
+                          <table class="table table-bordered table-responsive-md table-striped text-center">
+                            <tr>
+                              <th class="text-center">Adresses</th>
+                              <th class="text-center">Téléphones</th>
+                              <th class="text-center">Emails</th>
+                              <th class="text-center">Personnes à contacter en cas d'urgence</th>
+                            </tr>
+                            <tr *ngFor="let person of personList; let id = index">
+                              <td>
+                                <span (blur)="updateList(id, 'adresse', $event)"
+                                      (keyup)="changeValue(id, 'adresse', $event)"
+                                      contenteditable="true">{{person.adresse}}</span>
+                              </td>
+                              <td>
+                                <span (blur)="updateList(id, 'tel', $event)" (keyup)="changeValue(id, 'tel', $event)"
+                                      contenteditable="true">{{person.tel}}</span>
+                              </td>
+                              <td>
+                                <span (blur)="updateList(id, 'email', $event)"
+                                      (keyup)="changeValue(id, 'email', $event)"
+                                      contenteditable="true">{{person.email}}</span>
+                              </td>
+                              <td>
+                                <span (blur)="updateList(id, 'contact', $event)"
+                                      (keyup)="changeValue(id, 'contact', $event)"
+                                      contenteditable="true">{{person.contact}}</span>
+                              </td>
+                              <td>
+            <span class="table-remove">
+               <a (click)="remove(id)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+                 aria-hidden="true" class="fa fa-trash"></i></a>
+
+            </span>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Editable table -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

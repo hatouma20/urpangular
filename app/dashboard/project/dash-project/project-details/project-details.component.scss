@@ -1,0 +1,190 @@
+.card-info {
+    margin: 1%;
+    border: none;
+    background: transparent;
+  }
+
+  .card-backlog-info {
+    margin: 1% 0;
+    border: none;
+    background: transparent;
+  }
+  
+  .card-info-header {
+    border-bottom: none;
+    background: #f0f8ff8a;
+    box-shadow: 0em 6px 0.5em 6px #c7c7c7;
+  }
+
+  .add-button-height {
+      height: 25px;
+  }
+
+  .task-box {
+    padding: 10px;
+    margin: 10px 0px;
+    border-bottom: solid 1px #ccc;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    background: white;
+    font-size: 14px;
+  }
+
+  .example-list {
+    max-width: 100%;
+    border: solid 1px #ccc;
+    min-height: 60px;
+    display: block;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 25px;
+  }
+  
+  .example-box {
+    border-bottom: solid 1px #ccc;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 14px;
+    padding-left: 1rem;
+  }
+  
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+  
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .example-box:last-child {
+    border: none;
+  }
+  
+  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .addSprintBlock {
+    border: 1px solid #ccc;
+    padding: 2%;
+    background-color: white;
+  }
+
+  .blockTitle {
+    color: #0080ad;
+    margin-bottom: 2%;
+  }
+
+  .addButton {
+    background-color: #0080ad;
+    color: white;
+    width: 150px;
+    border: none !important;
+    height: 35px;
+    font-weight: 600;
+  }
+  .icon-margin {
+    margin: 7px;
+    cursor: pointer;
+  }
+
+  .wrapper {
+    display:list-item ;
+    justify-content: flex-start;
+    max-width: 800px;
+    padding-left: 2rem;
+  }
+
+  .board-full-container {
+    padding-top: 2rem;
+  }
+
+  .board-container {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .board-list {
+    min-height: 240px;
+    background: white;
+    overflow: hidden;
+    display: block;
+    
+  }
+  
+  .board-box {
+    padding: 20px 10px;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 14px;
+    height: 60px;
+  }
+
+  .center-align {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .postion-right {
+    display: flex;
+    position: absolute;
+    right: 16px;
+    align-items: baseline;
+  }
+
+  .sprint-name {
+    padding-left: 2rem;
+  }
+
+  .remaing-days {
+    white-space: nowrap;
+    padding: 0 1rem;
+  }
+
+  .complete-body {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  @media all and (min-width: 768px) {
+  
+    tr, td {
+      vertical-align: middle !important;
+    }
+  }
+  
+  .show {
+    display: block !important;
+  }
+  
+  table.dataTable thead th, table.dataTable thead td {
+    border-bottom: none !important;
+  }
+  
+  table.dataTable.no-footer {
+    border-bottom: none !important;
+  }
+  

@@ -1,0 +1,799 @@
+<div class="header" style="background: #c1c1c12e">
+  <div class="container-fluid">
+    <div class="header-body" style="margin-left: 1%">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h3
+            class="d-inline-block mb-0"
+            style="font-weight: bold; font-family: monospace"
+          >
+            Projet : {{ project.name }}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nav-wrapper wrapper">
+  <ul
+    class="nav nav-pills nav-fill flex-column flex-md-row"
+    id="tabs-icons-text"
+    role="tablist"
+  >
+    <li class="nav-item">
+      <a
+        class="nav-link mb-sm-3 mb-md-0"
+        data-toggle="tab"
+        href="#tabs-icons-text-1"
+        role="tab"
+        >Board</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link mb-sm-3 mb-md-0"
+        data-toggle="tab"
+        href="#tabs-icons-text-3"
+        role="tab"
+        >Backlog</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link mb-sm-3 mb-md-0"
+        data-toggle="tab"
+        href="#tabs-icons-text-4"
+        role="tab"
+        >Réunions</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link mb-sm-3 mb-md-0"
+        data-toggle="tab"
+        href="#tabs-icons-text-2"
+        role="tab"
+        >Estimations</a
+      >
+    </li>
+  </ul>
+</div>
+<div class="">
+  <div class="card-body">
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="tabs-icons-text-1"
+        role="tabpanel"
+        aria-labelledby="tabs-icons-text-1-tab"
+      >
+        <div class="row">
+          <span class="sprint-name">
+            <b
+              >sprint en cours:
+              {{ activeSprint.name }}
+            </b>
+          </span>
+          <div class="postion-right">
+            <span class="remaing-days">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              5 jours restants
+            </span>
+            <button
+              (click)="onShowStartSprint(completeSprintModal)"
+              class="btn btn-sm btn-neutral"
+              style="
+                color: black;
+                background: #526ad1;
+                border: #526ad1;
+                padding: 1%;
+                margin-bottom: 2%;
+                width: fit-content;
+                height: 35px;
+              "
+            >
+              terminer le sprint
+            </button>
+          </div>
+        </div>
+        <div class="board-full-container">
+          <div class="board-container col-4">
+            <h2 class="center-align">To do</h2>
+
+            <div
+              cdkDropList
+              #todoList="cdkDropList"
+              [cdkDropListData]="todo"
+              [cdkDropListConnectedTo]="[inprogressList, doneList]"
+              class="board-list"
+              (cdkDropListDropped)="dropTask($event)"
+            >
+              <div class="board-box" *ngFor="let item of todo" cdkDrag>
+                {{ item }}
+              </div>
+            </div>
+          </div>
+
+          <div class="board-container col-4">
+            <h2 class="center-align">In progress</h2>
+
+            <div
+              cdkDropList
+              #inprogressList="cdkDropList"
+              [cdkDropListData]="inprogress"
+              [cdkDropListConnectedTo]="[doneList, todoList]"
+              class="board-list"
+              (cdkDropListDropped)="dropTask($event)"
+            >
+              <div class="board-box" *ngFor="let item of inprogress" cdkDrag>
+                {{ item }}
+              </div>
+            </div>
+          </div>
+
+          <div class="board-container col-4">
+            <h2 class="center-align">Done</h2>
+
+            <div
+              cdkDropList
+              #doneList="cdkDropList"
+              [cdkDropListData]="done"
+              [cdkDropListConnectedTo]="[todoList, inprogressList]"
+              class="board-list"
+              (cdkDropListDropped)="dropTask($event)"
+            >
+              <div class="board-box" *ngFor="let item of done" cdkDrag>
+                {{ item }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <ng-template
+            #completeSprintModal
+            let-c="close"
+            let-d="dismiss"
+            style="max-width: 65%; margin-left: 20%"
+          >
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title1">
+                Terminer le sprint: {{ activeSprint.name }}
+              </h4>
+              <a class="lightbox__close" (click)="d('Cross click')">X</a>
+            </div>
+            <div class="modal-body">
+              <div class="complete-body">
+                <b> {{ done.length }} </b>tâches ont été résolus.
+                <br />
+                Les tâches incomplets seront déplacés vers le backlog.
+              </div>
+              <div class="col-lg-12 col-5 text-right">
+                <button class="addButton" (click)="completeSprint()">
+                  terminer
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="tabs-icons-text-3"
+        role="tabpanel"
+        aria-labelledby="tabs-icons-text-3-tab"
+      >
+        <div cdkDropListGroup>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-12 col-5 text-right">
+                <button
+                  (click)="onShowStartSprint(startSprintModal)"
+                  class="btn btn-sm btn-neutral"
+                  style="
+                    color: black;
+                    background: #526ad1;
+                    border: #526ad1;
+                    padding: 1%;
+                    margin-bottom: 2%;
+                    width: fit-content;
+                  "
+                >
+                  démarrer un sprint
+                </button>
+
+                <button
+                  (click)="onShowAddSprint(addSprintModal)"
+                  class="btn btn-sm btn-neutral"
+                  style="
+                    color: black;
+                    background: #ffcf03;
+                    border: #ffcf03;
+                    padding: 1%;
+                    margin-bottom: 2%;
+                    width: fit-content;
+                  "
+                >
+                  <i aria-hidden="true" class="fa fa-plus"></i> créer un sprint
+                </button>
+              </div>
+            </div>
+            <div class="row">
+            <div class="col-12">
+              <div *ngFor="let sprint of projectSprints">
+                <span>
+                  <b>sprint {{ sprint.name }}: du </b
+                  >{{ sprint.dateStart }} <b> au </b>
+                  {{ sprint.dateEnd }}</span
+                >
+                <div
+                  cdkDropList
+                  [cdkDropListData]="sprint.tasksOfSprint"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)"
+                >
+                  <div
+                    class="example-box"
+                    *ngFor="let task of sprint.tasksOfSprint"
+                    cdkDrag
+                  >
+                    <i
+                      *ngIf="task.PRIORITY === 'HIGH'"
+                      class="fa fa-exclamation-triangle"
+                      aria-hidden="true"
+                      style="color: red"
+                    ></i>
+                    <i
+                      *ngIf="task.PRIORITY === 'MEDIUM'"
+                      class="fa fa-arrow-circle-up"
+                      aria-hidden="true"
+                      style="color: #ffcd01"
+                    ></i>
+                    <i
+                      *ngIf="task.PRIORITY === 'LOW'"
+                      class="fa fa-arrow-circle-down"
+                      aria-hidden="true"
+                      style="color: #80c804"
+                    ></i>
+                    <span> {{ task.name }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-12">
+            <div
+            cdkDropList
+            [cdkDropListData]="projectTasks"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)"
+            >
+            <div
+            class="example-box"
+            *ngFor="let task of projectTasks"
+            cdkDrag
+            >
+            <i
+            *ngIf="task.PRIORITY === 'HIGH'"
+            class="fa fa-exclamation-triangle"
+            aria-hidden="true"
+            style="color: red"
+            ></i>
+            <i
+            *ngIf="task.PRIORITY === 'MEDIUM'"
+            class="fa fa-arrow-circle-up"
+            aria-hidden="true"
+            style="color: #ffcd01"
+            ></i>
+            <i
+            *ngIf="task.PRIORITY === 'LOW'"
+            class="fa fa-arrow-circle-down"
+            aria-hidden="true"
+            style="color: #80c804"
+            ></i>
+            <span>{{ task.name }} : {{ task.description }}</span>
+            <div style="position: absolute; left: calc(100% - 7rem)">
+            <a (click)="onShowAffectTask(affectTaskModal, task)"
+            ><i
+            class="fa fa-user icon-margin"
+            aria-hidden="true"
+            ></i>
+            </a>
+            <a (click)="onShowUpdateTask(updateTaskModal, task)"
+            ><i
+            class="fa fa-pencil icon-margin"
+            aria-hidden="true"
+            ></i
+            ></a>
+            <a (click)="onShowDeleteTask(deleteTaskModal, task)"
+            ><i
+            class="fa fa-trash-o icon-margin"
+            aria-hidden="true"
+            ></i
+            ></a>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div>
+              <ng-template
+              #addSprintModal
+              let-c="close"
+              let-d="dismiss"
+              style="max-width: 65%; margin-left: 20%"
+              >
+              <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title1">
+              Créer un nouveau sprint
+              </h4>
+              <a class="lightbox__close" (click)="d('Cross click')">X</a>
+              </div>
+              <div class="modal-body">
+              <div class="form-group focused" style="display: flex">
+              <label class="col-4" style="font-weight: bold"
+              >Date de début</label
+              >
+              <div class="input-group input-group-alternative">
+              <input
+              required
+              [(ngModel)]="sprintForm.dateStart.value"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              id="startdate"
+              name="startdate"
+              type="datetime-local"
+              />
+              </div>
+              </div>
+              <div class="form-group focused" style="display: flex">
+              <label class="col-4" style="font-weight: bold"
+              >Date de fin</label
+              >
+              <div class="input-group input-group-alternative">
+              <input
+              required
+              [(ngModel)]="sprintForm.dateEnd.value"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              id="startdate"
+              name="startdate"
+              type="datetime-local"
+              />
+              </div>
+              </div>
+              <div class="col-lg-12 col-5 text-right">
+              <button class="addButton" (click)="createSprint()">
+              créer
+              </button>
+              </div>
+              <div
+              *ngIf="createSprintRequiredErr"
+              class="alert alert-danger mt-3"
+              style="
+              color: red;
+              font-family: monospace;
+              background: #f3d4d4;
+              padding: 1%;
+              border-radius: 5px;
+              "
+              >
+              <span class="error-hint">
+              La date de début et la date de fin sont obligatoires
+              </span>
+              </div>
+              <div
+              *ngIf="errCreateSprint"
+              class="alert alert-danger mt-3"
+              style="
+              color: red;
+              font-family: monospace;
+              background: #f3d4d4;
+              padding: 1%;
+              border-radius: 5px;
+              "
+              >
+              <span class="error-hint">
+              Un sprint doit durer au moins deux semaines</span
+              >
+              </div>
+              </div>
+              </ng-template>
+            </div>
+            <div>
+              <ng-template
+              #updateTaskModal
+              let-c="close"
+              let-d="dismiss"
+              style="max-width: 65%; margin-left: 20%"
+              >
+              <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title1">
+              Modifier une tâche
+              </h4>
+              <a class="lightbox__close" (click)="d('Cross click')">X</a>
+              </div>
+              <div class="modal-body">
+              <div class="form-group focused" style="display: flex">
+              <label class="col-4" style="font-weight: bold"
+              >Nom du tâche</label
+              >
+              <div class="input-group input-group-alternative">
+              <input
+              required
+              [(ngModel)]="taskToUpdate.name"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              id="startdate"
+              name="startdate"
+              type="text"
+              />
+              </div>
+              </div>
+              <div class="form-group focused" style="display: flex">
+              <label class="col-4" style="font-weight: bold"
+              >Description du tâche</label
+              >
+              <div class="input-group input-group-alternative">
+              <input
+              required
+              aria-multiline="true"
+              [(ngModel)]="taskToUpdate.description"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              id="startdate"
+              name="startdate"
+              type="text"
+              />
+              </div>
+              </div>
+              <div class="form-group focused" style="display: flex">
+              <label class="col-4" style="font-weight: bold"
+              >Type du tâche</label
+              >
+              <div class="input-group input-group-alternative">
+              <input
+              required
+              [(ngModel)]="taskToUpdate.type"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              id="startdate"
+              name="startdate"
+              type="text"
+              />
+              </div>
+              </div>
+              <div class="form-group focused" style="display: flex">
+              <label class="col-4" style="font-weight: bold"
+              >Priorité du tâche</label
+              >
+              <div class="col-8 input-group input-group-alternative">
+              <select
+              class="form-control"
+              (change)="getSelectedPriority($event)"
+              [(ngModel)]="taskToUpdate.PRIORITY"
+              >
+              <option
+              *ngFor="let key of keysTaskPriority"
+              [value]="taskPriorityEnum[key]"
+              [label]="taskPriorityEnum[key]"
+              ></option>
+              </select>
+              </div>
+              </div>
+              <div class="col-lg-12 col-5 text-right">
+              <button class="addButton" (click)="updateTask()">
+              modifier
+              </button>
+              </div>
+              </div>
+              </ng-template>
+            </div>
+            <div>
+              <ng-template
+              #deleteTaskModal
+              let-c="close"
+              let-d="dismiss"
+              style="max-width: 65%; margin-left: 20%"
+              >
+              <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title1">
+              Supprimer une tâche
+              </h4>
+              <a class="lightbox__close" (click)="d('Cross click')">X</a>
+              </div>
+              <div class="modal-body">
+              Êtes-vous sûr de vouloir supprimer cette tâche ?
+              <div class="col-lg-12 col-5 text-right">
+              <button class="addButton" (click)="deleteTask()">
+              supprimer
+              </button>
+              </div>
+              </div>
+              </ng-template>
+            </div>
+            <div>
+              <ng-template
+              #affectTaskModal
+              let-c="close"
+              let-d="dismiss"
+              style="max-width: 65%; margin-left: 20%"
+              >
+              <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title1">
+              affecter la tâche
+              </h4>
+              <a class="lightbox__close" (click)="d('Cross click')">X</a>
+              </div>
+              <div class="modal-body">
+              <div class="form-group focused" style="display: flex">
+              <label class="col-4" style="font-weight: bold"
+              >Affecter la tâche au :</label
+              >
+              <div class="col-8 input-group input-group-alternative">
+              <select
+              class="form-control"
+              (change)="getSelectedCollaborator($event)"
+              >
+              <option
+              *ngFor="let person of collaborators"
+              [value]="person.uuid"
+              [label]="person.name"
+              ></option>
+              </select>
+              </div>
+              </div>
+              <div class="col-lg-12 col-5 text-right">
+              <button class="addButton" (click)="affectTask()">
+              affecter
+              </button>
+              </div>
+              </div>
+              </ng-template>
+            </div>
+            <div>
+              <ng-template
+              #startSprintModal
+              let-c="close"
+              let-d="dismiss"
+              style="max-width: 65%; margin-left: 20%"
+              >
+              <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title1">
+              démarrer le sprint
+              </h4>
+              <a class="lightbox__close" (click)="d('Cross click')">X</a>
+              </div>
+              <div class="modal-body">
+              <div class="form-group focused" style="display: flex">
+              <label class="col-4" style="font-weight: bold"
+              >Nom du sprint:</label
+              >
+              <div class="col-8 input-group input-group-alternative">
+              <select
+              class="form-control"
+              (change)="getSelectedSprint($event)"
+              >
+              <option
+              *ngFor="let sprint of projectSprints"
+              [value]="sprint"
+              [label]="sprint.name"
+              ></option>
+              </select>
+              </div>
+              </div>
+              <div class="col-lg-12 col-5 text-right">
+              <button class="addButton" (click)="startSprint()">
+              démarrer
+              </button>
+              </div>
+              </div>
+              </ng-template>
+            </div>
+            <div class="col-12">
+              <div *ngIf="showAddInput" class="form-group focused">
+              <label class="col-4" style="font-weight: bold"
+              >Nom du tâche</label
+              >
+              <div class="col-8 input-group input-group-alternative">
+              <input
+              [(ngModel)]="taskForm.name.value"
+              id="name"
+              name="name"
+              class="form-control"
+              type="text"
+              (keyup.enter)="addNewTask()"
+              />
+              </div>
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-lg-1 col-5 text-right add-button-height">
+              <a
+              (click)="showAddTask()"
+              class="btn btn-sm btn-neutral"
+              style="
+              color: black;
+              background: #ffcf03;
+              border: #ffcf03;
+              padding: 1%;
+              margin-bottom: 2%;
+              display: flex;
+              align-items: center;
+              width: fit-content;
+              height: 35px;
+              "
+              ><i aria-hidden="true" class="fa fa-plus"></i> Ajouter une
+              tâche</a
+              >
+              </div>
+              </div>
+        </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="tabs-icons-text-4"
+        role="tabpanel"
+        aria-labelledby="tabs-icons-text-4-tab"
+      >
+        meetings body
+      </div>
+      <div
+        class="tab-pane fade"
+        id="tabs-icons-text-2"
+        role="tabpanel"
+        aria-labelledby="tabs-icons-text-2-tab"
+      >
+        <form>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12" style="display: flex">
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold"
+                      >Marge d'estimation des coûts</label
+                    >
+                    <div class="col-8 input-group input-group-alternative">
+                      <input
+                        [formControl]="
+                          form.getField('costEstimationMargin').asFormControl
+                        "
+                        class="form-control"
+                        [placeholder]="
+                          form.getField('costEstimationMargin').placeholder
+                        "
+                        [ngModel]="project.costEstimationMargin"
+                        type="text"
+                        readonly="readonly"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold"
+                      >Valeur d'estimation des coûts</label
+                    >
+                    <div class="col-8 input-group input-group-alternative">
+                      <input
+                        [formControl]="
+                          form.getField('costEstimationValue').asFormControl
+                        "
+                        class="form-control"
+                        [placeholder]="
+                          form.getField('costEstimationValue').placeholder
+                        "
+                        [ngModel]="project.costEstimationValue"
+                        type="text"
+                        readonly="readonly"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12" style="display: flex">
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold"
+                      >Marge d'estimation du temps</label
+                    >
+                    <div class="col-8 input-group input-group-alternative">
+                      <input
+                        [formControl]="
+                          form.getField('timeEstimationMargin').asFormControl
+                        "
+                        class="form-control"
+                        [placeholder]="
+                          form.getField('timeEstimationMargin').placeholder
+                        "
+                        [ngModel]="project.timeEstimationMargin"
+                        type="text"
+                        readonly="readonly"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold"
+                      >Valeur d'estimation du temps</label
+                    >
+                    <div class="col-8 input-group input-group-alternative">
+                      <input
+                        [formControl]="
+                          form.getField('timeEstimationValue').asFormControl
+                        "
+                        class="form-control"
+                        [placeholder]="
+                          form.getField('timeEstimationValue').placeholder
+                        "
+                        [ngModel]="project.timeEstimationValue"
+                        type="text"
+                        readonly="readonly"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12" style="display: flex">
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold"
+                      >Marge d'estimation des ressources humaines</label
+                    >
+                    <div class="col-8 input-group input-group-alternative">
+                      <input
+                        [formControl]="
+                          form.getField('hrEstimationMargin').asFormControl
+                        "
+                        class="form-control"
+                        [placeholder]="
+                          form.getField('hrEstimationMargin').placeholder
+                        "
+                        [ngModel]="project.hrEstimationMargin"
+                        type="text"
+                        readonly="readonly"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold"
+                      >Valeur d'estimation des ressources humaines</label
+                    >
+                    <div class="col-8 input-group input-group-alternative">
+                      <input
+                        [formControl]="
+                          form.getField('hrEstimationValue').asFormControl
+                        "
+                        class="form-control"
+                        [placeholder]="
+                          form.getField('hrEstimationValue').placeholder
+                        "
+                        [ngModel]="project.hrEstimationValue"
+                        type="text"
+                        readonly="readonly"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

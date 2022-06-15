@@ -1,0 +1,43 @@
+
+.dm-icon-medium, .dm-icon {
+  display: inline-block;
+  cursor: pointer;
+  margin: 15px;
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  background: #f3f3f3;
+  color: #ffffff;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+@media (min-width: 415px) and (max-width: 1920px) {
+  .position-absolute {
+    position: absolute;
+    top: 63%;
+    transform: translate(100%, -50%);
+  }
+  .displaying {
+    display: flex;
+  }
+}
+
+@media (max-width: 414px) {
+  .displaying {
+    display: initial !important;
+  }
+  .position-absolute {
+    position: absolute !important;
+    top: 20%;
+    left: 8%;
+  }
+  .w-100 {
+    width: auto !important;
+  }
+}

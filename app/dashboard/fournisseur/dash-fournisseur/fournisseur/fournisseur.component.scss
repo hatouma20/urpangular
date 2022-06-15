@@ -1,0 +1,43 @@
+.card-info {
+  margin: 1%;
+  border: none;
+  background: transparent;
+}
+
+.card-info-header {
+  border-bottom: none;
+  background: #f0f8ff8a;
+  box-shadow: 0em 6px 0.5em 6px #c7c7c7;
+}
+
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+
+@media all and (min-width: 768px) {
+
+  tr, td {
+    vertical-align: middle !important;
+  }
+
+  span {
+    padding: 1rem 1rem;
+  }
+}
+
+.show {
+  display: block !important;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+  border-bottom: none !important;
+}
+
+table.dataTable.no-footer {
+  border-bottom: none !important;
+}

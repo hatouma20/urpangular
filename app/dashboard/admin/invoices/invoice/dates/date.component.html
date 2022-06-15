@@ -1,0 +1,34 @@
+
+
+<div class="invoice-form-wrapper">
+  <div class="px-3" style="padding: 0;">
+
+    <div>
+    <div>
+        <p>Date</p>
+    </div>
+    <div class="border">
+      <input class="form-control inputdesign" type="date"  name="dateFrom" min="2016-10-01" [(ngModel)]="dateFrom" (change)="getdateFrom($event)"/>
+    </div>
+    </div>
+    <br>
+    <div>
+      <div>
+        <p> Date d'échéance</p>
+      </div>
+      <div class="border">
+        <input class="form-control inputdesign" type="date"  name="dateFrom" min="2016-10-01" [(ngModel)]="dateFromeche" (change)="getdateFromeche($event)"/>
+      </div>
+    </div>
+    <br>
+    <div>
+      <div>
+        <p> Date de livraison</p>
+      </div>
+      <div class="border">
+        <input class="form-control inputdesign" type="date"  name="dateFrom" min="2016-10-01" [(ngModel)]="dateFromlivraison" (change)="getdateFromlivraison($event)"/>
+      </div>
+    </div>
+
+  </div>
+</div>

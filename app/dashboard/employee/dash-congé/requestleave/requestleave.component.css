@@ -1,0 +1,188 @@
+.card-info {
+  margin: 1%;
+  border: none;
+  background: transparent;
+}
+
+.card-info-header {
+  border-bottom: none;
+  background: #f0f8ff8a;
+  box-shadow: 0em 6px 0.5em 6px #c7c7c7;
+}
+
+@media all and (min-width: 768px) {
+
+  tr, td {
+    vertical-align: middle !important;
+  }
+
+  span {
+    padding: 1rem 1rem;
+  }
+}
+
+.show {
+  display: block !important;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+  border-bottom: none !important;
+}
+
+table.dataTable.no-footer {
+  border-bottom: none !important;
+}
+
+/*status pending aprouved declined css*/
+#status {
+  /*margin-bottom: 1em;*/
+}
+
+.status {
+  /*background: #fff;*/
+  /*margin-bottom: .25em;*/
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.status {
+  position: relative;
+  height: 1em;
+  line-height: 0em;
+  padding: .5em;
+  padding-left: 15%;
+  transition: color 500ms;
+}
+
+.status:before, .status:after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  transition: all 500ms;
+}
+
+.status.-pending {
+  color: #ff9d09;
+  font-weight: bold;
+}
+
+.status.-pending:before, .status.-pending:after {
+  background: #ff9d09;
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.status.-pending:before {
+  width: .5em;
+  height: .5em;
+  left: 1em;
+  border-radius: 1.125em;
+  transform-origin: 50% .5em;
+}
+
+.status.-pending:after {
+  width: .5em;
+  height: .5em;
+  left: 1em;
+  border-radius: 1.125em;
+  transform-origin: 50% -.25em;
+}
+
+.status.-success {
+  color: #368;
+  font-weight: bold;
+}
+
+.status.-success:before, .status.-success:after {
+  background: #6cf;
+  border-radius: .125em;
+}
+
+.status.-success:before {
+  width: .25em;
+  height: 1em;
+  top: 0;
+  left: .875em;
+  transform-origin: 50% .875em;
+  transform: translate(-.177em, -.11em) rotate(.125turn);
+}
+
+.status.-success:after {
+  width: .25em;
+  height: .5em;
+  top: 8px;
+  left: .875em;
+  transform-origin: 50% .375em;
+  transform: translate(-.177em, -.11em) rotate(-.125turn);
+}
+
+.status.-failure {
+  color: #802;
+  font-weight: bold;
+}
+
+.status.-failure:before, .status.-failure:after {
+  background: #f04;
+  border-radius: .125em;
+}
+
+.status.-failure:before {
+  width: .25em;
+  height: 1em;
+  top: 0em;
+  left: .875em;
+  transform: rotate(.125turn);
+}
+
+.status.-failure:after {
+  width: .25em;
+  height: 1em;
+  top: 0em;
+  left: .875em;
+  transform: rotate(-.125turn);
+}
+
+/* end status pending aprouved declined css*/
+.tooltip1 {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip1 .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 80%;
+  left: 0%;
+  margin-left: -60px;
+}
+
+.tooltip1 .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext {
+  visibility: visible;
+}

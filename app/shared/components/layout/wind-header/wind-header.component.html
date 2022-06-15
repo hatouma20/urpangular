@@ -1,0 +1,74 @@
+<!-- Navbar -->
+<nav (scroll)="onWindowScroll($event);" class="navbar navbar-expand-md navbar-dark bg-default"
+     style="border-bottom: #989393 solid 1px;position: fixed;z-index: 999;background-color: transparent ;width: 100%;">
+  <div class="container">
+    <a class="navbar-brand" href="#"><img src="assets/img/logo.png" style=" width: 55%; height: 55%; "> </a>
+    <button aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbar-default" data-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-default">
+      <div class="navbar-collapse-header">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+            <a href="javascript:void(0)">
+              <img src="../../assets/img/brand/blue.png">
+            </a>
+          </div>
+          <div class="col-6 collapse-close">
+            <button aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-target="#navbar-default" data-toggle="collapse" type="button">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+        <li class="nav-item">
+          <div class="dropdown">
+
+          </div>
+
+        </li>
+        <li class="nav-item">
+
+
+        </li>
+
+
+      </ul>
+
+      <ul class="navbar-nav ml-lg-auto">
+        <li class="nav-item">
+
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <a href="/#/auth"  class="btn menuNav"
+                    id="dropdownMenuButton"
+                    style=" width: auto; background: #ffcf03; border-color: #ffcf03;  color:black;  border-radius: 25px; "
+                    >
+
+              Connexion >>
+            </a>
+          </div>
+
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <button aria-expanded="false" aria-haspopup="true" class="btn menuNav" data-toggle="dropdown"
+                    style="color: white" type="button">
+
+              Inscription <span style="color: #ffcf03">>></span>
+            </button>
+          </div>
+
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->

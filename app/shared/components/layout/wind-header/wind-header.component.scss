@@ -1,0 +1,41 @@
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  color: #525f7f;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: all 0.15s ease;
+}
+
+
+.btn:not(:disabled):not(.disabled):active:focus,
+.btn:not(:disabled):not(.disabled).active:focus {
+  box-shadow: none;
+}
+
+.btn:hover {
+  color: #525f7f;
+  text-decoration: none;
+}
+
+.menuNav:hover {
+  text-shadow: -1px 3px 2px #bbb6b6;
+}
+
+.btn:hover {
+  box-shadow: none;
+  -webkit-transform: translateY(-1px);
+  transform: translateY(-1px);
+}
+
+.navbar-inverse {
+  background-color: #313049 !important;
+  border-bottom: none !important;
+}

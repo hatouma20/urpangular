@@ -1,0 +1,224 @@
+
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">
+            Abscence & Pointage:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Pointage</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample" style="padding: 2%">
+  <div class="card card-info" style=" background: transparent; border: 0px;">
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body" style="    padding: 0;">
+<!--     tabs html-->
+        <div class="nav-wrapper">
+          <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="fa fa-address-book mr-2"></i>Statistiques</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="fa fa-tasks mr-2"></i>Liste de collaborateurs & pointage</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"><i class="fa fa-tasks mr-2"></i>Télécharger ficher de pointage</a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="card shadow">
+          <div class="card-body">
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+              statistiques
+              </div>
+              <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                <div class="">
+                  <div class="card-body">
+                    <div class="description">
+                      <table class="table table-bordered table-responsive-md table-striped text-center">
+                        <tr>
+                          <th class="text-center">#</th>
+                          <th class="text-center">Nom</th>
+                          <th class="text-center">Prenom</th>
+                          <th class="text-center">Calcul RTT</th>
+                          <th class="text-center">Historique RTT</th>
+                        </tr>
+                                                <tr *ngFor="let collaborator of rttList; let id = index">
+                                                  <td>
+                                                    <span>{{id + 1}}</span>
+                                                  </td>
+                                                  <td>
+                                                    <span>{{collaborator.collaborator.firstname}}</span>
+                                                  </td>
+                                                  <td>
+                                                    <span >{{collaborator.collaborator.lastname}}</span>
+                                                  </td>
+                                                  <td>
+                                                    <span >{{collaborator.rttcalculation}}</span>
+                                                  </td>
+                                                  <td>
+                                                    <span  (click)="open(content)"><i
+                                                      aria-hidden="true" class="fa fa-eye"></i></span>
+
+                                                  </td>
+                                                </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
+                <form id="form1" (ngSubmit)="onFormSubmit()" role="form" #testForm="ngForm" ngNativeValidate>
+                <div class="col-12" style="display: flex;">
+                  <div class="col-6">
+                    <div class="form-group focused">
+                      <label class="col-4" style="font-weight: bold;">Fichier de pointage</label>
+                      <div class=" input-group input-group-alternative ">
+                        <input accept="image/*"
+                               class="form-control"
+                               type="file"
+                               name="file">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-6" style="margin-bottom: 6%">
+                    <input type='submit'  style=" color: black; background: #ffcf03; border: #ffcf03;     padding: 1%; float: right; font-family: monospace " value="Télecharger"/>
+
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+<!--        end tabs html-->
+      </div>
+    </div>
+  </div> </div>
+<ng-template #content let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title1">Historiques RTT</h4>
+    <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+  </div>
+  <div class="modal-body">
+    <!--                             table collaborator leave-->
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div
+            class="btn btn-primary"
+            mwlCalendarPreviousView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"
+          >
+            Previous
+          </div>
+          <div
+            class="btn btn-outline-secondary"
+            mwlCalendarToday
+            [(viewDate)]="viewDate"
+          >
+            Today
+          </div>
+          <div
+            class="btn btn-primary"
+            mwlCalendarNextView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"
+          >
+            Next
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div
+            class="btn btn-primary"
+            (click)="setView(CalendarView.Month)"
+            [class.active]="view === CalendarView.Month"
+          >
+            Month
+          </div>
+          <div
+            class="btn btn-primary"
+            (click)="setView(CalendarView.Week)"
+            [class.active]="view === CalendarView.Week"
+          >
+            Week
+          </div>
+          <div
+            class="btn btn-primary"
+            (click)="setView(CalendarView.Day)"
+            [class.active]="view === CalendarView.Day"
+          >
+            Day
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <ng-template #customCellTemplate let-day="day" let-locale="locale">
+      <div class="cal-cell-top">
+    <span class="cal-day-badge" *ngIf="day.badgeTotal > 0"
+    >{{ day.badgeTotal }}</span
+    >
+        <span class="cal-day-number"
+        >{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span
+        >
+      </div>
+      <small style="margin: 5px;"
+      >le total de RTT est {{ day.events.length }} </small
+      >
+    </ng-template>
+    <div [ngSwitch]="view">
+      <mwl-calendar-month-view
+        *ngSwitchCase="CalendarView.Month"
+        [viewDate]="viewDate"
+        [events]="events"
+        [cellTemplate]="customCellTemplate"
+
+      >
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view
+        *ngSwitchCase="CalendarView.Week"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChanged)="eventTimesChanged($event)"
+      >
+      </mwl-calendar-week-view>
+      <mwl-calendar-day-view
+        *ngSwitchCase="CalendarView.Day"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChanged)="eventTimesChanged($event)"
+      >
+      </mwl-calendar-day-view>
+    </div>
+
+    <!--                             end table collaborator leave-->
+  </div>
+  <div class="modal-footer">
+    <input (click)="d('Cross click')" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;padding: 1% 5%;float: right;font-family: monospace;" value="OK">
+  </div>
+</ng-template>

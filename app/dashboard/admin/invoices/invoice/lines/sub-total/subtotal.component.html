@@ -1,0 +1,64 @@
+
+
+<div class="invoice-form-wrapper">
+  <div class="px-3">
+    <div class="row">
+      <div class="col" style="padding:0">
+        <div class="card-detail row padd">
+
+          <div  class="out" style="padding: 0; border-left: 4px solid #1d8cb4; border-radius: 4px;width: 22%; display: flex">
+            <div class="" style="    width: 36%; border-right: thin solid rgba(0,0,0,.12);">
+              <br><br>
+              <span style="padding-right: 15px;   padding-left: 15px;"><i class="fa fa-th" aria-hidden="true" style="color: #757575;"></i></span>
+              <br>
+            </div>
+            <div class="">
+              <br><br>
+              <span style="  padding-right: 15px; padding-left: 15px;  font-size: 14px;">
+                 SOUS TOTAL
+              </span>
+              <br>
+            </div>
+          </div>
+          <div  class="out"    style="padding: 0;    border: none; width: 60%;">
+
+            <angular-editor (input)="showHTML()"  [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+
+            <div  style="display:none;">
+              <div id="htmlDiv" class="html" [innerHTML]="htmlContent"></div>
+              <div class="html" > {{htmlContentWithoutStyles}}</div>
+            </div>
+          </div>
+          <div  class="out " style="padding: 0;display: flex;  border-left: thin solid rgba(0,0,0,.12);  border: none;">
+            <div class="" style=" text-align: center; color: red;    border-left: 1px solid #e0e0e0;    padding-left: 4em; ">
+              <br><br>
+              <span>
+                <b>{{getSum()}}</b>
+                <b>{{devise}}</b>
+              </span>
+              <br>
+            </div>
+
+
+<!--            <div class="col-3" style="border-left: thin solid rgba(0,0,0,.12);">-->
+<!--              <br><br>-->
+
+<!--              <div class="dropdown">-->
+<!--                <span class="dropbtn"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>-->
+<!--                <div class="dropdown-content">-->
+<!--                  <a href="#"><i class="fa fa-clipboard" aria-hidden="true"></i><span style=" margin-left: 1em;">Dupliquer</span></a>-->
+<!--                  <a href="#" style="border-top: thin solid rgba(0,0,0,.12);"> <i class="fa fa-trash" aria-hidden="true"></i><span style=" margin-left: 1em;">Supprimer</span> </a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <br>-->
+<!--            </div>-->
+<!--          </div>-->
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</div>

@@ -1,0 +1,350 @@
+<div class="header" style="background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style="margin-left: 1%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h3 class="d-inline-block mb-0"style="font-weight: bold;font-family: monospace;">Ajouter un Nouveau compte financier</h3>
+          <p aria-current="page" class="breadcrumb-item active" style="font-family: monospace;">
+            Caisse > Ajout </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="accordion" id="accordionExample">
+  <div class="card card-info">
+
+    <div aria-labelledby="headingTwo1" class="collapse show" data-parent="#accordionExample" id="collapseTwo1">
+      <div class="card-body">
+        <br>
+        <form id="form1" role="form">
+          <div>
+            <p   class="breadcrumb-item active" style="font-family: monospace;"> Propriétaire &gt; Information </p>
+            <div  class="row">
+              <div class="col-12" style="display: flex">
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Ref</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <input
+                        [(ngModel)]="caisseForm.ref.value"
+                        id="name"
+                        name="name"
+                        class="form-control"
+                        type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">RIB/ RIP</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <input
+                        name="accountNumber"
+                        [(ngModel)]="caisseForm.accountNumber.value"
+                        type="text"
+                        class="form-control"
+                        maxlength="20"
+                        placeholder="12-345-0000000000000-28"
+                        pattern="[0-9]{2}-[0-9]{3}-[0-9]{13}-[0-9]{2}">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div  class="row">
+              <div class="col-12" style="display: flex">
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Nom du propriétaire</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <input
+                        class="form-control"
+                        name="ownerName" id="ownerName"
+                        [(ngModel)]="caisseForm.ownerName.value"
+                        type="text">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Pays</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <select class="form-control" (change)="getselectedcountry($event)">
+                        <option *ngFor="let key of listcountries" [value]="key.alpha2" [label]="key.name"></option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12" style="display: flex">
+              <div class="col-12">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-2" style="font-weight: bold;">Adresse du propriétaire</label>
+                  <div class=" col-10 input-group input-group-alternative ">
+                    <input class="form-control"
+                    name="ownerAddress" id="ownerAddress"
+                    [(ngModel)]="caisseForm.ownerAddress.value"
+                    type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <hr class="new5" style="border: 1px solid #d2d2d2;">
+
+            <p  class="breadcrumb-item active" style="font-family: monospace;">  Propriétaire  &gt; compte </p>
+
+            <div  class="row">
+              <div class="col-12" style="display: flex">
+
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Libelle compte ou caisse</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <input   [(ngModel)]="caisseForm.libelle.value"
+                               id="alternativeName"
+                               name="alternativeName"
+                               class="form-control"
+                               type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">SWIFT</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <input
+                        [(ngModel)]="caisseForm.swift.value"
+                        id="swift"
+                        name="swift"
+                        class="form-control"
+                        type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div  class="row">
+              <div class="col-12" style="display: flex">
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Solde initial</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <input [(ngModel)]="caisseForm.soldeinitial.value"
+                             [defaultValue]="0"
+                             min="1"
+                             [ngModelOptions]="{standalone: true}"
+                             class="form-control" name="soldeinitial"
+                             type="number">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Solde minimum autorisé</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <input [(ngModel)]="caisseForm.soldeminimumautorise.value"
+                             [defaultValue]="0"
+                             min="1"
+                             [ngModelOptions]="{standalone: true}"
+                             class="form-control" name="soldeminimumautorise"
+                             type="number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div  class="row">
+              <div class="col-12" style="display: flex">
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Type compte  </label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <select class="form-control" (change)="getselectedtype($event)">
+                        <option *ngFor="let key of keytypecomptes" [value]="key" [label]="typecomptes[key]"></option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Etat</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <select class="form-control" placeholder="Title" (change)="getselectedstatus($event)">
+                        <option value="OUVERT">OUVERT</option>
+                        <option value="FERME">FERME</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div  class="row">
+              <div class="col-12" style="display: flex">
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Devise</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <select class="form-control"  (change)="getselectedcurrency($event)">
+                        <option hidden selected>select devise </option>
+                        <option [value]="item.uuid" *ngFor="let item of currencies"> {{item.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Nom Banque</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <input class="form-control"
+                             name="bank" id="bank"
+                             [(ngModel)]="caisseForm.bank.value"
+                             type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <hr class="new5" style="border: 1px solid #d2d2d2;">
+
+            <p   class="breadcrumb-item active" style="font-family: monospace;"> Propriétaire  &gt; comptable </p>
+
+            <div  class="row">
+              <div class="col-12" style="display: flex">
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Compte comptable  </label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <select class="form-control"  (change)="getselectedcomptecomtable($event)">
+                        <option hidden selected>select compte comptable </option>
+                        <option [value]="item.id" *ngFor="let item of comptecomptablelist"> {{item.label}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-4" style="font-weight: bold;">Code journal comptable</label>
+                    <div class=" col-8 input-group input-group-alternative ">
+                      <select class="form-control"  (change)="getselectedcodecomtable($event)">
+                        <option hidden selected>select Code journal comptable</option>
+                        <option [value]="item.id" *ngFor="let item of codecomptablelist"> {{item.label}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div  class="row">
+              <div class="col-12" style="display: flex">
+
+
+                <div class="col-12">
+                  <div class="form-group focused" style="display: flex;">
+                    <label class="col-2" style="font-weight: bold;">Commentaire</label>
+                    <div class=" col-10 input-group input-group-alternative ">
+               <textarea
+                 class="form-control"
+                 name="comment" id="comment"
+                 [(ngModel)]="caisseForm.comment.value"
+               ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-5 text-right">
+            <a class="btn btn-sm btn-neutral"
+               (click)="onAddcompteFormSubmit()"
+               style=" color: black; background: #ffcf03; border: #ffcf03; padding: 1%; ">Creér Compte</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne1" aria-expanded="true" class="btn btn-link" data-target="#collapseOne1"
+                data-toggle="collapse" style="font-weight: bold; font-family: monospace;color:#2d2d44 "type="button">
+          <img src="https://static.thenounproject.com/png/703781-200.png" style="width: 40px;"> Liste des Comptes financiers
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingOne" class="collapse" data-parent="#accordionExample1" id="collapseOne1">
+      <div class="card-body">
+        <div class="table-editable" id="table">
+  <span class="table-add float-right" style="padding: 0">
+  </span>
+
+
+          <div *ngIf="this.compteList.length == 0"><p style="text-align: center;">Vous n'avez pas des comptes enregistrés</p></div>
+
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;">
+            <thead  *ngIf="this.compteList.length != 0">
+            <tr>
+              <th class="text-center">RIB Bancaire</th>
+              <th class="text-center">Bank</th>
+              <th class="text-center">Libellé</th>
+              <th class="text-center">Etat</th>
+              <th class="text-center">Solde</th>
+              <th class="text-center"></th>
+            </tr>
+            </thead>
+            <tbody  *ngIf="this.compteList.length != 0">
+            <tr *ngFor="let item of compteList; let id = index">
+              <td>
+                <span>
+                <a (click)="getcompte(item.uuid)"data-toggle="tooltip" style="color: red;" title="profile">{{item.account_number}}</a>
+                </span>
+              </td>
+              <td>
+  <span (blur)="updateList(id, 'bank_name', $event)" (keyup)="changeValue(id, 'bank_name', $event)"
+        contenteditable="true">{{item.bank_name}}</span>
+              </td>
+              <td>
+  <span (blur)="updateList(id, 'label', $event)" (keyup)="changeValue(id, 'label', $event)"
+        contenteditable="true">{{item.label}}</span>
+              </td>
+              <td>
+  <span (blur)="updateList(id, 'state', $event)" (keyup)="changeValue(id, 'state', $event)"
+        contenteditable="true">{{item.state}}</span>
+              </td>
+              <td>
+  <span (blur)="updateList(id, 'initial_amount', $event)" (keyup)="changeValue(id, 'initial_amount', $event)"
+        contenteditable="true">{{item.initial_amount}}</span>
+              </td>
+              <td>
+  <span class="table-remove">
+  <a (click)="remove(item.uuid)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+    aria-hidden="true" class="fa fa-trash"></i></a>
+  </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

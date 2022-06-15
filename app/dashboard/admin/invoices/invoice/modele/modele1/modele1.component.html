@@ -1,0 +1,907 @@
+<div id="printinvoice" class="print">
+
+<div *ngIf="tableofpage.length === 1" class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+
+  <div  class="page-style" style="width: 900px ; height:1100px; background:#dadada99;    border: 1px solid; position:relative">
+    <div class="row col-12" style="display: flex;padding: 3em;     height: 150px;    margin-bottom: 5%;">
+      <div class="col-6">
+        <img style="width: 11em; height: 9em" src="{{clientimage}}">
+      </div>
+      <div class="col-6">
+
+      </div>
+    </div>
+    <div class="row col-12" style="display: flex;padding-left: 3em;padding-top: 1em;     height: 150px;">
+      <div class="" style="width: 500px; border: 1px solid;  border-radius: 16px;    padding-left: 2.5em;" [style.border-color]="color">
+        <br>
+        <span><b>Client: </b><b>{{clientModel.name}}</b></span>
+        <br><br>
+        <span><b>Adresse: </b><span style="font-size: 12px">{{clientModel.adresse}}</span></span><br>
+        <span><b>RC: </b><b>{{clientModel.rc}}</b></span><br>
+        <span><b>MF: </b><b>{{clientModel.mf}}</b></span><br><br>
+      </div>
+      <div class="col-4">
+
+      </div>
+    </div>
+
+    <div class="row col-12" style="display: flex;padding: 3em;     height: 130px;padding-bottom: 0em;">
+      <div class="" style="width: 350px;">
+
+      </div>
+      <div class="">
+        <div style="display: flex"><h5 style=" font-weight: bold;  "  [style.color]="color"> Facture Pro-Forma N° : </h5> <h5 style=" font-weight: bold;  " [style.color]="color">  {{facturenumber}} </h5></div>
+        <div style="display: flex"><p><span>{{partnerDefaulAddress}}</span><span>, le </span><span> {{dateFrom}}</span></p></div>
+      </div>
+    </div>
+
+    <div class="row col-12" style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+      <table class="customers" style="  width: 800px;  font-size: 13px;">
+        <tr>
+          <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px; border-right: 1px solid #ddd;"> Désignation</th>
+          <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white ; padding: 8px;">Quantité</th>
+          <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Unitaire HT</th>
+          <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Total H.T.T.C</th>
+          <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px;">TVA</th>
+          <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;" >Total Net</th>
+        </tr>
+        <tr  *ngFor="let line of linestotallist">
+
+          <td [style]="line.productname == 'commentaire'?'display:block; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+          <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+          <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+          <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+          <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+          <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+          <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+          <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+          <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+          <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+          <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+          <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+          <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+          <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+          <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+          <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+          <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+          <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+        </tr>
+      </table>
+      <table class="customers" style="  width: 800px;  font-size: 13px; margin-top: -1px; margin-bottom: 1%;">
+        <tr>
+          <td style="    border-right: none;"></td>
+          <td style="    border-left: none;border-right: none;"></td>
+          <td style="    border-left: none;border-right: none;"></td>
+          <td style="    border-left: none;border-right: none;"></td>
+          <td style="    border-left: none;     width: 100px;"><b>Total HT</b></td>
+          <td style="    width: 100px;">{{getSumht()}}</td>
+        </tr>
+        <tr>
+          <td style="    border-right: none;"></td>
+          <td style="    border-left: none;border-right: none;"></td>
+          <td style="    border-left: none;border-right: none;"></td>
+          <td style="    border-left: none; border-right: none;"></td>
+          <td style="    border-left: none;     width: 100px;"><b>Timbre</b></td>
+          <td style="    width: 100px;">0.600</td>
+        </tr>
+        <tr>
+          <td style="    border-right: none;"></td>
+          <td style="    border-left: none;border-right: none;"></td>
+          <td style="    border-left: none;border-right: none;"></td>
+          <td style="    border-left: none; border-right: none;"></td>
+          <td style="    border-left: none;     width: 100px;"><b>Total TTC</b></td>
+          <td style="    width: 100px;">{{getSumtva()}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <p style="padding-left: 3em;  height: 50px; padding-right: 3em;">
+      <span [innerHTML]=note> </span>
+    </p>
+
+    <p style="padding-left: 3em; padding-right: 3em; height: 50px;">
+      <span>Le montant Total de la présente facture s'elève à la somme de : </span>
+      <span>{{totalLetter}} </span>
+    </p>
+
+    <div class="row col-12" style="display: flex;padding-left: 3em; height: 50px; padding-right: 3em;">
+      <div class="col-12">
+        <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par {{payementype}}</span></p>
+        <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">RIB </span><span style="font-weight: bold;"> <b>{{patternResult.company_name}} :</b> </span><span>{{partnerDefaulRib}}</span></p>
+
+
+      </div>
+
+    </div>
+
+    <div class="row col-12" style="        font-size: 12px;
+    display: inherit;
+    position: absolute;
+    bottom: 20px;
+    left: 0;">
+      <hr style="border: 1px solid ;     width: 800px; margin-left: 3em;margin-bottom: 1em;" [style.border-color]="color">
+
+      <div style=" text-align: center; margin-left: 5em;     width: 800px;">
+
+        <span>{{partnerDefaulAddress}}</span>
+
+        <br><br>
+
+        <span>R.C: </span>
+        <span>{{patternResult.trade_register}}</span>
+        <span> /MF: </span>
+        <span>{{patternResult.patent}} </span>
+        <span> Tel: </span>
+        <span> {{patternResult.phone_number}} </span>
+        <span> -Email: </span>
+        <span> {{patternResult.email}} </span>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div *ngIf="tableofpage.length === 2">
+
+  <!--Page number :1-->
+  <div >
+  <div class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+    <div class="page-style" style="width: 900px ; height:1100px; background: #fbf0f0;    border: 1px solid; position:relative">
+      <div class="row col-12" style="    margin-bottom: 5%; display: flex;padding: 3em;     height: 150px;">
+        <div class="col-6">
+          <img style="width: 11em; height: 9em" src="{{clientimage}}">
+        </div>
+        <div class="col-6">
+
+        </div>
+      </div>
+      <div class="row col-12" style="display: flex;padding-left: 3em;padding-top: 1em;     height: 150px;">
+        <div class="" style="width: 500px; border: 1px solid;  border-radius: 16px;    padding-left: 2.5em;" [style.border-color]="color">
+          <br>
+          <span><b>Client: </b><b>{{clientModel.name}}</b></span>
+          <br><br>
+          <span><b>Adresse: </b><span style="font-size: 12px">{{clientModel.adresse}}</span></span><br>
+          <span><b>RC: </b><b>{{clientModel.rc}}</b></span><br>
+          <span><b>MF: </b><b>{{clientModel.mf}}</b></span><br><br>
+        </div>
+        <div class="col-4">
+
+        </div>
+      </div>
+
+      <div class="row col-12" style="display: flex;padding: 3em;     height: 130px;padding-bottom: 0em;">
+        <div class="" style="width: 350px;">
+
+        </div>
+        <div class="">
+          <div style="display: flex"><h5 style=" font-weight: bold;  "  [style.color]="color"> Facture Pro-Forma N° : </h5> <h5 style=" font-weight: bold;  " [style.color]="color">  {{facturenumber}} </h5></div>
+          <div style="display: flex"><p><span>{{partnerDefaulAddress}}</span><span>, le </span><span> {{dateFrom}}</span></p></div>
+        </div>
+      </div>
+
+
+      <div class="row col-12" style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+        <table class="customers" style="  width: 800px;  font-size: 13px;">
+          <tr>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px; border-right: 1px solid #ddd;"> Désignation</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white ; padding: 8px;">Quantité</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Unitaire HT</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Total H.T.T.C</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px;">TVA</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;" >Total Net</th>
+          </tr>
+<!--          <tr  *ngFor="let line of linestotallist">-->
+          <tr  *ngFor="let line of tableofpage[0]">
+            <td [style]="line.productname == 'commentaire'?'display:block; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+            <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+            <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+            <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+            <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+          </tr>
+        </table>
+
+      </div>
+
+
+
+
+      <div class="row col-12" style="       font-size: 12px;
+    display: inherit;
+    position: absolute;
+    bottom: 20px;
+    left: 0;">
+        <hr style="border: 1px solid ;     width: 800px; margin-left: 3em;margin-bottom: 1em;" [style.border-color]="color">
+        <div style=" text-align: center; margin-left: 5em;     width: 800px;">
+          <span>{{partnerDefaulAddress}}</span>
+          <br><br>
+          <span>R.C: </span>
+          <span>{{patternResult.trade_register}}</span>
+          <span> /MF: </span>
+          <span>{{patternResult.patent}} </span>
+          <span> Tel: </span>
+          <span> {{patternResult.phone_number}} </span>
+          <span> -Email: </span>
+          <span> {{patternResult.email}} </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+  <br>
+
+  <div *ngFor="let page of tableofpage  | slice:1 , let i = index; ">
+      <div class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+    <div class="page-style" style="width: 900px ; height:1100px; background: #fbf0f0;    border: 1px solid; position:relative">
+      <div class="row col-12" style="    margin-bottom: 5%;display: flex;padding: 3em;     height: 150px;">
+        <div class="col-6">
+          <img style="width: 11em; height: 9em" src="{{clientimage}}">
+        </div>
+        <div class="col-6">
+
+        </div>
+      </div>
+      <div class="row col-12" style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+        <table class="customers" style="  width: 800px;  font-size: 13px;">
+          <tr>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px; border-right: 1px solid #ddd;"> Désignation</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white ; padding: 8px;">Quantité</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Unitaire HT</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Total H.T.T.C</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px;">TVA</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;" >Total Net</th>
+          </tr>
+          <tr  *ngFor="let line of tableofpage[i+1] ">
+            <td [style]="line.productname == 'commentaire'?'display:block; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+            <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+            <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+            <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+            <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+            <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+            <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+            <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+          </tr>
+        </table>
+        <table class="customers" style="  width: 800px;  font-size: 13px; margin-top: -1px; margin-bottom: 1%;">
+          <tr>
+            <td style="    border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none;     width: 100px;"><b>Total HT</b></td>
+            <td style="    width: 100px;">{{getSumht()}}</td>
+          </tr>
+          <tr>
+            <td style="    border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none; border-right: none;"></td>
+            <td style="    border-left: none;     width: 100px;"><b>Timbre</b></td>
+            <td style="    width: 100px;">0.600</td>
+          </tr>
+          <tr>
+            <td style="    border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none; border-right: none;"></td>
+            <td style="    border-left: none;     width: 100px;"><b>Total TTC</b></td>
+            <td style="    width: 100px;">{{getSumtva()}}</td>
+          </tr>
+        </table>
+      </div>
+      <p style="padding-left: 3em;  height: 50px; padding-right: 3em;">
+        <span [innerHTML]=note> </span>
+      </p>
+      <p style="padding-left: 3em; padding-right: 3em; height: 50px;">
+        <span>Le montant Total de la présente facture s'elève à la somme de : </span>
+        <span>{{totalLetter}} </span>
+      </p>
+      <div class="row col-12" style="display: flex;padding-left: 3em; height: 50px; padding-right: 3em;">
+        <div class="col-12">
+
+          <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par {{payementype}}</span></p>
+          <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">RIB </span><span style="font-weight: bold;"> <b>{{patternResult.company_name}} :</b> </span><span>{{partnerDefaulRib}}</span></p>
+        </div>
+      </div>
+
+      <div class="row col-12" style="       font-size: 12px;
+    display: inherit;
+    position: absolute;
+    bottom: 20px;
+    left: 0;">
+        <hr style="border: 1px solid ;     width: 800px; margin-left: 3em;margin-bottom: 1em;" [style.border-color]="color">
+
+        <div style=" text-align: center; margin-left: 5em;     width: 800px;">
+          <span>{{partnerDefaulAddress}}</span>
+
+          <br><br>
+
+          <span>R.C: </span>
+          <span>{{patternResult.trade_register}}</span>
+          <span> /MF: </span>
+          <span>{{patternResult.patent}} </span>
+          <span> Tel: </span>
+          <span> {{patternResult.phone_number}} </span>
+          <span> -Email: </span>
+          <span> {{patternResult.email}} </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+      <br>
+  </div>
+</div>
+
+<div *ngIf="tableofpage.length > 2">
+
+  <!--Page number :1-->
+  <div >
+    <div class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+      <div class="page-style" style="width: 900px ; height:1100px; background: #fbf0f0;    border: 1px solid; position:relative">
+        <div class="row col-12" style="    margin-bottom: 5%; display: flex;padding: 3em;     height: 150px;">
+          <div class="col-6">
+            <img style="width: 11em; height: 9em" src="{{clientimage}}">
+          </div>
+          <div class="col-6">
+
+          </div>
+        </div>
+        <div class="row col-12" style="display: flex;padding-left: 3em;padding-top: 1em;     height: 150px;">
+          <div class="" style="width: 500px; border: 1px solid;  border-radius: 16px;    padding-left: 2.5em;" [style.border-color]="color">
+            <br>
+            <span><b>Client: </b><b>{{clientModel.name}}</b></span>
+            <br><br>
+            <span><b>Adresse: </b><span style="font-size: 12px">{{clientModel.adresse}}</span></span><br>
+            <span><b>RC: </b><b>{{clientModel.rc}}</b></span><br>
+            <span><b>MF: </b><b>{{clientModel.mf}}</b></span><br><br>
+          </div>
+          <div class="col-4">
+
+          </div>
+        </div>
+
+        <div class="row col-12" style="display: flex;padding: 3em;     height: 130px;padding-bottom: 0em;">
+          <div class="" style="width: 350px;">
+
+          </div>
+          <div class="">
+            <div style="display: flex"><h5 style=" font-weight: bold;  "  [style.color]="color"> Facture Pro-Forma N° : </h5> <h5 style=" font-weight: bold;  " [style.color]="color">  {{facturenumber}} </h5></div>
+            <div style="display: flex"><p><span>{{partnerDefaulAddress}}</span><span>, le </span><span> {{dateFrom}}</span></p></div>
+          </div>
+        </div>
+
+
+        <div class="row col-12" style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+          <table class="customers" style="  width: 800px;  font-size: 13px;">
+            <tr>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px; border-right: 1px solid #ddd;"> Désignation</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white ; padding: 8px;">Quantité</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Unitaire HT</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Total H.T.T.C</th>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px;">TVA</th>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;" >Total Net</th>
+            </tr>
+
+            <tr  *ngFor="let line of tableofpage[0]">
+
+              <td [style]="line.productname == 'commentaire'?'display:block; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+              <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+              <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+              <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+              <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+              <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+            </tr>
+          </table>
+
+        </div>
+
+
+
+
+        <div class="row col-12" style="       font-size: 12px;
+    display: inherit;
+    position: absolute;
+    bottom: 20px;
+    left: 0;">
+          <hr style="border: 1px solid ;     width: 800px; margin-left: 3em;margin-bottom: 1em;" [style.border-color]="color">
+
+          <div style=" text-align: center; margin-left: 5em;     width: 800px;">
+            <span>{{partnerDefaulAddress}}</span>
+
+            <br><br>
+
+            <span>R.C: </span>
+            <span>{{patternResult.trade_register}}</span>
+            <span> /MF: </span>
+            <span>{{patternResult.patent}} </span>
+            <span> Tel: </span>
+            <span> {{patternResult.phone_number}} </span>
+            <span> -Email: </span>
+            <span> {{patternResult.email}} </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <!--other page-->
+<!--  <div *ngFor="let page of tableofpage  | slice:1: tableofpage.length , let i = index; ">-->
+  <div *ngFor="let page of tableofpage  | slice:1 : lenght, let i = index; ">
+    <div class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+      <div class="page-style" style="width: 900px ; height:1100px; background: #fbf0f0;    border: 1px solid; position:relative">
+        <div class="row col-12" style="    margin-bottom: 5%;display: flex;padding: 3em;     height: 150px;">
+          <div class="col-6">
+            <img style="width: 11em; height: 9em" src="{{clientimage}}">
+          <div class="col-6">
+
+          </div>
+        </div>
+        <div class="row col-12" style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+          <table class="customers" style="  width: 800px;  font-size: 13px;">
+            <tr>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px; border-right: 1px solid #ddd;"> Désignation</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white ; padding: 8px;">Quantité</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Unitaire HT</th>
+              <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Total H.T.T.C</th>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px;">TVA</th>
+              <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;" >Total Net</th>
+            </tr>
+            <tr  *ngFor="let line of tableofpage[i+1] ">
+              <td [style]="line.productname == 'commentaire'?'display:block; border-right: 0px;': 'display: none'">commentaire</td>
+              <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+              <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+              <td [style]="line.productname == 'subtotal'?'border: none': 'border: 1px solid #ddd;'">{{line.quantite}}</td>
+              <td [style]="line.productname == 'subtotal'?'border: none': 'border: 1px solid #ddd;'">{{line.prixunitaire}}</td>
+              <td [style]="line.productname == 'subtotal'?'border: none': 'border: 1px solid #ddd;'">{{line.prixtotal}}</td>
+              <td [style]="line.productname == 'subtotal'?'border: none': 'border: 1px solid #ddd;'">{{line.tva}}</td>
+              <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+              <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+            </tr>
+          </table>
+
+        </div>
+
+        <div class="row col-12" style="       font-size: 12px;
+    display: inherit;
+    position: absolute;
+    bottom: 20px;
+    left: 0;">
+          <hr style="border: 1px solid ;     width: 800px; margin-left: 3em;margin-bottom: 1em;" [style.border-color]="color">
+
+          <div style=" text-align: center; margin-left: 5em;     width: 800px;">
+            <span>{{partnerDefaulAddress}}</span>
+
+            <br><br>
+
+            <span>R.C: </span>
+            <span>{{patternResult.trade_register}}</span>
+            <span> /MF: </span>
+            <span>{{patternResult.patent}} </span>
+            <span> Tel: </span>
+            <span> {{patternResult.phone_number}} </span>
+            <span> -Email: </span>
+            <span> {{patternResult.email}} </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+  <br>
+  <!--Last Page number-->
+
+  <div>
+    <div class="page" style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+      <div class="page-style" style="width: 900px ; height:1100px; background: #fbf0f0;    border: 1px solid; position:relative">
+        <div class="row col-12" style="    margin-bottom: 5%;display: flex;padding: 3em;     height: 150px;">
+          <div class="col-6">
+            <img style="width: 11em; height: 9em" src="{{clientimage}}">
+          </div>
+          <div class="col-6">
+
+          </div>
+        </div>
+        <div class="row col-12" style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+          <table class="customers" style="  width: 800px;  font-size: 13px;">
+            <tr>
+                <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px; border-right: 1px solid #ddd;"> Désignation</th>
+                <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white ; padding: 8px;">Quantité</th>
+                <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Unitaire HT</th>
+                <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Total H.T.T.C</th>
+                <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px;">TVA</th>
+                <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;" >Total Net</th>
+            </tr>
+            <tr  *ngFor="let line of tableofpage[tableofpage.length - 1] ">
+              <td [style]="line.productname == 'commentaire'?'display:block; border-right: 0px;': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+              <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+              <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+
+              <td [style]="line.productname == 'line'?'dispaly:block ;border: 1px solid #ddd;': 'display: none'">{{line.quantite}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display: none;'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixunitaire}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.prixtotal}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'line'?'border: 1px solid #ddd;': 'display:none'">{{line.tva}}</td>
+              <td [style]="line.productname == 'subtotal'?'border-right: none; border-left: none;': 'display:none'"></td>
+              <td [style]="line.productname == 'commentaire'?'border-right: none; border-left: none;': 'display: none;'"></td>
+
+              <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+              <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+              <td [style]="line.productname == 'commentaire'?'border-left: none;': 'display: none;'"></td>
+            </tr>
+          </table>
+          <table class="customers" style="  width: 800px;  font-size: 13px; margin-top: -1px; margin-bottom: 1%;">
+            <tr>
+              <td style="    border-right: none;"></td>
+              <td style="    border-left: none;border-right: none;"></td>
+              <td style="    border-left: none;border-right: none;"></td>
+              <td style="    border-left: none;border-right: none;"></td>
+              <td style="    border-left: none;     width: 100px;"><b>Total HT</b></td>
+              <td style="    width: 100px;">{{getSumht()}}</td>
+            </tr>
+            <tr>
+              <td style="    border-right: none;"></td>
+              <td style="    border-left: none;border-right: none;"></td>
+              <td style="    border-left: none;border-right: none;"></td>
+              <td style="    border-left: none; border-right: none;"></td>
+              <td style="    border-left: none;     width: 100px;"><b>Timbre</b></td>
+              <td style="    width: 100px;">0.600</td>
+            </tr>
+            <tr>
+              <td style="    border-right: none;"></td>
+              <td style="    border-left: none;border-right: none;"></td>
+              <td style="    border-left: none;border-right: none;"></td>
+              <td style="    border-left: none; border-right: none;"></td>
+              <td style="    border-left: none;     width: 100px;"><b>Total TTC</b></td>
+              <td style="    width: 100px;">{{getSumtva()}}</td>
+            </tr>
+          </table>
+        </div>
+        <p style="padding-left: 3em;  height: 50px; padding-right: 3em;">
+          <span [innerHTML]=note> </span>
+        </p>
+        <p style="padding-left: 3em; padding-right: 3em; height: 50px;">
+          <span>Le montant Total de la présente facture s'elève à la somme de : </span>
+          <span>{{totalLetter}} </span>
+        </p>
+        <div class="row col-12" style="display: flex;padding-left: 3em; height: 50px; padding-right: 3em;">
+          <div class="col-12">
+            <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par {{payementype}}</span></p>
+            <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">RIB </span><span style="font-weight: bold;"> <b>{{patternResult.company_name}} :</b> </span><span>{{partnerDefaulRib}}</span></p>
+          </div>
+        </div>
+
+        <div class="row col-12" style="       font-size: 12px;
+    display: inherit;
+    position: absolute;
+    bottom: 20px;
+    left: 0;">
+          <hr style="border: 1px solid ;     width: 800px; margin-left: 3em;margin-bottom: 1em;" [style.border-color]="color">
+
+          <div style=" text-align: center; margin-left: 5em;     width: 800px;">
+            <span>{{partnerDefaulAddress}}</span>
+
+            <br><br>
+
+            <span>R.C: </span>
+            <span>{{patternResult.trade_register}}</span>
+            <span> /MF: </span>
+            <span>{{patternResult.patent}} </span>
+            <span> Tel: </span>
+            <span> {{patternResult.phone_number}} </span>
+            <span> -Email: </span>
+            <span> {{patternResult.email}} </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+
+</div>
+
+  <div style="float: right;">
+    <button mat-button  (click)="saveInvoice()" style=" padding: 5px; color: white; background: #2d2d44; margin-right: 1em; ">Save</button>
+
+    <button [printStyle]="
+{
+ '.page' : {'padding-left': '0em !important'},
+ '.back' : {
+    'width': '950px  !important',
+    'height':'1300px !important',
+    'background': '#fff !important',
+    'border': '0px solid !important'
+ },
+ '.tableslength': { 'width': '1100px  !important'},
+ '.logorowsociete' : { 'margin-left': '55%'},
+ '.logorowsociete2' : { 'margin-left': '45%'},
+ '.tabletva' : {'margin-right': '2%'},
+ '.bottomm': {'bottom' : '-16em !important'},
+ '.row': {
+    'display': 'flex'
+    },
+ 'td' : {
+    'border': ' 1px solid #ddd',
+    'padding': '8px'
+    },
+ 'th' : {
+    'border': ' 1px solid #ddd' ,
+    'padding': '8px' ,
+    'padding-top': '12px',
+    'padding-bottom': '12px',
+    'text-align': 'left',
+    'background-color': '#2270ba',
+    'color': 'white'
+    },
+    '.mat-form-field' : {
+      'margin-top': '16px'
+    },
+    '.customers' : {
+      'border-collapse': 'collapse',
+      'width': '100%'
+    },
+    '.customers td, .customers th' : {
+      'border': '1px solid #ddd',
+      'padding': '8px'
+    },
+    '.customers th' : {
+      'padding-top': '12px',
+      'padding-bottom': '12px',
+      'text-align': 'left',
+      'background-color': '#2270ba',
+      'color': 'white'
+    }
+ }"
+            printSectionId="printinvoice" ngxPrint class="printbutton" type="button" style="margin-top: 6%;color: black;background: #efcc0b;box-sizing: border-box;position: relative;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor: pointer;outline: 0;border: none;-webkit-tap-highlight-color: transparent;display: inline-block;white-space: nowrap;text-decoration: none;vertical-align: baseline;text-align: center;margin: 0;min-width: 64px;line-height: 36px;border-radius: 4px;overflow: visible;margin-top: 6%;padding: 5px; ">
+      Print
+    </button>
+  </div>
+<!--<div class="row">-->
+<!--  <div class="column">-->
+
+<!--  </div>-->
+<!--  <div class="column" style="text-align: center">-->
+<!--    <button [printStyle]="-->
+<!--{-->
+<!-- '.page' : {'padding-left': '0em !important'},-->
+<!-- '.page-style' : {-->
+<!--    'width': '900px  !important',-->
+<!--    'height':'1300px !important',-->
+<!--    'background': '#fff !important',-->
+<!--    'border': '0px solid !important'-->
+<!-- },-->
+<!-- 'td' : {-->
+<!--    'border': ' 1px solid #ddd',-->
+<!--    'padding': '8px'-->
+<!--    },-->
+<!-- 'th' : {-->
+<!--    'border': ' 1px solid #ddd' ,-->
+<!--    'padding': '8px' ,-->
+<!--    'padding-top': '12px',-->
+<!--    'padding-bottom': '12px',-->
+<!--    'text-align': 'left',-->
+<!--    'background-color': '#2270ba',-->
+<!--    'color': 'white'-->
+<!--    },-->
+<!--    '.mat-form-field' : {-->
+<!--      'margin-top': '16px'-->
+<!--    },-->
+<!--    '.customers' : {-->
+<!--      'border-collapse': 'collapse',-->
+<!--      'width': '100%'-->
+<!--    },-->
+<!--    '.customers td, .customers th' : {-->
+<!--      'border': '1px solid #ddd',-->
+<!--      'padding': '8px'-->
+<!--    },-->
+<!--    '.customers th' : {-->
+<!--      'padding-top': '12px',-->
+<!--      'padding-bottom': '12px',-->
+<!--      'text-align': 'left',-->
+<!--      'background-color': '#2270ba',-->
+<!--      'color': 'white'-->
+<!--    }-->
+<!-- }"-->
+<!--            printSectionId="printinvoice" ngxPrint class="printbutton">print</button>-->
+<!--    <button class="printbutton" (click)="saveInvoice()" style="background: #0c4c00; color: white;">Save</button>-->
+
+<!--  </div>-->
+<!--  <div class="column">-->
+
+<!--  </div>-->
+<!--</div>-->
+
+
+<div style="visibility: hidden;">
+  <div style="width: 100vw;display: flex;height: 100%;padding-left: 20em;">
+    <div id="" style="width: 900px ; height:1100px; background: #fbf0f0;    border: 1px solid;">
+      <div class="row col-12" id ='logo' style="    margin-bottom: 5%; display: flex;padding: 3em;     height: 150px;">
+        <div class="col-6">
+          <img style="width: 11em" src="{{clientimage}}">
+        </div>
+        <div class="col-6">
+
+        </div>
+      </div>
+      <div class="row col-12" id ='clientdetail' style="display: flex;padding-left: 3em;padding-top: 1em;     height: 150px;">
+        <div class="" style="width: 500px; border: 1px solid;  border-radius: 16px;    padding-left: 2.5em;" [style.border-color]="color">
+          <br>
+          <span><b>Client: </b><b>{{clientModel.name}}</b></span>
+          <br><br>
+          <span><b>Adresse: </b><span style="font-size: 12px">{{clientModel.adresse}}</span></span><br>
+          <span><b>RC: </b><b>{{clientModel.rc}}</b></span><br>
+          <span><b>MF: </b><b>{{clientModel.mf}}</b></span><br><br>
+        </div>
+        <div class="col-4">
+
+        </div>
+      </div>
+
+      <div class="row col-12" id ='facturenumber' style="display: flex;padding: 3em;     height: 130px;padding-bottom: 0em;">
+        <div class="" style="width: 350px;">
+
+        </div>
+        <div class="">
+          <div style="display: flex"><h5 style=" font-weight: bold;  "  [style.color]="color"> Facture Pro-Forma N° : </h5> <h5 style=" font-weight: bold;  " [style.color]="color">  {{facturenumber}} </h5></div>
+          <div style="display: flex"><p><span>{{partnerDefaulAddress}}</span><span>, le </span><span> {{dateFrom}}</span></p></div>
+        </div>
+      </div>
+
+
+      <div class="row col-12" style="padding:3em; padding-top:0em;     padding-bottom: 15px;">
+        <table class="customers" id ='tableline'style="  width: 800px;  font-size: 13px;">
+          <tr>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px; border-right: 1px solid #ddd;"> Désignation</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white ; padding: 8px;">Quantité</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Unitaire HT</th>
+            <th  [style.backgroundColor]="color"  style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;">Prix Total H.T.T.C</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white; padding: 8px;">TVA</th>
+            <th  [style.backgroundColor]="color" style="    padding-top: 12px; padding-bottom: 12px; text-align: left; color: white;  padding: 8px;" >Total Net</th>
+          </tr>
+          <tr  *ngFor="let line of linestotallist , let id = index;" [id]="'trid_' +line.id">
+            <td [style]="line.productname == 'commentaire'?'display:block; border-right: 0px;': 'display: none'">commentaire</td>
+            <td [style]="line.productname == 'subtotal'?'display:revert; border-right: 0px;': 'display: none'" [innerHTML]="line.subtotaldesc"></td>
+            <td [style]="line.productname == 'line'?'dispaly:block': 'display: none'" [innerHTML]="line.descriptionproduct"></td>
+            <td [style]="line.productname == 'subtotal'?'border: none': 'border: 1px solid #ddd;'">{{line.quantite}}</td>
+            <td [style]="line.productname == 'subtotal'?'border: none': 'border: 1px solid #ddd;'">{{line.prixunitaire}}</td>
+            <td [style]="line.productname == 'subtotal'?'border: none': 'border: 1px solid #ddd;'">{{line.prixtotal}}</td>
+            <td [style]="line.productname == 'subtotal'?'border: none': 'border: 1px solid #ddd;'">{{line.tva}}</td>
+            <td [style]="line.productname == 'subtotal'?'display:revert ; border: 0px;  border-right: 1px solid #ddd;': 'display: none'">{{line.subtototalprice}}</td>
+            <td [style]="line.productname == 'line'?'dispaly:revert': 'display: none'">{{line.prixnet}}</td>
+          </tr>
+        </table>
+        <table class="customers" id ='tabletotal' style="  width: 800px;  font-size: 13px; margin-top: -1px; margin-bottom: 1%;">
+          <tr>
+            <td style="    border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none;     width: 100px;"><b>Total HT</b></td>
+            <td style="    width: 100px;">{{getSumht()}}</td>
+          </tr>
+          <tr>
+            <td style="    border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none; border-right: none;"></td>
+            <td style="    border-left: none;     width: 100px;"><b>Timbre</b></td>
+            <td style="    width: 100px;">0.600</td>
+          </tr>
+          <tr>
+            <td style="    border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none;border-right: none;"></td>
+            <td style="    border-left: none; border-right: none;"></td>
+            <td style="    border-left: none;     width: 100px;"><b>Total TTC</b></td>
+            <td style="    width: 100px;">{{getSumtva()}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <p id ='note' style="padding-left: 3em;  height: 50px; padding-right: 3em;">
+        <span [innerHTML]=note> </span>
+      </p>
+
+      <p id ='sommelettre' style="padding-left: 3em; padding-right: 3em; height: 50px;">
+        <span>Le montant Total de la présente facture s'elève à la somme de : </span>
+        <span>{{totalLetter}} </span>
+      </p>
+
+      <div class="row col-12"  id ='payement' style="display: flex;padding-left: 3em; height: 50px; padding-right: 3em;">
+        <div class="col-12">
+          <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">Modalité de payement: </span><span> Par {{checkboxValue}}</span></p>
+          <p style="margin-bottom: 0px;    font-size: 14px;"><span style="font-weight: bold;">RIB </span><span style="font-weight: bold;"> <b>{{patternResult.company_name}} :</b> </span><span>{{partnerDefaulRib}}</span></p>
+        </div>
+
+      </div>
+
+      <div class="row col-12"  id ='footer' style="    height: 120px;font-size: 12px;display: inherit;position: absolute;bottom: 100px;">
+        <hr style="border: 1px solid ;     width: 800px; margin-left: 3em;margin-bottom: 1em;" [style.border-color]="color">
+
+        <div style=" text-align: center; margin-left: 5em;     width: 800px;">
+          <span>{{partnerDefaulAddress}}</span>
+
+          <br><br>
+
+          <span>R.C: </span>
+          <span>{{patternResult.trade_register}}</span>
+          <span> /MF: </span>
+          <span>{{patternResult.patent}} </span>
+          <span> Tel: </span>
+          <span> {{patternResult.phone_number}} </span>
+          <span> -Email: </span>
+          <span> {{patternResult.email}} </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

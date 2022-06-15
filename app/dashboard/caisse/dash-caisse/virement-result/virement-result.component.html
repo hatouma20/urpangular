@@ -1,0 +1,173 @@
+
+
+
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-left: 1%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h3 class="d-inline-block mb-0"style="font-weight: bold;font-family: monospace;"> Ordre de Virement</h3>
+          <p aria-current="page" class="breadcrumb-item active" style="font-family: monospace;">
+            Caisse > Virement </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+
+    <div aria-labelledby="headingTwo1" class="collapse show" data-parent="#accordionExample" id="collapseTwo1">
+      <div class="card-body">
+        <p   class="breadcrumb-item active" style="font-family: monospace;"> Caisse &gt; Ordre de Virement </p>
+        <br>
+        <form id="form1" [formGroup]="form.asFormGroup"  role="form">
+
+            <div class="row" >
+
+              <div class="col-12" style="display: flex">
+                <div class="col-3">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-6" style="font-weight: bold;">Numéro</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                        [formControl]="form.getField('transfernumber').asFormControl"
+                        [placeholder]="form.getField('transfernumber').placeholder"
+                        class="form-control"
+                        [ngModel]="addedtransfer.transfernumber.value"
+                        type="text"disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Numéro de compte</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                        [formControl]="form.getField('compteorigin').asFormControl"
+                        class="form-control"
+                        [placeholder]="form.getField('compteorigin').placeholder"
+                        [ngModel]="addedtransfer.compteorigin.value"
+                        type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Date</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                        [formControl]="form.getField('datevirement').asFormControl"
+                        class="form-control"
+                        [placeholder]="form.getField('datevirement').placeholder"
+                        [ngModel]="addedtransfer.datevirement.value"
+                        type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-6" style="font-weight: bold;">Raison Social</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                        [formControl]="form.getField('socialreason').asFormControl"
+                        class="form-control"
+                        [placeholder]="form.getField('socialreason').placeholder"
+                        [ngModel]="addedtransfer.socialreason.value"
+                        type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+<br><br>
+
+
+          <table class="table table-bordered table-responsive-md table-striped text-center" style="font-family: monospace;">
+            <thead>
+            <tr>
+              <th >Nom bénéficiaire</th>
+              <th>Compte bénéficiaire</th>
+              <th >Objet du virement</th>
+              <th >Montant</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of addedtransfer.beneficiarys.values; let id = index">
+              <td>
+  <span
+        contenteditable="true">{{item.beneficiaryName}}</span>
+              </td>
+              <td>
+  <span
+        contenteditable="true">{{item.beneficiaryAccount}}</span>
+              </td>
+              <td>
+  <span
+        contenteditable="true">{{item.description}}</span>
+              </td>
+              <td>
+  <span
+        contenteditable="true">{{item.amount}}</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+            <br>
+            <br>
+            <table class="table table-bordered table-responsive-md table-striped text-center" style="font-family: monospace;">
+              <thead>
+              <tr>
+                <th class="text-center">Nombre total des virements</th>
+                <th class="text-center">Montant total en lettres   </th>
+                <th class="text-center">Montant total en chiffres   </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>
+                  {{totalvirement}}
+                </td>
+                <td>
+                  {{resultnumber}}
+                </td>
+                <td>
+                  {{totalamount}}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+              <thead>
+              <tr>
+                <th class="text-center">Cachet et visa agence</th>
+                <th class="text-center">Signature du client</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>
+
+                </td>
+                <td>
+                 </td>
+              </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+          <div class="col-lg-12 col-5 text-right">
+            <a class="btn btn-sm btn-neutral"
+               style=" color: black; background: #ffcf03; border: #ffcf03; padding: 1%; ">Imprimer</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,187 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Congé:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info
+            Congé > Demande de congé</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Liste des demandes de congés
+        </button>
+      </h2>
+    </div>
+    <form id="form1" role="form" class="mt-5" #testForm="ngForm" ngNativeValidate>
+
+      <div style="display: flex">
+        <div class="col-12" style="margin: 0; padding: 0; display: flex">
+          <div class="row col-3">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-6" style="font-weight: bold;margin-top: 2%;">Type</label>
+                <div class=" input-group input-group-alternative ">
+                  <select [(ngModel)]="period.type"
+                          class="form-control " name="type" required>
+                    <option value="" hidden>select type</option>
+                    <option value="SICK_LEAVE">SICK_LEAVE</option>
+                    <option value="PAYED_LEAVE">PAYED_LEAVE</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row col-3">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-6" style="font-weight: bold;margin-top: 2%;">Date debut <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+
+                  <input [(ngModel)]="period.fd"
+                         class="form-control"
+                         type="date" required
+                         name="fd">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row col-3">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-6" style="font-weight: bold;margin-top: 2%;">date fin <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <input [(ngModel)]="period.td"
+                         class="form-control"
+                         type="date" required
+                         name="td">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <div class="col-12 text-right" style="float: right">
+                  <a (click)="search()"
+                     class="btn btn-sm btn-neutral"
+                     style=" color: black; background: #ffcf03; border: #ffcf03; padding: 18%; ">Recherche</a>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </form>
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body">
+
+        <div *ngIf="this.requestLeaveList.length == 0"><p style="text-align: center;">Vous n'avez pas des données enregistrés</p></div>
+
+
+        <div class="table-editable" id="table">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;">
+            <thead  *ngIf="this.requestLeaveList.length != 0" >
+            <tr>
+              <th >#</th>
+              <th >Collaborateur</th>
+              <th >Date debut </th>
+              <th > Date fin </th>
+              <th > Status </th>
+              <th > Type</th>
+              <th > Raison </th>
+
+            </tr>
+            </thead >
+            <tbody  *ngIf="this.requestLeaveList.length != 0">
+            <tr *ngFor="let request of requestLeaveList, let id = index;">
+              <td>
+                <span
+                >{{id + 1}}</span>
+              </td>
+              <td>
+                <span >{{request.collaboratorname.value}} {{request.collaboratorlastname.value}}</span>
+              </td>
+              <td>
+                <span >{{request.startdate.value}}</span>
+              </td>
+              <td>
+                <span >{{request.enddate.value}}</span>
+              </td>
+              <td>
+
+                <span (click)="changestatus(contentstatus)" style="cursor: pointer">
+                                  <div *ngIf="request.status.values.pending" class="status -pending">Pending</div>
+                                 <div *ngIf="request.status.values.approved" class="status -success">Approved</div>
+                                 <div *ngIf="request.status.values.denied" class="status -failure">Denied</div>
+                                 <div *ngIf="request.status.values.partially_approved" class="status -success" style="padding-left: 16%;">Partially Approved</div>
+                                </span>
+                <ng-template #contentstatus let-c="close" style=" max-width: 65%; margin-left: 20%; ">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title1">Gestion de status:</h4>
+<!--                    <button (click)="close(contentstatus)" aria-label="Close" class="close" type="button">-->
+<!--                      <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+                    <a class="lightbox__close" (click)="close(contentstatus)" >X</a>
+                  </div>
+                  <div class="modal-body">
+
+                    <div class=" custom-control-alternative custom-radio mb-3">
+                      <label >Vous pouvez accepter ou refuser la demande.</label>
+                    </div>
+                    <div class="custom-control custom-control-alternative custom-radio mb-3">
+                      <input (change)="onApprovedSelect($event, id)" [checked]="request.status.values.approved"
+                             class="custom-control-input" id="customRadio2" name="status" type="radio">
+                      <label class="custom-control-label" for="customRadio2">Accepter</label>
+                    </div>
+                    <div class="custom-control custom-control-alternative custom-radio mb-3">
+                      <input (change)="onDeniedSelect($event, id)" [checked]="request.status.values.denied"
+                             class="custom-control-input" id="customRadio3" name="status" type="radio">
+                      <label class="custom-control-label" for="customRadio3">Refuser</label>
+                    </div>
+
+                  </div>
+                  <div class="modal-footer" style="padding: 0">
+                    <a (click)="closestatus(contentstatus, id)" class="btn btn-sm btn-neutral"
+                       style="color: black;background: #ffcf03;border: #ffcf03;padding: 2% 8%;" >ok</a>
+                  </div>
+                </ng-template>
+              </td>
+              <td>
+                <span >{{request.leave.type}}</span>
+              </td>
+              <td >
+                <span class="tooltip1" style="cursor: pointer;">{{request.reason.value  | slice:0:10 }}{{ request.reason.value.length > 10 ? '...' : ''}}
+                  <span class="tooltiptext">{{request.reason.value}}</span></span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

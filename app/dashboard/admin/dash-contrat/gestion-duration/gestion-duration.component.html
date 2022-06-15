@@ -1,0 +1,203 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">
+            Contrat:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info
+            Contrat > Gestion de Durée de Contrat</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Ajout Durée de Contrat
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body">
+        <form id="form1" (ngSubmit)="onFormSubmit()" role="form" #testForm="ngForm" ngNativeValidate>
+
+          <div style="display: flex">
+            <div class="col-6" style="margin: 0; padding: 0">
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Nom </label>
+                    <div class=" input-group input-group-alternative">
+                      <input class="form-control" type="text" >
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Description </label>
+                    <div class=" input-group input-group-alternative ">
+                                        <textarea [(ngModel)]="contractDuration.description.value" [ngModelOptions]="{standalone: true}"
+                                                  class="form-control" cols="50" name="description" rows="4" required></textarea>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Durée </label>
+                    <div class=" input-group input-group-alternative ">
+                      <input [(ngModel)]="contractDuration.duation.value" [ngModelOptions]="{standalone: true}"
+                             class="form-control" name="duation" type="number" min="1" required>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Unité </label>
+                    <div class=" input-group input-group-alternative">
+                      <select [(ngModel)]="contractDuration.unit.value" [ngModelOptions]="{standalone: true}"
+                              class="form-control" name="unit" placeholder="Title" required>
+                        <option value="JOUR">jour</option>
+                        <option value="MOIS">mois</option>
+                        <option value="ANNEE">ans</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <div class="col-12 text-right" style="float: right;    padding-right: 0px;">
+<!--                      <a (click)="onFormSubmit()"-->
+<!--                         class="btn btn-sm btn-neutral"-->
+<!--                         style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Ajouter</a>-->
+                      <input type='submit'  style=" color: black; background: #ffcf03; border: #ffcf03;     padding: 2%; float: right; font-family: monospace " value="Ajouter"/>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="alert alert-success " style="display: none">
+                    <strong>Succès!</strong> la Durée de Contrat est ajoutée avec succès .
+                  </div>
+                  <div class="alert alert-danger " style="display: none">
+                                      <span *ngIf="contractDuration.description.dirty"
+                                            class="error-hint">{{contractDuration.description.error}}</span><br>
+                    <span *ngIf="contractDuration.duation.dirty"
+                          class="error-hint">{{contractDuration.duation.error}}</span><br>
+                    <span *ngIf="contractDuration.unit.dirty" class="error-hint">{{contractDuration.unit.error}}</span>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+                      </div>
+                    </div>
+                    <div class="card card-info">
+                      <div class="card-header card-info-header" id="headingTwo">
+                        <h2 class="mb-0">
+                          <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"
+                                  data-target="#collapseTwo" data-toggle="collapse" style="color: #0080ad;" type="button">
+                          Liste de Durée de Contrats
+                          </button>
+                        </h2>
+                      </div>
+                      <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionExample" id="collapseTwo">
+                        <div class="card-body">
+
+                          <div *ngIf="this.contractDurationList.length == 0"><p style="text-align: center;">Vous n'avez pas des données enregistrés</p></div>
+
+
+                          <div class="table-editable" id="table">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;">
+                              <thead  *ngIf="this.contractDurationList.length != 0" >
+                              <tr>
+                                <th >#</th>
+                                <th >Descripion</th>
+                                <th >Durée</th>
+                                <th >Unité</th>
+
+                              </tr>
+                              </thead >
+                              <tbody  *ngIf="this.contractDurationList.length != 0">
+                              <tr *ngFor="let contract of contractDurationList, let id = index;">
+                                <td>
+                <span
+                >{{id + 1}}</span>
+                                </td>
+                                <td>
+                <span (blur)="updateList(id, 'description', $event)" (keyup)="changeValue(id, 'description', $event)"
+                      contenteditable="true">{{contract.description}}</span>
+                                </td>
+                                <td>
+                <span (blur)="updateList(id, 'duation', $event)" (keyup)="changeValue(id, 'duation', $event)"
+                      contenteditable="true">{{contract.duation}}</span>
+                                </td>
+                                <td>
+                <span (blur)="updateList(id, 'unit', $event)" (keyup)="changeValue(id, 'unit', $event)"
+                      contenteditable="true">{{contract.unit}}</span>
+                                </td>
+
+                                <!--<td>-->
+            <!--<span class="table-remove">-->
+               <!--<a (click)="open(content)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i-->
+                 <!--aria-hidden="true" class="fa fa-trash"></i></a>-->
+            <!--</span>-->
+                                  <!--<ng-template #content let-c="close" let-d="dismiss" style=" width: 40%; margin-left: 30%; ">-->
+                                    <!--<div class="modal-header" style="border-bottom: none;">-->
+                                      <!--<h4 class="modal-title" id="modal-basic-title">Confirmation de suppression </h4>-->
+                                      <!--<button (click)="d('Cross click')" aria-label="Close" class="close" type="button">-->
+                                        <!--<span aria-hidden="true">&times;</span>-->
+                                      <!--</button>-->
+                                    <!--</div>-->
+                                    <!--<div class="modal-body">-->
+                                      <!--voulez vous vraiment supprimer cet élément?-->
+                                    <!--</div>-->
+                                    <!--<div class="modal-footer" style="border-top: none;">-->
+                                      <!--<button (click)="remove(id)" class="btn btn-outline-red" type="button" style=" background: #d40000; color: white; ">Oui</button>-->
+                                    <!--</div>-->
+
+                                  <!--</ng-template>-->
+                                <!--</td>-->
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>

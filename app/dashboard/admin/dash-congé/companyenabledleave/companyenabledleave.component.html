@@ -1,0 +1,379 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Congé
+            :</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Congé autorisé par l'entreprise</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+
+<div class="accordion mt-5" id="accordionExample" >
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Liste des Congés autorisés par l'entreprise
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body "
+           style="display: -webkit-flex;-webkit-flex-wrap: wrap;-webkit-justify-content: center;width:100%;">
+        <table class="table table-bordered table-responsive-md table-striped text-center" style="    font-family: monospace;">
+          <thead>
+          <tr>
+            <th class="text-center">Type</th>
+            <th class="text-center">Nombre de jours en avance</th>
+            <th class="text-center">Toute la journée</th>
+            <th class="text-center">Active/ Inactive</th>
+            <th class="text-center">Crédit Négatif</th>
+            <th class="text-center">simultaneouslylimit</th>
+            <th class="text-center">Plafond</th>
+            <th class="text-center"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let conge of companyEnabledLeaveList; let id = index">
+            <td>
+              <span  (blur)="updateList(id, 'custom_type', $event)"
+                     (keyup)="changeValue(id, 'custom_type', $event)"
+                     contenteditable="true"> {{conge.custom_type.value}}</span>
+            </td>
+            <td>
+                <span *ngIf="conge.type.value!='SICK_LEAVE'" (blur)="updateList(id, 'days_in_advance', $event)"
+                      (keyup)="changeValue(id, 'days_in_advance', $event)"
+                      contenteditable="true">{{conge.days_in_advance.value}}</span>
+                <span *ngIf="conge.type.value==='SICK_LEAVE'" >_</span>
+            </td>
+            <td>
+              <label *ngIf="conge.full_day.value" class="custom-toggle">
+                <input (change)="updateList(id, 'full_day', $event)"
+                       [formControl]="form.getField('full_day').asFormControl"
+                       [ngModel]="companyEnabledLeave.full_day.value"
+                       [type]="form.getField('full_day').type"
+                       checked="">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+              <label *ngIf="!conge.full_day.value" class="custom-toggle">
+                <input (change)="updateList(id, 'full_day', $event)"
+                       [formControl]="form.getField('full_day').asFormControl"
+                       [ngModel]="companyEnabledLeave.full_day.value"
+                       [type]="form.getField('full_day').type">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+            </td>
+            <td>
+              <label *ngIf="conge.active.value" class="custom-toggle">
+                <input (change)="updateList(id, 'active', $event)" [formControl]="form.getField('active').asFormControl"
+                       [ngModel]="companyEnabledLeave.active.value"
+                       [type]="form.getField('active').type"
+                       checked="">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+              <label *ngIf="!conge.active.value" class="custom-toggle">
+                <input (change)="updateList(id, 'active', $event)"
+                       [formControl]="form.getField('active').asFormControl"
+                       [ngModel]="companyEnabledLeave.active.value"
+                       [type]="form.getField('active').type">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+            </td>
+
+            <td>
+              <label *ngIf="conge.negative_credit.value" class="custom-toggle">
+                <input (change)="updateList(id, 'negative_credit', $event)"
+                       [formControl]="form.getField('negative_credit').asFormControl"
+                       [ngModel]="companyEnabledLeave.negative_credit.value"
+                       [type]="form.getField('negative_credit').type"
+                       checked="">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+              <label *ngIf="!conge.negative_credit.value" class="custom-toggle">
+                <input (change)="updateList(id, 'negative_credit', $event)"
+                       [formControl]="form.getField('negative_credit').asFormControl"
+                       [ngModel]="companyEnabledLeave.negative_credit.value"
+                       [type]="form.getField('negative_credit').type">
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+            </td>
+            <td>
+                <span (blur)="updateList(id, 'simultaneously_limit', $event)"
+                      (keyup)="changeValue(id, 'simultaneously_limit', $event)"
+                      contenteditable="true">{{conge.simultaneously_limit.value}}</span>
+            </td>
+
+            <td>
+              <label *ngIf="conge.type.value === 'OTHER_LEAVE'" class="custom-toggle">
+             <span (blur)="updateList(id, 'max_days', $event)"
+                   (keyup)="changeValue(id, 'max_days', $event)"
+                   contenteditable="true">{{conge.max_days.value}}</span>
+              </label>
+              <label *ngIf="conge.type.value !== 'OTHER_LEAVE'" class="custom-toggle">
+                <span >_</span>
+              </label>
+            </td>
+            <td>
+
+
+              <span  *ngIf="isOtherLeave[id]" class="table-remove">
+              <a (click)="open(content)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+              aria-hidden="true" class="fa fa-trash"></i></a>
+              </span>
+              <ng-template #content let-c="close" let-d="dismiss" style=" width: 40%; margin-left: 30%; ">
+
+                <div class="modal-body" style="padding: 0;">
+                  <div class="col-12" style="display: flex">
+                    <div class="col-2"></div>
+                    <div class="col-8" style="text-align: center">
+                      <img class="navbar-brand-img" src="../../../assets/img/delete.gif" style="width: 45%;">
+                    </div>
+                    <div class="col-2"></div>
+                  </div>
+                  <div class="col-12" style="display: flex">
+                    <div class="col-2"></div>
+                    <div class="col-8" style="text-align: center">
+                      <h2 class="swal2-title" id="swal2-title" style="font-size: 1.0em;">Are you sure?</h2>
+                      <div id="swal2-content" class="swal2-html-container" style="display: block;">You won't be able to revert this!</div>
+
+                    </div>
+                    <div class="col-2"></div>
+                  </div>
+
+
+                </div>
+                <div class="modal-footer" style="padding: 1%; border-top: none;">
+                  <button  (click)="remove(conge.uuid,id)" class="btn btn-outline-red btn-sm btn-success"  type="button" style=" color: white; ">Oui</button>
+                  <button (click)="d('Cross click')" aria-label="Close" class="btn btn-outline-red btn-sm"  type="button">Cancel</button>
+                </div>
+<!--              <div class="modal-footer" style="border-top: none;">-->
+<!--              <button (click)="remove(id)" class="btn btn-outline-red" type="button" style=" background: #d40000; color: white; ">Oui</button>-->
+
+<!--              </div>-->
+
+              </ng-template>
+
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"
+                data-target="#collapseTwo" data-toggle="collapse" style="color: #0080ad;" type="button">
+          Ajout d'un Congé
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionExample" id="collapseTwo">
+      <div class="card-body">
+
+          <form id="form1" (ngSubmit)="onFormSubmit()" role="form" #testForm="ngForm" ngNativeValidate>
+          <div style="display: flex">
+            <div class="col-6" style="margin: 0; padding: 0">
+              <div class="row custom-type" >
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Titre<span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <input required=""
+                             [(ngModel)]="companyEnabledLeaveadd.custom_type.value"
+                             name="custom_type"
+                             class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Nombre de jours en avance <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <input type="number"
+                             [(ngModel)]="companyEnabledLeaveadd.days_in_advance.value"
+                             name="days_in_advance"
+                             class="form-control" required min="0">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Nombre de jours maximale <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <input type="number"
+                             [(ngModel)]="companyEnabledLeaveadd.max_days.value"
+                             name="max_days"
+                             class="form-control" required min="0">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Deductible <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group ">
+                      <label class="custom-toggle">
+                        <input (change)="ondeductibleSelect('deductible')"
+                               [formControl]="form.getField('deductible').asFormControl"
+                               [(ngModel)]="companyEnabledLeaveadd.deductible.value"
+                               [type]="form.getField('deductible').type" id="deductible" name="deductible"
+                               value="false">
+                        <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Toute la journée <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group">
+                      <label class="custom-toggle">
+                        <input (change)="ondeductibleSelect('full_day')"
+                               [formControl]="form.getField('full_day').asFormControl"
+                               [(ngModel)]="companyEnabledLeaveadd.full_day.value"
+                               [type]="form.getField('full_day').type"
+                               value="false" name="full_day">
+                        <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Crédit Négatif <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group">
+                      <label class="custom-toggle">
+                        <input (change)="ondeductibleSelect('negative_credit')"
+                               [formControl]="form.getField('negative_credit').asFormControl"
+                               [(ngModel)]="companyEnabledLeaveadd.negative_credit.value"
+                               [type]="form.getField('negative_credit').type"
+                               value="false" name="negative_credit">
+                        <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Active/ Inactive<span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group">
+                      <label class="custom-toggle">
+                        <input (change)="ondeductibleSelect('active')"
+                               [formControl]="form.getField('active').asFormControl"
+                               [(ngModel)]="companyEnabledLeaveadd.active.value"
+                               [type]="form.getField('active').type"
+                               value="false" name="active">
+                        <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Une partie de la journée <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group ">
+                      <label class="custom-toggle">
+                        <input (change)="ondeductibleSelect('partial_day')"
+                               [formControl]="form.getField('partial_day').asFormControl"
+                               [(ngModel)]="companyEnabledLeaveadd.partial_day.value"
+                               [type]="form.getField('partial_day').type"
+                               value="false" name="partial_day">
+                        <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">simultaneouslylimit <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <input name="simultaneously_limit" type="number"
+                             [(ngModel)]="companyEnabledLeaveadd.simultaneously_limit.value"
+                             class="form-control" required min="1">
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <div class="col-12 text-right" style="float: right;padding-right: 0px">
+                      <input type='submit'  style=" color: black; background: #ffcf03; border: #ffcf03;     padding: 2%; float: right; font-family: monospace " value="Ajouter"/>
+<!--                      <button style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; "-->
+<!--                              class="btn btn-sm btn-neutral"-->
+<!--                              type="submit">Ajouter-->
+<!--                      </button>-->
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="alert alert-success " style="display: none">
+                    <strong>Succès!</strong> le congé est ajouté avec succès .
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

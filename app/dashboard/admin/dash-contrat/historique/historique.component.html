@@ -1,0 +1,70 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">
+            Contrat:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info
+            Contrat > Historique</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="card-body">
+  <div class="table-editable" id="table">
+ <span class="table-add float-right" style="padding: 0">
+        <a (click)="add()" class="text-success">
+          <i aria-hidden="true" class="fa fa-plus"></i>
+        </a>
+      </span>
+    <table class="table table-bordered table-responsive-md table-striped text-center" datatable>
+      <thead>
+      <tr>
+        <th class="text-center">Type de contrat</th>
+        <th class="text-center">Date de Debut de contrat</th>
+        <th class="text-center">Date de fin de contrat</th>
+        <th class="text-center">Date de fin PE</th>
+        <th class="text-center">Date de sortie</th>
+        <th class="text-center"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let person of contractList; let id = index">
+        <td>
+                <span (blur)="updateList(id, 'typecontrat', $event)" (keyup)="changeValue(id, 'typecontrat', $event)"
+                      contenteditable="true">{{person.typecontrat}}</span>
+        </td>
+        <td>
+                <span (blur)="updateList(id, 'datedebut', $event)" (keyup)="changeValue(id, 'datedebut', $event)"
+                      contenteditable="true">{{person.datedebut}}</span>
+        </td>
+        <td>
+                <span (blur)="updateList(id, 'datefin', $event)" (keyup)="changeValue(id, 'datefin', $event)"
+                      contenteditable="true">{{person.datefin}}</span>
+        </td>
+        <td>
+                <span (blur)="updateList(id, 'datefinPE', $event)" (keyup)="changeValue(id, 'datefinPE', $event)"
+                      contenteditable="true">{{person.datefinPE}}</span>
+        </td>
+        <td>
+                <span (blur)="updateList(id, 'datesortie', $event)" (keyup)="changeValue(id, 'datesortie', $event)"
+                      contenteditable="true">{{person.datesortie}}</span>
+        </td>
+        <td>
+            <span class="table-remove">
+               <a (click)="remove(id)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+                 aria-hidden="true" class="fa fa-trash"></i></a>
+
+            </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+
+.button-icon{
+  text-transform: none!important;
+  letter-spacing: 0!important;
+  margin-right: 1em;
+  border-radius: 20px;
+  border: none;
+  padding: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.color {
+  background-color: #fdbc4a !important;
+  border-color: #fdbc4a !important;
+  color: white;
+}
+.card-detail{
+  border: thin solid rgba(0,0,0,.12);
+  border-radius: 4px;
+  padding: 1em;
+}
+
+.padd{
+  padding:0;
+  margin:0;
+}
+.out{
+  border-right: thin solid rgba(0,0,0,.12);
+  height: 7.5em;
+}
+
+.inputstyle{
+  border: 0;
+  width: 100%;
+}
+
+.dropbtn {
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+

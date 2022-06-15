@@ -1,0 +1,106 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Congé
+            :</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Règles de
+            Congé
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Liste des Règles de Congé
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body "
+           style="display: -webkit-flex;-webkit-flex-wrap: wrap;-webkit-justify-content: center;width:100%;">
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <tr>
+            <th class="text-center">Nom</th>
+            <th class="text-center">Nombre de jours</th>
+          </tr>
+          <tr *ngFor="let rule of congeRulesList; let id = index">
+            <td>
+                                <span >{{rule.name}}</span>
+            </td>
+            <td>
+                                <span >{{rule.total}}</span>
+            </td>
+            <td>
+            <span class="table-remove">
+               <a (click)="open(content)" class="delete" data-toggle="tooltip" style="    color: blue;"
+                  title="Delete"><i
+                 aria-hidden="true" class="fa fa-eye"></i></a>
+
+            </span>
+
+              <ng-template #content let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">La règle de congé : {{rule.name}}</h4>
+                  <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+                </div>
+                <div class="modal-body">
+                  <!--                             table collaborator leave-->
+                  <div class="table-editable" id="table">
+ <span class="table-add float-right" style="padding: 0">
+
+      </span>
+                    <table class="table table-bordered table-responsive-md table-striped text-center">
+                      <thead>
+                      <tr>
+                        <th class="text-center">janvier</th>
+                        <th class="text-center">février</th>
+                        <th class="text-center">Mars</th>
+                        <th class="text-center">Avril</th>
+                        <th class="text-center">Mai</th>
+                        <th class="text-center">Juin</th>
+                        <th class="text-center">Juillet</th>
+                        <th class="text-center">Aout</th>
+                        <th class="text-center">Septembre</th>
+                        <th class="text-center">Octobre</th>
+                        <th class="text-center">Nouvembre</th>
+                        <th class="text-center">Décembre</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td *ngFor="let value of rule.listleaveperday; let i = index">
+                <span >{{value}}</span>
+                        </td>
+
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!--                             end table collaborator leave-->
+                </div>
+                <div class="modal-footer">
+                  <button (click)="d('Cross click')" class="btn btn-outline-dark" type="button">close</button>
+                </div>
+              </ng-template>
+            </td>
+             </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

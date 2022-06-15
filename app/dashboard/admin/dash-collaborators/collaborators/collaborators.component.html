@@ -1,0 +1,772 @@
+
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">
+            Collaborateurs:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info
+            Gestion des Collaborateurs</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse"  style="color: #0080ad;width: 100%;height: 70px;" type="button">
+
+          <span style=" float: left;">  Ajouter un Collaborateur</span> <i style=" float: right; margin-top: 1%; " class="fa fa-chevron-down"></i>
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse " data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body">
+        <div class="table-editable" id="table">
+          <div class="card-body">
+            <form id="form1" (ngSubmit)="onFormSubmit(); testForm.reset()" role="form" #testForm="ngForm"  ngNativeValidate>
+
+              <div class="row" >
+                <div class="col-12" style="display: flex">
+                  <div class="col-6" style="   ;">
+<!--                    <div class="form-group focused" style="display: flex">-->
+<!--                      <label class="col-4" style="font-weight: bold;">Matricule </label>-->
+<!--                      <div class=" input-group input-group-alternative ">-->
+<!--                        <input [(ngModel)]="collaborator.matricule.value" [defaultValue]="0"-->
+<!--                               [ngModelOptions]="{standalone: true}"-->
+<!--                               class="form-control" name="totalday" (keyup)="checkMatricule($event)" required-->
+<!--                               pattern="[0-9]+"-->
+<!--                               title="Matricule invalide (chiffres)">-->
+<!--                        <div class="col-12 showcheckmatricule" style="display: none">-->
+<!--                                <span class="help-block"  style="color: red; font-size: 12px">-->
+<!--                                Numéro de matricule doit étre unique-->
+<!--                              </span>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+                  </div>
+
+                  <div class="col-6"  style="   ">
+                    <div class="form-group focused" style="display: flex; float: right">
+                      <label class="hoverable" for="fileInput">
+                        <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"
+                             style=" height: 100%; width: 100%; border-radius: 50%; ">
+                        <div class="hover-text">edit</div>
+                        <div class="background"></div>
+                      </label>
+                      <br/>
+                      <input [(ngModel)]="collaborator.personalPicture.value" [defaultValue]="0"
+                             [ngModelOptions]="{standalone: true}" id="fileInput"   accept="image/*"
+                             name="personalPicture" type='file' (change)="onSelectFile($event)" >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p  style="font-family: monospace;">Profil &gt; Information Personnel </p>
+              <div class="col-12" style="display: flex">
+                <div class="col-6" >
+
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused" >
+                        <label class="col-4" style="font-weight: bold;">Nom </label>
+                        <div class=" input-group input-group-alternative ">
+                          <input [(ngModel)]="collaborator.firstname.value" [defaultValue]="0"
+                                 [ngModelOptions]="{standalone: true}"
+                                 class="form-control" name="firstname" required
+                          >
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused">
+                        <label class="col-4" style="font-weight: bold;">Nom de jeune fille </label>
+                        <div class=" input-group input-group-alternative ">
+                          <input [(ngModel)]="collaborator.maidenName.value" [defaultValue]="0"
+                                 [ngModelOptions]="{standalone: true}"
+                                 class="form-control" name="maidenName"
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused" >
+                        <label class="col-4" style="font-weight: bold;">Date de Naissance </label>
+                        <div class=" input-group input-group-alternative ">
+                          <input type="date"
+                                 [(ngModel)]="collaborator.dateOfBirth.value"
+                                 [ngModelOptions]="{standalone: true}"
+                                 name="dateOfBirth"
+                                 class="form-control" >
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused" >
+                        <label class="col-4" style="font-weight: bold;">Nationalité </label>
+                        <div class=" input-group input-group-alternative ">
+
+                          <select [(ngModel)]="collaborator.nationality.value"
+                                  class="form-control " name="nationality">
+                            <option *ngFor="let nationality of nationalities; let id=index" value="{{nationality}}">{{nationality}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused">
+                        <label class="col-4" style="font-weight: bold;">Etat Civil </label>
+                        <div class=" input-group input-group-alternative ">
+                          <select [(ngModel)]="collaborator.civilState.value"
+                                  class="form-control" name="salutation" required
+                                  [ngModelOptions]="{standalone: true}">
+                            <option value="CELIBATAIRE">CELIBATAIRE</option>
+                            <option value="MARIE">MARIE</option>
+                            <option value="SEPARE">SEPARE</option>
+                            <option value="DIVORCE">DIVORCE</option>
+                            <option value="VEUF">VEUF</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-6">
+
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused" >
+                        <label class="col-4" style="font-weight: bold;">Prénom</label>
+                        <div class=" input-group input-group-alternative ">
+                          <input [(ngModel)]="collaborator.lastname.value" [defaultValue]="0"
+                                 [ngModelOptions]="{standalone: true}"
+                                 class="form-control" name="lastname" required
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused">
+                        <label class="col-4" style="font-weight: bold;">Email </label>
+                        <div class=" input-group input-group-alternative ">
+                          <input [(ngModel)]="collaborator.proEmail.value" [defaultValue]="0"
+                                 [ngModelOptions]="{standalone: true}"
+                                 class="form-control" type="email" name="address" required
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused" >
+                        <label class="col-4" style="font-weight: bold;">Numéro Téléphone </label>
+                        <div class=" input-group input-group-alternative ">
+                          <input [(ngModel)]="collaborator.mobileNumber.value"
+                                 class="form-control" name="mobileNumber"  type="text" required
+                                 pattern="[0-9]{8}"
+                                 title="Numéro de Téléphone invalide (8 chiffres)">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused" >
+                        <label class="col-4" style="font-weight: bold;">Ville </label>
+                        <div class=" input-group input-group-alternative ">
+                          <input [(ngModel)]="collaborator.city.value" [defaultValue]="0"
+                                 [ngModelOptions]="{standalone: true}"
+                                 class="form-control" name="city" required
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused">
+                        <label class="col-4" style="font-weight: bold;">Civilité </label>
+                        <div class=" input-group input-group-alternative ">
+                          <select [(ngModel)]="collaborator.salutation.value"
+                                  [ngModelOptions]="{standalone: true}"
+                                  class="form-control" name="salutation" required>
+                            <option value="MR">MR</option>
+                            <option value="MRS">MRS</option>
+                            <option value="MSS">MSS</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-lg-12 col-12" >
+                      <div class="form-group focused">
+                        <label class="col-2" style="font-weight: bold;">Adresse</label>
+                        <div class=" input-group input-group-alternative ">
+                          <input [(ngModel)]="collaborator.address.value" [defaultValue]="0"
+                                 [ngModelOptions]="{standalone: true}"
+                                 class="form-control" name="address" required
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <hr class="new5" style="border: 1px solid #d2d2d2; margin-top: 18px;">
+
+
+              <p  style="font-family: monospace;">Profil &gt; Identité </p>
+              <div class="col-12" style="display: flex;">
+                <div class="col-6">
+                  <div class="form-group focused">
+                    <label class="col-4" style="font-weight: bold;">Cin</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                        [(ngModel)]="collaborator.idCardNumber.value" required
+                        class="form-control" (keyup)="checkcin($event)"
+                        type="text"
+                        name="cin"  pattern="[0-9]{8}"
+                        title="Numéro de carte d'identité nationale  (8 chiffres)">
+
+
+                      <div class="col-12 showcheckcin"  style="display: none">
+                                <span class="help-block"  style="color: red; font-size: 12px">
+                                Numéro de carte d'identité doit étre unique
+                              </span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused">
+                    <label class="col-4" style="font-weight: bold;">Date CIN </label>
+                    <div class=" input-group input-group-alternative ">
+                      <input [(ngModel)]="collaborator.dateOfCin.value"
+                             class="form-control"
+                             type="date" required
+                             name="firstname">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12"  style="display: flex;">
+                <div class="col-6">
+                  <div class="form-group focused">
+                    <label class="col-4" style="font-weight: bold;">Piece Jointe Pile CIN</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input accept="image/*" [(ngModel)]="collaborator.attachementCinBack.value"
+                             class="form-control"
+                             type="file" (change)="onFileSelectPile($event)" required
+                             name="lastname">
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused">
+                    <label class="col-4" style="font-weight: bold;">Piece Jointe Face CIN </label>
+                    <div class=" input-group input-group-alternative ">
+                      <input accept="image/*" [(ngModel)]="collaborator.attachementCinFront.value"
+                             class="form-control"
+                             type="file" (change)="onFileSelectFace($event)" required
+                             name="firstname">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12" >
+                <div class="col-12">
+                  <div class="form-group focused">
+                    <label class="col-4" style="font-weight: bold;">Numéro de sécurité social</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input [(ngModel)]="collaborator.socialSecurityNumber.value"
+                             [ngModelOptions]="{standalone: true}"
+                             class="form-control" type="text" required
+                             name="cnss"  pattern="[0-9]{10}"
+                             title="Numéro de sécurité social invalide (10 chiffres)">
+
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <hr class="new5" style="border: 1px solid #d2d2d2;    margin-top: 18px;">
+
+
+
+              <p  style="font-family: monospace;">Profil &gt; Identité Bancaire</p>
+              <div class="col-12" style="display: flex;">
+                <div class="col-6">
+                  <div class="form-group focused">
+                    <label class="col-4" style="font-weight: bold;">Numéro de Compte </label>
+                    <div class=" input-group input-group-alternative ">
+                      <input [(ngModel)]="collaborator.collaboratorBankAccount.accountnumber.value" required
+                             class="form-control" name="accountnumber" type="number" (keyup)="checkAccountNumber($event)"
+                             pattern="[0-9]{20}"
+                             title="Numéro de Compte invalide (20 chiffres)">
+                      <div class="col-12 showcheckAccountNumber" style="display: none">
+                                <span class="help-block"  style="color: red; font-size: 12px">
+                                Numéro de compte doit étre unique
+                              </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group focused" >
+                    <label class="col-4" style="font-weight: bold;">Nom de Bank </label>
+                    <div class=" input-group input-group-alternative ">
+                      <input [(ngModel)]="collaborator.collaboratorBankAccount.bankname.value"
+                             class="form-control" name="bankname" required
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="new5" style="border: 1px solid #d2d2d2; margin-top: 3rem;">
+
+              <p  style="font-family: monospace;">Profil &gt; Regle de congé</p>
+
+              <div class="col-12" style="display: flex">
+                <div class="col-6">
+                  <div class="form-group focused" >
+                    <label class="col-4" style="font-weight: bold;">Règle de congé payé </label>
+                    <div style="display: flex">
+                      <div class=" input-group input-group-alternative custom-width-payed">
+                        <select [(ngModel)]="payedLeaveRules.uuid"  (change)="onSelectAddNewPayed($event, contentaddRule)"
+                                class="form-control " name="day" required>
+                          <option *ngFor="let leave of payedLeaveRulesList; let id=index" value="{{leave.item_id}}">{{leave.item_text}}</option>
+                          <option [value]="'new'">Add new...</option>
+                        </select>
+                      </div>
+                      <a (click)="openRule(content1)" class="show-payed" data-toggle="tooltip" style=" padding: 1%; margin-left: 1%; color: blue; display: none"
+                         title="Details"><i
+                        aria-hidden="true" class="fa fa-eye"></i></a>
+                      <ng-template #content2 let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="modal-basic-title">La règle de Congé est: {{currentSickRule.name}}</h4>
+                          <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+                        </div>
+                        <div class="modal-body">
+                          <!--                             table collaborator leave-->
+                          <p><span class="modal-title" > Totale :</span>  {{currentSickRule.total}}</p>
+                          <table class="table table-bordered table-responsive-md table-striped text-center" style="font-family: monospace" >
+                            <thead>
+                            <tr>
+                              <th class="text-center">janvier</th>
+                              <th class="text-center">février</th>
+                              <th class="text-center">Mars</th>
+                              <th class="text-center">Avril</th>
+                              <th class="text-center">Mai</th>
+                              <th class="text-center">Juin</th>
+                              <th class="text-center">Juillet</th>
+                              <th class="text-center">Aout</th>
+                              <th class="text-center">Septembre</th>
+                              <th class="text-center">Octobre</th>
+                              <th class="text-center">Nouvembre</th>
+                              <th class="text-center">Décembre</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td *ngFor="let value of currentSickRule.listleaveperday; let i = index">
+                                <span>{{value}}</span>
+                              </td>
+
+                            </tr>
+                            </tbody>
+                          </table>
+                          <!--                             end table collaborator leave-->
+                        </div>
+                        <div class="modal-footer">
+                          <input (click)="d('Cross click')" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;padding: 1% 5%;float: right;font-family: monospace;" value="OK">
+                        </div>
+                      </ng-template>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group focused">
+                    <label class="col-4" style="font-weight: bold;">Règle de congé maladie </label>
+                    <div style="display: flex">
+                      <div class=" input-group input-group-alternative custom-width-sick">
+                        <select [(ngModel)]="sickLeaveRules.uuid" (change)="onSelectAddNewsick($event, contentaddRule)"
+                                class="form-control " name="day" required>
+                          <option *ngFor="let leave of sickLeaveRulesList; let id=index" value="{{leave.item_id}}">{{leave.item_text}}</option>
+                          <option [value]="'new'">Add new...</option>
+                        </select>
+                      </div>
+                      <a (click)="openRule(content2)" class="show-sick" data-toggle="tooltip" style=" padding: 1%; margin-left: 1%; color: blue;display: none"
+                         title="Details"><i
+                        aria-hidden="true" class="fa fa-eye"></i></a>
+                      <ng-template #content1 let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="modal-basic-title1">La règle de Congé est: {{currentPayedRule.name}}</h4>
+                          <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+                        </div>
+                        <div class="modal-body">
+                          <!--                             table collaborator leave-->
+                          <p><span class="modal-title" > Totale :</span>  {{currentPayedRule.total}}</p>
+                          <table class="table table-bordered table-responsive-md table-striped text-center" style="font-family: monospace" >
+                            <thead>
+                            <tr>
+                              <th class="text-center">janvier</th>
+                              <th class="text-center">février</th>
+                              <th class="text-center">Mars</th>
+                              <th class="text-center">Avril</th>
+                              <th class="text-center">Mai</th>
+                              <th class="text-center">Juin</th>
+                              <th class="text-center">Juillet</th>
+                              <th class="text-center">Aout</th>
+                              <th class="text-center">Septembre</th>
+                              <th class="text-center">Octobre</th>
+                              <th class="text-center">Nouvembre</th>
+                              <th class="text-center">Décembre</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td *ngFor="let value of currentPayedRule.listleaveperday; let i = index">
+                                <span>{{value}}</span>
+                              </td>
+
+                            </tr>
+                            </tbody>
+                          </table>
+                          <!--                             end table collaborator leave-->
+                        </div>
+                        <div class="modal-footer">
+                          <input (click)="d('Cross click')" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;padding: 1% 5%;float: right;font-family: monospace;" value="OK">
+                        </div>
+                      </ng-template>
+
+                    </div>
+                  </div>
+                </div> <hr class="new5" style="border: 1px solid #d2d2d2;">
+
+              </div>
+
+              <div class="col-12" style="margin-bottom: 6%">
+                <input type='submit'  style=" color: black; background: #ffcf03; border: #ffcf03;     padding: 1%; float: right; font-family: monospace " value="Ajouter"/>
+                <!--                          <button type="submit" (click)="onFormSubmit()"-->
+                <!--                             class="btn btn-sm btn-neutral"-->
+                <!--                             style=" color: black; background: #ffcf03; border: #ffcf03;     padding: 1%; float: right; ">Modifier</button>-->
+              </div>
+
+<!--              <div class="col-12" style="display: flex">-->
+<!--                <div class="col-lg-10"></div>-->
+<!--                <div class="col-lg-2">-->
+<!--                  <button (click)="onFormSubmit()"-->
+<!--                          class="btn btn-sm btn-neutral"-->
+<!--                          style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; " >Ajouter</button>-->
+<!--                </div>-->
+
+<!--              </div>-->
+
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-lg-12 col-12">
+                    <div class="alert alert-success " style="display: none">
+                      <strong>Succès!</strong> Le collaborateur est ajouté avec succès .
+                    </div>
+                    <div class="alert alert-danger " style="display: none">
+                  <span class="error-hint">Matricule doit étre unique</span>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"
+                data-target="#collapseTwo" data-toggle="collapse" style="color: #0080ad;width: 100%;height: 70px;" type="button">
+
+         <span style=" float: left;"> Liste des Collaborateurs</span> <i style=" float: right; margin-top: 1%; " class="fa fa-chevron-down"></i>
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingTwo" class="collapse show" data-parent="#accordionExample" id="collapseTwo">
+
+      <form id="form1" role="form" class="mt-5" #testForm="ngForm" ngNativeValidate>
+
+        <div style="display: flex">
+          <div class="col-12" style="margin: 0; padding: 0; display: flex">
+            <div class="row col-2"></div>
+            <div class="row col-2">
+              <div class="col-lg-12 col-12">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-6" style="font-weight: bold;margin-top: 7%;font-size: 12px;">Matricule</label>
+                  <div class=" input-group input-group-alternative ">
+                    <input [(ngModel)]="collaboratorSearch.matricule"
+                            class="form-control " name="matricule" >
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row col-2">
+              <div class="col-lg-12 col-12">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-6" style="font-weight: bold;margin-top: 7%;font-size: 12px;">CIN</label>
+                  <div class=" input-group input-group-alternative ">
+                    <input [(ngModel)]="collaboratorSearch.cin"
+                           class="form-control " name="cin" >
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row col-2">
+              <div class="col-lg-12 col-12">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-6" style="font-weight: bold;margin-top: 7%;font-size: 12px;">Supprimé</label>
+                  <div class=" input-group input-group-alternative ">
+                    <select [(ngModel)]="collaboratorSearch.isdeleted"
+                           class="form-control " name="team" >
+                      <option  value=""> _ </option>
+                      <option  value="true"> Supprimé </option>
+                      <option value="false"> Non Supprimé </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row col-2">
+              <div class="col-lg-12 col-12">
+                <div class="form-group focused" style="display: flex">
+                  <label class="col-6" style="font-weight: bold;margin-top: 7%;font-size: 12px;">Département</label>
+                  <div class=" input-group input-group-alternative ">
+                    <select [(ngModel)]="collaboratorSearch.team"
+                           class="form-control " name="team" >
+                      <option  value=""> _ </option>
+                      <option *ngFor="let team of  teamsList" value="{{team.uuid}}"> {{team.label}} </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row col-2">
+              <div class="col-lg-12 col-12">
+                <div class="form-group focused" style="display: flex">
+                  <div class="col-12 text-right" style="float: right">
+                    <a (click)="search()"
+                       class="btn btn-sm btn-neutral"
+                       style=" color: black; background: #ffcf03; border: #ffcf03; padding: 7%;font-size: 10px; ">Recherche</a>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </form>
+      <div *ngIf="this.collaboratorsList.length === 0"><p style="text-align: center;">Vous n'avez pas des données enregistrés</p></div>
+
+
+      <div class="table-editable" style="margin-top: 2%;">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover "   style="  font-family: monospace;     margin: 0 !important;">
+          <thead  *ngIf="this.collaboratorsList.length != 0" >
+          <tr>
+            <th  scope="col" class=""  style="display: none">created</th>
+            <th  scope="col" class="">Nom</th>
+            <th  scope="col" class="">Prénom</th>
+            <th  scope="col" class="">CIN</th>
+            <th  scope="col" class="">matricule</th>
+            <th scope="col"  class="">Email</th>
+            <th scope="col"  class="">Département</th>
+            <th scope="col"  class="">Numéro sécurité sociale</th>
+            <th scope="col"  class="">supprimé</th>
+            <th  scope="col" class="">Raison de sortie</th>
+            <th  scope="col" class=""></th>
+          </tr>
+          </thead>
+          <tbody  *ngIf="this.collaboratorsList.length != 0">
+          <tr *ngFor="let person of collaboratorsList, let id = index;">
+            <td scope="col" style="display: none">
+                <span
+                >
+                  {{person.created | date: 'dd/MM/yyyy' }}
+                </span>
+            </td>
+            <td scope="col">
+                <span (blur)="updateList(id, 'firstname', $event)" (keyup)="changeValue(id, 'firstname', $event)"
+                      contenteditable="true" [innerHTML]="person.firstname">{{person.firstname}}</span>
+            </td>
+            <td scope="col">
+                <span (blur)="updateList(id, 'lastname', $event)" (keyup)="changeValue(id, 'lastname', $event)"
+                      contenteditable="true" [innerHTML]="person.lastname"></span>
+            </td>
+
+            <td scope="col">
+                <span (blur)="updateList(id, 'idCardNumber', $event)" (keyup)="changeValue(id, 'idCardNumber', $event)"
+                      contenteditable="true">{{person.idCardNumber}}</span>
+            </td>
+
+            <td scope="col">
+                <span (blur)="updateList(id, 'matricule', $event)" (keyup)="changeValue(id, 'matricule', $event)"
+                      contenteditable="true">{{person.matricule}}</span>
+            </td>
+
+            <td scope="col">
+                <span (blur)="updateList(id, 'proEmail', $event)"
+                      (keyup)="changeValue(id, 'proEmail', $event)"
+                      contenteditable="true">{{person.proEmail}}</span>
+            </td>
+            <td scope="col">
+                <span *ngIf="person.team!==null" (blur)="updateList(id, 'team', $event)" (keyup)="changeValue(id, 'team', $event)"
+                      >{{person.team.label}}</span>
+              <span *ngIf="person.team===null"  (blur)="updateList(id, 'team', $event)" (keyup)="changeValue(id, 'team', $event)"
+                      >_</span>
+            </td>
+            <td scope="col">
+                <span (blur)="updateList(id, 'socialSecurityNumber', $event)"
+                      (keyup)="changeValue(id, 'socialSecurityNumber', $event)"
+                      contenteditable="true" [innerHTML]="person.socialSecurityNumber">{{person.socialSecurityNumber}}</span>
+            </td>
+            <td scope="col">
+
+              <label *ngIf="person.isDeleted" class="custom-toggle">
+                <input  checked="" type="checkbox" [(ngModel)]="person.isDeleted"
+                       (ngModelChange)="ReAdd(id)"
+                >
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+              </label>
+              <label *ngIf="!person.isDeleted" class="custom-toggle">
+                <input id="'isdeleted'+id"  (ngModelChange)="openleavingReason(contentIsDeleted, person.isDeleted)" [(ngModel)]="person.isDeleted"
+                        type="checkbox" >
+                <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+                <br>
+                <button (click)="openleavingReason(contentIsDeleted, person.isDeleted)" style="visibility: hidden">test</button>
+              </label>
+
+
+            </td>
+            <td scope="col">
+
+              <span class="tooltip1" maxlength="10" style="cursor: pointer;" *ngIf="person.isDeleted" (blur)="updateList(id, 'leavingreason', $event)" (keyup)="changeValue(id, 'leavingreason', $event)"
+                    contenteditable="true">{{person.leavingreason  | slice:0:10 }}{{ person.leavingreason.length > 10 ? '...' : ''}}
+                <span class="tooltiptext">{{person.leavingreason}}</span></span>
+
+              <span *ngIf="!person.isDeleted"
+              >_____</span>
+
+            </td>
+            <td scope="col">
+                <span class="table-remove">
+               <a (click)="open(content, person.uuid)"class="delete" data-toggle="tooltip"  title="Delete"><i
+                 aria-hidden="true" class="fa fa-ellipsis-v"></i></a>
+            </span>
+
+              <ng-template #content let-c="close" let-d="dismiss" class="test" id="aa">
+                <div class="modal-header">
+<!--                  <h4 class="modal-title" id="modal-basic-title2">Le Collaborateur : {{person.firstname}} {{person.lastname}}</h4>-->
+<!--                  <button (click)="d('Cross click')" aria-label="Close" class="close" type="button">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                  </button>-->
+                  <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+                </div>
+                <wind-detail-collaborator (valueUpdate)="getUpdatedvalue($event, id)" [person]="person"></wind-detail-collaborator>
+
+              </ng-template>
+              <ng-template #contentIsDeleted let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+                <div class="modal-header" style="border-bottom: none;">
+                  <h4 class="modal-title" id="modal-basic-title3" style="color: red;">Confirmation de suppression </h4>
+                  <a class="lightbox__close" (click)="close()" >X</a>
+                </div>
+                <div class="modal-body">
+                  voulez vous vraiment supprimer cet élément?
+                  <br/>
+                  <br/>
+                  <div class="row">
+                    <div class="col-lg-12 col-12">
+                      <div class="form-group focused" style="display: flex">
+                        <label class="col-4" style="font-weight: bold;">Raison de Sortie </label>
+                        <div class=" input-group input-group-alternative ">
+                          <input [(ngModel)]="collaborator.leavingreason.value" [defaultValue]="0"
+                                 [ngModelOptions]="{standalone: true}"
+                                 class="form-control" name="leavingreason" value=""
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="modal-footer" style="border-top: none;">
+<!--                  <button (click)="remove(id,'deleted', $event)" class="btn btn-outline-red" type="button" style=" background: #d40000; color: white; ">Oui</button>-->
+                  <input (click)="remove(id,'deleted', $event)" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;float: right;font-family: monospace;" value="Valider">
+                </div>
+              </ng-template>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #contentaddRule let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+
+  <div class="modal-body">
+    <div class="modal-header" style="border-bottom: none;">
+      <h4 class="modal-title" id="modal-basic-title3">Confirmation de suppression </h4>
+      <a class="lightbox__close" (click)="reloadrules(contentaddRule)" >X</a>
+    </div>
+    <!--                             table collaborator leave-->
+    <wind-company-enabled-rule [rule]=rule></wind-company-enabled-rule>
+    <!--                             end table collaborator leave-->
+  </div>
+
+</ng-template>

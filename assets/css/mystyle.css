@@ -1,0 +1,11 @@
+@media print {
+
+  body {
+    color:red !important;
+    background-color: #fff !important;
+  }
+  .modal-title{
+    color: red !important;
+  }
+
+}

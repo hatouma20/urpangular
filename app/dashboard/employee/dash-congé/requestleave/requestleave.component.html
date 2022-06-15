@@ -1,0 +1,213 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Congé:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info
+            Congé > Demande de congé</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Liste des demandes de congés
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body" style="    margin-bottom: 5%;">
+        <div class="table-editable" id="table">
+          <span>
+             <div class="row">
+                      <div class="">
+                        <span class="h5 mb-0">Solde Congé Payé: <span style="font-size: 15px;" class="card-title text-uppercase text-muted mb-0">{{collaboratorHistory.current_payed_leave_credit}}</span></span>
+                        <br/>
+                        <span class="h5 mb-0">Solde Congé Maladie: <span style="font-size: 15px;" class="card-title text-uppercase text-muted mb-0">{{collaboratorHistory.current_sick_leave_credit}}</span></span>
+                      </div>
+
+                    </div>
+          </span>
+      <span class="table-add float-right">
+            <a (click)="open(content)" class="btn btn-sm btn-neutral"
+               style="color: black;background: #ffcf03;border: #ffcf03;padding: 4%;">Envoyer une demande congé</a>
+
+      </span>
+          <div *ngIf="this.requestLeaveList.length == 0"><p style="text-align: center;">Vous n'avez pas des données enregistrés</p></div>
+
+
+          <div class="table-editable" id="table2">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;">
+              <thead  *ngIf="this.requestLeaveList.length != 0" >
+              <tr>
+                <th >#</th>
+                <th >Date debut </th>
+                <th > Date fin </th>
+                <th > Status </th>
+                <th > Type</th>
+                <th > Raison </th>
+
+              </tr>
+              </thead >
+              <tbody  *ngIf="this.requestLeaveList.length != 0">
+              <tr *ngFor="let request of requestLeaveList, let id = index;">
+                <td>
+                <span
+                >{{id + 1}}</span>
+                </td>
+                <td>
+                  <span >{{request.startdate.value}}</span>
+                </td>
+                <td>
+                  <span >{{request.enddate.value}}</span>
+                </td>
+
+                <td>
+
+                <span  style="cursor: pointer">
+                                  <div *ngIf="request.status.values.pending" class="status -pending">Pending</div>
+                                 <div *ngIf="request.status.values.approved" class="status -success">Approved</div>
+                                 <div *ngIf="request.status.values.denied" class="status -failure">Denied</div>
+                                 <div *ngIf="request.status.values.partially_approved" class="status -success" style="padding-left: 16% !important">Partially Approved</div>
+                                </span>
+
+                </td>
+                <td>
+                  <span >{{request.leave.type}}</span>
+                </td>
+                <td >
+                <span class="tooltip1" maxlength="10" style="cursor: pointer;">{{request.reason.value  | slice:0:20 }}{{ request.reason.value.length > 20 ? '...' : ''}}
+                  <span class="tooltiptext">{{request.reason.value}}</span></span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<ng-template #content let-c="close" style=" max-width: 65%; margin-left: 20%; ">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Envoyer une demande de congé : </h4>
+    <button (click)="close(content)" aria-label="Close" class="close" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!--                             request leave-->
+    <form id="form1" (ngSubmit)="onFormSubmit()" role="form" #testForm="ngForm" ngNativeValidate>
+
+      <div style="display: flex">
+        <div class="col-2"></div>
+        <div class="col-8" style="margin: 0; padding: 0">
+
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Type <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <select [(ngModel)]="leave.uuid.value"  [ngModelOptions]="{standalone: true}" name="uuid"
+                          class="form-control" required>
+                    <option *ngFor="let type of companyEnabledLeaveList"
+                            [value]="type.uuid.value">
+                      {{type.type.value}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Raison <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                      <textarea [(ngModel)]="requestLeave.reason.value" [ngModelOptions]="{standalone: true}"
+                                class="form-control" cols="50" name="reason" rows="4" required></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Date Début <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <input required
+                         [(ngModel)]="requestLeave.startdate.value" [ngModelOptions]="{standalone: true}"
+                         class="form-control datepicker"
+                         id='startdate' name="startdate"  type="date">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Date fin <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <input
+                         [(ngModel)]="requestLeave.enddate.value" [ngModelOptions]="{standalone: true}"
+                         class="form-control datepicker"
+                         id='enddate' name="enddate" type="date" required>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <div class="col-12 text-right" style="float: right">
+                  <input type="submit"
+                     class="btn btn-sm btn-neutral"
+                     style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; " value="Ajouter">
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="alert alert-success " style="display: none">
+                <strong>Succès!</strong> la demande est envoyée avec succès .
+              </div>
+              <div class="alert alert-danger " style="display: none">
+                <strong>Echec!</strong> la demande n'est pas envoyée. Vérifiez votre solde de congés et le nombre des jours en avances.
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </form>
+    <!--                             end request leave-->
+  </div>
+  <!--  <div class="modal-footer">-->
+  <!--    <button (click)="d('Cross click')" class="btn btn-outline-dark" type="button">close</button>-->
+  <!--  </div>-->
+</ng-template>

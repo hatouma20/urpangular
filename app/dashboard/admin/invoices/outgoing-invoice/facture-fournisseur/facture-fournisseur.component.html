@@ -1,0 +1,1692 @@
+
+<!--<div class="header " style="    background: #c1c1c12e;">-->
+<!--  <div class="container-fluid">-->
+<!--    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">-->
+<!--      <div class="row align-items-center py-4">-->
+<!--        <div class="col-lg-6 col-7">-->
+<!--          <h6 class="h2  d-inline-block mb-0"-->
+<!--              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">-->
+<!--            Facturation:</h6>-->
+<!--          <br>-->
+<!--          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">-->
+<!--            Facture Fournisseur</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="accordion mt-5" id="accordionExample">-->
+<!--  <div class="card card-info">-->
+<!--    <div class="card-header card-info-header" id="headingTwo">-->
+<!--      <h2 class="mb-0">-->
+<!--        <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"-->
+<!--                data-target="#collapseTwo" data-toggle="collapse" style="color: #0080ad;width: 100%;height: 70px;" type="button">-->
+
+<!--          <span style=" float: left;"> Ajouter facture</span> <i style=" float: right; margin-top: 1%; " class="fa fa-chevron-down"></i>-->
+<!--        </button>-->
+<!--      </h2>-->
+<!--    </div>-->
+<!--    <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionExample" id="collapseTwo" style="margin-top: 2%">-->
+<!--      <mat-horizontal-stepper [linear]="isLinear" #stepper>-->
+<!--        <mat-step [stepControl]="firstFormGroup" style="">-->
+<!--          <form [formGroup]="firstFormGroup" style="display: grid;padding: 5%;padding-top: 0;">-->
+<!--            <ng-template matStepLabel>Etape 1</ng-template>-->
+
+<!--            <div style="display: flex">-->
+<!--              <div class="col-4" style="display: flex;;">-->
+<!--                <mat-form-field class="example-full-width col-11">-->
+<!--                  <input placeholder="fournisseur"   type="text" #autoCompleteInput formControlName="firstCtrl"-->
+<!--                         matInput id="name"-->
+<!--                         [matAutocomplete]="auto" required-->
+<!--                         (keyup)="_filter($event)"-->
+<!--                         [(ngModel)]="nomfournisseur" name="nomfournisseur" value="">-->
+<!--                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="select()">-->
+<!--                    <mat-option *ngFor="let option1 of filteredfournisseurList | async" [value]="option1.name">-->
+<!--                      {{option1.name}}-->
+<!--                    </mat-option>-->
+<!--                  </mat-autocomplete>-->
+<!--                </mat-form-field>-->
+<!--                <span class="table-add float-right newfournisseur " style="display: none; margin-top: 20px;" data-toggle="tooltip"  title="Ajouter un nouveau fournisseur">-->
+<!--                    <a (click)="addFournisseur(content)" style=" color: #efcc0b;">-->
+<!--                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png" style="width: 20px;">-->
+<!--                    </a>-->
+<!--                  </span>-->
+<!--                <ng-template #content let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">-->
+<!--                  <div class="modal-body">-->
+<!--                    &lt;!&ndash;                             table collaborator leave&ndash;&gt;-->
+<!--                    <wind-fournisseur></wind-fournisseur>-->
+<!--                    &lt;!&ndash;                             end table collaborator leave&ndash;&gt;-->
+<!--                  </div>-->
+<!--                  <div class="modal-footer">-->
+<!--                    <input (click)="d('Cross click')" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;padding: 1% 5%;float: right;font-family: monospace;" value="OK">-->
+<!--                  </div>-->
+<!--                </ng-template>-->
+<!--              </div>-->
+<!--              <mat-form-field class="example-full-width col-4">-->
+<!--                <input placeholder="code fournisseur"-->
+<!--                       matInput [(ngModel)]="codefournisseur" name="codefournisseur"-->
+<!--                       [formControl]="myControl"-->
+<!--                       [matAutocomplete]="auto2" required id="code"-->
+<!--                       (keyup)="_filter2($event)" value=""  (blur)="defaultSelect()">-->
+<!--                <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" (optionSelected)="selectCode()" >-->
+<!--                  <mat-option *ngFor="let option of filteredcodefournisseurList | async" [value]="option.code" >-->
+<!--                    {{option.code}}-->
+<!--                  </mat-option>-->
+<!--                </mat-autocomplete>-->
+<!--              </mat-form-field>-->
+<!--              <mat-form-field  class="example-full-width col-4" >-->
+<!--                <input placeholder="Type d'Achat"-->
+<!--                       matInput formControlName="thirdCtrl"-->
+<!--                       [matAutocomplete]="auto3" required-->
+<!--                       [(ngModel)]="type" name="type" value=""-->
+<!--                       (keyup)="_filterbyType($event)">-->
+<!--                <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete" (optionSelected)="selectPurchaseType($event)">-->
+<!--                  <mat-option *ngFor="let option2 of typeAchatList | async" [value]="option2.label"> {{option2.label}}-->
+<!--                  </mat-option>-->
+<!--                </mat-autocomplete>-->
+<!--              </mat-form-field>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash;_______________________Select adresse et RIB_________________________&ndash;&gt;-->
+<!--            <div >-->
+
+<!--              <div style="display: flex; z-index: 1;">-->
+<!--                <div (click)="open(contentadd)" style="position: absolute;left: 5%; top: 53%;">-->
+<!--                  <a  class="delete" data-toggle="tooltip" style="float: right;" ><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png" style="width: 20px;"></a>-->
+<!--                </div>-->
+<!--              </div>-->
+
+
+<!--              <div style="display: flex;    margin-top: 0%;">-->
+<!--                &lt;!&ndash;___Select adresse___&ndash;&gt;-->
+<!--                <mat-form-field  class="col-4"  style="    margin-top: 2.1%;">-->
+<!--                  <input placeholder="Adresse de fournisseur"   type="text" #autoCompleteInput formControlName="address"-->
+<!--                         matInput-->
+<!--                         [matAutocomplete]="auto4" required-->
+<!--                         (keyup)="filteradressedelect($event)"-->
+<!--                         [(ngModel)]="SelectAddress.item_text" name="address" [value]="SelectAddress.item_text">-->
+<!--                  <mat-autocomplete autoActiveFirstOption #auto4="matAutocomplete" (optionSelected)="select()">-->
+<!--                    <mat-option *ngFor="let option of fournisseurAddressList | async" [value]="option.item_text">-->
+<!--                      {{option.item_text}}-->
+<!--                    </mat-option>-->
+<!--                  </mat-autocomplete>-->
+<!--                  &lt;!&ndash;                  <input matInput placeholder="" style="display: none"  >&ndash;&gt;-->
+<!--                  &lt;!&ndash;                  <input placeholder="Adresse de fournisseur"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                         matInput formControlName="city"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                         [matAutocomplete]="auto4" required&ndash;&gt;-->
+<!--                  &lt;!&ndash;                         [(ngModel)]="SelectAddress.item_text" name="address" [value]="SelectAddress.item_text"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                         (click)="filteradressedelect()">&ndash;&gt;-->
+<!--                  &lt;!&ndash;                  <mat-autocomplete autoActiveFirstOption #auto4="matAutocomplete" >&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    <mat-option *ngFor="let option2 of fournisseurAddressList | async" [value]="option2.item_id">&ndash;&gt;-->
+<!--                  &lt;!&ndash;                      {{option2.item_text}}&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    </mat-option>&ndash;&gt;-->
+<!--                  &lt;!&ndash;                  </mat-autocomplete>&ndash;&gt;-->
+
+
+<!--                  &lt;!&ndash;                  <ng-multiselect-dropdown&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    style=" width: 50%;"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    [settings]="dropdownSettings"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    [placeholder]="'Adresse de fournisseur'"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    [data]="fournisseurAddressList | async"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    formControlName="city"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    (onSelect)="onItemSelectAddress($event)"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    (onDeSelect)="onItemDeSelectAddress($event)"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    (click)="adressedelect()"&ndash;&gt;-->
+<!--                  &lt;!&ndash;                    [(ngModel)]="SelectAddress.item_text" name="address">&ndash;&gt;-->
+<!--                  &lt;!&ndash;                  </ng-multiselect-dropdown>&ndash;&gt;-->
+
+<!--                </mat-form-field>-->
+<!--                <mat-form-field class="col-4" style="margin-left: 2em;width: 26%">-->
+<!--                  <mat-label style="  color: #757575;">Assujetti à la TVA</mat-label>-->
+<!--                  <input matInput placeholder="Last name, First name"  formControlName="firsttCtrl" required style="display: none">-->
+<!--                  <label class="custom-toggle" style="float:right">-->
+<!--                    <input type="checkbox" [checked]="checkboxValue" [(ngModel)]="checkboxValue" (change)="gettvacheck(checkboxValue = !checkboxValue)" />-->
+<!--                    <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>-->
+<!--                  </label>-->
+
+<!--                </mat-form-field>-->
+<!--                <div style="width:30px"></div>-->
+<!--                <mat-form-field    class="col-4" style="width: 32%;margin-top: -12px;">-->
+<!--                  <mat-label style="color: #2d2d44;"></mat-label>-->
+<!--                  <input matInput placeholder="Last name, First name" style="display: none">-->
+<!--                  <br>-->
+<!--                  <div class="nav-wrapper" style=" width: 100%; margin: 0; text-align: left; padding-bottom: 0px;">-->
+<!--                    <div class="sl-nav">-->
+
+<!--                      <ul>-->
+<!--                        <li style="background: transparent;color: #757575; width: 400px" (click)="toggle()">{{this.languetext}} <i class="fa fa-angle-down" aria-hidden="false" style="float:right"></i>-->
+<!--                          <div *ngIf="show">-->
+<!--                            <div class="triangle"></div>-->
+<!--                            <ul style="    width: 400px;">-->
+<!--                              <li class="languehover" (click)="langue('')"> <span>Sélectionner la langue de facture</span></li>-->
+<!--                              <li class="languehover" (click)="langue('fr')"><i class="sl-flag flag-de"><div id="francais"></div></i> <span>Francais</span></li>-->
+<!--                              <li class="languehover" (click)="langue('en')"><i class="sl-flag flag-usa"><div id="english"></div></i> <span>English</span></li>-->
+<!--                              <li class="languehover" (click)="langue('ar')"><i class="sl-flag flag-tun"><div id="arabe"></div></i> <span>العربية</span></li>-->
+
+<!--                            </ul>-->
+<!--                          </div>-->
+<!--                        </li>-->
+<!--                      </ul>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+
+
+
+<!--                </mat-form-field>-->
+
+<!--              </div>-->
+<!--            </div>-->
+
+
+<!--            &lt;!&ndash;_______________________Select adresse et RIB_________________________&ndash;&gt;-->
+
+
+<!--            <div style="display: flex">-->
+
+<!--            </div>-->
+
+
+
+<!--            <div>-->
+<!--              <div *ngIf="alertshow" style=" color: #a94442; background-color: #f2dede; border-color: #ebccd1; padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; ">-->
+<!--                Les champs selectionner <b>adresse de fournisseur</b> est obligatoire-->
+<!--              </div>-->
+
+<!--              <button (click)="goForward(stepper)" type="button" style="margin-top: 6%;color: black;background: #efcc0b;box-sizing: border-box;position: relative;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor: pointer;outline: 0;border: none;-webkit-tap-highlight-color: transparent;display: inline-block;white-space: nowrap;text-decoration: none;vertical-align: baseline;text-align: center;margin: 0;min-width: 64px;line-height: 36px;border-radius: 4px;overflow: visible;margin-top: 6%;padding: 5px; ">-->
+<!--                Next-->
+<!--              </button>-->
+<!--              &lt;!&ndash;                <button mat-button matStepperNext style="margin-top:6%;padding: 5px;color: black;background: #efcc0b; "  >Next</button>&ndash;&gt;-->
+<!--            </div>-->
+<!--          </form>-->
+<!--        </mat-step>-->
+
+
+<!--        &lt;!&ndash;______________________________________________________________&ndash;&gt;-->
+<!--        <mat-step [stepControl]="secondFormGroup" [editable]="true">-->
+<!--          <form [formGroup]="secondFormGroup">-->
+<!--            <ng-template matStepLabel >Générer Facture</ng-template>-->
+<!--            <mat-form-field   style="display:none">-->
+<!--              &lt;!&ndash;                <mat-label>Numéro de facture</mat-label>&ndash;&gt;-->
+<!--              <input matInput placeholder="Numéro de facture" value=" 20200044-WE"   formControlName="secondCtrl" >-->
+<!--            </mat-form-field>-->
+<!--            &lt;!&ndash;              <wind-Invoice [clientModel]=clientModel></wind-Invoice>&ndash;&gt;-->
+
+<!--            <div class="invoice-form-wrapper">-->
+<!--              <div class="px-3">-->
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+
+<!--                    <h3 class="section-title">-->
+<!--                      <div>-->
+<!--                        <img  class="n3VNCb" src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/31/2018/01/2-people-interview-image.png" style=" width: 40px;">-->
+<!--                      </div>-->
+<!--                      <span class="icon-title">Fournisseur</span>-->
+<!--                    </h3>-->
+<!--                    <div *ngIf="clientexist===false" class="card-detail" style="height: 6em;">-->
+<!--                      <a  (click)="goBack(stepper)" class="selectclient" style="height: 6em;background-color: #f5f5f5;">-->
+<!--              <span class="v-btn__content">-->
+<!--            <p class="emptyTitle">Pas de client sélectionné</p>-->
+<!--            <p class="emptyDescription">Cliquez pour sélectionner</p>-->
+<!--            </span>-->
+<!--                      </a>-->
+
+<!--                    </div>-->
+<!--                    <div *ngIf="clientexist===true" class="card-detail row">-->
+<!--                      <div clas="col-2" style="width: 16.66%;">-->
+<!--                        <img src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png" style="width: 50px;"></div>-->
+<!--                      <div clas="col-8" style="width: 66.64%;">-->
+<!--                        <p class="societedetail" style="    font-size: 16px;"> {{this.clientModel.name}} </p>-->
+<!--                        <p class="societedetail">{{this.clientModel.email}}  </p>-->
+<!--                        <p class="societedetail">{{this.clientModel.phonenumber}} </p>-->
+<!--                        <p class="societedetail"> {{this.clientModel.adresse}} </p>-->
+<!--                        <p class="societedetail"> RC: {{this.clientModel.rc}}  / MF:{{this.clientModel.mf}} </p>-->
+
+<!--                      </div>-->
+<!--                      <div clas="col-2" style="width: 16.66%;">-->
+<!--            <span (click)="clientexistfct()" style="float: right;padding: 1em;">-->
+<!--              <span data-toggle="tooltip" title="show" class="show">-->
+<!--              <i aria-hidden="true" class="fa fa-trash-o"></i>-->
+<!--            </span>-->
+<!--            </span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                  <div class="col">-->
+<!--                    <h3 class="section-title">-->
+<!--                      <div>-->
+<!--                        <img  class="n3VNCb" src="https://img.icons8.com/ios/452/client-company.png" style=" width: 40px;">-->
+<!--                      </div>-->
+<!--                      <span class="icon-title">Société</span>-->
+<!--                    </h3>-->
+<!--                    <div class="card-detail row" style="    margin-left: 0.3em;">-->
+<!--                      <div clas="col-2" style="width: 16.66%;"><img src="{{clientimage}}" style="width: 50px;"></div>-->
+<!--                      <div clas="col-8" style="width: 66.64%;">-->
+<!--                        <p class="societedetail" style="    font-size: 16px;"> {{patternResult.company_name}} </p>-->
+<!--                        <p class="societedetail"> {{patternResult.phone_number}} </p>-->
+<!--                        <p class="societedetail"> {{partnerDefaulAddress}} </p>-->
+<!--                        <p class="societedetail"> RC: {{patternResult.trade_register}} / MF:{{patternResult.patent}}</p>-->
+<!--                        <p class="societedetail"> RIB: {{partnerDefaulRib}} </p>-->
+<!--                      </div>-->
+<!--                      <div clas="col-2" style="width: 16.66%;">-->
+<!--            <span style="float: right;padding: 1em;">-->
+<!--              <a  (click)="openpopup(contentpartner)" data-toggle="tooltip" title="show" class="show">-->
+<!--                  <i aria-hidden="true" class="fa fa-ellipsis-v"></i>-->
+<!--            </a>-->
+<!--            </span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div  [style]="ValidationInvoiceInputNextStepper === true?'border: 1px solid red': 'border: none'"    class="invoice-form-wrapper">-->
+<!--              <div  class="px-3">-->
+
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+<!--                    <h3 class="section-title">-->
+<!--                      <div>-->
+<!--                        <img  class="n3VNCb" src="https://www.iconfinder.com/data/icons/user-interface-131/32/Menu-512.png" style=" width: 40px;">-->
+<!--                      </div>-->
+
+<!--                    </h3>-->
+<!--                    <div *ngIf="facturelist.length===0" class="card-detail" style="text-align: center;border: 1px solid #fdbc4a;border-style: dashed;">-->
+<!--                      <h1><i class="fa fa-bars" aria-hidden="true"></i></h1>-->
+<!--                      <h3>Ce document n'a pas de ligne</h3>-->
+<!--                      <button  (click)="addline()" style="color: black; background: #ffcf03; border: #ffcf03; padding: 1%; border-radius: 5px; font-family: monospace; border: none !important;">-->
+<!--                        Ajouter une ligne-->
+<!--                      </button>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                </div>-->
+
+<!--              </div>-->
+
+<!--              <div class="px-3">-->
+
+<!--                <div *ngFor="let facture of facturelist , let id = index;">-->
+<!--                  &lt;!&ndash;         <div *ngIf="facture.type === 1" class="outline">&ndash;&gt;-->
+<!--                  <div [style.display]="facture.type == 1?'block': 'none'" class="outline">-->
+<!--                    <br>-->
+<!--                    <div class="col-12" style="display: flex; padding:0">-->
+<!--                      <div class="col-11" style="padding:0">-->
+<!--                        <wind-outputline  [line]="linestotallist[id]" [devise]="templatedevise" [assujtva]="checkboxValue"></wind-outputline>-->
+
+<!--                      </div>-->
+<!--                      <div class="col-1" style="padding: 0;text-align:center;border: thin solid rgba(0,0,0,.12);border-radius: 4px;margin-left: -5px;border-left: 0px;">-->
+<!--                        <br><br>-->
+
+<!--                        <div class="dropdown">-->
+<!--                          <span class="dropbtn"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>-->
+<!--                          <div class="dropdown-content">-->
+<!--                            &lt;!&ndash;                            <a href="#"><i class="fa fa-clipboard" aria-hidden="true"></i><span style=" margin-left: 1em;">Dupliquer</span></a>&ndash;&gt;-->
+
+<!--                            <a (click)="remove(id,getIndex(id))" style="border-top: thin solid rgba(0,0,0,.12);"> <i class="fa fa-trash" aria-hidden="true"></i><span style=" margin-left: 1em;">Supprimer</span> </a>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  &lt;!&ndash;         <div *ngIf="facture.type === 3" class="comment">&ndash;&gt;-->
+<!--                  <div [style.display]="facture.type == 3?'block': 'none'" class="comment">-->
+<!--                    <br>-->
+<!--                    <div class="col-12" style="display: flex; padding:0">-->
+<!--                      <div class="col-11" style="padding:0">-->
+<!--                        <wind-comment [line]="linestotallist[id]"></wind-comment>-->
+<!--                      </div>-->
+<!--                      <div class="col-1" style="padding: 0;text-align:center;border: thin solid rgba(0,0,0,.12);border-radius: 4px;margin-left: -5px;border-left: 0px;">-->
+<!--                        <br><br>-->
+<!--                        <div class="dropdown">-->
+<!--                          <span class="dropbtn"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>-->
+<!--                          <div class="dropdown-content">-->
+<!--                            <a href="#"><i class="fa fa-clipboard" aria-hidden="true"></i><span style=" margin-left: 1em;">Dupliquer</span></a>-->
+<!--                            <a (click)="remove(id,getIndex(id))" style="border-top: thin solid rgba(0,0,0,.12);"> <i class="fa fa-trash" aria-hidden="true"></i><span style=" margin-left: 1em;">Supprimer</span> </a>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  &lt;!&ndash;         <div *ngIf="facture.type === 2"class="subtotal" >&ndash;&gt;-->
+<!--                  <div [style.display]="facture.type == 2?'block': 'none'" class="subtotal" >-->
+<!--                    <br>-->
+<!--                    <div class="col-12" style="display: flex; padding:0">-->
+<!--                      <div class="col-11" style="padding:0">-->
+<!--                        <wind-subtotal [devise]="templatedevise" [linestotallist]="linestotallist" [startFrom]="getStartFrom(id)" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+<!--                      </div>-->
+<!--                      <div class="col-1" style="padding: 0;text-align:center;border: thin solid rgba(0,0,0,.12);border-radius: 4px;margin-left: -5px;border-left: 0px;">-->
+<!--                        <br><br>-->
+<!--                        <div class="dropdown">-->
+<!--                          <span class="dropbtn"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>-->
+<!--                          <div class="dropdown-content">-->
+<!--                            <a href="#"><i class="fa fa-clipboard" aria-hidden="true"></i><span style=" margin-left: 1em;">Dupliquer</span></a>-->
+<!--                            <a (click)="remove(id,getIndex(id))" style="border-top: thin solid rgba(0,0,0,.12);"> <i class="fa fa-trash" aria-hidden="true"></i><span style=" margin-left: 1em;">Supprimer</span> </a>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  <br>-->
+<!--                </div>-->
+<!--                <div *ngIf="facturelist.length>0" class="row">-->
+<!--                  <div class="col" style="text-align: center;">-->
+<!--                    <div>-->
+
+<!--                      <button (click)="addline()"  type="button" class="button-icon color">-->
+<!--                        <span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png" style="width: 20px;"></span>-->
+<!--                        <span style="margin-left: 5px; font-size: 13px;">Ajouter une ligne </span>-->
+<!--                      </button>-->
+<!--                      <button (click)="addsubtotal()" type="button" class="button-icon">-->
+<!--                        <span><img src="https://icon-library.com/images/1fc0c4f99e.png" style="width: 20px;"></span>-->
+<!--                        <span style="margin-left: 5px; font-size: 13px;">Sous Total </span>-->
+<!--                      </button>-->
+<!--                      <button (click)="addcomment()" type="button" class="button-icon">-->
+<!--                        <span><img src="https://www.flaticon.com/svg/static/icons/svg/1380/1380338.svg" style="width: 20px;"></span>-->
+<!--                        <span style="margin-left: 5px; font-size: 13px;">Commentaire</span>-->
+<!--                      </button>-->
+
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--              </div>-->
+
+<!--              <div  [style]="ValidationInvoiceInputNextStepper === true?'display: block': 'display: none'"    class="invoice-form-wrapper" style="  padding: 1%; margin: 1%;  color: #a94442; background-color: #f2dede; border-color: #ebccd1;">-->
+<!--                <strong>Alerte!</strong> Remplir les informations nécessaires de la facture.-->
+<!--              </div>-->
+
+
+<!--            </div>-->
+
+<!--            <div class="invoice-form-wrapper">-->
+<!--              <div class="px-3">-->
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+<!--                    <h3 class="section-title">-->
+<!--                      <div>-->
+<!--                        <img  class="n3VNCb" src="https://www.zem-restaurant.fr/userfiles/25736/Facebook/img_464430.png" style=" width: 40px;">-->
+<!--                      </div>-->
+<!--                      <span class="icon-title">Dates</span>-->
+<!--                    </h3>-->
+<!--                    <div class="card-detail">-->
+<!--                      <wind-date></wind-date>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col">-->
+
+<!--                    <h3 class="section-title">-->
+<!--                      <div>-->
+<!--                        <img  class="n3VNCb" src="https://www.iconfinder.com/data/icons/taxes-3/512/taxes-payable-tax-duties-charge-19-512.png" style="width: 40px;">-->
+<!--                      </div>-->
+<!--                      <span class="icon-title">Taxe, Numéro...</span>-->
+<!--                    </h3>-->
+<!--                    <div class="card-detail">-->
+<!--                      <wind-taxe (note)="notechange($event)"  [facturenumber]="facturenumber" ></wind-taxe>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col">-->
+
+<!--                    <h3 class="section-title">-->
+<!--                      <div>-->
+<!--                        <img  class="n3VNCb" src="https://img2.freepng.fr/20180426/bdq/kisspng-computer-icons-language-icon-5ae1fb9f67a4d2.3458536015247594554245.jpg" style=" width: 40px;">-->
+<!--                      </div>-->
+<!--                      <span class="icon-title">Langue, Devise...</span>-->
+<!--                    </h3>-->
+<!--                    <div class="card-detail">-->
+
+<!--                      <wind-devise (colorselected)="colorchange($event)" (modele)="modelechange($event)" (devise)="devisechange($event)"></wind-devise>-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="invoice-form-wrapper">-->
+<!--              <div class="">-->
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+<!--                    <h3 class="section-title"></h3>-->
+<!--                  </div>-->
+<!--                </div></div>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <input matInput placeholder="Remplir les informations nécessaires de la facture" formControlName="secondCtrl" required [(ngModel)]="invoicetest" style="display:none">-->
+<!--              <button mat-button matStepperPrevious style=" padding: 5px; color: white; background: #2d2d44; margin-right: 1em; ">Back</button>-->
+
+<!--              <button (click)="gotopreview(stepper)" type="button" style="margin-top: 6%;color: black;background: #efcc0b;box-sizing: border-box;position: relative;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor: pointer;outline: 0;border: none;-webkit-tap-highlight-color: transparent;display: inline-block;white-space: nowrap;text-decoration: none;vertical-align: baseline;text-align: center;margin: 0;min-width: 64px;line-height: 36px;border-radius: 4px;overflow: visible;margin-top: 6%;padding: 5px; ">-->
+<!--                Next-->
+<!--              </button>-->
+
+<!--            </div>-->
+
+
+<!--          </form>-->
+<!--        </mat-step>-->
+
+
+
+<!--        &lt;!&ndash;______________________________________________________________&ndash;&gt;-->
+
+<!--        <mat-step>-->
+<!--          <ng-template matStepLabel>Préview et Imprimer</ng-template>-->
+<!--          <div *ngIf="modeleinvoice === 1">-->
+<!--            <wind-modele1 [invoiceCategory]="'FactureFournisseur'" [invoiceType]="'ACHAT'" [invoiceAction]="invoiceAction" [translatee]="translate" [purchaseType]="purchaseType" [checkboxValue]="checkboxValue" [partnerDefaulAddress]="DefaulAddressuuid"-->
+<!--                          [partnerDefaulRib]="partnerDefaulRib" [clientimage]="clientimage" [patternResult]="patternResult" [payementype]="payementype"-->
+<!--                          [clientModel]="clientModel" [facturenumber]="facturenumber" [dateinvoice]="dateinvoice" [dateLivraison]="dateLivraison" [dateEchec]="dateEchec"-->
+<!--                          [color]="templatecolor" [note]="note" [devise]="templatedevise" [linestotallist]="linestotallist" [SelectAddress]=" SelectAddress"></wind-modele1>-->
+<!--          </div>-->
+<!--          <div *ngIf="modeleinvoice === 2">-->
+<!--            {{dateinvoice}} {{dateLivraison}} {{dateEchec}}-->
+<!--            <wind-modele2 [invoiceCategory]="'FactureFournisseur'" [invoiceType]="'ACHAT'" [invoiceAction]="invoiceAction" [translatee]="translate" [purchaseType]="purchaseType" [checkboxValue]="checkboxValue" [partnerDefaulAddress]="DefaulAddressuuid"-->
+<!--                          [partnerDefaulRib]="DefaulRibuuid" [clientimage]="clientimage" [patternResult]="patternResult" [payementype]="payementype"-->
+<!--                          [clientModel]="clientModel" [facturenumber]="facturenumber" [dateinvoice]="dateinvoice" [dateLivraison]="dateLivraison" [dateEchec]="dateEchec"-->
+<!--                          [color]="templatecolor" [note]="note" [devise]="templatedevise" [linestotallist]="linestotallist" [SelectAddress]=" SelectAddress"></wind-modele2>-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash;              <button mat-button matStepperPrevious style=" padding: 5px; color: white; background: #2d2d44; margin-right: 1em; ">Back</button>&ndash;&gt;-->
+<!--          &lt;!&ndash;              <button mat-button style=" padding: 5px; color: white; background: darkgreen; margin-right: 1em; ">Print</button>&ndash;&gt;-->
+<!--          &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--        </mat-step>-->
+<!--      </mat-horizontal-stepper>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="card card-info">-->
+<!--    <div class="card-header card-info-header" id="headingOne">-->
+<!--      <h2 class="mb-0">-->
+<!--        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"-->
+<!--                data-toggle="collapse"  style="color: #0080ad;width: 100%;height: 70px;" type="button">-->
+
+<!--          <span style=" float: left;">   Liste des Factures</span> <i style=" float: right; margin-top: 1%; " class="fa fa-chevron-down"></i>-->
+<!--        </button>-->
+<!--      </h2>-->
+<!--    </div>-->
+
+<!--    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">-->
+<!--      <div class="card-body" style="    margin-bottom: 5%;">-->
+<!--        <div *ngIf="this.allInvoices.length === 0"><p style="text-align: center;">Vous n'avez pas des données enregistrés</p></div>-->
+
+
+<!--        <div class="table-editable" style="margin-top: 2%;">-->
+<!--          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover "   style="  font-family: monospace;     margin: 0 !important;">-->
+<!--            <thead  *ngIf="this.allInvoices.length != 0">-->
+<!--            <tr>-->
+<!--              <th  scope="col" class="">RÉFÉRENCE</th>-->
+<!--              <th  scope="col" class="">DATE</th>-->
+<!--              <th  scope="col" class="">FOURNISSEUR</th>-->
+<!--              <th  scope="col" class="">MONTANT TTC</th>-->
+<!--              <th scope="col"  class="">ÉTAT</th>-->
+<!--              <th scope="col"  class="">ACTION</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody  *ngIf="this.allInvoices.length != 0">-->
+<!--            <tr *ngFor="let invoice of allInvoices, let id = index;">-->
+<!--              <td scope="col" >-->
+<!--                <span>FAF-000002</span>-->
+<!--              </td>-->
+
+<!--              <td scope="col">-->
+<!--                <span>{{invoice.invoiceDate}}</span>-->
+<!--              </td>-->
+
+<!--              <td scope="col">-->
+<!--               <span>-->
+<!--                 {{invoice.customer}}</span>-->
+<!--              </td>-->
+
+<!--              <td scope="col">-->
+<!--                <span style=" color: #22af47; font-size: 17px; font-weight: 700; line-height: 1; ">{{invoice.total}}</span>-->
+<!--              </td>-->
+<!--              <td scope="col">-->
+<!--                <span *ngIf="invoice.status==='ANNULE'" style="background: red; border-radius: 25px; color: white; padding: 4%; ">{{invoice.status}}</span>-->
+<!--                <span *ngIf="invoice.status==='PARTIELLEMNT_PAYE'"  style=" background: #1a8bb3; border-radius: 25px; color: white; padding: 4%; ">{{invoice.status}}</span>-->
+<!--                <span *ngIf="invoice.status==='PAYE'" style=" background: darkgreen; border-radius: 25px; color: white; padding: 4%; ">{{invoice.status}}</span>-->
+<!--              </td>-->
+<!--              <td scope="col">-->
+<!--&lt;!&ndash;                <i (click)="editer(invoice.uuid)" style="padding: 3%;background: #80808047;border-radius: 5px;border: 0.5px solid grey;margin-right: 3%;" class="fa fa-edit"></i>&ndash;&gt;-->
+<!--                <i title="document pdf" (click)="pdfDowload(contentPDF)" style="padding: 3%;background: #80808047;border-radius: 5px;border: 0.5px solid grey;margin-right: 3%;" class="fa fa-file-pdf-o"></i>-->
+<!--                <i title="paiement" *ngIf="invoice.left_to_pay > 0" (click)="payer(contentPayment, id)" style="padding: 3%;background: #80808047;border-radius: 5px;border: 0.5px solid grey;margin-right: 3%;" class="fa fa-money"></i>-->
+<!--                <i title="visualiser" (click)="preview(contentApercu,invoice.uuid)" style="padding: 3%;background: #80808047;border-radius: 5px;border: 0.5px solid grey;margin-right: 3%;" class="fa fa-eye"></i>-->
+<!--                <i title="options" class="dropdown dropbtn" (click)="displayMenu()" style="padding: 3%;background: #80808047;border-radius: 5px;border: 0.5px solid grey;margin-right: 3%;" class="fa fa-refresh" ></i>-->
+<!--                <div id="myDropdown" class="dropdown-content menu" style="display: none;position: absolute;">-->
+<!--                  <a class="header" (click)="annulerFacture()"> Annuler </a>-->
+<!--                </div>-->
+<!--                <ng-template #contentApercu let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">-->
+<!--                  <div class="modal-header">-->
+<!--                    <h4 class="modal-title" id="modal-basic-title1">Aperçu</h4>-->
+<!--                    <a class="lightbox__close" (click)="d('Cross click')" >X</a>-->
+<!--                  </div>-->
+<!--                  <div class="modal-body">-->
+<!--                    &lt;!&ndash;                             table collaborator leave&ndash;&gt;-->
+<!--                    <div class="invoice-form-wrapper">-->
+<!--                      <div class="px-3">-->
+<!--                        <div class="row">-->
+<!--                          <div class="col">-->
+<!--                            <h3 class="section-title">-->
+<!--                              <div>-->
+<!--                                <img  class="n3VNCb" src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/31/2018/01/2-people-interview-image.png" style=" width: 40px;">-->
+<!--                              </div>-->
+<!--                              <span class="icon-title">Informations Fournisseur</span>-->
+<!--                            </h3>-->
+<!--                            <div class="card-detail row" style="    margin-left: 0.3em;">-->
+<!--                              <div clas="col-2" style="width: 16.66%;"><img src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png" style="width: 50px;"></div>-->
+<!--                              <div clas="col-8" style="width: 66.64%;">-->
+<!--                                <p class="societedetail" style="    font-size: 16px;">Fournisseur: {{selectedInvoice.customer}} </p>-->
+<!--                                <p class="societedetail"> Téléphone: </p>-->
+<!--                                <p class="societedetail"> RIB: {{selectedInvoice.customerRIB}} </p>-->
+<!--                                <p class="societedetail"> Adresse: {{selectedInvoice.customerAddress}}</p>-->
+<!--                              </div>-->
+<!--                              <div clas="col-2" style="width: 16.66%;">-->
+
+<!--                              </div>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="col">-->
+<!--                            <h3 class="section-title">-->
+<!--                              <div>-->
+<!--                                <img  class="n3VNCb" src="https://img.icons8.com/ios/452/client-company.png" style=" width: 40px;">-->
+
+<!--                              </div>-->
+<!--                              <span class="icon-title">Informations de document</span>-->
+<!--                            </h3>-->
+<!--                            <div class="card-detail row">-->
+<!--                              <div clas="col-2" style="width: 16.66%;">-->
+<!--                              </div>-->
+<!--                              <div clas="col-8" style="width: 66.64%;">-->
+<!--                                <p class="societedetail" style="    font-size: 16px;">Etat:  {{selectedInvoice.status}} </p>-->
+<!--                                <p class="societedetail">Total HTTC: {{selectedInvoice.total}}  </p>-->
+<!--                                <p class="societedetail">Total TTC: {{selectedInvoice.total}} </p>-->
+<!--                                <p class="societedetail">Référence : {{selectedInvoice.invoiceNumber}} </p>-->
+<!--                                <p class="societedetail">Date : {{selectedInvoice.invoiceDate}} </p>-->
+<!--                              </div>-->
+<!--                              <div clas="col-2" style="width: 16.66%;">-->
+
+<!--                              </div>-->
+<!--                            </div>-->
+
+<!--                          </div>-->
+<!--                        </div>-->
+
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;                             end table collaborator leave&ndash;&gt;-->
+<!--                  </div>-->
+
+<!--                </ng-template>-->
+<!--                <ng-template #contentPDF let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">-->
+<!--                  <div class="modal-header">-->
+<!--                    <h4 class="modal-title" id="modal-basic-title1">Télécharger Facture</h4>-->
+<!--                    <a class="lightbox__close" (click)="d('Cross click')" >X</a>-->
+<!--                  </div>-->
+<!--                  <div class="modal-body docpdf">-->
+<!--                    &lt;!&ndash;                             table collaborator leave&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <iframe #htmlData src= 'file:///C:/Users/wind/Downloads/Test%20(9).pdf' width="100%" height="500px"></iframe>&ndash;&gt;-->
+<!--                    <embed src="http://www.ens-lyon.fr/denif/data/ppoo_enslyon/2006/cours/2_Java.pdf" width="1100" height="500">-->
+<!--                  </div>-->
+<!--                  <div class="modal-footer" style="border-top: none;">-->
+<!--                    &lt;!&ndash;                  <button (click)="remove(id,'deleted', $event)" class="btn btn-outline-red" type="button" style=" background: #d40000; color: white; ">Oui</button>&ndash;&gt;-->
+<!--                    <input (click)="download()" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;float: right;font-family: monospace;" value="Télécharger">-->
+<!--                  </div>-->
+<!--                </ng-template>-->
+<!--                <ng-template #contentPayment let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">-->
+<!--                  <div class="modal-header">-->
+<!--                    <h4 class="modal-title" id="modal-basic-title1">Paiement</h4>-->
+<!--                    <a class="lightbox__close" (click)="d('Cross click')" >X</a>-->
+<!--                  </div>-->
+<!--                  <div class="modal-body docpdf">-->
+
+<!--                    <div   class="flex-column d-flex flex-md-row">-->
+<!--                      <div   class="p-2 mr-auto"></div>-->
+<!--                      <div   class="p-2 justify-content-center">-->
+<!--                        <div   class="d-flex flex-column">-->
+<!--                          <div   class="m-2 title-amount-header" style="    font-size: 18px;"> RESTE À PAYER </div>-->
+<!--                          <div   class="m-2 amount-header red-text" style=" color: #f5365c; font-weight: bold; "> {{new_left_to_pay}} {{invoice.devise}} TTC </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div   class="p-2 justify-content-center">-->
+<!--                        <div   class="d-flex flex-column">-->
+<!--                          <div   class="m-2 title-amount-header" style="    font-size: 18px;">MONTANT</div>-->
+<!--                          <div   class="m-2 amount-header blue-grey" style=" color: darkgreen; font-weight: bold; "> {{invoice.total}} {{invoice.devise}} TTC</div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;                             table collaborator leave&ndash;&gt;-->
+<!--                    <div   class="col-12 rs-showing">-->
+<!--                      <div   class="m-b-20" style=" box-sizing: border-box; border-radius: 4px; background-color: #fff; border: 1px solid #e0e0e0; ">-->
+<!--                        <div >-->
+<!--                          <div >-->
+<!--                            <div>-->
+<!--                              <div   class="form-group m-checkbox-inline m-2 custom-radio-ml col" style="    display: flex;">-->
+<!--                                <label class="label-text" style=" font-size: 16px; line-height: 22px; ">Retenue à la source </label>-->
+<!--                                <div  (click)="disactiverRS(id)" class="radio radio-primary m-l-6" style="padding: 0 2%"><input   id="RSYES" name="rs" type="radio" class="ng-valid ng-dirty ng-touched" checked><label   class="mb-0 label-text" for="RSYES" style="margin-left: 10px;">Non</label></div>-->
+<!--                                <div  (click)="activerRS()" class="radio radio-primary m-l-6" style="padding: 0 2%"><input   id="RSNON" name="rs" type="radio" class="ng-valid ng-dirty ng-touched"><label   class="mb-0 label-text" for="RSNON"  style="margin-left: 10px;">Oui</label></div>-->
+<!--                              </div>-->
+<!--                              &lt;!&ndash;&ndash;&gt;-->
+<!--                              <div class="RSactive" style="display: none">-->
+<!--                                <div   class=" form-group m-checkbox-inline m-2 p-15 div-ratio custom-radio-ml ng-star-inserted" style="display: flex;border-radius: 4px;background-color: #f4f4f4;width: 30%;padding: 2%;">-->
+<!--                                  <div  style="    padding: 0 2%;" class="radio radio-primary m-l-10"><input  (change) ="changeRS($event, id)"  value="0.5"  id="RS0.5" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid" ><label   class="mb-0 label-text mr-2" for="RS0.5"   style="margin-left: 5px;">0.5%</label></div>-->
+<!--                                  <div  style="    padding: 0 2%;" class="radio radio-primary m-l-5"><input   (change) ="changeRS($event, id)" value="1.5" id="RS1.5" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS1.5"  style="margin-left: 5px;">1.5%</label></div>-->
+<!--                                  <div  style="    padding: 0 2%;" class="radio radio-primary m-l-5"> <input  (change) ="changeRS($event, id)" value="2.5"  id="RS2.5" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS2.5"  style="margin-left: 5px;">2.5%</label></div>-->
+<!--                                  <div  style="    padding: 0 2%;" class="radio radio-primary m-l-5"><input   (change) ="changeRS($event, id)" value="5" id="RS5" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS5"  style="margin-left: 5px;">5%</label></div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash;&ndash;&gt;-->
+<!--                                <div   class="form-group m-checkbox-inline m-2 p-15 div-ratio custom-radio-ml ng-star-inserted" style="display: flex;border-radius: 4px;background-color: #f4f4f4;width: 30%;padding: 2%;">-->
+<!--                                  <div style="    padding: 0 2%;"  class="radio radio-primary m-l-10"><input  (change) ="changeRS($event, id)" value="10"  id="RS10" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS10"  style="margin-left: 5px;">10%</label></div>-->
+<!--                                  <div style="    padding: 0 2%;"  class="radio radio-primary m-l-5"><input  (change) ="changeRS($event, id)"  value="15" id="RS15" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS15" style="margin-left: 5px;">15%</label></div>-->
+<!--                                  <div style="    padding: 0 2%;"  class="radio radio-primary m-l-5"><input  (change) ="changeRS($event, id)" value="20"  id="RS20" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS20" style="margin-left: 5px;">20%</label></div>-->
+<!--                                </div>-->
+<!--                                <div   class="p-2 ng-star-inserted ">-->
+<!--                                  <div   class="d-flex mb-3">-->
+<!--                                    <div   class="p-2 mr-2 justify-content-center col">-->
+<!--                                      <div   class="d-flex flex-column">-->
+<!--                                        <div   class="m-2 title-amount-body"> MONTANT </div>-->
+<!--                                        <div   class="m-2 net-a-payer" style=" font-size: 15px; color: #4b9b57; font-weight: bold; "> {{total_RS}}&nbsp;TND TTC </div>-->
+<!--                                      </div>-->
+<!--                                    </div>-->
+<!--                                    <div   class="p-2 mr-2 justify-content-center col">-->
+<!--                                      <div   class="d-flex flex-column">-->
+<!--                                        <div   class="m-2 title-amount-body"> NET À PAYER </div>-->
+<!--                                        <div   class="m-2 montant" style=" font-size: 15px; color: #0288d1; font-weight: bold; "> {{new_total}}&nbsp;TND TTC </div>-->
+<!--                                      </div>-->
+<!--                                    </div>-->
+
+<!--                                  </div>-->
+<!--                                  &lt;!&ndash;&ndash;&gt;-->
+<!--                                  <div   class="d-flex  ng-star-inserted" >-->
+<!--                                    <div   class="checkbox checkbox-dark m-squar ng-star-inserted">-->
+<!--                                      <input (change)="check()" style="margin-right: 6px;" id="certificatRS" [checked]="checked" id="inline-sqr-3" type="checkbox" class="ng-untouched ng-pristine ng-valid">-->
+<!--                                      <label   for="inline-sqr-3">Télécharger le certificat de retenue à la source</label>-->
+<!--                                    </div>-->
+<!--                                    <div   class="form-group m-2" style="margin-left: 50% !important;">-->
+<!--                                      <button (click)="compenser(id)" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;float: right;font-family: monospace;">Compenser</button>-->
+<!--                                    </div>-->
+<!--                                  </div>-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          &lt;!&ndash;&ndash;&gt;-->
+
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <br>-->
+<!--                    <div >-->
+<!--                      <div  class="rs_class" style="display: none">-->
+<!--                        <br>-->
+<!--                        <div class="col-12" style="display: flex; padding:0">-->
+<!--                          <div class="col-11" style="padding: 0;margin-bottom: 4%;">-->
+<!--                            &lt;!&ndash;                        <wind-subtotal [linestotallist]="linestotallist" [startFrom]="this.lineSubTotal" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>&ndash;&gt;-->
+<!--                            <wind-retenue_source [RS_model]="RS_model" ></wind-retenue_source>-->
+<!--                            &lt;!&ndash;                        <wind-subtotal [linestotallist]="linestotallist" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>&ndash;&gt;-->
+<!--                          </div>-->
+<!--                          <div class="col-1" >-->
+<!--                            <br>-->
+<!--                            <div class="dropdown">-->
+<!--                              <div  (click)="removeRS()" class="p-2 title-amount-body text-danger">-->
+<!--                                <i-feather name="trash-2"></i-feather>-->
+<!--                              </div>-->
+
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+
+<!--                      <wind-Outgoing-Invoice [invoice]="invoice" [oldlefttopay]="oldlefttopay" [RS_model]="RS_model" (resteapayer)="getUpdatedvalue($event, id)" (ListTransactionForPayment)="getUpdatedListTransaction($event, id)"></wind-Outgoing-Invoice>-->
+<!--                      <div   class="form-group row">-->
+<!--                        <div class="alert alert-danger alert-required-vide" id="alert-required-vide" style="display: none;color: red;font-family: monospace;background: #f3d4d4;padding: 1%;border-radius: 5px;width: 100%;margin: 0 2%;">-->
+<!--                          <span class="error-hint">Vous devez ajouter des transactions pour les payer!!</span>-->
+<!--                        </div>-->
+<!--                        <div class="alert alert-success " style="display: none;width: 100%;margin: 0 2%;">-->
+<!--                          <strong>Succès!</strong> Le paiement est effectuée avec succès-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="modal-footer" style="border-top: none;">-->
+<!--                    <input (click)="validerPayment()" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;float: right;font-family: monospace;" value="Payer">-->
+<!--                    <input (click)="d('Cross click')"  class="btn btn-outline-dark" type="button" style="color: white;background: #262639;border: #ffcf03;float: right;font-family: monospace;" value="Annuler">-->
+<!--                  </div>-->
+<!--                </ng-template>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+
+
+<!--<ng-template #contentpartner let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">-->
+
+<!--  <div class="modal-body">-->
+<!--    <div class="modal-header" style="border-bottom: none;">-->
+<!--      <h4 class="modal-title" id="modal-basic-title3">Modifier les données de Partner </h4>-->
+<!--      <a class="lightbox__close" (click)="reloadrules(contentpartner)" >X</a>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      &lt;!&ndash;___Select adresse___&ndash;&gt;-->
+<!--      <mat-form-field class="col-12">-->
+
+<!--        <input matInput placeholder="" style="display: none"  >-->
+<!--        <ng-multiselect-dropdown-->
+<!--          style=" width: 50%;"-->
+<!--          [settings]="dropdownSettings"-->
+<!--          [placeholder]="'Adresse de Partner'"-->
+<!--          [data]="partnerAddressList | async"-->
+<!--          formControlName="city"-->
+<!--          (onSelect)="onItemSelectAddress($event)"-->
+<!--          (onDeSelect)="onItemDeSelectAddress($event)"-->
+<!--          (click)="adressPartnerseelect()"-->
+<!--          [(ngModel)]="coll">-->
+<!--        </ng-multiselect-dropdown>-->
+
+<!--      </mat-form-field>-->
+
+
+<!--      &lt;!&ndash;___Select RIB___&ndash;&gt;-->
+
+<!--      <mat-form-field class="col-12">-->
+
+
+<!--        <input matInput placeholder="" style="display: none">-->
+<!--        <ng-multiselect-dropdown-->
+<!--          style=" width: 50%;"-->
+<!--          [settings]="dropdownSettings"-->
+<!--          [placeholder]="'RIB de Partner'"-->
+<!--          [data]="partnerRibList | async"-->
+<!--          formControlName="city"-->
+<!--          (onSelect)="onItemSelectRib($event)"-->
+<!--          (onDeSelect)="onItemDeSelectRib($event)"-->
+<!--          (click)="ribPartnerselect()"-->
+<!--          [(ngModel)]="coll">-->
+<!--        </ng-multiselect-dropdown>-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-template>-->
+
+<!--<ng-template #contentadd let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">-->
+
+<!--  <div class="modal-body">-->
+<!--    <div class="modal-header" style="border-bottom: none;">-->
+<!--      &lt;!&ndash;      <h4 class="modal-title" id="modal-basic-title3">Ajouter une adresse </h4>&ndash;&gt;-->
+<!--      <a class="lightbox__close" (click)="reloadrules(contentadd)" >X</a>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;                             table collaborator leave&ndash;&gt;-->
+<!--    <wind-contactadresse [uuidtier]=uuidtier></wind-contactadresse>-->
+<!--    &lt;!&ndash;                             end table collaborator leave&ndash;&gt;-->
+<!--  </div>-->
+<!--</ng-template>-->
+
+
+<!--<ng-template #contentaddrib let-c="close" let-d="dismiss" style=" width: 100%; margin-left: 30%; ">-->
+<!--  <div class="modal-body">-->
+<!--    <div class="modal-header" style="border-bottom: none;">-->
+<!--      &lt;!&ndash;      <h4 class="modal-title" id="modal-basic-title4">Ajouter un RIB </h4>&ndash;&gt;-->
+<!--      <a class="lightbox__close" (click)="reloadrules(contentaddrib)" >X</a>-->
+<!--    </div>-->
+
+<!--    <wind-bank-accounts [uuidtier]=uuidtier></wind-bank-accounts>-->
+
+<!--  </div>-->
+<!--</ng-template>-->
+
+
+<!-- new code-->
+
+
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">
+            Facturation:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">
+            Commande Fournisseur</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"
+                data-target="#collapseTwo" data-toggle="collapse" style="color: #0080ad;width: 100%;height: 70px;" type="button">
+
+          <span style=" float: left;"> Ajouter facture</span> <i style=" float: right; margin-top: 1%; " class="fa fa-chevron-down"></i>
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionExample" id="collapseTwo" style="margin-top: 2%">
+      <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup" style="">
+          <form [formGroup]="firstFormGroup" style="display: grid;padding: 5%;padding-top: 0;">
+            <ng-template matStepLabel>Etape 1</ng-template>
+
+            <div style="display: flex">
+              <div class="col-4" style="display: flex;;">
+                <mat-form-field class="example-full-width col-11">
+                  <input placeholder="fournisseur"   type="text" #autoCompleteInput formControlName="firstCtrl"
+                         matInput id="name"
+                         [matAutocomplete]="auto" required
+                         (keyup)="_filter($event)"
+                         [(ngModel)]="nomfournisseur" name="nomfournisseur" value="">
+                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="select()">
+                    <mat-option *ngFor="let option1 of filteredfournisseurList | async" [value]="option1.name">
+                      {{option1.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <span class="table-add float-right newfournisseur " style="display: none; margin-top: 20px;" data-toggle="tooltip"  title="Ajouter un nouveau fournisseur">
+                    <a (click)="addFournisseur(content)" style=" color: #efcc0b;">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png" style="width: 20px;">
+                    </a>
+                  </span>
+                <ng-template #content let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+                  <div class="modal-body">
+                    <!--                             table collaborator leave-->
+                    <wind-fournisseur></wind-fournisseur>
+                    <!--                             end table collaborator leave-->
+                  </div>
+                  <div class="modal-footer">
+                    <input (click)="d('Cross click')" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;padding: 1% 5%;float: right;font-family: monospace;" value="OK">
+                  </div>
+                </ng-template>
+              </div>
+              <mat-form-field class="example-full-width col-4">
+                <input placeholder="code fournisseur"
+                       matInput [(ngModel)]="codefournisseur" name="codefournisseur"
+                       [formControl]="myControl"
+                       [matAutocomplete]="auto2" required id="code"
+                       (keyup)="_filter2($event)" value=""  (blur)="defaultSelect()">
+                <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete" (optionSelected)="selectCode()" >
+                  <mat-option *ngFor="let option of filteredcodefournisseurList | async" [value]="option.code" >
+                    {{option.code}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <mat-form-field  class="example-full-width col-4" >
+                <input placeholder="Type d'Achat"
+                       matInput formControlName="thirdCtrl"
+                       [matAutocomplete]="auto3" required
+                       [(ngModel)]="purchaseType" name="type" value=""
+                       (keyup)="_filterbyType($event)">
+                <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete" (optionSelected)="selectPurchaseType($event)">
+                  <mat-option *ngFor="let option2 of typeAchatList | async" [value]="option2.label"> {{option2.label}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+
+            <!--_______________________Select adresse et RIB_________________________-->
+            <div >
+
+              <div style="display: flex; z-index: 1;">
+                <div (click)="open(contentadd)" style="position: absolute;left: 5%; top: 53%;">
+                  <a  class="delete" data-toggle="tooltip" style="float: right;" ><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png" style="width: 20px;"></a>
+                </div>
+              </div>
+
+
+              <div style="display: flex;    margin-top: 0%;">
+                <!--___Select adresse___-->
+                <mat-form-field  class="col-4"  style="    margin-top: 2.1%;">
+                  <input placeholder="Adresse de fournisseur"   type="text" #autoCompleteInput formControlName="address"
+                         matInput
+                         [matAutocomplete]="auto4" required
+                         (keyup)="filteradressedelect($event)"
+                         [(ngModel)]="SelectAddress.item_text" name="address" [value]="SelectAddress.item_text">
+                  <mat-autocomplete autoActiveFirstOption #auto4="matAutocomplete" (optionSelected)="onItemSelectAddress($event)">
+                    <mat-option *ngFor="let option of fournisseurAddressList | async" [value]="option.item_text">
+                      {{option.item_text}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <!--                  <input matInput placeholder="" style="display: none"  >-->
+                  <!--                  <input placeholder="Adresse de fournisseur"-->
+                  <!--                         matInput formControlName="city"-->
+                  <!--                         [matAutocomplete]="auto4" required-->
+                  <!--                         [(ngModel)]="SelectAddress.item_text" name="address" [value]="SelectAddress.item_text"-->
+                  <!--                         (click)="filteradressedelect()">-->
+                  <!--                  <mat-autocomplete autoActiveFirstOption #auto4="matAutocomplete" >-->
+                  <!--                    <mat-option *ngFor="let option2 of fournisseurAddressList | async" [value]="option2.item_id">-->
+                  <!--                      {{option2.item_text}}-->
+                  <!--                    </mat-option>-->
+                  <!--                  </mat-autocomplete>-->
+
+
+                  <!--                  <ng-multiselect-dropdown-->
+                  <!--                    style=" width: 50%;"-->
+                  <!--                    [settings]="dropdownSettings"-->
+                  <!--                    [placeholder]="'Adresse de fournisseur'"-->
+                  <!--                    [data]="fournisseurAddressList | async"-->
+                  <!--                    formControlName="city"-->
+                  <!--                    (onSelect)="onItemSelectAddress($event)"-->
+                  <!--                    (onDeSelect)="onItemDeSelectAddress($event)"-->
+                  <!--                    (click)="adressedelect()"-->
+                  <!--                    [(ngModel)]="SelectAddress.item_text" name="address">-->
+                  <!--                  </ng-multiselect-dropdown>-->
+
+                </mat-form-field>
+                <mat-form-field class="col-4" style="margin-left: 2em;width: 26%">
+                  <mat-label style="  color: #757575;">Assujetti à la TVA</mat-label>
+                  <input matInput placeholder="Last name, First name"  formControlName="firsttCtrl" required style="display: none">
+                  <label class="custom-toggle" style="float:right">
+                    <input type="checkbox" [checked]="checkboxValue" [(ngModel)]="checkboxValue" (change)="gettvacheck(checkboxValue = !checkboxValue)" />
+                    <span class="custom-toggle-slider rounded-circle" style="padding: 0"></span>
+                  </label>
+
+                </mat-form-field>
+                <div style="width:30px"></div>
+                <mat-form-field    class="col-4" style="width: 32%;margin-top: -12px;">
+                  <mat-label style="color: #2d2d44;"></mat-label>
+                  <input matInput placeholder="Last name, First name" style="display: none">
+                  <br>
+                  <div class="nav-wrapper" style=" width: 100%; margin: 0; text-align: left; padding-bottom: 0px;">
+                    <div class="sl-nav">
+
+                      <ul>
+                        <li style="background: transparent;color: #757575; width: 400px" (click)="toggle()">{{this.languetext}} <i class="fa fa-angle-down" aria-hidden="false" style="float:right"></i>
+                          <div *ngIf="show">
+                            <div class="triangle"></div>
+                            <ul style="    width: 400px;">
+                              <li class="languehover" (click)="langue('')"> <span>Sélectionner la langue de facture</span></li>
+                              <li class="languehover" (click)="langue('fr')"><i class="sl-flag flag-de"><div id="francais"></div></i> <span>Francais</span></li>
+                              <li class="languehover" (click)="langue('en')"><i class="sl-flag flag-usa"><div id="english"></div></i> <span>English</span></li>
+                              <li class="languehover" (click)="langue('ar')"><i class="sl-flag flag-tun"><div id="arabe"></div></i> <span>العربية</span></li>
+
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+
+
+
+                </mat-form-field>
+
+              </div>
+            </div>
+
+
+            <!--_______________________Select adresse et RIB_________________________-->
+
+
+            <div style="display: flex">
+
+            </div>
+
+
+
+            <div>
+              <div *ngIf="alertshow" style=" color: #a94442; background-color: #f2dede; border-color: #ebccd1; padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; ">
+                Les champs selectionner <b>adresse de fournisseur</b> est obligatoire
+              </div>
+
+              <button (click)="goForward(stepper)" type="button" style="margin-top: 6%;color: black;background: #efcc0b;box-sizing: border-box;position: relative;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor: pointer;outline: 0;border: none;-webkit-tap-highlight-color: transparent;display: inline-block;white-space: nowrap;text-decoration: none;vertical-align: baseline;text-align: center;margin: 0;min-width: 64px;line-height: 36px;border-radius: 4px;overflow: visible;margin-top: 6%;padding: 5px; ">
+                Next
+              </button>
+              <!--                <button mat-button matStepperNext style="margin-top:6%;padding: 5px;color: black;background: #efcc0b; "  >Next</button>-->
+            </div>
+          </form>
+        </mat-step>
+
+
+        <!--______________________________________________________________-->
+        <mat-step [stepControl]="secondFormGroup" [editable]="true">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel >Générer Facture</ng-template>
+            <mat-form-field   style="display:none">
+              <!--                <mat-label>Numéro de facture</mat-label>-->
+              <input matInput placeholder="Numéro de facture" value=" 20200044-WE"   formControlName="secondCtrl" >
+            </mat-form-field>
+            <!--              <wind-Invoice [clientModel]=clientModel></wind-Invoice>-->
+
+            <div class="invoice-form-wrapper">
+              <div class="px-3">
+                <div class="row">
+                  <div class="col">
+
+                    <h3 class="section-title">
+                      <div>
+                        <img  class="n3VNCb" src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/31/2018/01/2-people-interview-image.png" style=" width: 40px;">
+                      </div>
+                      <span class="icon-title">Fournisseur</span>
+                    </h3>
+                    <div *ngIf="clientexist===false" class="card-detail" style="height: 6em;">
+                      <a  (click)="goBack(stepper)" class="selectclient" style="height: 6em;background-color: #f5f5f5;">
+              <span class="v-btn__content">
+            <p class="emptyTitle">Pas de client sélectionné</p>
+            <p class="emptyDescription">Cliquez pour sélectionner</p>
+            </span>
+                      </a>
+
+                    </div>
+                    <div *ngIf="clientexist===true" class="card-detail row">
+                      <div clas="col-2" style="width: 16.66%;">
+                        <img src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png" style="width: 50px;"></div>
+                      <div clas="col-8" style="width: 66.64%;">
+                        <p class="societedetail" style="    font-size: 16px;"> {{this.clientModel.name}} </p>
+                        <p class="societedetail">{{this.clientModel.email}}  </p>
+                        <p class="societedetail">{{this.clientModel.phonenumber}} </p>
+                        <p class="societedetail"> {{this.clientModel.adresse}} </p>
+                        <p class="societedetail"> RC: {{this.clientModel.rc}}  / MF:{{this.clientModel.mf}} </p>
+
+                      </div>
+                      <div clas="col-2" style="width: 16.66%;">
+            <span (click)="clientexistfct()" style="float: right;padding: 1em;">
+              <span data-toggle="tooltip" title="show" class="show">
+              <i aria-hidden="true" class="fa fa-trash-o"></i>
+            </span>
+            </span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col">
+                    <h3 class="section-title">
+                      <div>
+                        <img  class="n3VNCb" src="https://img.icons8.com/ios/452/client-company.png" style=" width: 40px;">
+                      </div>
+                      <span class="icon-title">Société</span>
+                    </h3>
+                    <div class="card-detail row" style="    margin-left: 0.3em;">
+                      <div clas="col-2" style="width: 16.66%;"><img src="{{clientimage}}" style="width: 50px;"></div>
+                      <div clas="col-8" style="width: 66.64%;">
+                        <p class="societedetail" style="    font-size: 16px;"> {{patternResult.company_name}} </p>
+                        <p class="societedetail"> {{patternResult.phone_number}} </p>
+                        <p class="societedetail"> {{partnerDefaulAddress}} </p>
+                        <p class="societedetail"> RC: {{patternResult.trade_register}} / MF:{{patternResult.patent}}</p>
+                        <p class="societedetail"> RIB: {{partnerDefaulRib}} </p>
+                      </div>
+                      <div clas="col-2" style="width: 16.66%;">
+            <span style="float: right;padding: 1em;">
+              <a  (click)="openpopup(contentpartner)" data-toggle="tooltip" title="show" class="show">
+                  <i aria-hidden="true" class="fa fa-ellipsis-v"></i>
+            </a>
+            </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div  [style]="ValidationInvoiceInputNextStepper === true?'border: 1px solid red': 'border: none'"    class="invoice-form-wrapper">
+              <div  class="px-3">
+
+                <div class="row">
+                  <div class="col">
+                    <h3 class="section-title">
+                      <div>
+                        <img  class="n3VNCb" src="https://www.iconfinder.com/data/icons/user-interface-131/32/Menu-512.png" style=" width: 40px;">
+                      </div>
+
+                    </h3>
+                    <div *ngIf="facturelist.length===0" class="card-detail" style="text-align: center;border: 1px solid #fdbc4a;border-style: dashed;">
+                      <h1><i class="fa fa-bars" aria-hidden="true"></i></h1>
+                      <h3>Ce document n'a pas de ligne</h3>
+                      <button  (click)="addline()" style="color: black; background: #ffcf03; border: #ffcf03; padding: 1%; border-radius: 5px; font-family: monospace; border: none !important;">
+                        Ajouter une ligne
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="px-3">
+
+                <div *ngFor="let facture of facturelist , let id = index;">
+                  <!--         <div *ngIf="facture.type === 1" class="outline">-->
+                  <div [style.display]="facture.type == 1?'block': 'none'" class="outline">
+                    <br>
+                    <div class="col-12" style="display: flex; padding:0">
+                      <div class="col-11" style="padding:0">
+                        <wind-outputline  [line]="linestotallist[id]" [devise]="templatedevise" [assujtva]="checkboxValue"></wind-outputline>
+
+                      </div>
+                      <div class="col-1" style="padding: 0;text-align:center;border: thin solid rgba(0,0,0,.12);border-radius: 4px;margin-left: -5px;border-left: 0px;">
+                        <br><br>
+
+                        <div class="dropdown">
+                          <span class="dropbtn"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+                          <div class="dropdown-content">
+                            <!--                            <a href="#"><i class="fa fa-clipboard" aria-hidden="true"></i><span style=" margin-left: 1em;">Dupliquer</span></a>-->
+
+                            <a (click)="remove(id,getIndex(id))" style="border-top: thin solid rgba(0,0,0,.12);"> <i class="fa fa-trash" aria-hidden="true"></i><span style=" margin-left: 1em;">Supprimer</span> </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--         <div *ngIf="facture.type === 3" class="comment">-->
+                  <div [style.display]="facture.type == 3?'block': 'none'" class="comment">
+                    <br>
+                    <div class="col-12" style="display: flex; padding:0">
+                      <div class="col-11" style="padding:0">
+                        <wind-comment [line]="linestotallist[id]"></wind-comment>
+                      </div>
+                      <div class="col-1" style="padding: 0;text-align:center;border: thin solid rgba(0,0,0,.12);border-radius: 4px;margin-left: -5px;border-left: 0px;">
+                        <br><br>
+                        <div class="dropdown">
+                          <span class="dropbtn"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+                          <div class="dropdown-content">
+                            <a href="#"><i class="fa fa-clipboard" aria-hidden="true"></i><span style=" margin-left: 1em;">Dupliquer</span></a>
+                            <a (click)="remove(id,getIndex(id))" style="border-top: thin solid rgba(0,0,0,.12);"> <i class="fa fa-trash" aria-hidden="true"></i><span style=" margin-left: 1em;">Supprimer</span> </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--         <div *ngIf="facture.type === 2"class="subtotal" >-->
+                  <div [style.display]="facture.type == 2?'block': 'none'" class="subtotal" >
+                    <br>
+                    <div class="col-12" style="display: flex; padding:0">
+                      <div class="col-11" style="padding:0">
+                        <wind-subtotal [line]="linestotallist[id]" [devise]="templatedevise" [linestotallist]="linestotallist" [startFrom]="getStartFrom(id)" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>
+                      </div>
+                      <div class="col-1" style="padding: 0;text-align:center;border: thin solid rgba(0,0,0,.12);border-radius: 4px;margin-left: -5px;border-left: 0px;">
+                        <br><br>
+                        <div class="dropdown">
+                          <span class="dropbtn"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+                          <div class="dropdown-content">
+                            <a href="#"><i class="fa fa-clipboard" aria-hidden="true"></i><span style=" margin-left: 1em;">Dupliquer</span></a>
+                            <a (click)="remove(id,getIndex(id))" style="border-top: thin solid rgba(0,0,0,.12);"> <i class="fa fa-trash" aria-hidden="true"></i><span style=" margin-left: 1em;">Supprimer</span> </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <br>
+                </div>
+                <div *ngIf="facturelist.length>0" class="row">
+                  <div class="col" style="text-align: center;">
+                    <div>
+
+                      <button (click)="addline()"  type="button" class="button-icon color">
+                        <span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Flat_plus_icon.svg/1024px-Flat_plus_icon.svg.png" style="width: 20px;"></span>
+                        <span style="margin-left: 5px; font-size: 13px;">Ajouter une ligne </span>
+                      </button>
+                      <button (click)="addsubtotal()" type="button" class="button-icon">
+                        <span><img src="https://icon-library.com/images/1fc0c4f99e.png" style="width: 20px;"></span>
+                        <span style="margin-left: 5px; font-size: 13px;">Sous Total </span>
+                      </button>
+                      <button (click)="addcomment()" type="button" class="button-icon">
+                        <span><img src="https://www.flaticon.com/svg/static/icons/svg/1380/1380338.svg" style="width: 20px;"></span>
+                        <span style="margin-left: 5px; font-size: 13px;">Commentaire</span>
+                      </button>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div  [style]="ValidationInvoiceInputNextStepper === true?'display: block': 'display: none'"    class="invoice-form-wrapper" style="  padding: 1%; margin: 1%;  color: #a94442; background-color: #f2dede; border-color: #ebccd1;">
+                <strong>Alerte!</strong> Remplir les informations nécessaires de la facture.
+              </div>
+
+
+            </div>
+
+            <div class="invoice-form-wrapper">
+              <div class="px-3">
+                <div class="row">
+                  <div class="col">
+                    <h3 class="section-title">
+                      <div>
+                        <img  class="n3VNCb" src="https://www.zem-restaurant.fr/userfiles/25736/Facebook/img_464430.png" style=" width: 40px;">
+                      </div>
+                      <span class="icon-title">Dates</span>
+                    </h3>
+                    <div class="card-detail">
+                      <wind-date [dateFrom]="dateFrom" [dateFromlivraison]="dateFromlivraison" [dateFromeche]="dateFromeche" (dateInvoice)="dateInvoicechange($event)" (dateLivraison)="dateLivraisonchange($event)" (dateInvoice)="dateEchecchange($event)"></wind-date>
+                    </div>
+                  </div>
+                  <div class="col">
+
+                    <h3 class="section-title">
+                      <div>
+                        <img  class="n3VNCb" src="https://www.iconfinder.com/data/icons/taxes-3/512/taxes-payable-tax-duties-charge-19-512.png" style="width: 40px;">
+                      </div>
+                      <span class="icon-title">Taxe, Numéro...</span>
+                    </h3>
+                    <div class="card-detail">
+                      <wind-taxe  [htmlContent]="htmlContent" (note)="notechange($event)"  [facturenumber]="facturenumber" ></wind-taxe>
+                    </div>
+                  </div>
+                  <div class="col">
+
+                    <h3 class="section-title">
+                      <div>
+                        <img  class="n3VNCb" src="https://img2.freepng.fr/20180426/bdq/kisspng-computer-icons-language-icon-5ae1fb9f67a4d2.3458536015247594554245.jpg" style=" width: 40px;">
+                      </div>
+                      <span class="icon-title">Langue, Devise...</span>
+                    </h3>
+                    <div class="card-detail">
+
+                      <wind-devise [deviseInvoice]="deviseInvoice" [colorInvoice]="colorInvoice" [selectedCityName]="selectedCityName" (colorselected)="colorchange($event)" (modele)="modelechange($event)" (devise)="devisechange($event)"></wind-devise>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="invoice-form-wrapper">
+              <div class="">
+                <div class="row">
+                  <div class="col">
+                    <h3 class="section-title"></h3>
+                  </div>
+                </div></div>
+            </div>
+            <div style="float: right;">
+              <input matInput placeholder="Remplir les informations nécessaires de la facture" formControlName="secondCtrl" required [(ngModel)]="invoicetest" style="display:none">
+              <button mat-button matStepperPrevious style=" padding: 5px; color: white; background: #2d2d44; margin-right: 1em; ">Back</button>
+
+              <button (click)="gotopreview(stepper)" type="button" style="margin-top: 6%;color: black;background: #efcc0b;box-sizing: border-box;position: relative;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;cursor: pointer;outline: 0;border: none;-webkit-tap-highlight-color: transparent;display: inline-block;white-space: nowrap;text-decoration: none;vertical-align: baseline;text-align: center;margin: 0;min-width: 64px;line-height: 36px;border-radius: 4px;overflow: visible;margin-top: 6%;padding: 5px; ">
+                Next
+              </button>
+
+            </div>
+
+
+          </form>
+        </mat-step>
+
+
+
+        <!--______________________________________________________________-->
+
+        <mat-step>
+          <ng-template matStepLabel>Préview et Imprimer</ng-template>
+          <div *ngIf="modeleinvoice === 1">
+            <wind-modele1  [idInvoice]="idInvoice" [uuidInvoice]="uuidInvoice" [invoiceCategory]="'FactureFournisseur'" [invoiceType]="'ACHAT'" [invoiceAction]="invoiceAction"
+                           [translatee]="translate"
+                           [purchaseType]="purchaseType" [checkboxValue]="checkboxValue" [partnerDefaulAddress]="DefaulAddressuuid"
+                           [partnerDefaulRib]="DefaulRibuuid" [clientimage]="clientimage" [patternResult]="patternResult" [payementype]="payementype"
+                           [clientModel]="clientModel" [facturenumber]="facturenumber" [dateinvoice]="dateinvoice" [dateLivraison]="dateLivraison" [dateEchec]="dateEchec"
+                           [color]="templatecolor" [note]="note" [devise]="templatedevise" [linestotallist]="linestotallist" [SelectAddress]=" SelectAddress"></wind-modele1>
+          </div>
+          <div *ngIf="modeleinvoice === 2">
+            <!--            {{dateinvoice}} {{dateLivraison}} {{dateEchec}}-->
+            <wind-modele2 [idInvoice]="idInvoice" [uuidInvoice]="uuidInvoice" [invoiceCategory]="'FactureFournisseur'" [invoiceType]="'ACHAT'" [invoiceAction]="invoiceAction"
+                          [translatee]="translate"
+                          [purchaseType]="purchaseType" [checkboxValue]="checkboxValue" [partnerDefaulAddress]="DefaulAddressuuid"
+                          [partnerDefaulRib]="DefaulRibuuid" [clientimage]="clientimage" [patternResult]="patternResult" [payementype]="payementype"
+                          [clientModel]="clientModel" [facturenumber]="facturenumber" [dateinvoice]="dateinvoice" [dateLivraison]="dateLivraison" [dateEchec]="dateEchec"
+                          [color]="templatecolor" [note]="note" [devise]="templatedevise" [linestotallist]="linestotallist" [SelectAddress]=" SelectAddress"></wind-modele2>
+          </div>
+
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </div>
+
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse"  style="color: #0080ad;width: 100%;height: 70px;" type="button">
+
+          <span style=" float: left;">   Liste des Factures</span> <i style=" float: right; margin-top: 1%; " class="fa fa-chevron-down"></i>
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body" style="    margin-bottom: 5%;">
+        <div *ngIf="this.allInvoices.length === 0"><p style="text-align: center;">Vous n'avez pas des données enregistrés</p></div>
+
+
+        <div class="table-editable" style="margin-top: 2%;">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover "   style="  font-family: monospace;     margin: 0 !important;">
+            <thead  *ngIf="this.allInvoices.length != 0">
+            <tr>
+              <th  scope="col" class="">RÉFÉRENCE</th>
+              <th  scope="col" class="">DATE</th>
+              <th  scope="col" class="">FOURNISSEUR</th>
+              <th  scope="col" class="">MONTANT TTC</th>
+              <th scope="col"  class="">ÉTAT</th>
+              <th scope="col"  class="">ACTION</th>
+            </tr>
+            </thead>
+            <tbody  *ngIf="this.allInvoices.length != 0">
+            <tr *ngFor="let invoice of allInvoices, let id = index;">
+              <td scope="col" >
+                <span>{{invoice.invoiceNumber}}</span>
+              </td>
+              <td scope="col">
+                <span>{{invoice.invoiceDate}}</span>
+              </td>
+              <td scope="col">
+               <span>
+                 {{invoice.customerName}}</span>
+              </td>
+              <td scope="col">
+                <span style=" color: #22af47; font-size: 17px; font-weight: 700; line-height: 1; ">{{invoice.total_ttc}}</span>
+              </td>
+              <td scope="col">
+                <span *ngIf="invoice.status==='ANNULE'" style="background: red; border-radius: 25px; color: white; padding: 3%; ">Annulée</span>
+                <span *ngIf="invoice.status==='PARTIELLEMENT_PAYE'"  style=" background: #1a8bb3; border-radius: 25px; color: white; padding: 3%; ">Partiellement payée</span>
+                <span *ngIf="invoice.status==='PAYE'" style=" background: darkgreen; border-radius: 25px; color: white; padding: 3%; ">Payée</span>
+                <span *ngIf="invoice.status==='NON_PAYE'" style=" background: red; border-radius: 25px; color: white; padding: 3%; ">Non payée</span>
+                             </td>
+              <td scope="col">
+                <i title="paiement" *ngIf="invoice.left_to_pay > 0" (click)="payer(contentPayment, id)" style="padding: 3%;background: #80808047;border-radius: 5px;border: 0.5px solid grey;margin-right: 3%;" class="fa fa-money"></i>
+                <i title="document pdf" (click)="pdfDowload(contentPDF)" style="padding: 3%;background: #80808047;border-radius: 5px;border: 0.5px solid grey;margin-right: 3%;" class="fa fa-file-pdf-o"></i>
+                <i title="visualiser" (click)="preview(contentApercu,invoice.uuid)" style="padding: 3%;background: #80808047;border-radius: 5px;border: 0.5px solid grey;margin-right: 3%;" class="fa fa-eye"></i>
+                <i title="options" class="dropdown dropbtn"  style="padding: 3%;background: #80808047;border-radius: 5px;border: 0.5px solid grey;margin-right: 3%;" class="fa fa-refresh" ></i>
+
+                <ng-template #contentApercu let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title1">Aperçu</h4>
+                    <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+                  </div>
+                  <div class="modal-body">
+                    <!--                             table collaborator leave-->
+                    <div class="invoice-form-wrapper">
+                      <div class="px-3">
+                        <div class="row">
+                          <div class="col">
+                            <h3 class="section-title">
+                              <div>
+                                <img  class="n3VNCb" src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/31/2018/01/2-people-interview-image.png" style=" width: 40px;">
+                              </div>
+                              <span class="icon-title">Informations Fournisseur</span>
+                            </h3>
+                            <div class="card-detail row" style="    margin-left: 0.3em;">
+                              <div clas="col-2" style="width: 16.66%;"><img src="https://wind-consulting-tunisia.com/wind-consulting/sites/default/files/windc_1.png" style="width: 50px;"></div>
+                              <div clas="col-8" style="width: 66.64%;">
+                                <p class="societedetail" style="    font-size: 16px;">Fournisseur: {{selectedTier.name}} </p>
+                                <p class="societedetail"> Téléphone: {{selectedTier.phone}} </p>
+                                <p class="societedetail"> Adresse: {{selectedAddress.location}}</p>
+                                <br> <br>
+                              </div>
+                              <div clas="col-2" style="width: 16.66%;">
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <h3 class="section-title">
+                              <div>
+                                <img class="n3VNCb" src="https://img.icons8.com/ios/452/client-company.png" style=" width: 40px;">
+                              </div>
+                              <span class="icon-title">Informations de document</span>
+                            </h3>
+                            <div class="card-detail row">
+                              <div clas="col-2" style="width: 16.66%;">
+                              </div>
+                              <div clas="col-8" style="width: 66.64%;">
+                                <p class="societedetail" style="    font-size: 16px;">Etat:  {{selectedInvoice.status}} </p>
+                                <p class="societedetail">Total HTTC: {{selectedInvoice.total_htt}} </p>
+                                <p class="societedetail">Total TTC: {{selectedInvoice.total_ttc}} </p>
+                                <p class="societedetail">Référence : {{selectedInvoice.invoiceNumber}} </p>
+                                <p class="societedetail">Date : {{selectedInvoice.invoiceDate}} </p>
+                              </div>
+                              <div clas="col-2" style="width: 16.66%;">
+
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!--                             end table collaborator leave-->
+                  </div>
+
+                </ng-template>
+                <ng-template #contentPDF let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title1">Télécharger Facture</h4>
+                    <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+                  </div>
+                  <div class="modal-body docpdf">
+                    <!--                             table collaborator leave-->
+                    <!--                    <iframe #htmlData src= 'file:///C:/Users/wind/Downloads/Test%20(9).pdf' width="100%" height="500px"></iframe>-->
+                    <embed src="http://www.ens-lyon.fr/denif/data/ppoo_enslyon/2006/cours/2_Java.pdf" width="1100" height="500">
+                  </div>
+                  <div class="modal-footer" style="border-top: none;">
+                    <!--                  <button (click)="remove(id,'deleted', $event)" class="btn btn-outline-red" type="button" style=" background: #d40000; color: white; ">Oui</button>-->
+                    <input (click)="download()" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;float: right;font-family: monospace;" value="Télécharger">
+                  </div>
+                </ng-template>
+                <ng-template #contentPayment let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+                                  <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title1">Paiement</h4>
+                                    <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+                                  </div>
+                                  <div class="modal-body docpdf">
+
+                                    <div   class="flex-column d-flex flex-md-row">
+                                      <div   class="p-2 mr-auto"></div>
+                                      <div   class="p-2 justify-content-center">
+                                        <div   class="d-flex flex-column">
+                                          <div   class="m-2 title-amount-header" style="    font-size: 18px;"> RESTE À PAYER </div>
+                                          <div   class="m-2 amount-header red-text" style=" color: #f5365c; font-weight: bold; "> {{new_left_to_pay}} {{invoice.devise}} TTC </div>
+                                        </div>
+                                      </div>
+                                      <div   class="p-2 justify-content-center">
+                                        <div   class="d-flex flex-column">
+                                          <div   class="m-2 title-amount-header" style="    font-size: 18px;">MONTANT</div>
+                                          <div   class="m-2 amount-header blue-grey" style=" color: darkgreen; font-weight: bold; "> {{invoice.total_ttc}} {{invoice.devise}} TTC</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!--                             table collaborator leave-->
+                                    <div   class="col-12 rs-showing">
+                                      <div   class="m-b-20" style=" box-sizing: border-box; border-radius: 4px; background-color: #fff; border: 1px solid #e0e0e0; ">
+                                        <div >
+                                          <div >
+                                            <div>
+                                              <div   class="form-group m-checkbox-inline m-2 custom-radio-ml col" style="    display: flex;">
+                                                <label class="label-text" style=" font-size: 16px; line-height: 22px; ">Retenue à la source </label>
+                                                <div  (click)="disactiverRS(id)" class="radio radio-primary m-l-6" style="padding: 0 2%"><input   id="RSYES" name="rs" type="radio" class="ng-valid ng-dirty ng-touched" checked><label   class="mb-0 label-text" for="RSYES" style="margin-left: 10px;">Non</label></div>
+                                                <div  (click)="activerRS()" class="radio radio-primary m-l-6" style="padding: 0 2%"><input   id="RSNON" name="rs" type="radio" class="ng-valid ng-dirty ng-touched"><label   class="mb-0 label-text" for="RSNON"  style="margin-left: 10px;">Oui</label></div>
+                                              </div>
+                                              <!---->
+                                              <div class="RSactive" style="display: none">
+                                                <div   class=" form-group m-checkbox-inline m-2 p-15 div-ratio custom-radio-ml ng-star-inserted" style="display: flex;border-radius: 4px;background-color: #f4f4f4;width: 30%;padding: 2%;">
+                                                  <div  style="    padding: 0 2%;" class="radio radio-primary m-l-10"><input  (change) ="changeRS($event, id)"  value="0.5"  id="RS0.5" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid" ><label   class="mb-0 label-text mr-2" for="RS0.5"   style="margin-left: 5px;">0.5%</label></div>
+                                                  <div  style="    padding: 0 2%;" class="radio radio-primary m-l-5"><input   (change) ="changeRS($event, id)" value="1.5" id="RS1.5" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS1.5"  style="margin-left: 5px;">1.5%</label></div>
+                                                  <div  style="    padding: 0 2%;" class="radio radio-primary m-l-5"> <input  (change) ="changeRS($event, id)" value="2.5"  id="RS2.5" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS2.5"  style="margin-left: 5px;">2.5%</label></div>
+                                                  <div  style="    padding: 0 2%;" class="radio radio-primary m-l-5"><input   (change) ="changeRS($event, id)" value="5" id="RS5" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS5"  style="margin-left: 5px;">5%</label></div>
+                                                </div>
+                                                <!---->
+                                                <div   class="form-group m-checkbox-inline m-2 p-15 div-ratio custom-radio-ml ng-star-inserted" style="display: flex;border-radius: 4px;background-color: #f4f4f4;width: 30%;padding: 2%;">
+                                                  <div style="    padding: 0 2%;"  class="radio radio-primary m-l-10"><input  (change) ="changeRS($event, id)" value="10"  id="RS10" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS10"  style="margin-left: 5px;">10%</label></div>
+                                                  <div style="    padding: 0 2%;"  class="radio radio-primary m-l-5"><input  (change) ="changeRS($event, id)"  value="15" id="RS15" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS15" style="margin-left: 5px;">15%</label></div>
+                                                  <div style="    padding: 0 2%;"  class="radio radio-primary m-l-5"><input  (change) ="changeRS($event, id)" value="20"  id="RS20" name="rationRs" type="radio" class="ng-untouched ng-pristine ng-valid"><label   class="mb-0 label-text mr-2" for="RS20" style="margin-left: 5px;">20%</label></div>
+                                                </div>
+                                                <div   class="p-2 ng-star-inserted ">
+                                                  <div   class="d-flex mb-3">
+                                                    <div   class="p-2 mr-2 justify-content-center col">
+                                                      <div   class="d-flex flex-column">
+                                                        <div   class="m-2 title-amount-body"> MONTANT </div>
+                                                        <div   class="m-2 net-a-payer" style=" font-size: 15px; color: #4b9b57; font-weight: bold; "> {{total_RS}}&nbsp;TND TTC </div>
+                                                      </div>
+                                                    </div>
+                                                    <div   class="p-2 mr-2 justify-content-center col">
+                                                      <div   class="d-flex flex-column">
+                                                        <div   class="m-2 title-amount-body"> NET À PAYER </div>
+                                                        <div   class="m-2 montant" style=" font-size: 15px; color: #0288d1; font-weight: bold; "> {{new_total}}&nbsp;TND TTC </div>
+                                                      </div>
+                                                    </div>
+
+                                                  </div>
+                                                  <!---->
+                                                  <div   class="d-flex  ng-star-inserted" >
+                                                    <div   class="checkbox checkbox-dark m-squar ng-star-inserted">
+                                                      <input (change)="check()" style="margin-right: 6px;" id="certificatRS" [checked]="checked" id="inline-sqr-3" type="checkbox" class="ng-untouched ng-pristine ng-valid">
+                                                      <label   for="inline-sqr-3">Télécharger le certificat de retenue à la source</label>
+                                                    </div>
+                                                    <div   class="form-group m-2" style="margin-left: 50% !important;">
+                                                      <button (click)="compenser(id)" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;float: right;font-family: monospace;">Compenser</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!---->
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <br>
+                                    <div >
+                                      <div  class="rs_class" style="display: none">
+                                        <br>
+                                        <div class="col-12" style="display: flex; padding:0">
+                                          <div class="col-11" style="padding: 0;margin-bottom: 4%;">
+                                            <!--                        <wind-subtotal [linestotallist]="linestotallist" [startFrom]="this.lineSubTotal" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+                                            <wind-retenue_source [RS_model]="RS_model" ></wind-retenue_source>
+                                            <!--                        <wind-subtotal [linestotallist]="linestotallist" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+                                          </div>
+                                          <div class="col-1" >
+                                            <br>
+                                            <div class="dropdown">
+                                              <div  (click)="removeRS()" class="p-2 title-amount-body text-danger">
+                                                <i-feather name="trash-2"></i-feather>
+                                              </div>
+
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <wind-Outgoing-Invoice [invoice]="invoice" [oldlefttopay]="oldlefttopay" [RS_model]="RS_model" (resteapayer)="getUpdatedvalue($event, id)" (ListTransactionForPayment)="getUpdatedListTransaction($event, id)"></wind-Outgoing-Invoice>
+                                      <div   class="form-group row">
+                                        <div class="alert alert-danger alert-required-vide" id="alert-required-vide" style="display: none;color: red;font-family: monospace;background: #f3d4d4;padding: 1%;border-radius: 5px;width: 100%;margin: 0 2%;">
+                                          <span class="error-hint">Vous devez ajouter des transactions pour les payer!!</span>
+                                        </div>
+                                        <div class="alert alert-success " style="display: none;width: 100%;margin: 0 2%;">
+                                          <strong>Succès!</strong> Le paiement est effectuée avec succès
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer" style="border-top: none;">
+                                    <input (click)="validerPayment()" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;float: right;font-family: monospace;" value="Payer">
+                                    <input (click)="d('Cross click')"  class="btn btn-outline-dark" type="button" style="color: white;background: #262639;border: #ffcf03;float: right;font-family: monospace;" value="Annuler">
+                                  </div>
+                                </ng-template>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<ng-template #contentpartner let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+
+  <div class="modal-body">
+    <div class="modal-header" style="border-bottom: none;">
+      <h4 class="modal-title" id="modal-basic-title3">Modifier les données de Partner </h4>
+      <a class="lightbox__close" (click)="reloadrules(contentpartner)" >X</a>
+    </div>
+    <div>
+      <!--___Select adresse___-->
+      <mat-form-field class="col-12">
+
+        <input matInput placeholder="" style="display: none"  >
+        <ng-multiselect-dropdown
+          style=" width: 50%;"
+          [settings]="dropdownSettings"
+          [placeholder]="'Adresse de Partner'"
+          [data]="partnerAddressList | async"
+          formControlName="city"
+          (onSelect)="onItemSelectAddress($event)"
+          (onDeSelect)="onItemDeSelectAddress($event)"
+          (click)="adressPartnerseelect()"
+          [(ngModel)]="coll">
+        </ng-multiselect-dropdown>
+
+      </mat-form-field>
+
+
+      <!--___Select RIB___-->
+
+      <mat-form-field class="col-12">
+
+
+        <input matInput placeholder="" style="display: none">
+        <ng-multiselect-dropdown
+          style=" width: 50%;"
+          [settings]="dropdownSettings"
+          [placeholder]="'RIB de Partner'"
+          [data]="partnerRibList | async"
+          formControlName="city"
+          (onSelect)="onItemSelectRib($event)"
+          (onDeSelect)="onItemDeSelectRib($event)"
+          (click)="ribPartnerselect()"
+          [(ngModel)]="coll">
+        </ng-multiselect-dropdown>
+      </mat-form-field>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #contentadd let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+
+  <div class="modal-body">
+    <div class="modal-header" style="border-bottom: none;">
+      <!--      <h4 class="modal-title" id="modal-basic-title3">Ajouter une adresse </h4>-->
+      <a class="lightbox__close" (click)="reloadrules(contentadd)" >X</a>
+    </div>
+    <!--                             table collaborator leave-->
+    <wind-contactadresse [uuidtier]=uuidtier></wind-contactadresse>
+    <!--                             end table collaborator leave-->
+  </div>
+</ng-template>
+
+
+<ng-template #contentaddrib let-c="close" let-d="dismiss" style=" width: 100%; margin-left: 30%; ">
+  <div class="modal-body">
+    <div class="modal-header" style="border-bottom: none;">
+      <!--      <h4 class="modal-title" id="modal-basic-title4">Ajouter un RIB </h4>-->
+      <a class="lightbox__close" (click)="reloadrules(contentaddrib)" >X</a>
+    </div>
+
+    <wind-bank-accounts [uuidtier]=uuidtier></wind-bank-accounts>
+
+  </div>
+</ng-template>

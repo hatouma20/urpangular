@@ -1,0 +1,56 @@
+
+<div class="accordion" id="accordionExample" style=" border-top: none; border-bottom: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; border-left: 1px solid #e0e0e0; border-radius: 3px; ">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingpayment{{lastIndex}}" [attr.aria-controls]="'collapsepayment'+ lastIndex" aria-expanded="false" class="btn btn-link collapsed"
+         [attr.data-target]="'#collapsepayment'+ lastIndex" data-toggle="collapse" style="display: flex">
+       <div   class="p-2">#{{lastIndex +1}} Espèce</div>
+      <div   class="p-2 ml-auto">
+        <div   class="m-2 title-amount-body"> MONTANT : <span   class="m-2 montant">{{line.amount}} {{line.devise}}</span></div>
+      </div>
+      <div   class="p-2 collapse-blue">
+        <i-feather name="chevron-down"></i-feather>
+      </div>
+    </div>
+  </div>
+  <div [attr.aria-labelledby]="'collapsepayment'+ lastIndex"  class="collapse" data-parent="#accordionExample" id="collapsepayment{{lastIndex}}" style="margin-top: 2%">
+    <div   class="card-body">
+      <div    class="row">
+        <form   class="form-group col-12 ng-touched ng-pristine ng-valid" #form  ngNativeValidate>
+          <div   class="form-group row">
+            <label   class="col-md-3 label-form-payment text-right" for="">Montant <span _ngcontent-smy-c448="" style="color: red; padding: 4px;">*</span></label>
+            <div   class="input-group p-l-0 p-r-0 col-md-8">
+              <div   class="input-group-prepend" style="margin-left: -2.3%;"><span   class="input-group-text" style="height: 46px;">{{invoice.devise}}</span></div>
+              <input required="" id="editable0" [disabled]="disabled" (change)="saisirMontant(lastIndex)" [(ngModel)]="line.amount"  style="padding-left: 2%;margin-right: -2%;" class="form-control input-form-payment ng-touched ng-pristine ng-valid"  min="1" name="montant" type="number">
+            </div>
+          </div>
+          <!---->
+          <div   class="form-group row ng-star-inserted">
+            <label   class="col-md-3 label-form-payment text-right text-right" for="">Caisse <span _ngcontent-smy-c448="" style="color: red; padding: 4px;">*</span></label>
+            <select (ngModelChange)="changeValues(lastIndex)" required="" [(ngModel)]="line.caisse" name="caisse" [disabled]="disabled" id="editable1"  class="form-control input-form-payment col-md-8 ng-touched ng-pristine ng-valid flatpickr-input" formcontrolname="balance" role="listbox">
+              <option *ngFor="let caisse of listeCaisses; let id = index; " value="{{caisse.uuid}}">{{caisse.label}}</option>
+            </select>
+          </div>
+          <!----><!----><!----><!----><!----><!----><!----><!----><!---->
+          <div   class="form-group row">
+            <label   class="col-md-3 label-form-payment text-right text-right" for="">Date de règlement <span _ngcontent-smy-c448="" style="color: red; padding: 4px;">*</span></label>
+            <input (ngModelChange)="changeValues(lastIndex)" required="" [(ngModel)]="line.valueDate" name="date" [disabled]="disabled" id="editable2" class="form-control input-form-payment col-md-8 ng-touched ng-pristine ng-valid flatpickr-input"  type="date" >
+          </div>
+          <div   class="form-group row">
+            <label   class="col-md-3 label-form-payment text-right text-right" for=""></label>
+            <div class="alert alert-danger " id ="alert-danger{{lastIndex}}" style=" display:none; color: red; font-family: monospace; background: #f3d4d4; padding: 1%;border-radius: 5px;">
+                   <span class="error-hint">Le montant que vous avez saisi est plus grand que le montant reste à payer !!</span>
+            </div>
+            <div class="alert alert-danger alert-required" id ="alert-required{{lastIndex}}" style=" display:none; color: red; font-family: monospace; background: #f3d4d4; padding: 1%;border-radius: 5px;">
+              <span class="error-hint" *ngIf="line.amount === ''"><p style=" font-size: 12px; line-height: 1; ">le champ montant est obligatoire</p></span>
+              <span class="error-hint" *ngIf="line.valueDate === null"><p style=" font-size: 12px; line-height: 1; ">le champ Date de reglement est obligatoire</p></span>
+              <span class="error-hint" *ngIf="line.caisse === ''"><p style=" font-size: 12px; line-height: 1; ">le champ Caisse est obligatoire</p></span>
+            </div>
+          </div>
+          <!---->
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+</div>

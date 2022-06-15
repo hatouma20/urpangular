@@ -1,0 +1,198 @@
+
+<div class="">
+  <div *ngFor="let paymentType of listTransactions , let id = index;">
+    <div *ngIf="paymentType.payType === paymentTypeEnum.CHEQUE_PAYMENT" class="outline">
+      <br>
+      <div class="col-12" style="display: flex; padding:0">
+        <div class="col-11" style="padding:0">
+          <wind-cheque-payment [invoice]="invoice" [disabled]="true" [reste]="oldlefttopay" [listeLine]="listTransactions" [line]="listTransactions[id]" [lastIndex]="id" (resteapayer)="getUpdatedvalue($event, id)"></wind-cheque-payment>
+        </div>
+        <div class="col-1" >
+          <br>
+          <div class="dropdown">
+            <div   class="p-2 title-amount-body text-danger">
+              <img src="assets/img/paye.png" style="width: 50px;margin: -14px;"/>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div *ngIf="paymentType.payType === paymentTypeEnum.ESPECE_PAYMENT" class="comment">
+      <br>
+      <div class="col-12" style="display: flex; padding:0">
+        <div class="col-11" style="padding:0">
+          <wind-espece-payment [invoice]="invoice" [disabled]="true" [reste]="oldlefttopay" [listeLine]="listTransactions" [line]="listTransactions[id]" [lastIndex]="id" (resteapayer)="getUpdatedvalue($event, id)" ></wind-espece-payment>
+        </div>
+          <div class="col-1" >
+            <br>
+            <div class="dropdown">
+              <div   class="p-2 title-amount-body text-danger">
+                <img src="assets/img/paye.png" style="width: 50px;margin: -14px;"/>
+              </div>
+
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div *ngIf="paymentType.payType === paymentTypeEnum.VIREMENT_PAYMENT" class="subtotal" >
+      <br>
+      <div class="col-12" style="display: flex; padding:0">
+        <div class="col-11" style="padding:0">
+          <!--                        <wind-subtotal [linestotallist]="linestotallist" [startFrom]="this.lineSubTotal" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+          <wind-virement-payment [invoice]="invoice" [disabled]="true" [reste]="oldlefttopay" [listeLine]="listTransactions" [line]="listTransactions[id]" [lastIndex]="id" (resteapayer)="getUpdatedvalue($event, id)"></wind-virement-payment>
+          <!--                        <wind-subtotal [linestotallist]="linestotallist" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+        </div>
+        <div class="col-1" >
+          <br>
+          <div class="dropdown">
+            <div   class="p-2 title-amount-body text-danger">
+              <img src="assets/img/paye.png" style="width: 50px;margin: -14px;"/>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="paymentType.payType === paymentTypeEnum.TRAITE_PAYMENT" class="subtotal" >
+      <br>
+      <div class="col-12" style="display: flex; padding:0">
+        <div class="col-11" style="padding:0">
+          <!--                        <wind-subtotal [linestotallist]="linestotallist" [startFrom]="this.lineSubTotal" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+          <wind-traite-payment [invoice]="invoice" [disabled]="true" [reste]="oldlefttopay" [listeLine]="listTransactions" [line]="listTransactions[id]" [lastIndex]="id" (resteapayer)="getUpdatedvalue($event, id)"></wind-traite-payment>
+          <!--                        <wind-subtotal [linestotallist]="linestotallist" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+        </div>
+        <div class="col-1" >
+          <br>
+          <div class="dropdown">
+            <div   class="p-2 title-amount-body text-danger">
+              <img src="assets/img/paye.png" style="width: 50px;margin: -14px;"/>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+  </div>
+  <div *ngFor="let paymentType of facturelist , let id = index;">
+    <div *ngIf="paymentType.payType === paymentTypeEnum.CHEQUE_PAYMENT" class="outline">
+      <br>
+      <div class="col-12" style="display: flex; padding:0">
+        <div class="col-11" style="padding:0">
+          <wind-cheque-payment [invoice]="invoice" [RS_model]="RS_model" [reste]="oldlefttopay" [listeLine]="facturelist" [line]="facturelist[id]" [lastIndex]=" listTransactions.length+id"  (listTransactions)="getUpdatedListTransaction($event, id)" (resteapayer)="getUpdatedvalue($event, id)"></wind-cheque-payment>
+        </div>
+        <div class="col-1" >
+          <br>
+          <div class="dropdown">
+            <div  (click)="remove(id)" class="p-2 title-amount-body text-danger">
+              <i-feather name="trash-2"></i-feather>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div *ngIf="paymentType.payType === paymentTypeEnum.ESPECE_PAYMENT" class="comment">
+      <br>
+      <div class="col-12" style="display: flex; padding:0">
+        <div class="col-11" style="padding:0">
+          <wind-espece-payment [invoice]="invoice" [RS_model]="RS_model" [reste]="oldlefttopay" [listeLine]="facturelist" [line]="facturelist[id]" [lastIndex]=" listTransactions.length+id" (resteapayer)="getUpdatedvalue($event, id)"  (listTransactions)="getUpdatedListTransaction($event, id)"></wind-espece-payment>
+        </div>
+        <div class="col-1" >
+          <br>
+          <div class="dropdown">
+            <div  (click)="remove(id)" class="p-2 title-amount-body text-danger">
+              <i-feather name="trash-2"></i-feather>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="paymentType.payType === paymentTypeEnum.VIREMENT_PAYMENT" class="subtotal" >
+      <br>
+      <div class="col-12" style="display: flex; padding:0">
+        <div class="col-11" style="padding:0">
+          <!--                        <wind-subtotal [linestotallist]="linestotallist" [startFrom]="this.lineSubTotal" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+          <wind-virement-payment [invoice]="invoice" [RS_model]="RS_model" [reste]="oldlefttopay" [listeLine]="facturelist" [line]="facturelist[id]" [lastIndex]=" listTransactions.length+id"  (listTransactions)="getUpdatedListTransaction($event, id)" (resteapayer)="getUpdatedvalue($event, id)"></wind-virement-payment>
+          <!--                        <wind-subtotal [linestotallist]="linestotallist" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+        </div>
+        <div class="col-1" >
+          <br>
+          <div class="dropdown">
+            <div  (click)="remove(id)" class="p-2 title-amount-body text-danger">
+              <i-feather name="trash-2"></i-feather>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="paymentType.payType === paymentTypeEnum.TRAITE_PAYMENT" class="subtotal" >
+      <br>
+      <div class="col-12" style="display: flex; padding:0">
+        <div class="col-11" style="padding:0">
+          <!--                        <wind-subtotal [linestotallist]="linestotallist" [startFrom]="this.lineSubTotal" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+          <wind-traite-payment [invoice]="invoice" [RS_model]="RS_model"   [reste]="oldlefttopay" [listeLine]="facturelist" [line]="facturelist[id]" [lastIndex]=" listTransactions.length+id" (resteapayer)="getUpdatedvalue($event, id)"></wind-traite-payment>
+          <!--                        <wind-subtotal [linestotallist]="linestotallist" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+        </div>
+        <div class="col-1" >
+          <br>
+          <div class="dropdown">
+            <div  (click)="remove(id)" class="p-2 title-amount-body text-danger">
+              <i-feather name="trash-2"></i-feather>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="paymentType.payType === paymentTypeEnum.CARD_PAYMENT" class="subtotal" >
+      <br>
+      <div class="col-12" style="display: flex; padding:0">
+        <div class="col-11" style="padding:0">
+          <!--                        <wind-subtotal [linestotallist]="linestotallist" [startFrom]="this.lineSubTotal" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+          <wind-card-payment [RS_model]="RS_model"   [reste]="oldlefttopay" [listeLine]="facturelist" [line]="facturelist[id]" [lastIndex]=" listTransactions.length+id"   (resteapayer)="getUpdatedvalue($event, id)"></wind-card-payment>
+          <!--                        <wind-subtotal [linestotallist]="linestotallist" [endOf]="id-1" [lastIndex]="id"></wind-subtotal>-->
+        </div>
+        <div class="col-1" >
+          <br>
+          <div class="dropdown">
+            <div  (click)="remove(id)" class="p-2 title-amount-body text-danger">
+              <i-feather name="trash-2"></i-feather>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+  </div>
+<br>
+  <div class="col-12">
+    <div class="d-flex justify-content-center flex-wrap">
+      <!----><!----><!----><!----><!----><!---->
+      <button (click)="addLine(paymentTypeEnum.ESPECE_PAYMENT)" class="btn btn-primary m-l-10 m-t-10 m-r-10 p-2 ng-star-inserted" type="button"> Espèces </button>
+      <!----><!----><!---->
+      <button (click)="addLine(paymentTypeEnum.CHEQUE_PAYMENT)" class="btn btn-primary m-l-10 m-t-10 m-r-10 p-2 ng-star-inserted" type="button"> Chèque </button>
+      <!----><!----><!---->
+      <button (click)="addLine(paymentTypeEnum.VIREMENT_PAYMENT)" class="btn btn-primary m-l-10 m-t-10 m-r-10 p-2 ng-star-inserted" type="button"> Virement bancaire </button>
+      <!----><!----><!---->
+      <button (click)="addLine(paymentTypeEnum.TRAITE_PAYMENT)" class="btn btn-primary m-l-10 m-t-10 m-r-10 p-2 ng-star-inserted" type="button"> Traite </button>
+      <!----> <!----><!----><!---->
+      <button (click)="addLine(paymentTypeEnum.CARD_PAYMENT)" class="btn btn-primary m-l-10 m-t-10 m-r-10 p-2 ng-star-inserted" type="button"> Carte bancaire </button>
+      <!---->
+    </div>
+  </div>
+<br>
+</div>

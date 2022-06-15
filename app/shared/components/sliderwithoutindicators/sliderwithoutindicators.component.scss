@@ -1,0 +1,22 @@
+//.carousel-control-next-icon {
+//  background-image: url('./src/assets/img/previous.png') !important;
+//  background-size: 65% 50% !important;
+//}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  display: inline-block;
+  width: 25% !important;
+  height: 35% !important;
+  background: transparent no-repeat center center;
+  background-size: 100% 100%;
+}
+
+@media (max-width: 414px) {
+
+  .w-100 {
+    width: auto !important;
+  }
+  .fontresp {
+    font-size: 1rem !important;
+  }
+}

@@ -1,0 +1,158 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">
+            Contrat:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info
+            Contrat > Gestion de Raison de Sortie</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Ajout Raison D'embauche de Contrat
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+
+      <div class="card-body">
+        <form id="form1" role="form">
+
+          <div style="display: flex">
+            <div class="col-6" style="margin: 0; padding: 0">
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Raison <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <input [(ngModel)]="leavingReason.reason.value" [ngModelOptions]="{standalone: true}"
+                             class="form-control" name="reason" type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Description <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <textarea [(ngModel)]="leavingReason.description.value" [ngModelOptions]="{standalone: true}"
+                                class="form-control" cols="50" name="description" rows="4"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <div class="col-12 text-right" style="float: right">
+                      <a (click)="onFormSubmit()"
+                         class="btn btn-sm btn-neutral"
+                         style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Ajouter</a>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="alert alert-success " style="display: none">
+                    <strong>Succès!</strong> le Raison d'embauche est ajouté avec succès .
+                  </div>
+                  <div class="alert alert-danger " style="display: none">
+                    <span *ngIf="leavingReason.description.dirty"
+                          class="error-hint">{{leavingReason.description.error}}</span><br>
+                    <span *ngIf="leavingReason.reason.dirty"
+                          class="error-hint">{{leavingReason.reason.error}}</span><br>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"
+                data-target="#collapseTwo" data-toggle="collapse" style="color: #0080ad;" type="button">
+          Liste des Raisons d'embauche
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionExample" id="collapseTwo">
+      <div class="card-body">
+
+        <div *ngIf="this.leavinjobReasonList.length == 0"><p style="text-align: center;">Vous n'avez pas des données enregistrés</p></div>
+
+
+        <div class="table-editable" id="table">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;">
+            <thead  *ngIf="this.leavinjobReasonList.length != 0" >
+            <tr>
+              <th>Raison</th>
+              <th>Descripion</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody  *ngIf="this.leavinjobReasonList.length != 0">
+            <tr *ngFor="let leavingJob of leavinjobReasonList, let id = index;">
+              <td>
+                <span (blur)="updateList(id, 'reason', $event)"
+                      contenteditable="true">{{leavingJob.reason}}</span>
+              </td>
+              <td>
+                <span (blur)="updateList(id, 'description', $event)"
+                      contenteditable="true">{{leavingJob.description}}</span>
+              </td>
+              <td>
+            <span class="table-remove">
+               <a (click)="open(content)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+                 aria-hidden="true" class="fa fa-trash"></i></a>
+            </span>
+                <ng-template #content let-c="close" let-d="dismiss" style=" width: 40%; margin-left: 30%; ">
+                  <div class="modal-header" style="border-bottom: none;">
+                    <h4 class="modal-title" id="modal-basic-title">Confirmation de suppression </h4>
+                    <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+                  </div>
+                  <div class="modal-body">
+                    voulez vous vraiment supprimer cet élément?
+                  </div>
+                  <div class="modal-footer" style="border-top: none;">
+                    <button (click)="remove(id)" class="btn btn-outline-red" type="button" style=" background: #d40000; color: white; ">Oui</button>
+                  </div>
+
+                </ng-template>
+
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

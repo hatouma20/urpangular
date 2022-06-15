@@ -1,0 +1,243 @@
+<div class="header" style="background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style="margin-left: 1%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h3 class="d-inline-block mb-0"style="font-weight: bold;font-family: monospace;">Consulter compte</h3>
+          <p aria-current="page" class="breadcrumb-item active" style="font-family: monospace;">
+            Caisse > Details compte</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo1">
+      <h2 class="mb-0">
+        <button aria-controls="collapseTwo" aria-expanded="true" class="btn btn-link collapsed"
+                data-target="#collapseTwo1" data-toggle="collapse" style="font-weight: bold; font-family: monospace;color:#2d2d44" type="button">
+
+          <img src="https://static.thenounproject.com/png/703781-200.png" style="width: 40px;">
+          Compte numéro : {{compteResult.account_number}} de {{compteResult.owner_name}}
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingTwo1" class="collapse show" data-parent="#accordionExample" id="collapseTwo1">
+      <div class="card-body">
+        <br>
+        <form id="form1" role="form">
+          <div style="display: flex">
+            <div class="col-6" style="margin: 0; padding: 0">
+              <div class="row">
+                <div class="col-lg-6 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">ref</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                             [formControl]="form.getField('ref').asFormControl"
+                             [placeholder]="form.getField('ref').placeholder"
+                             class="form-control"
+                             [ngModel]="compteResult.ref"
+                             type="text"disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">libelle</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                             class="form-control"
+                             [formControl]="form.getField('label').asFormControl"
+                             [placeholder]="form.getField('label').placeholder"
+                             class="form-control"
+                             [ngModel]="compteResult.label"
+                             type="text" disabled>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="col-lg-6 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">devise</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                         class="form-control"
+                         [formControl]="form.getField('currency').asFormControl"
+                          [placeholder]="form.getField('currency').placeholder"
+                         [ngModel]="compteResult.currency"
+                        type="text" disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">bank</label>
+                    <div class=" input-group input-group-alternative ">
+                      <input
+                         class="form-control"
+                        [formControl]="form.getField('bank_name').asFormControl"
+                        [placeholder]="form.getField('bank_name').placeholder"
+                        [ngModel]="compteResult.bank_name"
+                        type="text" disabled>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo11">
+      <h2 class="mb-0">
+        <button aria-controls="collapseTwo11" aria-expanded="true" class="btn btn-link collapsed"
+                data-target="#collapseTwo11" data-toggle="collapse" style="font-weight: bold; font-family: monospace;color:#2d2d44" type="button">
+          <img src="https://static.thenounproject.com/png/703781-200.png" style="width: 40px;"> Liste des Paiements
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingTwo11" class="collapse" data-parent="#accordionExample" id="collapseTwo11">
+      <div class="card-body">
+        <div class="table-editable" id="table">
+       <!--<span class="table-add float-right" style="padding: 0">-->
+        <!--<a   class="text-success">-->
+          <!--<i aria-hidden="true" class="fa fa-plus"></i>-->
+        <!--</a>-->
+      <!--</span>-->
+          <div class="row">
+            <div class="col-lg-12 col-5 text-right">
+              <a class="btn btn-sm btn-neutral"
+                 (click)="add()"
+                 style=" color: black; background: #ffcf03; border: #ffcf03; padding: 1%;     margin-bottom: 2%;"><i aria-hidden="true" class="fa fa-plus"></i> Ajouter Paiements</a>
+            </div>
+          </div>
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;">
+            <thead>
+            <tr>
+              <th class="text-center">Comptes bancaires</th>
+              <th class="text-center">Libellé</th>
+              <th class="text-center">Date Paiement</th>
+              <th class="text-center">Mode de règlement</th>
+              <th class="text-center">Montant</th>
+              <th class="text-center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of paiementList; let id = index">
+              <td>
+  <span (blur)="updateList(id, 'compte', $event)" (keyup)="changeValue(id, 'compte', $event)"
+        contenteditable="true">{{item.bank_account.uuid}}</span>
+              </td>
+              <td>
+  <span (blur)="updateList(id, 'label', $event)" (keyup)="changeValue(id, 'label', $event)"
+        contenteditable="true">{{item.label}}</span>
+              </td>
+              <td>
+  <span (blur)="updateList(id, 'payment_date', $event)" (keyup)="changeValue(id, 'payment_date', $event)"
+        contenteditable="true">{{item.payment_date}}</span>
+              </td>
+              <td>
+  <span (blur)="updateList(id, 'payment_mode', $event)" (keyup)="changeValue(id, 'payment_mode', $event)"
+        contenteditable="true">{{item.payment_mode}}</span>
+              </td>
+              <td>
+  <span (blur)="updateList(id, 'amount', $event)" (keyup)="changeValue(id, 'amount', $event)"
+        contenteditable="true">{{item.amount}}</span>
+              </td>
+              <td>
+  <span class="table-remove">
+  <a (click)="remove(item.uuid)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+    aria-hidden="true" class="fa fa-trash"></i></a>
+  </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo111">
+      <h2 class="mb-0">
+        <button aria-controls="collapseTwo111" aria-expanded="true" class="btn btn-link collapsed"
+                data-target="#collapseTwo111" data-toggle="collapse" style="font-weight: bold; font-family: monospace;color:#2d2d44" type="button">
+        <img src="https://static.thenounproject.com/png/703781-200.png" style="width: 40px;"> Liste des Chéques
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingTwo111" class="collapse" data-parent="#accordionExample" id="collapseTwo111">
+      <div class="card-body">
+        <div class="table-editable" id="table1">
+
+          <div class="row">
+            <div class="col-lg-12 col-5 text-right">
+              <a class="btn btn-sm btn-neutral"
+                 (click)="add()"
+                 style=" color: black; background: #ffcf03; border: #ffcf03; padding: 1%;     margin-bottom: 2%;"><i aria-hidden="true" class="fa fa-plus"></i> Ajouter Cheques</a>
+            </div>
+          </div>
+
+ <!--<span class="table-add float-right" style="padding: 0">-->
+        <!--<a   class="text-success">-->
+          <!--<i aria-hidden="true" class="fa fa-plus"></i>-->
+        <!--</a>-->
+      <!--</span>-->
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2" class="row-border hover" style="    font-family: monospace;">
+            <thead>
+            <tr>
+              <th class="text-center">Emetteur</th>
+              <th class="text-center">Chèque N°</th>
+              <th class="text-center">Date réception</th>
+              <th class="text-center">Règlement</th>
+              <th class="text-center">Montant</th>
+              <th class="text-center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of chequesList; let id = index">
+              <td>
+          <span (blur)="updateList(id, 'transmitter', $event)" (keyup)="changeValue(id, 'transmitter', $event)"
+                contenteditable="true">{{item.transmitter}}</span>
+              </td>
+              <td>
+          <span (blur)="updateList(id, 'check_number', $event)" (keyup)="changeValue(id, 'check_number', $event)"
+                contenteditable="true">{{item.check_number}}</span>
+              </td>
+              <td>
+          <span (blur)="updateList(id, 'check_date', $event)" (keyup)="changeValue(id, 'check_date', $event)"
+                contenteditable="true">{{item.check_date}}</span>
+              </td>
+              <td>
+          <span (blur)="updateList(id, 'rule', $event)" (keyup)="changeValue(id, 'rule', $event)"
+                contenteditable="true">{{item.rule}}</span>
+              </td>
+              <td>
+          <span (blur)="updateList(id, 'amount', $event)" (keyup)="changeValue(id, 'amount', $event)"
+                contenteditable="true">{{item.amount}}</span>
+              </td>
+              <td>
+          <span class="table-remove">
+          <a (click)="remove(item.uuid)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+            aria-hidden="true" class="fa fa-trash"></i></a>
+          </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

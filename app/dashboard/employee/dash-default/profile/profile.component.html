@@ -1,0 +1,411 @@
+<!-- Header -->
+<div>
+  <div class="header " style="    background: #c1c1c12e;">
+    <div class="container-fluid">
+      <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2  d-inline-block mb-0"
+                style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Fiche
+              collaborateur:</h6>
+            <br>
+            <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">
+              Informations Générales</p>
+          </div>
+          <div class="col-lg-6 col-5 text-right">
+            <a href="#/dashboard/admin/collaborators" class="btn btn-sm btn-neutral"
+               style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Creér un noveau profil</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid ">
+    <div class="" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center" style="margin-top: 4rem !important;">
+
+
+        <div class="col-lg-12">
+          <div class=" justify-content-md-center">
+
+            <div class="col-lg-12 col-12 ">
+              <div class="">
+                <div class=" ">
+                  <div class="card-body mt-3" style="padding: 0">
+                    <form (ngSubmit)="update()" role="form">
+
+                      <div style="display: flex">
+                        <div class="col-6" style="margin: 0; padding: 0">
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Matricule</label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.matricule.value"
+                                         [ngModelOptions]="{standalone: true}"
+                                         class="form-control"
+                                         type="text"
+                                         name="matricule">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <br>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Civilité <span
+                                  style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <select [(ngModel)]="collaboratorResult.salutation.value"
+                                          class="form-control" name="salutation"
+                                          [ngModelOptions]="{standalone: true}">
+                                    <option value="MR">MR</option>
+                                    <option value="MRS">MRS</option>
+                                    <option value="MSS">MSS</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Nom <span style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.lastname.value"
+                                         class="form-control"
+                                         [ngModelOptions]="{standalone: true}"
+                                         type="text"
+                                         name="lastname">
+
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Nom de jeune fille </label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.maidenName.value"
+                                         class="form-control"
+                                         [ngModelOptions]="{standalone: true}"
+                                         type="text"
+                                         name="maidenName">
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Prénom <span
+                                  style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.firstname.value"
+                                         [ngModelOptions]="{standalone: true}"
+                                         class="form-control"
+                                         type="text"
+                                         name="firstname">
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Nationalité <span
+                                  style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [placeholder]="form.getField('country').placeholder"
+                                         class="form-control"
+                                         type="text"
+                                         name="country">
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Etat Civil </label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [ngModel]="collaboratorResult.status.value"
+                                         [ngModelOptions]="{standalone: true}"
+                                         class="form-control"
+                                         type="text"
+                                         name="status">
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Numéro Téléphone  </label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.mobileNumber.value"
+                                         [ngModelOptions]="{standalone: true}"
+                                         class="form-control" name="mobileNumber"
+                                  >
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Numéro de Compte <span style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.collaboratorBankAccount.accountnumber.value"
+                                         class="form-control" name="accountnumber" type="number"
+                                  >
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Nom de Bank <span style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.collaboratorBankAccount.bankname.value"
+                                         class="form-control" name="bankname"
+                                  >
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex; float: right">
+                                <label class="hoverable" for="fileInput">
+                                  <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"
+                                       style=" height: 100%; width: 100%; border-radius: 50%; ">
+                                  <div class="hover-text">edit</div>
+                                  <div class="background"></div>
+                                </label>
+                                <br/>
+                                <input (change)="onSelectFile($event)" id="fileInput" type='file'
+
+                                >
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Date de Naissance <span
+                                  style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input #d="ngbDatepicker" (click)="d.toggle()"
+                                         [(ngModel)]="collaboratorResult.dateOfBirth.value"
+                                         [ngModelOptions]="{standalone: true}"
+                                         class="form-control" class="form-control datepicker" id='datetimepicker'
+                                         name="dateOfBirth" name="dp" ngbDatepicker placeholder="Select date" type="text">
+
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Adresse <span
+                                  style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.address.value"
+                                         class="form-control" name="address"
+                                         [ngModelOptions]="{standalone: true}"
+                                  >
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Ville <span
+                                  style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.city.value"
+                                         class="form-control" name="city"
+                                         [ngModelOptions]="{standalone: true}"
+                                  >
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Num Sécurité Sociale</label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.socialSecurityNumber.value"
+                                         [ngModelOptions]="{standalone: true}"
+                                         class="form-control"
+                                         type="text">
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Numéro Pièce d'identité </label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input [(ngModel)]="collaboratorResult.idCardNumber.value"
+                                         class="form-control" name="idCardNumber"
+                                         [ngModelOptions]="{standalone: true}"
+                                  >
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+<!--                          <div class="row">-->
+<!--                            <div class="col-lg-12 col-12">-->
+<!--                              <div class="form-group focused" style="display: flex">-->
+<!--                                <label class="col-4" style="font-weight: bold;">Règle de congé <span-->
+<!--                                  style="color: red;padding: 4px;">*</span></label>-->
+<!--                                <div class=" input-group input-group-alternative custom-width">-->
+<!--                                  <input-->
+<!--                                    class="form-control" name="salutation" value="maximale" disabled>-->
+
+<!--                                </div>-->
+<!--                                <a (click)="open(content)" class="delete" data-toggle="tooltip" style="display: none;  padding: 1%; margin-left: 1%; color: blue;"-->
+<!--                                   title="Delete"><i-->
+<!--                                  aria-hidden="true" class="fa fa-eye"></i></a>-->
+<!--                              </div>-->
+<!--                            </div>-->
+
+<!--                          </div>-->
+                          <div class="row" >
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Règle de congé payé <span
+                                  style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input class="form-control" name="idCardNumber"
+                                         disabled
+                                         [(ngModel)]="payedLeaveRules"
+                                  >
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <label class="col-4" style="font-weight: bold;">Règle de congé maladie<span
+                                  style="color: red;padding: 4px;">*</span></label>
+                                <div class=" input-group input-group-alternative ">
+                                  <input  class="form-control" name="name"
+                                          [(ngModel)]="sickLeaveRules" [ngModelOptions]="{standalone: true}"
+                                          disabled
+                                  >
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-12 col-12">
+                              <div class="form-group focused" style="display: flex">
+                                <div class="col-12 text-right" style="float: right">
+                                  <a (click)="update()"
+                                     class="btn btn-sm btn-neutral"
+                                     style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Modifier</a>
+                                </div>
+
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </form>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss" style=" max-width: 30%; margin-left: 20%; ">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">La règle de Congé est: {{currentRule.name}}</h4>
+    <button (click)="close(content)" aria-label="Close" class="close" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!--                             table collaborator leave-->
+    <p><span class="modal-title" > Totale :</span>  {{currentRule.total}}</p>
+    <table class="table table-bordered table-responsive-md table-striped text-center"
+    >
+      <thead>
+      <tr>
+        <th class="text-center">janvier</th>
+        <th class="text-center">février</th>
+        <th class="text-center">Mars</th>
+        <th class="text-center">Avril</th>
+        <th class="text-center">Mai</th>
+        <th class="text-center">Juin</th>
+        <th class="text-center">Juillet</th>
+        <th class="text-center">Aout</th>
+        <th class="text-center">Septembre</th>
+        <th class="text-center">Octobre</th>
+        <th class="text-center">Nouvembre</th>
+        <th class="text-center">Décembre</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td *ngFor="let value of currentRule.listleaveperday; let i = index">
+          <span>{{value}}</span>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+    <!--                             end table collaborator leave-->
+  </div>
+
+</ng-template>
+

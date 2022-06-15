@@ -1,0 +1,401 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">
+            Départmenet:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info
+            Départmenet > Gestion de département</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+
+
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <div aria-controls="collapseOne"class="btn btn-link adddep" (click)="toggle()"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Ajout  un département
+        </div>
+      </h2>
+    </div>
+
+    <!--  ____________________________ Ajouter Département  ____________________________   -->
+    <div  class="example-container " style="    margin-top: 2%; padding: 0px;">
+
+
+      <form id="form1" (ngSubmit)="onFormSubmit()" role="form" #testForm="ngForm" ngNativeValidate>
+        <div *ngIf="show">
+          <div style="display: flex">
+            <div class="col-12"  style="display: flex">
+              <div class="col-1"></div>
+              <div class="col-10">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Label </label>
+                    <div class=" input-group input-group-alternative ">
+                      <input [(ngModel)]="teammodel.label.value"
+                             class="form-control"
+                             name="type" type="text" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-12" >
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Chef de département </label>
+                    <div class=" input-group input-group-alternative ">
+                      <ng-multiselect-dropdown
+                        style=" width: 100%;"
+                        [settings]="dropdownSettings"
+                        [placeholder]="'Select Collaborator'"
+                        [data]="collaboratorList | async"
+                        formControlName="city"
+                        (onSelect)="onItemSelect($event)"
+                        (onDeSelect)="onItemDeSelect($event)"
+                        [(ngModel)]="coll">
+                      </ng-multiselect-dropdown>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Description </label>
+                    <div class=" input-group input-group-alternative ">
+                      <textarea [(ngModel)]="teammodel.description.value"
+                                class="form-control" cols="50" name="description" rows="4" required></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1"></div>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <div class="col-12 text-right" style="float: right;    padding-right: 0px;">
+                  <input type='submit'  style=" color: black; background: #ffcf03; border: #ffcf03;     padding:1%; float: right; font-family: monospace " value="Ajouter"/>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </form>
+
+
+    </div>
+
+
+
+<!--    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">-->
+
+<!--      <div class="card-body" style="   padding-bottom: 4.5rem;">-->
+<!--        <form (ngSubmit)="onFormSubmit()"  role="form" #testForm="ngForm" ngNativeValidate>-->
+
+<!--          <div style="display: flex">-->
+<!--            <div class="col-12"  style="display: flex">-->
+<!--              <div class="col-1"></div>-->
+<!--              <div class="col-10">-->
+<!--                <div class="col-lg-12 col-12">-->
+<!--                  <div class="form-group focused" style="display: flex">-->
+<!--                    <label class="col-4" style="font-weight: bold;">Label </label>-->
+<!--                    <div class=" input-group input-group-alternative ">-->
+<!--                      <input [(ngModel)]="teammodel.label.value"-->
+<!--                        class="form-control"-->
+<!--                        name="type" type="text" required>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-12 col-12" >-->
+<!--                  <div class="form-group focused" style="display: flex">-->
+<!--                  <label class="col-4" style="font-weight: bold;">Chef de département </label>-->
+<!--                  <div class=" input-group input-group-alternative ">-->
+<!--                    <ng-multiselect-dropdown-->
+<!--                      style=" width: 100%;"-->
+<!--                      [settings]="dropdownSettings"-->
+<!--                      [placeholder]="'Select Collaborator'"-->
+<!--                      [data]="collaboratorList | async"-->
+<!--                      formControlName="city"-->
+<!--                      (onSelect)="onItemSelect($event)"-->
+<!--                      (onDeSelect)="onItemDeSelect($event)"-->
+<!--                      [(ngModel)]="coll">-->
+<!--                    </ng-multiselect-dropdown>-->
+
+<!--                  </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-12 col-12">-->
+<!--                  <div class="form-group focused" style="display: flex">-->
+<!--                    <label class="col-4" style="font-weight: bold;">Description </label>-->
+<!--                    <div class=" input-group input-group-alternative ">-->
+<!--                      <textarea [(ngModel)]="teammodel.description.value"-->
+<!--                        class="form-control" cols="50" name="description" rows="4" required></textarea>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="col-1"></div>-->
+
+<!--            </div>-->
+<!--          </div>-->
+
+<!--              <div class="row">-->
+<!--                <div class="col-lg-12 col-12">-->
+<!--                  <div class="form-group focused" style="display: flex">-->
+<!--                    <div class="col-12 text-right" style="float: right;    padding-right: 0px;">-->
+<!--                      <input type='submit'  style=" color: black; background: #ffcf03; border: #ffcf03;     padding:1%; float: right; font-family: monospace " value="Ajouter"/>-->
+<!--                    </div>-->
+
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+<!--              <div class="row">-->
+<!--                <div class="col-lg-12 col-12">-->
+<!--                  <div class="alert alert-success " style="display: none">-->
+<!--                    <strong>Succès!</strong> le Type de Contrat est ajouté avec succès .-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--              </div>-->
+
+
+
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+
+</div>
+
+
+
+
+
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo">
+      <h2 class="mb-0">
+<button class="btn btn-link" style="border:none; background: transparent;color: #0080ad;"> Liste des départements
+</button>
+
+      </h2>
+    </div>
+    <div>
+      <div class="card-body">
+<!--        <div *ngIf="this.contractTypeList.length == 0"><p style="text-align: center;">Vous n'avez pas des données enregistrés</p></div>-->
+
+
+        <div class="table-editable" style="margin-top: 2%;" style="width: 100% !important;">
+<!--&lt;!&ndash;          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;     margin: 0 !important; ">&ndash;&gt;-->
+            <table id="myTable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" style="    width: 100%; font-family: monospace;  ">
+            <thead  *ngIf="this.teamList.length != 0" >
+
+            <tr>
+
+              <td scope="col"  >Label</td>
+              <td scope="col"  >created</td>
+              <td scope="col"  >Description</td>
+              <td scope="col"  >Chef de département</td>
+              <td scope="col"  >Modifier</td>
+              <td scope="col" >Supprimer</td>
+              <td  scope="col" >Voir</td>
+            </tr>
+            </thead>
+            <tbody  *ngIf="this.teamList.length != 0" >
+            <tr *ngFor="let person of teamList, let id = index;"  >
+
+              <td scope="col">
+                <span (blur)="updateList(id, 'label', $event)" (keyup)="changeValue(id, 'label', $event)"
+                      contenteditable="true">{{person.label}}</span>
+              </td>
+              <td scope="col">
+                <span
+                >
+                  {{person.created | date: 'dd/MM/yyyy' }}
+                </span>
+              </td>
+              <td scope="col">
+                <span (blur)="updateList(id, 'description', $event)" (keyup)="changeValue(id, 'description', $event)"
+                      contenteditable="true">{{person.description}}</span>
+
+              </td>
+              <td>
+                <span contenteditable="false"  *ngIf="person.manager_team != null">{{person.manager_team.firstname}} {{person.manager_team.lastname}}</span>
+                <span contenteditable="false"  *ngIf="person.manager_team  == null" style="color: red;">--</span>
+              </td>
+              <td scope="col">
+
+
+
+
+                <a  data-toggle="modal" data-target="#modalPush" (click)="open(contenteditmanager)"><span class="fa fa-ellipsis-v" aria-hidden="true"></span></a>
+                <ng-template #contenteditmanager let-c="close" let-d="dismiss" style=" width: 40%; margin-left: 30%; ">
+
+                  <!--Modal: modalPush-->
+
+
+
+
+                  <div class="modal-body" style="padding: 0;">
+
+                    <div class="modal-dialog modal-notify modal-info" role="document" style="margin: 0;">
+                      <!--Content-->
+                      <div class="modal-content text-center">
+                        <!--Header-->
+                        <div class="modal-header d-flex justify-content-center" style="background: #efcc0b;">
+                          <p class="heading" style="color: #2d2d44;padding-bottom: 0;">Chef de département</p>
+                          <button (click)="d('Cross click')" aria-label="Close" class="close" type="button">
+                            <span aria-hidden="true" style="color: #2d2d44;">&times;</span>
+                          </button>
+
+                        </div>
+
+                        <!--Body-->
+                        <div class="modal-body" style="background: white; color: #3c4752;">
+
+                          <h5 class="modal-title"  style="color: #2d2d44; ">Département:<span style="color: #2f78bb; ">  {{person.label}}</span></h5>
+                          <img  src='../../../../assets/img/teamleader.png' style="height: 8em; padding: 1em;">
+
+                          <p class="modal-title" style="color: #313148; padding: 1em; padding-left: 0;text-align: initial;">Selectionner nouveau  chef de département:</p>
+                                                    <div class=" input-group input-group-alternative ">
+                                                      <ng-multiselect-dropdown
+                                                        style=" width: 100%;"
+                                                        [settings]="dropdownSettings"
+                                                        [placeholder]="'Select Collaborator'"
+                                                        [data]="collaboratorList | async"
+                                                        formControlName="city"
+                                                        (onSelect)="onItemSelect($event)"
+                                                        (onDeSelect)="onItemDeSelect($event)"
+                                                        [(ngModel)]="coll">
+                                                      </ng-multiselect-dropdown>
+
+                                                    </div>
+<!--                                                    <button (click)="editeamchef(person.uuid)" class="btn btn-outline-red" type="button" style=" background: #d40000; color: white; ">Oui</button>-->
+
+
+                        </div>
+
+                        <!--Footer-->
+                        <div class="modal-footer flex-center">
+                          <a type="button" (click)="editeamchef(person,id)" class="btn btn-sm btn-success" style="width: 60px; color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Oui</a>
+                          <a type="button" class="btn btn-sm btn-danger" (click)="d('Cross click')" style="width: 60px; color: white; background: black; border: #ffcf03; padding: 2%;   ">Non</a>
+                        </div>
+                      </div>
+                      <!--/.Content-->
+                    </div>
+
+<!--                    <div class="row col-12" style="display: flex;padding: 0;">-->
+<!--                      <div class="row col-4" style="color: white; background-image: url('../../../assets/img/chef.jpg');background-size: cover;">ddd</div>-->
+<!--                      <div class="row col-8" style="display:flex">-->
+<!--                        <div class="col-2"></div>-->
+<!--                        <div class="col-10">-->
+<!--                          -->
+
+<!--                          <h5 class="modal-title" id="modal-basic-title">Changer le chef de departement:<span style="color:indianred">  {{person.label}}</span></h5>-->
+<!--                          <div class=" input-group input-group-alternative ">-->
+<!--                            <ng-multiselect-dropdown-->
+<!--                              style=" width: 100%;"-->
+<!--                              [settings]="dropdownSettings"-->
+<!--                              [placeholder]="'Select Collaborator'"-->
+<!--                              [data]="collaboratorList | async"-->
+<!--                              formControlName="city"-->
+<!--                              (onSelect)="onItemSelect($event)"-->
+<!--                              (onDeSelect)="onItemDeSelect($event)"-->
+<!--                              [(ngModel)]="coll">-->
+<!--                            </ng-multiselect-dropdown>-->
+
+<!--                          </div>-->
+<!--                          <button (click)="editeamchef(person.uuid)" class="btn btn-outline-red" type="button" style=" background: #d40000; color: white; ">Oui</button>-->
+<!--                        </div>-->
+<!--                        <div class="col-2"></div>-->
+
+<!--                      </div>-->
+<!--                    </div>-->
+
+
+
+
+                  </div>
+
+
+                </ng-template>
+              </td>
+
+
+              <td scope="col" style="    width: 15%;">
+                <span class="table-remove">
+
+
+                      <span class="table-remove">
+                <a (click)="open(content)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+                  aria-hidden="true" class="fa fa-trash"></i></a>
+                </span>
+                <ng-template #content let-c="close" let-d="dismiss" style=" width: 40%; margin-left: 30%; ">
+
+                <div class="modal-body" style="padding: 0;">
+                  <div class="col-12" style="display: flex">
+  <div class="col-2"></div>
+  <div class="col-8" style="text-align: center">
+               <img class="navbar-brand-img" src="../../../assets/img/delete.gif" style="width: 45%;">
+  </div>
+  <div class="col-2"></div>
+</div>
+                  <div class="col-12" style="display: flex">
+  <div class="col-2"></div>
+  <div class="col-8" style="text-align: center">
+               <h2 class="swal2-title" id="swal2-title" style="font-size: 1.0em;">Are you sure?</h2>
+                <div id="swal2-content" class="swal2-html-container" style="display: block;">You won't be able to revert this!</div>
+
+  </div>
+  <div class="col-2"></div>
+</div>
+
+
+                </div>
+                <div class="modal-footer" style="padding: 1%; border-top: none;">
+                <button (click)="remove(person,id)" class="btn btn-outline-red btn-sm btn-success"  type="button" style="width: 60px; color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Oui</button>
+                  <button (click)="d('Cross click')" aria-label="Close" class="btn btn-outline-red btn-sm" style="width: 60px; color: white; background: black; border: #ffcf03; padding: 2%;" type="button">Cancel</button>
+                </div>
+
+                </ng-template>
+
+            </span>
+              </td>
+              <td scope="col">
+                <span class="table-remove">
+               <a href="#/dashboard/admin/collaborators/team" class="delete" data-toggle="tooltip" style="    color: #1c8db5;" title="AFFECTER">
+
+                 <i  aria-hidden="true" class="fa fa-eye"></i></a>
+
+            </span>
+
+
+
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

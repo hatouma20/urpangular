@@ -1,0 +1,151 @@
+.card-info {
+  margin: 1%;
+  border: none;
+  background: transparent;
+}
+
+.card-info-header {
+  border-bottom: none;
+  background: #f0f8ff8a;
+  box-shadow: 0em 6px 0.5em 6px #c7c7c7;
+}
+
+@media all and (min-width: 768px) {
+
+  tr, td {
+    vertical-align: middle !important;
+  }
+
+  span {
+    padding: 1rem 1rem;
+  }
+}
+
+.show {
+  display: block !important;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+  border-bottom: none !important;
+}
+
+table.dataTable.no-footer {
+  border-bottom: none !important;
+}
+
+.hoverable {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: 150px;
+  width: 150px;
+  border: 5px solid #dadde1;
+  border-radius: 50%;
+}
+
+.hoverable .hover-text {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.hoverable .background {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.hoverable:hover .hover-text {
+  display: block;
+}
+
+.hoverable:hover .background {
+  display: block;
+}
+
+#fileInput {
+  display: none;
+}
+
+/*.modal.show .modal-dialog {*/
+/*  max-width: 65% !important;*/
+/*}*/
+.show {
+  display: block !important;
+}
+.custom-width-show{
+  width: 95%;
+}
+.maxwidthmodal{
+  max-width: 65% !important;
+}
+ .modal-dialog {
+  max-width: 65% !important;
+}
+ ::ng-deep .dataTable {
+   width: 100% !important;
+ }
+
+ ::ng-deep .dataTables_scrollHeadInner {
+   width: 100% !important;
+ }
+
+.tooltip1 {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip1 .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 80%;
+  left: 0%;
+  margin-left: -60px;
+}
+
+.tooltip1 .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext {
+  visibility: visible;
+}
+
+::ng-deep table.dataTable tbody th, table.dataTable tbody td{
+  padding: 8px 0px !important;
+}
+
+.cardcollaborator{
+  display: block !important;
+}
+.accordionRegle {
+  display: none !important;
+}
+
+::ng-deep .dataTables_filter{
+  display: none !important;
+}

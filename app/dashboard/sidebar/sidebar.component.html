@@ -1,0 +1,320 @@
+<script>
+  $(document).ready(function(){
+    $('ul li a').click(function(){
+      $('li a').removeClass("active");
+      $(this).addClass("active");
+    });
+  });
+</script>
+<nav class="navbar navbar-top navbar-vertical navbar-expand-md navbar-dark" style="    background: #1c1c2b;">
+  <div class="container ">
+    <div class="sidenav-header  align-items-center" style="    background: #1c1c2b; padding-top: 8%">
+      <a class="navbar-brand" routerLinkActive="active">
+        <img alt="..." class="navbar-brand-img" src="../../../assets/img/logo.png">
+      </a>
+    </div>
+    <div class="sidenav-header  align-items-center display-user" style="    background: #2d2d44; height: auto">
+      <a href="#" class="navbar-brand">
+        <img alt="..." class="navbar-brand-img" src="../../../assets/img/user.png"
+             style=" height: 114px; max-height: 100%; border-radius: 50%; ">
+        <p style=" color: white; margin-top: 7%; "></p>
+      </a>
+    </div>
+    <button (click)="isCollapsed=!isCollapsed" aria-controls="sidenav-collapse-main" class="navbar-toggler"
+            type="button">
+      <span class="navbar-toggler-icon">  <i class="ni ni-bullet-list-67"></i></span>
+    </button>
+    <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse" id="sidenav-collapse-main">
+      <!-- Collapse header -->
+      <div class=" d-md-none">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+
+          </div>
+          <div class="col-6 collapse-close">
+            <button (click)="isCollapsed=!isCollapsed" class="navbar-toggler" type="button">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <ul class="navbar-nav pl-3 colormenu mb-3" style="background: #1c1c2b">
+        <li class="nav-item"
+              *ngFor="let item of menu; let id= index">
+          <a *ngIf="item.children.length===0" (click)="listClick(item,id, null)" class="nav-link" [class.active]="selectedItem.url === item.url"  href="{{item.url}}"  >
+            <i class="{{item.icon}}"></i>
+            <span class="nav-link-text">{{item.label}}</span>
+          </a>
+          <a *ngIf="item.children.length!=0"  aria-controls="collapseExample" aria-expanded="true" class="nav-link"
+             data-toggle="collapse"
+             href="{{item.url}}" href="#collapseExample{{id}}" role="button">
+            <i class="{{item.icon}}"></i>
+            <span class="nav-link-text">{{item.label}}</span>
+          </a>
+          <div class="collapse" id="collapseExample{{id}}">
+            <div>
+              <ul class="navbar-nav pl-3 colormenu"
+                  style="font-size: 13px;color: rgba(255, 255, 255, .95);">
+                <li  class="nav-item" *ngFor="let submenu of item.children; let j= index">
+                  <a  (click)="listClick(submenu, id,null)"  *ngIf="submenu.children.length===0" class="nav-link" [class.active]="selectedItem.url === submenu.url" href="{{submenu.url}}">{{submenu.label}}</a>
+                  <a   *ngIf="submenu.children.length!=0"   aria-controls="collapseExample" aria-expanded="true" class="nav-link"
+                     data-toggle="collapse"
+                     href="{{submenu.url}}" href="#2collapseExample{{id}}{{j}}" role="button">
+                    <span class="nav-link-text">{{submenu.label}}</span>
+                  </a>
+                  <div class="collapse" id="2collapseExample{{id}}{{ j}}">
+                    <div>
+                      <ul class="navbar-nav pl-3 colormenu"
+                          style="font-size: 13px;color: rgba(255, 255, 255, .95);">
+                        <li class="nav-item"  (click)="listClick(submenu2, id, j)" *ngFor="let submenu2 of submenu.children">
+                          <a  class="nav-link" [class.active]="selectedItem.url === submenu2.url" href="{{submenu2.url}}">{{submenu2.label}}</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <!--       <ul  *ngIf="roleAdmin()" class="navbar-nav pl-3 colormenu" style="background: #1c1c2b">-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link " href="#/dashboard/admin/profile">-->
+      <!--            <i class="ni ni-single-02 "></i>-->
+      <!--            <span class="nav-link-text">Profil</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" href="#/dashboard/admin/collaborators">-->
+      <!--            <i class="ni ni-circle-08"></i>-->
+      <!--            <span class="nav-link-text">Collaborateurs</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a aria-controls="collapseExample" aria-expanded="true" class="nav-link" data-toggle="collapse"-->
+      <!--             href="#/dashboard/employee/infocontrat" href="#collapseExample" role="button">-->
+      <!--            <i class="ni ni-badge"></i>-->
+      <!--            <span class="nav-link-text">Info Contrat</span>-->
+      <!--          </a>-->
+      <!--          <div class="collapse" id="collapseExample">-->
+      <!--            <div>-->
+      <!--              <ul class="navbar-nav pl-3 colormenu"-->
+      <!--                  style="font-size: 13px;color: rgba(255, 255, 255, .95);">-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/admin/infocontrat/historique">Historiques</a>-->
+      <!--                </li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/admin/infocontrat/listecontrat">Liste des-->
+      <!--                  contrats</a></li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/admin/infocontrat/gestionduration">Gestion-->
+      <!--                  Contract Duration</a></li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/admin/infocontrat/gestiontype">Gestion-->
+      <!--                  Contract Type</a></li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/admin/infocontrat/hiringreason">Gestion-->
+      <!--                  Hiring Reason</a></li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/admin/infocontrat/leavingreason">Gestion-->
+      <!--                  Leaving Job Reason</a></li>-->
+      <!--              </ul>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" href="#/dashboard/employee/frais">-->
+      <!--            <i class="ni ni-folder-17"></i>-->
+      <!--            <span class="nav-link-text">Frais et Mutuelle</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a aria-controls="collapseExample" aria-expanded="true" class="nav-link" data-toggle="collapse"-->
+      <!--             href="#/dashboard/employee/conge" href="#collapseExample2" role="button">-->
+      <!--            <i class="ni ni-calendar-grid-58"></i>-->
+      <!--            <span class="nav-link-text">Soldes de Congé</span>-->
+      <!--          </a>-->
+      <!--          <div class="collapse" id="collapseExample2">-->
+      <!--            <div>-->
+      <!--              <ul class="navbar-nav pl-3 colormenu"-->
+      <!--                  style="font-size: 13px;color: rgba(255, 255, 255, .95);">-->
+      <!--                <li class="nav-item"><a class="nav-link" href="/#/dashboard/admin/conge/requestleave">Demande Congé</a>-->
+      <!--                </li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/admin/conge/companyenabledleave">Congé-->
+      <!--                  Autorisés par l'entreprise</a></li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/admin/conge/companyholiday">Jours Fériés</a>-->
+      <!--                </li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/admin/conge/companyenabledrule">Règles des-->
+      <!--                  Congés</a></li>-->
+
+      <!--              </ul>-->
+      <!--            </div>-->
+      <!--          </div>-->
+
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" href="#/dashboard/admin/document">-->
+      <!--            <i class="ni ni-single-copy-04"></i>-->
+      <!--            <span class="nav-link-text">Documents</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" href="#">-->
+      <!--            <i class="ni ni-bullet-list-67"></i>-->
+      <!--            <span class="nav-link-text">Notes</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a aria-controls="collapseExample" aria-expanded="true" class="nav-link" data-toggle="collapse"-->
+      <!--             href="#/dashboard/employee/infocontrat" href="#collapseExample1" role="button">-->
+      <!--            <i class="ni ni-building"></i>-->
+      <!--            <span class="nav-link-text">Fournisseurs</span>-->
+      <!--          </a>-->
+      <!--          <div class="collapse" id="collapseExample1">-->
+      <!--            <div>-->
+      <!--              <ul class="navbar-nav pl-3 colormenu"-->
+      <!--                  style="font-size: 13px;color: rgba(255, 255, 255, .95);">-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/fournisseur/fournisseur">ajout fournisseur</a>-->
+      <!--                </li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/fournisseur/fournisseur/list">list fournisseurs</a>-->
+      <!--                </li>-->
+      <!--              </ul>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a aria-controls="collapseExample" aria-expanded="true" class="nav-link" data-toggle="collapse"-->
+      <!--             href="#/dashboard/caisse/caisse" href="#collapseExample11" role="button">-->
+      <!--            <i class="ni ni-cart"></i>-->
+      <!--            <span class="nav-link-text">Caisses</span>-->
+      <!--          </a>-->
+      <!--          <div class="collapse" id="collapseExample11">-->
+      <!--            <div>-->
+      <!--              <ul class="navbar-nav pl-3 colormenu"-->
+      <!--                  style="font-size: 13px;color: rgba(255, 255, 255, .95);">-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/caisse/caisse">liste des comptes bancaires-->
+      <!--                </a>-->
+      <!--                </li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/caisse/caisse/virement">Virements Internes-->
+      <!--                </a>-->
+      <!--                </li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/caisse/caisse/paiement">Liste des Paiements </a>-->
+      <!--                </li>-->
+      <!--              </ul>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </li>-->
+
+      <!--        <li class="nav-item">-->
+      <!--          <a aria-controls="collapseExample" aria-expanded="true" class="nav-link" data-toggle="collapse"-->
+      <!--             href="#/dashboard/employee/infocontrat" href="#collapseExample21" role="button">-->
+      <!--            <i class="ni ni-shop"></i>-->
+      <!--            <span class="nav-link-text">Stock</span>-->
+      <!--          </a>-->
+      <!--          <div class="collapse" id="collapseExample21">-->
+      <!--            <div>-->
+      <!--              <ul class="navbar-nav pl-3 colormenu"-->
+      <!--                  style="font-size: 13px;color: rgba(255, 255, 255, .95);">-->
+      <!--                <li class="nav-item"><a class="nav-link" href="/#/dashboard/stock/attributes">Stock's Attributes</a>-->
+      <!--                </li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/stock/stock">ajout</a>-->
+      <!--                </li>-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/stock/stock/list">list</a>-->
+      <!--                </li>-->
+
+
+      <!--              </ul>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </li>-->
+
+      <!--      </ul>-->
+      <!--      &lt;!&ndash; Divider &ndash;&gt;-->
+
+      <!--      <ul *ngIf="roleSystem()" class="navbar-nav pl-3 colormenu" style="background: #1c1c2b">-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link " href="#/dashboard/employee/profile">-->
+      <!--            <i class="ni ni-single-02 "></i>-->
+      <!--            <span class="nav-link-text">Profil</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--        &lt;!&ndash;        <li class="nav-item">&ndash;&gt;-->
+      <!--        &lt;!&ndash;          <a class="nav-link" href="#/dashboard/employee/coordonnees">&ndash;&gt;-->
+      <!--        &lt;!&ndash;            <i class="ni ni-circle-08"></i>&ndash;&gt;-->
+      <!--        &lt;!&ndash;            <span class="nav-link-text">Coordonnées</span>&ndash;&gt;-->
+      <!--        &lt;!&ndash;          </a>&ndash;&gt;-->
+      <!--        &lt;!&ndash;        </li>&ndash;&gt;-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link"-->
+      <!--             href="#/dashboard/employee/infocontrat">-->
+      <!--            <i class="ni ni-badge"></i>-->
+      <!--            <span class="nav-link-text">Info Contrat</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" href="#/dashboard/employee/frais">-->
+      <!--            <i class="ni ni-folder-17"></i>-->
+      <!--            <span class="nav-link-text">Frais et Mutuelle</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a aria-controls="collapseExample" aria-expanded="true" class="nav-link" data-toggle="collapse"-->
+      <!--             href="#/dashboard/employee/conge" href="#collapseExample3" role="button">-->
+      <!--            <i class="ni ni-calendar-grid-58"></i>-->
+      <!--            <span class="nav-link-text">Congé</span>-->
+      <!--          </a>-->
+      <!--          <div class="collapse" id="collapseExample3">-->
+      <!--            <div>-->
+      <!--              <ul class="navbar-nav pl-3 colormenu"-->
+      <!--                  style="font-size: 13px;color: rgba(255, 255, 255, .95);">-->
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/employee/conge/">Solde de Congé </a>-->
+      <!--                </li>-->
+
+      <!--                <li class="nav-item"><a class="nav-link" href="#/dashboard/employee/conge/companyholiday">Jours-->
+      <!--                  Fériés</a>-->
+      <!--                </li>-->
+
+
+      <!--              </ul>-->
+      <!--            </div>-->
+      <!--          </div>-->
+
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" href="#/dashboard/employee/document">-->
+      <!--            <i class="ni ni-single-copy-04"></i>-->
+      <!--            <span class="nav-link-text">Documents</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" href="#">-->
+      <!--            <i class="ni ni-bullet-list-67"></i>-->
+      <!--            <span class="nav-link-text">Notes</span>-->
+      <!--          </a>-->
+      <!--        </li>-->
+      <!--      </ul>-->
+      <!--      &lt;!&ndash; Divider &ndash;&gt;-->
+
+      <!-- Navigation -->
+      <ul class="navbar-nav mb-md-3 colormenu" style="background: #2d2d44;padding-left: 23%; padding-bottom: 15%">
+        <br>
+        <br>
+        <li class="nav-item">
+          <a class="nav-link" href="#" target="_blank">
+            <span class="nav-link-text">Mot de passe</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" target="_blank">
+
+            <span class="nav-link-text">Langues</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"   href="#"  (click)="logout()">
+
+            <span class="nav-link-text">Déconnexion</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+

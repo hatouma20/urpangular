@@ -1,0 +1,377 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Congé
+            :</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Les
+            Vacances d'entreprise</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Liste des Jours Fériés
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body" style="display: flex">
+
+        <div class="col-2"></div>
+        <div class="col-8">
+          <table class="legende">
+            <tbody>
+            <tr style="display: flex">
+              <td class="icon paye" style="background:  #8ed0f0">
+                &nbsp;
+              </td>
+              <td>
+                &nbsp;
+              </td>
+              <td class="text-center" style=" font-size: 14px;padding: 0 "><span style="font-size: 12px; padding: 0">
+                Les jours fériés chômés et payés.</span></td>
+            </tr>
+            <tr style="display: flex">
+              <td class="icon non-paye" style="background: #f34604">
+                &nbsp;
+              </td>
+              <td>
+                &nbsp;
+              </td>
+              <td class="text-center" style="  font-size: 14px;padding: 0 "><span style="font-size: 12px; padding: 0">
+                Les jours fériés chômés et non payés.</span></td>
+            </tr>
+            </tbody>
+          </table>
+          <div style="display: flex">
+            <table (click)="open(content, holiday)" *ngFor="let holiday of Holidays; let id = index"
+                   class="table table-bordered table-responsive-md table-striped text-center">
+              <tr >
+                <th class="text-center" style=" height: 100px; font-size: 14px;padding: 0 "><span
+                  style="font-size: 12px; padding: 0">{{holiday.day}} {{holiday.month}}</span><br> {{holiday.title}}  </th>
+              </tr>
+              <tr *ngIf="holiday.payed===true" style="background: #8ed0f0">
+                <td >
+               <span style="padding: 0"> <span (blur)="updateList(id, 'total-days', $event)"
+                                               (keyup)="changeValue(id, 'total_days', $event)"
+                                               contenteditable="true"
+                                               style="padding: 0">
+                {{holiday.total_days}}</span> <span style="padding: 0">jr</span></span>
+                </td>
+              </tr>
+              <tr *ngIf="holiday.payed===false" style="background: #f34604">
+                <td >
+               <span  style="padding: 0"> <span
+                                               contenteditable="true"
+                                               style="padding: 0">
+                {{holiday.total_days}}</span> <span style="padding: 0">jr</span></span>
+
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"
+                data-target="#collapseTwo" data-toggle="collapse" style="color: #0080ad;" type="button">
+          Ajout d'un Jour férié
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingTwo" class="collapse" data-parent="#accordionExample" id="collapseTwo">
+      <div class="card-body">
+<!--        <form role="form">-->
+          <form id="form1"  (ngSubmit)="onFormSubmit()" role="form" #testForm="ngForm" ngNativeValidate>
+          <div style="display: flex">
+            <div class="col-6" style="margin: 0; padding: 0">
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Titre <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <input [(ngModel)]="companyHoliday.title.value" [ngModelOptions]="{standalone: true}"
+                             class="form-control"
+                             name="title" required>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Le Mois <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <select (change)="selectMonth($event,companyHoliday.month.value)"
+                              [(ngModel)]="companyHoliday.month.value"
+                              [ngModelOptions]="{standalone: true}"
+                              class="form-control" name="month" required>
+                        <option value="0">janvier</option>
+                        <option value="1">fevrier</option>
+                        <option value="2">Mars</option>
+                        <option value="3">Avril</option>
+                        <option value="4">Mai</option>
+                        <option value="5">Juin</option>
+                        <option value="6">Juillet</option>
+                        <option value="7">Aout</option>
+                        <option value="8">Septembre</option>
+                        <option value="9">Octobre</option>
+                        <option value="10">Novembre</option>
+                        <option value="11">Decembre</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Le jour <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <select [(ngModel)]="companyHoliday.day.value" [disabled]=days
+                              [id]="days" [ngModelOptions]="{standalone: true}"
+                              class="form-control " name="day" required>
+                        <option *ngFor="let day of daysofMonth; let id=index" value="{{day}}">{{day}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Nombre des jours <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <input [(ngModel)]="companyHoliday.total_days.value" [ngModelOptions]="{standalone: true}"
+                             class="form-control" min="0"
+                             name="title" type="number" required>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <label class="col-4" style="font-weight: bold;">Payé ou non payé <span
+                      style="color: red;padding: 4px;">*</span></label>
+                    <div class=" input-group input-group-alternative ">
+                      <select [(ngModel)]="companyHoliday.payed.value" [ngModelOptions]="{standalone: true}"
+                              class="form-control"
+                              name="payed" required>
+                        <option value="true">Congé Payé</option>
+                        <option value="false">Congé chomé non payé</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="form-group focused" style="display: flex">
+                    <div class="col-12 text-right" style="float: right; padding-right: 0px">
+<!--                      <a (click)="onFormSubmit()"-->
+<!--                         class="btn btn-sm btn-neutral"-->
+<!--                         style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Ajouter</a>  -->
+                      <input type='submit'  style=" color: black; background: #ffcf03; border: #ffcf03;     padding: 2%; float: right; font-family: monospace " value="Ajouter"/>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="alert alert-success " style="display: none">
+                    <strong>Succès!</strong> le jour férié est ajouté avec succès .
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> {{currentHoliday.title}}</h4>
+<!--    <button (click)="close(content)" aria-label="Close" class="close" type="button">-->
+<!--      <span aria-hidden="true">&times;</span>-->
+<!--    </button>-->
+    <a class="lightbox__close" (click)="close(content)" >X</a>
+  </div>
+  <div class="modal-body">
+    <!--                             table collaborator leave-->
+    <form role="form" id="form1" (ngSubmit)="onModify(currentHoliday)"  #testForm="ngForm" ngNativeValidate>
+
+      <div style="display: flex">
+        <div class="col-6" style="margin: 0; padding: 0">
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Titre <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <input
+                    class="form-control"
+                    name="title"
+                    [(ngModel)]="currentHoliday.title"
+                    required
+                  >
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Le Mois <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <select (change)="selectMonth($event,currentHoliday.month)"
+                          [(ngModel)]="currentHoliday.month"
+                          class="form-control" name="month" required>
+                    <option value="1">janvier</option>
+                    <option value="2">fevrier</option>
+                    <option value="3">Mars</option>
+                    <option value="4">Avril</option>
+                    <option value="5">Mai</option>
+                    <option value="6">Juin</option>
+                    <option value="7">Juillet</option>
+                    <option value="8">Aout</option>
+                    <option value="9">Septembre</option>
+                    <option value="10">Octobre</option>
+                    <option value="11">Novembre</option>
+                    <option value="12">Decembre</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Le jour <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <select
+                      [(ngModel)]="currentHoliday.day"
+                    class="form-control " name="day" required>
+                    <option *ngFor="let day of daysofMonth; let id=index" [value]="day">{{day}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Nombre des jours <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <input  [(ngModel)]="currentHoliday.total_days"
+                          class="form-control" required
+                          name="total_days" type="number">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Payé ou non payé <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <select [(ngModel)]="currentHoliday.payed"
+                          class="form-control"
+                          name="payed">
+                    <option value="true">Congé Payé</option>
+                    <option value="false">Congé chomé non payé</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-6">
+
+            </div>
+            <div class="col-lg-6 col-6" style="display: flex ; left: 15%">
+              <div class="form-group focused" style="display: flex">
+                <div class="col-12 text-right" style="float: right">
+                  <button type="submit"
+                          class="btn btn-sm btn-neutral"
+                          style=" color: black; background: #ffcf03; border: #ffcf03; padding: 24%; right: 15%">Modifier</button>
+                </div>
+
+              </div>
+              <div class="form-group focused" style="display: flex">
+                <div class="col-12 text-right" style="float: right">
+
+                  <a (click)="remove(currentHoliday)"
+                     class="btn btn-sm btn-neutral"
+                     style=" color: white; background: #2d2d44; border: #ffcf03; padding: 20%; ">Supprimer
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="alert alert-success alert-success-update " style="display: none">
+                <strong>Succès!</strong> le jour férié est modifié avec succès .
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </form>
+    <!--                             end table collaborator leave-->
+  </div>
+
+</ng-template>
+

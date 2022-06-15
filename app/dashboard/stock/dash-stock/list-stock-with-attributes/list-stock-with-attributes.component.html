@@ -1,0 +1,157 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+
+    <div class="header-body" style="margin-left: 1%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h3 class="d-inline-block mb-0"style="font-weight: bold;font-family: monospace;">Stock</h3>
+          <p aria-current="page" class="breadcrumb-item active" style="font-family: monospace;">
+            Stock >  Listes de Stock avec caractéristiques </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne1" aria-expanded="true" class="btn btn-link" data-target="#collapseOne1"
+                data-toggle="collapse" style="font-weight: bold; font-family: monospace; color: #2d2d44;" type="button">
+          <img src="https://static.thenounproject.com/png/703781-200.png" style="width: 40px;">  Liste des Produits
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne1">
+      <div class="card-body">
+        <div class="table-editable" id="table">
+      <span class="table-add float-right" style="padding: 0">
+      </span>
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;">
+            <thead>
+            <tr>
+              <th class="text-center">Nom</th>
+              <th class="text-center">Descripion</th>
+              <th class="text-center">priceIn</th>
+              <th class="text-center">priceOut</th>
+              <th class="text-center">stock</th>
+              <th class="text-center">isActive</th>
+              <th class="text-center">Caractéristiques</th>
+              <th class="text-center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let stock of productsattributesResultList; let id = index">
+              <td>
+                <span (blur)="updateList(id, 'name', $event)" (keyup)="changeValue(id, 'nom', $event)"
+                      contenteditable="true">{{stock.name}}</span>
+              </td>
+              <td>
+                <span (blur)="updateList(id, 'description', $event)" (keyup)="changeValue(id, 'description', $event)"
+                      contenteditable="true">{{stock.description}}</span>
+              </td>
+
+              <td>
+                <span (blur)="updateList(id, 'priceIn', $event)" (keyup)="changeValue(id, 'duree', $event)"
+                      contenteditable="true">{{stock.priceIn}}</span>
+              </td>
+              <td>
+                <span (blur)="updateList(id, 'priceOut', $event)" (keyup)="changeValue(id, 'unite', $event)"
+                      contenteditable="true">{{stock.priceOut}}</span>
+              </td>
+              <td>
+                <span (blur)="updateList(id, 'stock', $event)" (keyup)="changeValue(id, 'unite', $event)"
+                      contenteditable="true">{{stock.stock}}</span>
+              </td>
+              <td>
+                <span (keyup)="changeValue(id, 'unite', $event)"
+                      contenteditable="true">{{stock.isActive}}</span>
+              </td>
+              <td>
+                <table>
+                  <tr *ngFor="let item of productsattributes; let id = index">
+                    <td>  {{item.description}} {{item.typevalue}}  </td>
+                  </tr>
+                </table>
+              </td>
+              <td>
+            <span class="table-remove">
+               <a (click)="remove(stock.uuid)" class="delete" data-toggle="tooltip" style="    color: red;"
+                  title="Delete"><i
+                 aria-hidden="true" class="fa fa-trash"></i></a>
+            </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button aria-controls="collapseTwo" aria-expanded="false" class="btn btn-link collapsed"
+                data-target="#collapseTwo" data-toggle="collapse" style="font-weight: bold; font-family: monospace; color: #2d2d44;" type="button">
+          <img src="https://static.thenounproject.com/png/703781-200.png" style="width: 40px;">  Liste des Services
+        </button>
+      </h2>
+    </div>
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseTwo">
+      <div class="card-body">
+        <div class="table-editable" id="table2">
+      <span class="table-add float-right" style="padding: 0">
+      </span>
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2" class="row-border hover" style="    font-family: monospace;">
+            <thead>
+            <tr>
+              <th class="text-center">Nom</th>
+              <th class="text-center">Descripion</th>
+              <th class="text-center">priceOut</th>
+              <th class="text-center">isActive</th>
+              <th class="text-center">Caractéristiques</th>
+              <th class="text-center"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let stock of servicesattributesResultList; let id = index">
+              <td>
+                <span (blur)="updateList(id, 'name', $event)" (keyup)="changeValue(id, 'nom', $event)"
+                      contenteditable="true">{{stock.name}}</span>
+              </td>
+              <td>
+                <span (blur)="updateList(id, 'description', $event)" (keyup)="changeValue(id, 'description', $event)"
+                      contenteditable="true">{{stock.description}}</span>
+              </td>
+              <td>
+                <span (blur)="updateList(id, 'priceOut', $event)" (keyup)="changeValue(id, 'unite', $event)"
+                      contenteditable="true">{{stock.priceOut}}</span>
+              </td>
+              <td>
+                <span
+                  contenteditable="true">{{stock.isActive}}</span>
+              </td>
+              <td>
+                <table>
+                  <tr *ngFor="let item of servicesattributes; let id = index">
+                    <td>  {{item.description}} {{item.valueType}}  </td>
+                  </tr>
+                </table>
+              </td>
+              <td>
+            <span class="table-remove">
+               <a (click)="removeservice(stock.uuid)" class="delete" data-toggle="tooltip" style="    color: red;"
+                  title="Delete"><i
+                 aria-hidden="true" class="fa fa-trash"></i></a>
+            </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

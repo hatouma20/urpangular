@@ -1,0 +1,826 @@
+<!-- Header -->
+<div>
+  <div class="header " style="    background: #c1c1c12e;">
+    <div class="container-fluid">
+      <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2  d-inline-block mb-0"
+                style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Fiche
+              collaborateur:</h6>
+            <br>
+            <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">
+              Informations Générales</p>
+          </div>
+          <div class="col-lg-6 col-5 text-right">
+            <a href="#/dashboard/admin/collaborators" class="btn btn-sm btn-neutral"
+               style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Creér un noveau profil</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid " >
+    <div class="" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center" style="margin-top: 4rem !important;">
+
+
+        <div class="col-lg-12">
+          <div class=" justify-content-md-center">
+
+            <div class="col-lg-12 col-12 ">
+              <div class="">
+                <div class=" ">
+                  <div class="card-body mt-3" style="padding: 0">
+                    <form  (ngSubmit)="onFormSubmit()" role="form" #testForm="ngForm" ngNativeValidate>
+
+                      <div class="col-12">
+
+                        <div class="row">
+                          <div class="col-lg-6 col-12">
+                            <div class="form-group focused" style="display: flex">
+                              <input  [(ngModel)]="collaboratorResult.uuid.value"
+                                      [ngModelOptions]="{standalone: true}"
+                                      class="form-control"
+                                      type="text"
+                                      name="uuid"
+                                      disabled="disabled" style="display: none">
+                              <label class="col-4" style="font-weight: bold;">Matricule</label>
+                              <div class=" input-group input-group-alternative ">
+
+                                <input  [(ngModel)]="collaboratorResult.matricule.value"
+                                        [ngModelOptions]="{standalone: true}"
+                                        class="form-control"
+                                        type="text"
+                                        name="matricule"
+                                        disabled="disabled">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-6 col-12">
+                            <div class="form-group focused" style="display: flex; float: right">
+                              <label class="hoverable" for="fileInput">
+                                <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"
+                                     style=" height: 100%; width: 100%; border-radius: 50%; ">
+                                <div class="hover-text">edit</div>
+                                <div class="background"></div>
+                              </label>
+                              <br/>
+                              <input (change)="onSelectFile($event)" id="fileInput" type='file' [(ngModel)]="collaboratorResult.personalPicture.value"  accept="image/*">
+                            </div>
+                          </div>
+                        </div>
+
+                        <p  style="font-family: monospace;">Profil &gt; Information Personnel </p>
+                        <div class="col-12" style="display: flex">
+                          <div class="col-6">
+                            <div class="form-group focused">
+                              <label class="col-4" style="font-weight: bold;">Nom</label>
+                              <div class=" input-group input-group-alternative ">
+                                <input [(ngModel)]="collaboratorResult.lastname.value"
+                                       class="form-control"
+                                       [ngModelOptions]="{standalone: true}"
+                                       type="text"
+                                       name="lastname" required #lastname="ngModel">
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-6">
+                            <div class="form-group focused">
+                              <label class="col-4" style="font-weight: bold;">Prénom </label>
+                              <div class=" input-group input-group-alternative ">
+                                <input [(ngModel)]="collaboratorResult.firstname.value"
+                                       [ngModelOptions]="{standalone: true}"
+                                       class="form-control"
+                                       type="text" required
+                                       name="firstname">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12" style="display: flex;     margin-bottom: 20px;">
+                          <div class="col-6">
+                            <label class="col-4" style="font-weight: bold;">Nom de jeune fille </label>
+                            <div class=" input-group input-group-alternative ">
+                              <input [(ngModel)]="collaboratorResult.maidenName.value"
+                                     class="form-control"
+                                     [ngModelOptions]="{standalone: true}"
+                                     type="text"
+                                     name="maidenName">
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <label class="col-4" style="font-weight: bold;">Email </label>
+                            <div class=" input-group input-group-alternative ">
+                              <input class="form-control" name="idCardNumber"
+                                     [(ngModel)]="collaboratorResult.proEmail.value"
+                                     [ngModelOptions]="{standalone: true}" required type="email" >
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12" style="display: flex;     margin-bottom: 20px;">
+                          <div class="col-6">
+                            <label class="col-4" style="font-weight: bold;">Date de naissance </label>
+                            <div class=" input-group input-group-alternative ">
+                              <input type="date"
+                                     [(ngModel)]="collaboratorResult.dateOfBirth.value"
+                                     [ngModelOptions]="{standalone: true}"
+                                     name="dateOfBirth"
+                                     class="form-control" required>
+
+
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <label class="col-4" style="font-weight: bold;">Numéro de Téléphone </label>
+                            <div class=" input-group input-group-alternative ">
+                              <div class=" input-group input-group-alternative ">
+                                <input [(ngModel)]="collaboratorResult.mobileNumber.value"
+                                       [ngModelOptions]="{standalone: true}"
+                                       class="form-control"
+                                       type="text" required
+                                       name="mobileNumber"  pattern="[0-9]{8}"
+                                       title="Numéro de Téléphone invalide (8 chiffres)">
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12" style="display: flex;     margin-bottom: 20px;">
+                          <div class="col-6">
+                            <label class="col-4" style="font-weight: bold;">Nationalité</label>
+                            <div class=" input-group input-group-alternative ">
+
+
+                                <select [(ngModel)]="collaboratorResult.nationality.value"
+                                        class="form-control" name="nationality" required
+                                        [ngModelOptions]="{standalone: true}">
+                                <option *ngFor="let nationality of nationalities; let id=index" value="{{nationality}}">{{nationality}}</option>
+                              </select>
+
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <label class="col-4" style="font-weight: bold;">Ville </label>
+                            <div class=" input-group input-group-alternative ">
+                              <input [(ngModel)]="collaboratorResult.city.value"
+                                     class="form-control" name="city"  required
+                                     [ngModelOptions]="{standalone: true}">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12" style="display: flex;     margin-bottom: 20px">
+                          <div class="col-12">
+                            <label class="col-4" style="font-weight: bold;">Adresse</label>
+                            <div class=" input-group input-group-alternative ">
+                              <input [(ngModel)]="collaboratorResult.address.value"
+                                     class="form-control" name="address" required
+                                     [ngModelOptions]="{standalone: true}"
+                              >
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="col-12" style="display: flex;     margin-bottom: 5%">
+
+                          <div class="col-6">
+                            <label class="col-4" style="font-weight: bold;">Etat Civilité </label>
+                            <div class=" input-group input-group-alternative ">
+                              <select [(ngModel)]="collaboratorResult.salutation.value"
+                                      class="form-control" name="salutation" required
+                                      [ngModelOptions]="{standalone: true}">
+                                <option value="MR">MR</option>
+                                <option value="MRS">MRS</option>
+                                <option value="MS">MS</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-6">
+                            <label class="col-4" style="font-weight: bold;">Civilité</label>
+                            <div class=" input-group input-group-alternative ">
+                              <select [(ngModel)]="collaboratorResult.civilState.value"
+                                      class="form-control" name="salutation" required
+                                      [ngModelOptions]="{standalone: true}">
+                                <option value="CELIBATAIRE">CELIBATAIRE</option>
+                                <option value="MARIE">MARIE</option>
+                                <option value="SEPARE">SEPARE</option>
+                                <option value="DIVORCE">DIVORCE</option>
+                                <option value="VEUF">VEUF</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="new5" style="border: 1px solid #d2d2d2; margin-top: 18px;">
+
+
+
+
+                        <p  style="font-family: monospace;">Profil &gt; Identité </p>
+                        <div class="col-12" style="display: flex">
+                          <div class="col-6">
+                            <div class="form-group focused">
+                              <label class="col-4" style="font-weight: bold;">Cin</label>
+                              <div class=" input-group input-group-alternative ">
+                                <input
+                                  [(ngModel)]="collaboratorResult.idCardNumber.value" required
+                                  class="form-control"
+                                  type="text"
+                                  name="cin"  pattern="[0-9]{8}"
+                                  title="Numéro de carte d'identité nationale  (8 chiffres)">
+
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-6">
+                            <div class="form-group focused">
+                              <label class="col-4" style="font-weight: bold;">Date CIN </label>
+                              <div class=" input-group input-group-alternative ">
+                                <input [(ngModel)]="collaboratorResult.dateOfCin.value"
+                                       [ngModelOptions]="{standalone: true}"
+                                  class="form-control"
+                                  type="date" required
+                                  name="dateOfCin">
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12" style="display: flex;">
+                          <div class="col-6">
+                            <div class="form-group focused">
+                              <label class="col-4" style="font-weight: bold;">Piece Jointe Pile CIN</label>
+<!--                              <div class=" input-group input-group-alternative ">-->
+<!--                                <input accept="image/*" [(ngModel)]="collaboratorResult.attachementCinBack.value"-->
+<!--                                       class="form-control" required-->
+<!--                                       type="file"  (change)="onFileSelectPile($event)"-->
+<!--                                       name="cinback">-->
+
+                              </div>
+
+                              <div class="form-group focused" style="display: flex; ">
+                                <label class="hoverablecin" for="attachementCinBack">
+
+                                  <img [src]="urlPile ? urlPile : 'https://www.w3schools.com/howto/img_avatar.png'"
+                                  style=" height: 100%; width: 100%;     border: 1px solid black; padding: 3%; ">
+                                  <div class="hover-text">edit</div>
+                                  <div class="background"></div>
+                                </label>
+                                <br/>
+                                <input  style="display: none" (change)="onFileSelectPile($event)" id="attachementCinBack" type='file' [(ngModel)]="collaboratorResult.attachementCinBack.value" name="cinback"  accept="image/*">
+<!--                              </div>-->
+
+                            </div>
+                          </div>
+
+                          <div class="col-6">
+                            <div class="form-group focused">
+                              <label class="col-4" style="font-weight: bold;">Piece Jointe Face CIN </label>
+<!--                              <div class=" input-group input-group-alternative ">-->
+<!--                                <input accept="image/*" [(ngModel)]="collaboratorResult.attachementCinFront.value"-->
+<!--                                       class="form-control" required-->
+<!--                                       type="file"  (change)="onFileSelectFace($event)"-->
+<!--                                       name="cinfront">-->
+<!--                              </div>-->
+                            </div>
+
+                            <div class="form-group focused" style="display: flex; ">
+                              <label class="hoverablecin" for="attachementCinface">
+                                <img [src]="urlFace ? urlFace : 'https://www.w3schools.com/howto/img_avatar.png'"
+                                     style=" height: 100%; width: 100%;     border: 1px solid black; padding: 3%; ">
+                                <div class="hover-text">edit</div>
+                                <div class="background"></div>
+                              </label>
+                              <br/>
+                              <input  style="display: none" (change)="onFileSelectFace($event)" id="attachementCinface" type='file' [(ngModel)]="collaboratorResult.attachementCinFront.value" name="cinfront"  accept="image/*">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12" style="display: flex; ">
+                          <div class="col-12">
+                            <div class="form-group focused">
+                              <label class="col-4" style="font-weight: bold;">Numéro de sécurité social</label>
+                              <div class=" input-group input-group-alternative ">
+                                <input [(ngModel)]="collaboratorResult.socialSecurityNumber.value"
+                                       [ngModelOptions]="{standalone: true}"
+                                       class="form-control" type="text" required
+                                       name="cnss"  pattern="[0-9]{10}"
+                                       title="Numéro de sécurité social invalide (10 chiffres)">
+
+
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <hr class="new5" style="border: 1px solid #d2d2d2;    margin-top: 18px;">
+
+
+
+                        <p  style="font-family: monospace;">Profil &gt; Identité Bancaire</p>
+                        <div class="col-12" style="display: flex">
+                          <div class="col-6">
+                            <div class="form-group focused">
+                              <label class="col-4" style="font-weight: bold;">Numéro de Compte</label>
+                              <div class=" input-group input-group-alternative ">
+                                <input [(ngModel)]="collaboratorResult.collaboratorBankAccount.accountnumber.value"
+                                       class="form-control" name="accountnumber" required
+                                       name="cnss"  pattern="[0-9]{20}"
+                                       title="Numéro de Compte invalide (20 chiffres)">
+
+                              </div>
+
+                              <ng-template #content let-c="close" let-d="dismiss" style=" max-width: 30%; margin-left: 20%; ">
+                                <div class="modal-header">
+                                  <h4 class="modal-title" id="modal-basic-title">La règle de Congé est: {{currentRule.name}}</h4>
+                                  <button (click)="close(content)" aria-label="Close" class="close" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <!--                             table collaborator leave-->
+                                  <p><span class="modal-title" > Totale :</span>  {{currentRule.total}}</p>
+                                  <table   class="row-border hover" style="    font-family: monospace;">
+                                    <thead>
+                                    <tr>
+                                      <th class="text-center">janvier</th>
+                                      <th class="text-center">février</th>
+                                      <th class="text-center">Mars</th>
+                                      <th class="text-center">Avril</th>
+                                      <th class="text-center">Mai</th>
+                                      <th class="text-center">Juin</th>
+                                      <th class="text-center">Juillet</th>
+                                      <th class="text-center">Aout</th>
+                                      <th class="text-center">Septembre</th>
+                                      <th class="text-center">Octobre</th>
+                                      <th class="text-center">Nouvembre</th>
+                                      <th class="text-center">Décembre</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                      <td *ngFor="let value of currentRule.listleaveperday; let i = index">
+                                        <span>{{value}}</span>
+                                      </td>
+
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                                  <!--                             end table collaborator leave-->
+                                </div>
+
+                              </ng-template>
+
+                            </div>
+                          </div>
+
+                          <div class="col-6">
+                            <div class="form-group focused">
+                              <label class="col-4" style="font-weight: bold;">Nom de Banque </label>
+                              <div class=" input-group input-group-alternative ">
+                                <input [(ngModel)]="collaboratorResult.collaboratorBankAccount.bankname.value"
+                                       class="form-control" name="bankname"
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="new5" style="border: 1px solid #d2d2d2;">
+
+
+
+
+                        <p  style="font-family: monospace;">Profil &gt; Regle de congé</p>
+                        <div class="col-12" style="display: flex">
+                          <div class="col-6">
+                            <div class="form-group focused" >
+                              <label class="col-4" style="font-weight: bold;">Règle de congé payé </label>
+                              <div style="display: flex">
+                              <div class=" input-group input-group-alternative ">
+                                <input class="form-control" name="idCardNumber"
+                                       disabled
+                                       [(ngModel)]="payedLeaveRules.name"
+                                >
+                              </div>
+                              <a (click)="openRule(content1)" class="show-sick" data-toggle="tooltip" style=" padding: 1%; margin-left: 1%; color: blue;"
+                                 title="Details"><i
+                                aria-hidden="true" class="fa fa-eye"></i></a>
+                              <ng-template #content1 let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+                                <div class="modal-header">
+                                  <h4 class="modal-title" id="modal-basic-title1">La règle de Congé est: {{payedLeaveRules.name}}</h4>
+<!--                                  <button (click)="d('Cross click')" aria-label="Close" class="close" type="button">-->
+<!--                                    <span aria-hidden="true">&times;</span>-->
+<!--                                  </button>-->
+                                  <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+                                </div>
+                                <div class="modal-body">
+                                  <!--                             table collaborator leave-->
+                                  <p><span class="modal-title" > Totale :</span>  {{payedLeaveRules.total}}</p>
+                                  <table class="table table-bordered table-responsive-md table-striped text-center"
+                                  >
+                                    <thead>
+                                    <tr>
+                                      <th class="text-center">janvier</th>
+                                      <th class="text-center">février</th>
+                                      <th class="text-center">Mars</th>
+                                      <th class="text-center">Avril</th>
+                                      <th class="text-center">Mai</th>
+                                      <th class="text-center">Juin</th>
+                                      <th class="text-center">Juillet</th>
+                                      <th class="text-center">Aout</th>
+                                      <th class="text-center">Septembre</th>
+                                      <th class="text-center">Octobre</th>
+                                      <th class="text-center">Nouvembre</th>
+                                      <th class="text-center">Décembre</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                      <td *ngFor="let value of payedLeaveRules.listleaveperday; let i = index">
+                                        <span>{{value}}</span>
+                                      </td>
+
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                                  <!--                             end table collaborator leave-->
+                                </div>
+                                <div class="modal-footer">
+                                  <input (click)="d('Cross click')" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;padding: 1% 5%;float: right;font-family: monospace;" value="OK">
+<!--                                  <input type='submit'  style=" color: black; background: #ffcf03; border: #ffcf03;     padding: 1%; float: right; font-family: monospace " value="Modifier"/>-->
+                                </div>
+                              </ng-template>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-6">
+                            <div class="form-group focused">
+                              <label class="col-4" style="font-weight: bold;">Règle de congé maladie </label>
+                              <div style="display: flex">
+                              <div class=" input-group input-group-alternative ">
+                                <input  class="form-control" name="name"
+                                        [(ngModel)]="sickLeaveRules.name" [ngModelOptions]="{standalone: true}"
+                                        disabled
+                                >
+                              </div>
+                                <a (click)="openRule(content2)" class="show-sick" data-toggle="tooltip" style=" padding: 1%; margin-left: 1%; color: blue;"
+                                   title="Details"><i
+                                  aria-hidden="true" class="fa fa-eye"></i></a>
+                                <ng-template #content2 let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+                                  <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title2">La règle de Congé est: {{sickLeaveRules.name}}</h4>
+<!--                                    <button (click)="d('Cross click')" aria-label="Close" class="close" type="button">-->
+<!--                                      <span aria-hidden="true">&times;</span>-->
+<!--                                    </button>-->
+                                    <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+                                  </div>
+                                  <div class="modal-body">
+                                    <!--                             table collaborator leave-->
+                                    <p><span class="modal-title" > Totale :</span>  {{sickLeaveRules.total}}</p>
+                                    <table class="table table-bordered table-responsive-md table-striped text-center"
+                                    >
+                                      <thead>
+                                      <tr>
+                                        <th class="text-center">janvier</th>
+                                        <th class="text-center">février</th>
+                                        <th class="text-center">Mars</th>
+                                        <th class="text-center">Avril</th>
+                                        <th class="text-center">Mai</th>
+                                        <th class="text-center">Juin</th>
+                                        <th class="text-center">Juillet</th>
+                                        <th class="text-center">Aout</th>
+                                        <th class="text-center">Septembre</th>
+                                        <th class="text-center">Octobre</th>
+                                        <th class="text-center">Nouvembre</th>
+                                        <th class="text-center">Décembre</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <tr>
+                                        <td *ngFor="let value of sickLeaveRules.listleaveperday; let i = index">
+                                          <span>{{value}}</span>
+                                        </td>
+
+                                      </tr>
+                                      </tbody>
+                                    </table>
+                                    <!--                             end table collaborator leave-->
+                                  </div>
+                                  <div class="modal-footer">
+                                    <input (click)="d('Cross click')" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;padding: 1% 5%;float: right;font-family: monospace;" value="OK">
+                                  </div>
+                                </ng-template>
+
+                              </div>
+                            </div>
+                          </div> <hr class="new5" style="border: 1px solid #d2d2d2;">
+
+                        </div>
+
+
+                        <div class="col-12" style="margin-bottom: 6%">
+                          <input type='submit'  style=" color: black; background: #ffcf03; border: #ffcf03;     padding: 1%; float: right; font-family: monospace " value="Modifier"/>
+<!--                          <button type="submit" (click)="onFormSubmit()"-->
+<!--                             class="btn btn-sm btn-neutral"-->
+<!--                             style=" color: black; background: #ffcf03; border: #ffcf03;     padding: 1%; float: right; ">Modifier</button>-->
+                        </div>
+
+                      </div>
+                      <div class="row" style="margin-top:2%">
+                        <div class="col-lg-12 col-12">
+                          <div class="alert alert-success " style="display: none">
+                            <strong>Succès!</strong> Profile modifié avec succès .
+                          </div>
+                          <div class="alert alert-danger " style="display: none">
+                            <p *ngIf="collaboratorResult.salutation.dirty" class="error-hint">{{collaboratorResult.salutation.error}}</p>
+                            <p *ngIf="collaboratorResult.lastname.dirty" class="error-hint">{{collaboratorResult.lastname.error}}</p>
+                            <p *ngIf="collaboratorResult.firstname.dirty" class="error-hint">{{collaboratorResult.firstname.error}}</p>
+                            <p *ngIf="collaboratorResult.country.dirty" class="error-hint">{{collaboratorResult.country.error}}</p>
+                            <p *ngIf="collaboratorResult.status.dirty" class="error-hint">{{collaboratorResult.status.error}}</p>
+                            <p *ngIf="collaboratorResult.collaboratorBankAccount.accountnumber.dirty" class="error-hint">{{collaboratorResult.collaboratorBankAccount.accountnumber.error}}</p>
+                            <p *ngIf="collaboratorResult.collaboratorBankAccount.bankname.dirty" class="error-hint">{{collaboratorResult.collaboratorBankAccount.bankname.error}}</p>
+                            <p *ngIf="collaboratorResult.city.dirty" class="error-hint">{{collaboratorResult.city.error}}</p>
+                            <p *ngIf="collaboratorResult.address.dirty" class="error-hint">{{collaboratorResult.address.error}}</p>
+                            <p *ngIf="collaboratorResult.socialSecurityNumber.dirty" class="error-hint">{{collaboratorResult.socialSecurityNumber.error}}</p>
+                            <p *ngIf="collaboratorResult.idCardNumber.dirty" class="error-hint">{{collaboratorResult.idCardNumber.error}}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+
+                        <!--<div style="display: flex">-->
+                        <!--<div class="col-6" style="margin: 0; padding: 0">-->
+
+
+
+
+
+                        <!--<br>-->
+                        <!--<br>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Civilité <span-->
+                        <!--style="color: red">(*)</span></label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+                        <!--<select [(ngModel)]="collaboratorResult.salutation.value"-->
+                        <!--class="form-control" name="salutation"-->
+                        <!--[ngModelOptions]="{standalone: true}">-->
+                        <!--<option value="MR">MR</option>-->
+                        <!--<option value="MRS">MRS</option>-->
+                        <!--<option value="MS">MS</option>-->
+                        <!--</select>-->
+
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Nationalité <span-->
+                        <!--style="color: red">(*)</span></label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+
+                        <!--<input [(ngModel)]="collaboratorResult.country.value"-->
+                        <!--[ngModelOptions]="{standalone: true}"-->
+                        <!--class="form-control"-->
+                        <!--type="text"-->
+                        <!--name="country">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Status</label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+                        <!--&lt;!&ndash;<input [ngModel]="collaboratorResult.status.value"&ndash;&gt;-->
+                        <!--&lt;!&ndash;[ngModelOptions]="{standalone: true}"&ndash;&gt;-->
+                        <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
+                        <!--&lt;!&ndash;type="text"&ndash;&gt;-->
+                        <!--&lt;!&ndash;name="status">&ndash;&gt;-->
+
+                        <!--<select [(ngModel)]="collaboratorResult.status.value"-->
+                        <!--class="form-control" name="status"-->
+                        <!--&gt;-->
+                        <!--<option value="ACTIVE">ACTIVE</option>-->
+                        <!--<option value="INACTIVE">INACTIVE</option>-->
+                        <!--<option value="CANDIDATE">CANDIDATE</option>-->
+                        <!--</select>-->
+
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Numéro de Compte <span style="color: red">(*)</span></label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+                        <!--<input [(ngModel)]="collaboratorResult.collaboratorBankAccount.accountnumber.value"-->
+                        <!--class="form-control" name="accountnumber"-->
+                        <!--&gt;-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Nom de Bank <span style="color: red">(*)</span></label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+                        <!--<input [(ngModel)]="collaboratorResult.collaboratorBankAccount.bankname.value"-->
+                        <!--class="form-control" name="bankname"-->
+                        <!--&gt;-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-6">-->
+
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+
+
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Adresse <span-->
+                        <!--style="color: red">(*)</span></label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+                        <!--<input [(ngModel)]="collaboratorResult.address.value"-->
+                        <!--class="form-control" name="address"-->
+                        <!--[ngModelOptions]="{standalone: true}"-->
+                        <!--&gt;-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Ville</label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+                        <!--<input [(ngModel)]="collaboratorResult.city.value"-->
+                        <!--class="form-control" name="city"-->
+                        <!--[ngModelOptions]="{standalone: true}"-->
+                        <!--&gt;-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Num Sécurité Sociale</label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+                        <!--<input [(ngModel)]="collaboratorResult.socialSecurityNumber.value"-->
+                        <!--[ngModelOptions]="{standalone: true}"-->
+                        <!--class="form-control" type="number"-->
+                        <!--&gt;-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Numéro Pièce d'identité </label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+                        <!--<input [(ngModel)]="collaboratorResult.idCardNumber.value"-->
+                        <!--class="form-control" name="idCardNumber"-->
+                        <!--[ngModelOptions]="{standalone: true}"-->
+                        <!--type="number"-->
+                        <!--&gt;-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+
+                        <!--<div class="row" >-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Règle de congé payé <span-->
+                        <!--style="color: red">(*)</span></label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+                        <!--<input class="form-control" name="idCardNumber"-->
+                        <!--disabled-->
+                        <!--[(ngModel)]="payedLeaveRules"-->
+                        <!--&gt;-->
+
+                        <!--</div>-->
+                        <!--<a (click)="open(content)" class="delete" data-toggle="tooltip" style="display: none;  padding: 1%; margin-left: 1%; color: blue;"-->
+                        <!--title="Details"><i-->
+                        <!--aria-hidden="true" class="fa fa-eye"></i></a>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<label class="col-4" style="font-weight: bold;">Règle de congé maladie<span-->
+                        <!--style="color: red">(*)</span></label>-->
+                        <!--<div class=" input-group input-group-alternative ">-->
+                        <!--<input  class="form-control" name="name"-->
+                        <!--[(ngModel)]="sickLeaveRules" [ngModelOptions]="{standalone: true}"-->
+                        <!--disabled-->
+                        <!--&gt;-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                        <!--<div class="form-group focused" style="display: flex">-->
+                        <!--<div class="col-12 text-right" style="float: right">-->
+                        <!--<a (click)="onFormSubmit()"-->
+                        <!--class="btn btn-sm btn-neutral"-->
+                        <!--style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Modifier</a>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--</div>-->
+                      </div>
+                    </form>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

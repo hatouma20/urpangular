@@ -1,0 +1,1158 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-left: 1%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h3 class="d-inline-block mb-0"style="font-weight: bold;font-family: monospace;">Stock  (produit/ service)</h3>
+          <p aria-current="page" class="breadcrumb-item active" style="font-family: monospace;">
+             Stock  > Ajout   </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="accordion" >
+
+
+    <div class="card card-info">
+      <div class="card-header card-info-header" id="heading">
+        <h2 class="mb-0">
+          <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                  data-toggle="collapse" style="font-weight: bold; font-family: monospace; color: #2d2d44;" type="button">
+             Ajouter un Nouveau Produit
+          </button>
+        </h2>
+      </div>
+      <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+
+      <div class="card-body">
+
+
+
+
+        <form id="form1" (ngSubmit)="onFormSubmit()" role="form" #testForm="ngForm" ngNativeValidate>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Réference</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input  [(ngModel)]="addStockform.ref.value"
+                            required
+                      id="alternativeName"
+                      name="alternativeName"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Libelle</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input [(ngModel)]="addStockform.label.value"
+                     required
+                      id="name"
+                      name="name"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Etat de Vente</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" placeholder="Title" (change)="getetatvente($event)" required>
+                      <option value="">selectionner...</option>
+                      <option value="1">En Vente</option>
+                      <option value="0">Hors Vente</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Etat d'Achat</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" placeholder="Title"  (change)="getetatachat($event)" required>
+                      <option value="">selectionner...</option>
+                      <option value="true">En Achat</option>
+                      <option value="false">Hors Achat</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+          <div class="col-6">
+            <div class="form-group focused" style="display: flex;">
+              <label class="col-4" style="font-weight: bold;">Utiliser les numéros de lots series</label>
+              <div class=" col-8 input-group input-group-alternative ">
+                <select class="form-control" placeholder="Title" (change)="getlotstype($event)" required>
+                  <option value="">selectionner...</option>
+                  <option value="0">Non (Lot/Série non utilisé)</option>
+                  <option value="1">Oui (Lot/Série requis)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Type de code barres</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" placeholder="Title" (change)="getcodebarre($event)" required>
+                      <option value="">selectionner...</option>
+                      <option value="0">Non</option>
+                      <option value="1">Oui</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Valeur de code barre</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input [(ngModel)]="addStockform.barcode_Value.value"
+                           required
+                      id="web"
+                      name="web"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-12">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-2" style="font-weight: bold;">Déscription</label>
+                  <div class=" col-10 input-group input-group-alternative ">
+                 <textarea id="w3review"  name="w3review"  class="form-control" rows="4" cols="50" [(ngModel)]="addStockform.description.value"></textarea>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <hr class="new5" style="border: 1px solid #d2d2d2; margin-top: 3rem;">
+          <p  class="breadcrumb-item active" style="font-family: monospace;"> ooooo </p>
+
+
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Stock</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input  [(ngModel)]="addStockform.stock.value"
+                            required
+                            name="stock"
+                            class="form-control"
+                            type="number">
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Limite stock pour alerte</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input  [(ngModel)]="addStockform.min_Stock.value"
+                            required
+                      id="rc"
+                      name="rc"
+                      class="form-control"
+                      type="number">
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Poids </label>
+                  <div class=" col-8 input-group input-group-alternative " style="    padding: 0;">
+                    <div class="col-6">
+                    <input [(ngModel)]="addStockform.weight.value"
+                      name="name" required
+                      class="form-control"
+                      type="number">
+                    </div>
+                    <div class="col-6">
+                    <select class="form-control" placeholder="Title" (change)="getpoidunite($event)" required>
+                      <option value="">selectionner...</option>
+                      <option value="0" >kilogramme</option>
+                      <option value="-3">Gramme</option>
+                      <option value="3">Tonnes</option>
+                      <option value="-6">Mg</option>
+                      <option value="98">Once</option>
+                      <option value="99">Livre</option>
+                    </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Longueur </label>
+                  <div class=" col-8 input-group input-group-alternative " style="    padding: 0;">
+                    <div class="col-6">
+                      <input [(ngModel)]="addStockform.length.value"
+                        name="name" required
+                        class="form-control"
+                        type="number">
+                    </div>
+                    <div class="col-6">
+                      <select class="form-control" placeholder="Title" (change)="getlongueurunite($event)" required>
+                        <option value="">selectionner...</option>
+                        <option value="0"  >m</option>
+                        <option value="-1">dm</option>
+                        <option value="-2">cm</option>
+                        <option value="-3">mm</option>
+                        <option value="98">pied</option>
+                        <option value="99">pouce</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div  class="row" >
+            <div class="col-12"  style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Hoteur </label>
+                  <div class=" col-8 input-group input-group-alternative " style="    padding: 0;">
+                    <div class="col-6">
+                      <input [(ngModel)]="addStockform.height.value"
+                        name="name"
+                             required
+                        class="form-control"
+                        type="number">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="new5" style="border: 1px solid #d2d2d2;">
+          <p   class="breadcrumb-item active" style="font-family: monospace;"> ooooo </p>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Nomenclature douanière / Code SH </label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input [(ngModel)]="addStockform.douaniere.value"
+                      name="name" required
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">	Pays d'origine</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select [(ngModel)]="addStockform.origin_Country.value" required
+                            class="form-control " name="nationality">
+                      <option *ngFor="let nationality of nationalities; let id=index" value="{{nationality}}">{{nationality}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-12">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-2" style="font-weight: bold;">Note (non visible sur les factures, propals...)</label>
+                  <div class=" col-10 input-group input-group-alternative ">
+                    <textarea  name="w3review"  class="form-control" rows="4" cols="50" [(ngModel)]="addStockform.note.value"></textarea>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">  Prix de vente </label>
+                  <div class=" col-8 input-group input-group-alternative " style="    padding: 0;">
+                    <div class="col-6">
+                      <input  [(ngModel)]="addStockform.selling_Price.value"
+                        name="name" required
+                        class="form-control"
+                        type="number">
+                    </div>
+                    <div class="col-6">
+                      <select class="form-control" placeholder="Title" (change)="getpricetype($event)" required>
+                        <option option="">Selectionner ...</option>
+                        <option value=0>HT</option>
+                        <option value=1>TTC</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Prix de vente min</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control"  (change)="getpricevente($event)" required>
+                      <option value="">selectionner...</option>
+                      <option value=0>0</option>
+                      <option value=1>1</option>
+                      <option value=4>4</option>
+                      <option value=12.5>12.5</option>
+                      <option value=19.6  >19.6</option>
+                      <option value=9>9/9 (CGST+SGST)</option>
+                      <option value=18>18 (IGST)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Taux TVA </label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" (change)="gettauxtva($event)"required>
+                      <option value="">selectionner...</option>
+                      <option value=0>0</option>
+                      <option value=1>1</option>
+                      <option value=4>4</option>
+                      <option value=12.5>12.5</option>
+                      <option value=19.6 >19.6</option>
+                      <option value=9>9/9 (CGST+SGST)</option>
+                      <option value=18>18 (IGST)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <hr class="new5" style="border: 1px solid #d2d2d2; margin-top: 3rem;">
+          <p  class="breadcrumb-item active" style="font-family: monospace;"> ooooo </p>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Code comptable (vente) </label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" (change)="getcodecomptablevente($event)"  required>
+                      <option value="">selectionner...</option>
+                      <option value="1">1 - Fonds propres, provisions pour risques et char...</option>
+                      <option value="10">10 - Capital  et réserves</option>
+                      <option value="106">106 - Réserves</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">	Code comptable (vente à l'export)</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" (change)="getcodecomptableventeexport($event)" required>
+                      <option value="">selectionner...</option>
+                      <option value="1">1 - Fonds propres, provisions pour risques et char...</option>
+                      <option value="10">10 - Capital  et réserves</option>
+                      <option value="106">106 - Réserves</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Code comptable (achat)</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" (change)="getcodecomptable($event)" required>
+                      <option value="">selectionner...</option>
+                      <option value="1">1 - Fonds propres, provisions pour risques et char...</option>
+                      <option value="10">10 - Capital  et réserves</option>
+                      <option value="106">106 - Réserves</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">	Code comptable (achat import)</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" (change)="getcodecomptableachatimport($event)" required>
+                      <option value="">selectionner...</option>
+                      <option value="1">1 - Fonds propres, provisions pour risques et char...</option>
+                      <option value="10">10 - Capital  et réserves</option>
+                      <option value="106">106 - Réserves</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">	Fournisseur</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+
+
+                    <select [(ngModel)]="addStockform.supplier" (change)="getselectedfournisseur($event)"
+                            class="form-control " name="supplier" required>
+                      <option *ngFor="let item of listfournisseur; let id=index" value="{{item.uuid}}">{{item.name}}</option>
+                      <option [value]="'new'">Add new...</option>
+                    </select>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">	Dépots</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+
+                    <select [(ngModel)]="addStockform.depot" (change)="getselecteddepot($event)"
+                            class="form-control " name="supplier" required>
+                      <option *ngFor="let item of listdepot; let id=index" value="{{item.uuid}}">{{item.name}}</option>
+                      <option [value]="'new'">Add new...</option>
+                    </select>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-12">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-2" style="font-weight: bold;">Images de produits</label>
+                  <div class=" col-10 input-group input-group-alternative ">
+                    <input accept="image/*" type="file" name="lastname" class="form-control" style="height: 45px;" multiple [(ngModel)]="addStockform.photo.value">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <br>
+          <div class="col-lg-12 col-5 text-right">
+            <input type="submit" class="btn btn-sm btn-neutral"   style=" color: black; background: #ffcf03; border: #ffcf03; padding: 1%; " value="Creér un noveau tiers">
+          </div>
+          <div class="row" style="margin-top:2%">
+            <div class="col-lg-12 col-12">
+              <div class="alert alert-success " style="display: none">
+                <strong>Succès!</strong> tiers ajoutée avec succès .
+              </div>
+
+            </div>
+          </div>
+
+        </form>
+      </div>
+      </div>
+    </div>
+
+        <div class="card card-info">
+          <div class="card-header card-info-header" id="headingOne">
+            <h2 class="mb-0">
+              <button aria-controls="collapseOne1" aria-expanded="false" class="btn btn-link" data-target="#collapseOne1"
+                      data-toggle="collapse" style="font-weight: bold; font-family: monospace; color: #2d2d44;" type="button">
+                <img src="https://static.thenounproject.com/png/703781-200.png" style="width: 40px;">  Liste des Produits
+              </button>
+            </h2>
+          </div>
+          <div aria-labelledby="headingOne" class="collapse" data-parent="#accordionExample" id="collapseOne1">
+            <div class="card-body">
+              <div class="table-editable" id="table">
+      <span class="table-add float-right" style="padding: 0">
+      </span>
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;">
+                  <thead>
+                  <tr>
+                    <th class="text-left"  >Reference</th>
+                    <th class="text-left"  >Libelle</th>
+                    <th class="text-left"  >Dépot</th>
+                    <th class="text-left"  >Taux TVA</th>
+                    <th class="text-left"  >Stock</th>
+                    <th class="text-left"  >Prix de vente</th>
+                    <th class="text-left"  ></th>
+                    <th class="text-left">Details</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let stock of stocklist; let id = index">
+                    <td>
+                      <span  contenteditable="true">  {{stock.ref}}</span>
+                    </td>
+                    <!--              {{stock.name}}-->
+                    <td>
+                <span (blur)="updateList(id, 'label', $event)" (keyup)="changeValue(id, 'label', $event)"
+                      contenteditable="true">{{stock.label}}</span>
+                    </td>
+
+                    <td>
+                <span
+                  contenteditable="false">{{stock.warehouses[0].name}}</span>
+                    </td>
+                    <td>
+                <span
+                  contenteditable="false">{{stock.tva}}</span>
+                    </td>
+                    <td>
+                <span (blur)="updateList(id, 'stock', $event)" (keyup)="changeValue(id, 'stock', $event)"
+                      contenteditable="true">{{stock.stock}}</span>
+                    </td>
+                    <td>
+                <span (blur)="updateList(id, 'selling_Price', $event)" (keyup)="changeValue(id, 'selling_Price', $event)"
+                      contenteditable="true">{{stock.selling_Price}}</span>
+                    </td>
+                    <td>
+                      <a (click)="openn(content)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i
+                        aria-hidden="true" class="fa fa-trash"></i></a>
+                      <!--              <a (click)="remove(item.uuid)" class="delete" data-toggle="tooltip" style="    color: red;" title="Delete"><i-->
+                      <!--                 aria-hidden="true" class="fa fa-trash"></i></a>-->
+                      <ng-template #content let-c="close" let-d="dismiss" style=" width: 40%; margin-left: 30%; ">
+
+                        <div class="modal-body" style="padding: 0;">
+                          <div class="col-12" style="display: flex">
+                            <div class="col-2"></div>
+                            <div class="col-8" style="text-align: center">
+                              <img class="navbar-brand-img" src="../../../assets/img/delete.gif" style="width: 45%;">
+                            </div>
+                            <div class="col-2"></div>
+                          </div>
+                          <div class="col-12" style="display: flex">
+                            <div class="col-2"></div>
+                            <div class="col-8" style="text-align: center">
+                              <h2 class="swal2-title" id="swal2-title" style="font-size: 1.0em;">Are you sure?</h2>
+                              <div id="swal2-content" class="swal2-html-container" style="display: block;">You won't be able to revert this!</div>
+
+                            </div>
+                            <div class="col-2"></div>
+                          </div>
+
+
+                        </div>
+                        <div class="modal-footer" style="padding: 1%; border-top: none;">
+                          <button (click)="remove(stock.uuid)" class="btn btn-outline-red btn-sm btn-success"  type="button" style=" width: 60px; color: black;background: #ffcf03;border: #ffcf03;padding: 2%; ">Oui</button>
+                          <button (click)="d('Cross click')" aria-label="Close" class="btn btn-outline-red btn-sm"  type="button" style="width: 60px;color: #ffffff;background: black; border: black; padding: 2%;">Cancel</button>
+                        </div>
+
+                      </ng-template>
+                    </td>
+
+                  <td>
+                     <span class="table-remove">
+               <a (click)="open(contentDetails)"class="delete" data-toggle="tooltip" style="    color: #1c8db5;" title="Détails">
+                 <i aria-hidden="true" class="fa fa-eye"></i></a>
+            </span>
+
+
+                  </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <ng-template #contentDetails let-c="close" let-d="dismiss" class="test" style="    max-width: 1200px !important;" id="aa">
+          <div class="modal-header" style="border-bottom: none;">
+            <h4 class="modal-title" id="modal-basic-title3">Deatils de produits </h4>
+            <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+          </div>
+          <div class="modal-body">
+            <mat-horizontal-stepper>
+              <mat-step label="Step 1">
+                Step 1 content
+                <div>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </mat-step>
+              <mat-step label="Step 2">
+                Step 2 content
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </mat-step>
+              <mat-step label="Step 3">
+                You are now done.
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button >Reset</button>
+                </div>
+              </mat-step>
+
+            </mat-horizontal-stepper>
+            _______________________________________________________________________________________________________________________
+            <!--                             table collaborator leave-->
+            <div class="nav-wrapper">
+              <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="fa fa-address-book mr-2"></i>Infos de produits</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="fa fa-tasks mr-2"></i>ooooo</a>
+                </li>
+                <li class="nav-item"  >
+                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="fa fa-plus-circle mr-2"></i>ooooo</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-4-tab" data-toggle="tab" href="#tabs-icons-text-4" role="tab" aria-controls="tabs-icons-text-4" aria-selected="false"><i class="fa fa-plus-circle mr-2"></i>ooooo</a>
+                </li>
+
+              </ul>
+            </div>
+            <div class="card shadow">
+              <div class="card-body">
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab" >
+
+                      <div class="card-body">
+                        <div class="row">
+
+                          <div class="col-md-12">
+                            <div  class="row">
+                              <div class="col-12" style="display: flex">
+                                <div class="col-6">
+                                  <div class="form-group focused" style="display: flex;">
+                                    <label class="col-4" style="font-weight: bold;">Réference</label>
+                                    <div class=" col-8 input-group input-group-alternative ">
+                                      <input  [(ngModel)]="addStockform.ref.value"
+                                              value="{{addStockform.ref}}"
+                                              required
+                                              name="alternativeName"
+                                              class="form-control"
+                                              type="text">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-6">
+                                  <div class="form-group focused" style="display: flex;">
+                                    <label class="col-4" style="font-weight: bold;">Libelle</label>
+                                    <div class=" col-8 input-group input-group-alternative ">
+                                      <input [(ngModel)]="addStockform.label.value"
+                                             required
+                                             name="name"
+                                             class="form-control"
+                                             type="text">
+                                    </div>
+                                  </div>
+                                </div>
+
+
+                              </div>
+                            </div>
+                            <div  class="row">
+                              <div class="col-12" style="display: flex">
+                                <div class="col-6">
+                                  <div class="form-group focused" style="display: flex;">
+                                    <label class="col-4" style="font-weight: bold;">Etat de Vente</label>
+                                    <div class=" col-8 input-group input-group-alternative ">
+                                      <select class="form-control" placeholder="Title" (change)="getetatvente($event)" required>
+                                        <option value="">selectionner...</option>
+                                        <option value="1">En Vente</option>
+                                        <option value="0">Hors Vente</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-6">
+                                  <div class="form-group focused" style="display: flex;">
+                                    <label class="col-4" style="font-weight: bold;">Etat d'Achat</label>
+                                    <div class=" col-8 input-group input-group-alternative ">
+                                      <select class="form-control" placeholder="Title"  (change)="getetatachat($event)" required>
+                                        <option value="">selectionner...</option>
+                                        <option value="true">En Achat</option>
+                                        <option value="false">Hors Achat</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                            <div  class="row">
+                              <div class="col-12" style="display: flex">
+                                <div class="col-6">
+                                  <div class="form-group focused" style="display: flex;">
+                                    <label class="col-4" style="font-weight: bold;">Utiliser les numéros de lots series</label>
+                                    <div class=" col-8 input-group input-group-alternative ">
+                                      <select class="form-control" placeholder="Title" (change)="getlotstype($event)" required>
+                                        <option value="">selectionner...</option>
+                                        <option value="0">Non (Lot/Série non utilisé)</option>
+                                        <option value="1">Oui (Lot/Série requis)</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                            <div  class="row">
+                              <div class="col-12" style="display: flex">
+                                <div class="col-6">
+                                  <div class="form-group focused" style="display: flex;">
+                                    <label class="col-4" style="font-weight: bold;">Type de code barres</label>
+                                    <div class=" col-8 input-group input-group-alternative ">
+                                      <select class="form-control" placeholder="Title" (change)="getcodebarre($event)" required>
+                                        <option value="">selectionner...</option>
+                                        <option value="0">Non</option>
+                                        <option value="1">Oui</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-6">
+                                  <div class="form-group focused" style="display: flex;">
+                                    <label class="col-4" style="font-weight: bold;">Valeur de code barre</label>
+                                    <div class=" col-8 input-group input-group-alternative ">
+                                      <input [(ngModel)]="addStockform.barcode_Value.value"
+                                             required
+                                             name="web"
+                                             class="form-control"
+                                             type="text">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div  class="row">
+                              <div class="col-12" style="display: flex">
+                                <div class="col-12">
+                                  <div class="form-group focused" style="display: flex;">
+                                    <label class="col-2" style="font-weight: bold;">Déscription</label>
+                                    <div class=" col-10 input-group input-group-alternative ">
+                                      <textarea  name="w3review"  class="form-control" rows="4" cols="50" [(ngModel)]="addStockform.description.value"></textarea>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+                              </div>
+                            </div>
+
+                            <!--                                        <p class="mb-1"><i class="fa fa-envelope"></i> {{person.personalEmail}}</p>-->
+                            <!--                                        <p class="mb-1"><i class="fa fa-phone"></i> {{person.mobileNumber}}</p>-->
+                            <!--                                        <p class="mb-1">{{person.address}}, {{person.city}}, {{person.country}}, {{person.postalCode}}.</p>-->
+                            <!--                                        <p class="mb-1">Num Carte d'identité: {{person.idCardNumber}}</p>-->
+                            <!--                                        <p class="mb-1">Status: {{person.status}}</p>-->
+                          </div>
+                        </div>
+                      </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                    <div class="description">
+                      <div  class="row">
+                        <div class="col-12" style="display: flex">
+                          <div class="col-6">
+                            <div class="form-group focused" style="display: flex;">
+                              <label class="col-4" style="font-weight: bold;">Stock</label>
+                              <div class=" col-8 input-group input-group-alternative ">
+                                <input  [(ngModel)]="addStockform.stock.value"
+                                        required
+                                        name="stock"
+                                        class="form-control"
+                                        type="number">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group focused" style="display: flex;">
+                              <label class="col-4" style="font-weight: bold;">Limite stock pour alerte</label>
+                              <div class=" col-8 input-group input-group-alternative ">
+                                <input  [(ngModel)]="addStockform.min_Stock.value"
+                                        required
+                                        name="rc"
+                                        class="form-control"
+                                        type="number">
+                              </div>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+                      <div  class="row">
+                        <div class="col-12" style="display: flex">
+                          <div class="col-6">
+                            <div class="form-group focused" style="display: flex;">
+                              <label class="col-4" style="font-weight: bold;">Poids </label>
+                              <div class=" col-8 input-group input-group-alternative " style="    padding: 0;">
+                                <div class="col-6">
+                                  <input [(ngModel)]="addStockform.weight.value"
+                                         name="name" required
+                                         class="form-control"
+                                         type="number">
+                                </div>
+                                <div class="col-6">
+                                  <select class="form-control" placeholder="Title" (change)="getpoidunite($event)" required>
+                                    <option value="">selectionner...</option>
+                                    <option value="0" >kilogramme</option>
+                                    <option value="-3">Gramme</option>
+                                    <option value="3">Tonnes</option>
+                                    <option value="-6">Mg</option>
+                                    <option value="98">Once</option>
+                                    <option value="99">Livre</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-6">
+                            <div class="form-group focused" style="display: flex;">
+                              <label class="col-4" style="font-weight: bold;">Longueur </label>
+                              <div class=" col-8 input-group input-group-alternative " style="    padding: 0;">
+                                <div class="col-6">
+                                  <input [(ngModel)]="addStockform.length.value"
+                                         name="name" required
+                                         class="form-control"
+                                         type="number">
+                                </div>
+                                <div class="col-6">
+                                  <select class="form-control" placeholder="Title" (change)="getlongueurunite($event)" required>
+                                    <option value="">selectionner...</option>
+                                    <option value="0"  >m</option>
+                                    <option value="-1">dm</option>
+                                    <option value="-2">cm</option>
+                                    <option value="-3">mm</option>
+                                    <option value="98">pied</option>
+                                    <option value="99">pouce</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div  class="row" >
+                        <div class="col-12"  style="display: flex">
+                          <div class="col-6">
+                            <div class="form-group focused" style="display: flex;">
+                              <label class="col-4" style="font-weight: bold;">Hoteur </label>
+                              <div class=" col-8 input-group input-group-alternative " style="    padding: 0;">
+                                <div class="col-6">
+                                  <input [(ngModel)]="addStockform.height.value"
+                                         name="name"
+                                         required
+                                         class="form-control"
+                                         type="number">
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
+
+                    <div  class="row">
+                      <div class="col-12" style="display: flex">
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">Nomenclature douanière / Code SH </label>
+                            <div class=" col-8 input-group input-group-alternative ">
+                              <input [(ngModel)]="addStockform.douaniere.value"
+                                     name="name" required
+                                     class="form-control"
+                                     type="text">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">	Pays d'origine</label>
+                            <div class=" col-8 input-group input-group-alternative ">
+                              <select [(ngModel)]="addStockform.origin_Country.value" required
+                                      class="form-control " name="nationality">
+                                <option *ngFor="let nationality of nationalities; let id=index" value="{{nationality}}">{{nationality}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div  class="row">
+                      <div class="col-12" style="display: flex">
+                        <div class="col-12">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-2" style="font-weight: bold;">Note (non visible sur les factures, propals...)</label>
+                            <div class=" col-10 input-group input-group-alternative ">
+                              <textarea  name="w3review"  class="form-control" rows="4" cols="50" [(ngModel)]="addStockform.note.value"></textarea>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+
+                    <div  class="row">
+                      <div class="col-12" style="display: flex">
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">  Prix de vente </label>
+                            <div class=" col-8 input-group input-group-alternative " style="    padding: 0;">
+                              <div class="col-6">
+                                <input  [(ngModel)]="addStockform.selling_Price.value"
+                                        name="name" required
+                                        class="form-control"
+                                        type="number">
+                              </div>
+                              <div class="col-6">
+                                <select class="form-control" placeholder="Title" (change)="getpricetype($event)" required>
+                                  <option option="">Selectionner ...</option>
+                                  <option value=0>HT</option>
+                                  <option value=1>TTC</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">Prix de vente min</label>
+                            <div class=" col-8 input-group input-group-alternative ">
+                              <select class="form-control" (change)="getpricevente($event)" required>
+                                <option value="">selectionner...</option>
+                                <option value=0>0</option>
+                                <option value=1>1</option>
+                                <option value=4>4</option>
+                                <option value=12.5>12.5</option>
+                                <option value=19.6  >19.6</option>
+                                <option value=9>9/9 (CGST+SGST)</option>
+                                <option value=18>18 (IGST)</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div  class="row">
+                      <div class="col-12" style="display: flex">
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">Taux TVA </label>
+                            <div class=" col-8 input-group input-group-alternative ">
+                              <select class="form-control" (change)="gettauxtva($event)"required>
+                                <option value="">selectionner...</option>
+                                <option value=0>0</option>
+                                <option value=1>1</option>
+                                <option value=4>4</option>
+                                <option value=12.5>12.5</option>
+                                <option value=19.6 >19.6</option>
+                                <option value=9>9/9 (CGST+SGST)</option>
+                                <option value=18>18 (IGST)</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
+                    <div  class="row">
+                      <div class="col-12" style="display: flex">
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">Code comptable (vente) </label>
+                            <div class=" col-8 input-group input-group-alternative ">
+                              <select class="form-control" (change)="getcodecomptablevente($event)"  required>
+                                <option value="">selectionner...</option>
+                                <option value="1">1 - Fonds propres, provisions pour risques et char...</option>
+                                <option value="10">10 - Capital  et réserves</option>
+                                <option value="106">106 - Réserves</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">	Code comptable (vente à l'export)</label>
+                            <div class=" col-8 input-group input-group-alternative ">
+                              <select class="form-control" (change)="getcodecomptableventeexport($event)" required>
+                                <option value="">selectionner...</option>
+                                <option value="1">1 - Fonds propres, provisions pour risques et char...</option>
+                                <option value="10">10 - Capital  et réserves</option>
+                                <option value="106">106 - Réserves</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div  class="row">
+                      <div class="col-12" style="display: flex">
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">Code comptable (achat)</label>
+                            <div class=" col-8 input-group input-group-alternative ">
+                              <select class="form-control" (change)="getcodecomptable($event)" required>
+                                <option value="">selectionner...</option>
+                                <option value="1">1 - Fonds propres, provisions pour risques et char...</option>
+                                <option value="10">10 - Capital  et réserves</option>
+                                <option value="106">106 - Réserves</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">	Code comptable (achat import)</label>
+                            <div class=" col-8 input-group input-group-alternative ">
+                              <select class="form-control" (change)="getcodecomptableachatimport($event)" required>
+                                <option value="">selectionner...</option>
+                                <option value="1">1 - Fonds propres, provisions pour risques et char...</option>
+                                <option value="10">10 - Capital  et réserves</option>
+                                <option value="106">106 - Réserves</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div  class="row">
+                      <div class="col-12" style="display: flex">
+
+
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">	Fournisseur</label>
+                            <div class=" col-8 input-group input-group-alternative ">
+                              <select class="form-control" [disabled]="isEnabled"  (change)="getselectedfournisseur($event)">
+                                <option hidden selected>select fournisseur   </option>
+                                <option [value]="item.uuid" *ngFor="let item of listfournisseur"> {{item.name}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="col-6">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-4" style="font-weight: bold;">	Dépots</label>
+                            <div class=" col-8 input-group input-group-alternative ">
+                              <select class="form-control" [disabled]="isEnabled"  (change)="getselecteddepot($event)">
+                                <option hidden selected>select dépot   </option>
+                                <option [value]="item.uuid" *ngFor="let item of listdepot"> {{item.name}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div  class="row">
+                      <div class="col-12" style="display: flex">
+                        <div class="col-12">
+                          <div class="form-group focused" style="display: flex;">
+                            <label class="col-2" style="font-weight: bold;">Images de produits</label>
+                            <div class=" col-10 input-group input-group-alternative ">
+                              <input accept="image/*" type="file" name="lastname" class="form-control" style="height: 45px;" multiple [(ngModel)]="addStockform.photo.value">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </ng-template>
+</div>

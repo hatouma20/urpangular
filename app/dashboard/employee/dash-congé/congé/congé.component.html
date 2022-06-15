@@ -1,0 +1,1005 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Fiche
+            collaborateur:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Solde de
+            Congé</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+
+<div class="card-body mt-5"
+     style="display: -webkit-flex;-webkit-flex-wrap: wrap;-webkit-justify-content: center;width:100%;">
+  <div class="col-10"></div>
+  <div class="col-2">
+   <span class="table-add float-right">
+            <a (click)="open(contentrequestleave)" class="btn btn-sm btn-neutral"
+               style="color: black;background: #ffcf03;border: #ffcf03;padding: 4%;">Envoyer une demande congé</a>
+
+      </span>
+  </div>
+  <table class="table table-bordered table-responsive-md table-striped text-center">
+    <tr>
+      <th class="text-center">Type de Congé</th>
+      <th class="text-center">Nombre de jours</th>
+    </tr>
+    <tr>
+      <td>
+        <span>Congé Payé</span>
+      </td>
+      <td>
+        <span>14 jours</span>
+      </td>
+      <td>
+            <span class="table-remove">
+               <a (click)="open(content)" class="delete" data-toggle="tooltip" style="    color: blue;"
+                  title="Delete"><i
+                 aria-hidden="true" class="fa fa-eye"></i></a>
+
+            </span>
+
+        <ng-template #content let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Congé Payé : </h4>
+            <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+          </div>
+          <div class="modal-body">
+            <!--                             table collaborator leave-->
+            <div class="table-responsive">
+
+
+              <div>
+                <table class="table align-items-center">
+                  <thead class="thead-light">
+                  <tr>
+                    <th class="sort" data-sort="name" scope="col"></th>
+                    <th class="sort" data-sort="budget" scope="col">Report N-1</th>
+                    <th class="sort" data-sort="status" scope="col">Jan</th>
+                    <th scope="col">Fev</th>
+                    <th class="sort" data-sort="completion" scope="col">Mar</th>
+                    <th scope="col">Avr</th>
+                    <th scope="col">Mai</th>
+                    <th scope="col">Jun</th>
+                    <th scope="col">Jui</th>
+                    <th scope="col">Aou</th>
+                    <th scope="col">Sep</th>
+                    <th scope="col">Oct</th>
+                    <th scope="col">Nov</th>
+                    <th scope="col">Dec</th>
+                    <th scope="col">Total de fin de mois</th>
+                    <th scope="col">Total de fin d'année</th>
+                  </tr>
+                  </thead>
+                  <tbody class="list">
+
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">CP Acquis</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Ancienneté</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">CP Pris/Planifié</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Solde CP Cumulé</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <!--                             end table collaborator leave-->
+          </div>
+          <div class="modal-footer">
+            <button (click)="d('Cross click')" class="btn btn-outline-dark" type="button">close</button>
+          </div>
+        </ng-template>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>Congé Maladie</span>
+      </td>
+      <td>
+        <span>2 jours</span>
+      </td>
+      <td>
+            <span class="table-remove">
+               <a (click)="open(content2)" class="delete" data-toggle="tooltip" style="    color: blue;"
+                  title="Delete"><i
+                 aria-hidden="true" class="fa fa-eye"></i></a>
+
+            </span>
+
+        <ng-template #content2 let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title2">Congé Maladie</h4>
+            <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+          </div>
+          <div class="modal-body">
+            <!--                             table collaborator leave-->
+            <div class="table-responsive">
+
+
+              <div>
+                <table class="table align-items-center">
+                  <thead class="thead-light">
+                  <tr>
+                    <th class="sort" data-sort="name" scope="col"></th>
+                    <th class="sort" data-sort="budget" scope="col">Report N-1</th>
+                    <th class="sort" data-sort="status" scope="col">Jan</th>
+                    <th scope="col">Fev</th>
+                    <th class="sort" data-sort="completion" scope="col">Mar</th>
+                    <th scope="col">Avr</th>
+                    <th scope="col">Mai</th>
+                    <th scope="col">Jun</th>
+                    <th scope="col">Jui</th>
+                    <th scope="col">Aou</th>
+                    <th scope="col">Sep</th>
+                    <th scope="col">Oct</th>
+                    <th scope="col">Nov</th>
+                    <th scope="col">Dec</th>
+                    <th scope="col">Total de fin de mois</th>
+                    <th scope="col">Total de fin d'année</th>
+                  </tr>
+                  </thead>
+                  <tbody class="list">
+
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">CM Acquis</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Ancienneté</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">CM Pris/Planifié</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Solde CM Cumulé</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <!--                             end table collaborator leave-->
+          </div>
+          <div class="modal-footer">
+            <button (click)="d('Cross click')" class="btn btn-outline-dark" type="button">close</button>
+          </div>
+        </ng-template>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span>RTT</span>
+      </td>
+      <td>
+        <span>20 jours</span>
+      </td>
+      <td>
+            <span class="table-remove">
+               <a (click)="open(content3)" class="delete" data-toggle="tooltip" style="    color: blue;"
+                  title="Delete"><i
+                 aria-hidden="true" class="fa fa-eye"></i></a>
+
+            </span>
+
+        <ng-template #content3 let-c="close" let-d="dismiss" style=" max-width: 65%; margin-left: 20%; ">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title3">RTT</h4>
+            <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+          </div>
+          <div class="modal-body">
+            <!--                             table collaborator leave-->
+            <div class="table-responsive">
+
+
+              <div>
+                <table class="table align-items-center">
+                  <thead class="thead-light">
+                  <tr>
+                    <th class="sort" data-sort="name" scope="col"></th>
+                    <th class="sort" data-sort="budget" scope="col">Report N-1</th>
+                    <th class="sort" data-sort="status" scope="col">Jan</th>
+                    <th scope="col">Fev</th>
+                    <th class="sort" data-sort="completion" scope="col">Mar</th>
+                    <th scope="col">Avr</th>
+                    <th scope="col">Mai</th>
+                    <th scope="col">Jun</th>
+                    <th scope="col">Jui</th>
+                    <th scope="col">Aou</th>
+                    <th scope="col">Sep</th>
+                    <th scope="col">Oct</th>
+                    <th scope="col">Nov</th>
+                    <th scope="col">Dec</th>
+                    <th scope="col">Total de fin de mois</th>
+                    <th scope="col">Total de fin d'année</th>
+                  </tr>
+                  </thead>
+                  <tbody class="list">
+
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">RTT Acquis</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Ancienneté</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">RTT Pris/Planifié</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">Solde RTT Cumulé</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                    <td class="budget">
+                      0
+                    </td>
+                  </tr>
+
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+            <!--                             end table collaborator leave-->
+          </div>
+          <div class="modal-footer">
+            <button (click)="d('Cross click')" class="btn btn-outline-dark" type="button">close</button>
+          </div>
+        </ng-template>
+      </td>
+    </tr>
+  </table>
+</div>
+<ng-template #contentrequestleave let-c="close" style=" max-width: 65%; margin-left: 20%; ">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title4">Envoyer une demande de congé : </h4>
+    <button (click)="close(contentrequestleave)" aria-label="Close" class="close" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!--                             request leave-->
+    <form id="form1" role="form">
+
+      <div style="display: flex">
+        <div class="col-2"></div>
+        <div class="col-8" style="margin: 0; padding: 0">
+
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Collaborateur <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <input [(ngModel)]="requestLeave.collaborator.value" [ngModelOptions]="{standalone: true}"
+                         class="form-control" name="collaborator" type="text">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Type <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+<!--                  <select [(ngModel)]="requestLeave.type.value" [ngModelOptions]="{standalone: true}"-->
+<!--                          class="form-control" name="type" type="text">-->
+<!--                    <option value="Maladie">Maladie</option>-->
+<!--                    <option value="Payé">Payé</option>-->
+<!--                    <option value="Sans Solde">Sans Solde</option>-->
+<!--                  </select>-->
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Raison <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                      <textarea [(ngModel)]="requestLeave.reason.value" [ngModelOptions]="{standalone: true}"
+                                class="form-control" cols="50" name="reason" rows="4"></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Date Début <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <input #d="ngbDatepicker" (click)="d.toggle()"
+                         [(ngModel)]="requestLeave.startdate.value" [ngModelOptions]="{standalone: true}"
+                         class="form-control datepicker"
+                         id='startdate' name="startdate" ngbDatepicker placeholder="Select date" type="text">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <label class="col-4" style="font-weight: bold;">Date fin <span
+                  style="color: red;padding: 4px;">*</span></label>
+                <div class=" input-group input-group-alternative ">
+                  <input #d1="ngbDatepicker" (click)="d1.toggle()"
+                         [(ngModel)]="requestLeave.enddate.value" [ngModelOptions]="{standalone: true}"
+                         class="form-control datepicker"
+                         id='enddate' name="enddate" ngbDatepicker placeholder="Select date" type="text">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="form-group focused" style="display: flex">
+                <div class="col-12 text-right" style="float: right">
+                  <a (click)="onFormSubmit()"
+                     class="btn btn-sm btn-neutral"
+                     style=" color: black; background: #ffcf03; border: #ffcf03; padding: 2%; ">Envoyer</a>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-12">
+              <div class="alert alert-success " style="display: none">
+                <strong>Succès!</strong> le Raison d'embauche est ajouté avec succès .
+              </div>
+              <div class="alert alert-danger " style="display: none">
+<!--                    <span *ngIf="requestLeave.type.dirty"-->
+<!--                          class="error-hint">{{requestLeave.type.error}}</span><br>-->
+                <span *ngIf="requestLeave.reason.dirty" class="error-hint">{{requestLeave.reason.error}}</span><br>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </form>
+    <!--                             end request leave-->
+  </div>
+  <!--  <div class="modal-footer">-->
+  <!--    <button (click)="d('Cross click')" class="btn btn-outline-dark" type="button">close</button>-->
+  <!--  </div>-->
+</ng-template>

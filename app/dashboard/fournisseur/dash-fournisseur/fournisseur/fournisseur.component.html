@@ -1,0 +1,365 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-left: 1%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-12 col-12">
+          <h3 class="d-inline-block mb-0"style="font-weight: bold;font-family: monospace;">Nouveau tiers (prospect, client,fournisseur)</h3>
+          <p aria-current="page" class="breadcrumb-item active" style="font-family: monospace;">
+            Fournisseurs > Ajout </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="accordion" id="accordionExample">
+  <div class="card card-info">
+
+    <div aria-labelledby="headingTwo1" class="collapse show" data-parent="#accordionExample" id="collapseTwo1">
+      <div class="card-body">
+
+
+
+
+        <form role="form" id="form1">
+          <p   class="breadcrumb-item active" style="font-family: monospace;"> Tiers &gt; Information </p>
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Nom du tiers</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input
+                      [(ngModel)]="fournisseurForm.name.value"
+                      id="name"
+                      name="name"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Nom alternatif</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input   [(ngModel)]="fournisseurForm.alternativeName.value"
+                             id="alternativeName"
+                             name="alternativeName"
+                             class="form-control"
+                             type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Fax</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input
+                      [(ngModel)]="fournisseurForm.fax.value"
+                      id="fax"
+                      name="fax"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Téléphone</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input
+                      [(ngModel)]="fournisseurForm.tel.value"
+                      id="tel"
+                      name="tel"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Email</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input
+                      [(ngModel)]="fournisseurForm.email.value"
+                      id="email"
+                      name="email"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Web</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input
+                      [(ngModel)]="fournisseurForm.web.value"
+                      id="web"
+                      name="web"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="new5" style="border: 1px solid #d2d2d2;">
+
+          <p  class="breadcrumb-item active" style="font-family: monospace;"> Tiers &gt; Proscpect Client </p>
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Prospect/client</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" (change)="getselectednature($event)">
+                      <option *ngFor="let key of keystiersnature" [value]="key" [label]="tiersnatureenum[key]"></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Code Client</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input   [(ngModel)]="fournisseurForm.code.value"
+                             id="code"
+                             name="code"
+                             class="form-control"
+                             type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Register de commerce</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input
+                      [(ngModel)]="fournisseurForm.rc.value"
+                      id="rc"
+                      name="rc"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Matricule Fiscale</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input
+                      [(ngModel)]="fournisseurForm.taxRegistration.value"
+                      id="taxRegistration"
+                      name="taxRegistration"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Assujetti à la TVA </label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" placeholder="Title" (change)="getselectedtype($event)">
+                      <option value=""></option>
+                      <option value="true">Oui</option>
+                      <option value="false">Non</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Num TVA</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input
+                      [(ngModel)]="fournisseurForm.tvaNumber.value"
+                      id="tvaNumber"
+                      name="tvaNumber"
+                      class="form-control"
+                      type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row" *ngIf="display === 'flex'">
+            <div class="col-12"  style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Date début  </label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input type="date"
+                           min="{{dateSent|date:'yyyy-MM-dd'}}"
+                           id="datedebut"
+                           name="datedebut"
+                           class="form-control"
+                           [(ngModel)]="fournisseurForm.datedebut.value"
+                           required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Date fin </label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input type="date"
+                           min="{{dateSent|date:'yyyy-MM-dd'}}"
+                           id="datefin"
+                           name="datefin"
+                           class="form-control"
+                           [(ngModel)]="fournisseurForm.datefin.value"
+                           required>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="new5" style="border: 1px solid #d2d2d2;">
+
+          <p   class="breadcrumb-item active" style="font-family: monospace;"> Tiers &gt; Type Tiers </p>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Type Tiers </label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" (change)="getselectedtypetiers($event)">
+                      <option *ngFor="let key of keystierstype" [value]="key" [label]="tierstypeenum[key]"></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Type d'entité légale</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" (change)="getselectedtypeentitelegal($event)">
+                      <option *ngFor="let key of keystypeentities" [value]="key" [label]="typeentities[key]"></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Salarié </label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control"  (change)="getselectedemployee($event)">
+                      <option value="1-5">1 - 5</option>
+                      <option value="6-10">6 - 10</option>
+                      <option value="11-50">11 - 50</option>
+                      <option value="51-100">51 - 100</option>
+                      <option value="100-500">100 - 500</option>
+                      <option value="500">&gt; 500</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Capital</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <input           [(ngModel)]="fournisseurForm.capital.value"
+                                     [defaultValue]="0"
+                                     [ngModelOptions]="{standalone: true}"
+                                     class="form-control" name="capital"
+                                     type="number">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div  class="row">
+            <div class="col-12" style="display: flex">
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Pays </label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" (change)="getselectedcountry($event)">
+                      <option *ngFor="let key of listcountries" [value]="key.alpha2" [label]="key.alpha2"></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="form-group focused" style="display: flex;">
+                  <label class="col-4" style="font-weight: bold;">Etat</label>
+                  <div class=" col-8 input-group input-group-alternative ">
+                    <select class="form-control" (change)="getselectedstatus($event)">
+                      <option *ngFor="let key of keysstate" [value]="key" [label]="statusenum[key]"></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <br>
+          <div class="col-lg-12 col-5 text-right">
+            <a class="btn btn-sm btn-neutral"
+               (click)="onFormSubmit()"
+               style=" color: black; background: #ffcf03; border: #ffcf03; padding: 1%; ">Creér un noveau tiers</a>
+          </div>
+          <div class="row" style="margin-top:2%">
+            <div class="col-lg-12 col-12">
+              <div class="alert alert-success " style="display: none">
+                <strong>Succès!</strong> tiers ajoutée avec succès .
+              </div>
+              <div class="alert alert-danger " style="display: none">
+                <span *ngIf="fournisseurForm.alternativeName.dirty" class="error-hint">{{fournisseurForm.alternativeName.error}}</span><br>
+                <span *ngIf="fournisseurForm.name.dirty" class="error-hint">{{fournisseurForm.name.error}}</span><br>
+                <span *ngIf="fournisseurForm.nature.dirty" class="error-hint">{{fournisseurForm.nature.error}}</span><br>
+                <span *ngIf="fournisseurForm.typeLegEnt.dirty" class="error-hint">{{fournisseurForm.typeLegEnt.error}}</span><br>
+                <span *ngIf="fournisseurForm.email.dirty" class="error-hint">{{fournisseurForm.email.error}}</span><br>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

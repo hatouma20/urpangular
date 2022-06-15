@@ -1,0 +1,313 @@
+
+
+
+
+<div class="container_login">
+  <img src="./../../../assets/img/loginbackgroud.png" class="back_login " alt="Snow" style="width:100%;">
+  <div class="bottom-left"></div>
+  <div class="top-left"><img class="media_image" src="./../../../assets/img/logo.png"></div>
+
+  <div class="bottom-right"><p class="login_footer" style="color:#898989">© 2020 Copyright: Wind RH</p></div>
+  <div class=" topleft media_topleft" style="   ">
+    <div class="  col-md-12 col-sm-12 col-lg-12">
+      <div class="card_login " style="background-color: white; border-radius: 1.25rem;">
+
+        <div class="card_login_title" style=" padding: 5%;">
+          <h3 style="    text-align: center;">INSCRIPTION</h3>
+        </div>
+
+<!--<form role="form">-->
+  <form id="form1" (ngSubmit)="onFormSubmit()" role="form" #testForm="ngForm" ngNativeValidate>
+          <div class="card_login_details" style=" padding: 10%; padding-top: 0;">
+
+            <input type="email" name="email"
+                   class="form-control input_Login ng-pristine ng-invalid ng-touched"
+                   placeholder="E-mail" required
+                   [(ngModel)]="register.email.value" [ngModelOptions]="{standalone: true}">
+
+<!--            <div *ngIf="register.email.dirty" class="alert alert-danger " style="color: red; font-family: monospace; background: #f3d4d4; padding: 1%;border-radius: 5px;">-->
+<!--                   <span-->
+<!--                     class="error-hint">{{register.email.error}} </span>-->
+<!--            </div>-->
+
+            <input type="text" name="patent"
+                   class="form-control input_Login ng-pristine ng-invalid ng-touched"
+                   placeholder="Matricule Fiscale"
+                   [(ngModel)]="register.patent.value" [ngModelOptions]="{standalone: true}"
+                   name="rc" required
+                   pattern="[0-9]{8}"
+                   title="Matricule Fiscale invalide (8 chiffres)"
+            >
+<!--            <div *ngIf="register.patent.dirty" class="alert alert-danger " style="color: red; font-family: monospace; background: #f3d4d4; padding: 1%;border-radius: 5px;">-->
+<!--                   <span class="error-hint">{{register.patent.error}} </span>-->
+<!--            </div>-->
+<!--            <div *ngIf="rc.errors?.pattern" class="alert alert-danger " style="color: red; font-family: monospace; background: #f3d4d4; padding: 1%;border-radius: 5px;">-->
+<!--              <span class="error-hint">  Matricule Fiscale (8 chiffres) </span>-->
+<!--            </div>-->
+
+
+
+
+            <input type="text" name="traderegister"
+                   class="form-control input_Login ng-pristine ng-invalid ng-touched"
+                   placeholder="Registre de commerce"
+                   [(ngModel)]="register.trade_register.value" [ngModelOptions]="{standalone: true}"
+                   name="mf"   name="rc" required
+                   pattern="[0-9a-zA-Z]{11}"
+                   title="Register de commerce invalide (11 caractères)"
+            >
+<!--            <div *ngIf="register.trade_register.dirty" class="alert alert-danger " style="color: red; font-family: monospace; background: #f3d4d4; padding: 1%;border-radius: 5px;">-->
+<!--                   <span-->
+<!--                     class="error-hint">{{register.trade_register.error}} </span>-->
+<!--            </div>-->
+<!--            <div *ngIf="mf.errors?.pattern" class="alert alert-danger " style="color: red; font-family: monospace; background: #f3d4d4; padding: 1%;border-radius: 5px;">-->
+<!--              <span class="error-hint">  Register de commerce (11 chiffres) </span>-->
+<!--            </div>-->
+
+
+            <input class="btn btn-primary my-4" style=" background-color: #efcc0b; border-color: #efcc0b; color:white;width: 100%"
+                    type="submit" value="S'inscrire" />
+
+            <div *ngIf="RegisterError" class="alert alert-danger " style="color: red; font-family: monospace; background: #f3d4d4; padding: 1%;border-radius: 5px;">
+                   <span
+                     class="error-hint">Email Existe déjà.</span>
+            </div>
+
+
+
+            <div class="col-12" style=" color:black; font-family: monospace; padding: 0;text-align: center">
+
+              <a  href="#/auth/"  style="color:black;"> RETOUR >> &nbsp;</a>
+
+            </div>
+          </div>
+</form>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="centered media_text">
+    <h1 class="login_h1" >Une solution
+      <a class="login_a" href="#" style="">RH</a>  globale,
+      adaptée aux PME</h1>
+
+    <ul class="login_ul" style="">
+      <li> <label style="padding-left: 10px;">Simplifiez la vie de tous les salariés</label></li>
+      <li><label style="padding-left: 10px;">Pour une gestion de vos ressources Humaine </label></li>
+      <li class="li_nocontent"> <label style="color: #efcc0b;">SANS CONTRAINTE ! </label></li>
+    </ul>
+
+  </div>
+
+</div>
+
+
+
+
+<!--<section class="section"-->
+         <!--style="background: url('./../../../assets/img/back2.png') 100% 100%;height: 100%;background-repeat: no-repeat;background-size: cover;">-->
+
+  <!--<div class="shape shape-style-1 shape-default">-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+    <!--<span></span>-->
+  <!--</div>-->
+  <!--<div class="container">-->
+    <!--<div class="row align-items-center" style="margin-top: 8rem !important;">-->
+
+
+      <!--<div class="col-lg-12">-->
+        <!--<div class=" justify-content-md-center">-->
+
+          <!--<div class="col-lg-12 col-12 ">-->
+            <!--<div class="">-->
+              <!--<div class=" ">-->
+                <!--<div class="card-header">-->
+                  <!--<div class="text-muted "><strong><h4 style="color: #016588;font-family: serif;font-weight: bold;">-->
+                    <!--Inscription d'un nouvel utilisateur</h4></strong></div>-->
+                <!--</div>-->
+
+                <!--<div class="card-body mt-3" style="padding: 0">-->
+
+                  <!--<form [formGroup]="form.asFormGroup" role="form" style="display: flex">-->
+                    <!--<div class="col-5" style="margin: 0; padding: 0">-->
+                      <!--<h4 style="color: #016588;font-family: fantasy;font-size: 20px;">Informations de compte</h4>-->
+
+                      <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                          <!--<div class="form-group focused">-->
+                            <!--<div class="   ">-->
+                              <!--<input class="form-control" placeholder="E-mail" type="email">-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+
+                      <!--</div>-->
+                      <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                          <!--<div class="form-group focused">-->
+                            <!--<div class="   ">-->
+                              <!--<input class="form-control" placeholder="Mot de passe" type="password">-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+
+                      <!--</div>-->
+                      <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                          <!--<div class="form-group focused">-->
+                            <!--<div class="   ">-->
+                              <!--<input class="form-control" placeholder="Confirmation de mot de passe" type="password">-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-2"></div>-->
+                    <!--<div class="col-5">-->
+                      <!--<h4 style="color: #016588;font-family: fantasy;font-size: 20px;">Informations personnelles</h4>-->
+                      <!--<div class="row">-->
+                        <!--<div class="col-lg-6 col-12">-->
+                          <!--<div>-->
+                            <!--<div class="form-group mb-3" style="display: flex">-->
+                              <!--<div>-->
+                                <!--<div class="  ">-->
+                                  <!--<select class="form-control" placeholder="Title">-->
+                                    <!--<option>MR</option>-->
+                                    <!--<option>MRS</option>-->
+                                    <!--<option>MS</option>-->
+                                  <!--</select>-->
+                                <!--</div>-->
+                              <!--</div>-->
+                              <!--<div class="  ">-->
+                                <!--<input [formControl]="form.getField('firstName').asFormControl" class="form-control"-->
+                                       <!--placeholder="First Name" type="text">-->
+                              <!--</div>-->
+                            <!--</div>-->
+
+                          <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-6 col-12">-->
+                          <!--<div class="form-group mb-3">-->
+                            <!--<div class=" ">-->
+                              <!--<input [formControl]="form.getField('lastName').asFormControl" class="form-control"-->
+                                     <!--placeholder="Last Name" type="text">-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                      <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+
+                          <!--<div class="form-group focused">-->
+                            <!--<div class=" ">-->
+                              <!--<div class="input-group-prepend">-->
+                                <!--<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>-->
+                              <!--</div>-->
+                              <!--<input #d="ngbDatepicker" (click)="d.toggle()" class="form-control datepicker"-->
+                                     <!--id='datetimepicker' name="dp" ngbDatepicker placeholder="Select date" type="text"/>-->
+
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+
+                      <!--</div>-->
+                      <!--<div class="row">-->
+                        <!--<div class="col-lg-12 col-12">-->
+                          <!--<div class="form-group focused">-->
+                            <!--<div class="   ">-->
+                              <!--<input class="form-control" placeholder="Phone Number" type="text">-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+
+                      <!--</div>-->
+                      <!--<div class="row">-->
+                        <!--<div class="col-lg-6 col-12">-->
+                          <!--<div>-->
+                            <!--<div class="form-group mb-3" style="display: flex">-->
+                              <!--<div>-->
+                                <!--<div class="  ">-->
+                                  <!--<input class="form-control" placeholder="Pays" type="text">-->
+                                <!--</div>-->
+                              <!--</div>-->
+
+                            <!--</div>-->
+
+                          <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-6 col-12">-->
+                          <!--<div class="form-group mb-3">-->
+                            <!--<div class=" ">-->
+                              <!--<input class="form-control" placeholder="Code Postale" type="text">-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                      <!--<div class="row">-->
+                        <!--<div class="col-lg-6 col-12">-->
+                          <!--<div>-->
+                            <!--<div class="form-group mb-3" style="display: flex">-->
+                              <!--<div>-->
+                                <!--<div class="  ">-->
+                                  <!--<input class="form-control" placeholder="Adresse" type="text">-->
+                                <!--</div>-->
+                              <!--</div>-->
+
+                            <!--</div>-->
+
+                          <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-6 col-12">-->
+                          <!--<div class="form-group mb-3">-->
+                            <!--<div class=" ">-->
+                              <!--<input class="form-control" placeholder="Ville" type="text">-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                      <!--<div class="row">-->
+                        <!--<div class="col-lg-6 col-12">-->
+                          <!--<div>-->
+                            <!--<div class="form-group mb-3" style="display: flex">-->
+                            <!--</div>-->
+
+                          <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-6 col-12">-->
+                          <!--<div class="form-group mb-3">-->
+                            <!--<div class="input-group ">-->
+                              <!--<button class="btn btn-primary my-4"-->
+                                      <!--style=" width: auto; background: #ffcf03; border-color: #ffcf03; " type="button">-->
+                                <!--Créer un compte-->
+                              <!--</button>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+                      <!--</div>-->
+
+
+                    <!--</div>-->
+
+                  <!--</form>-->
+
+
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+
+        <!--</div>-->
+      <!--</div>-->
+
+    <!--</div>-->
+  <!--</div>-->
+<!--</section>-->

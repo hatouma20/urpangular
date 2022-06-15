@@ -1,0 +1,123 @@
+
+
+<div class="invoice-form-wrapper">
+  <div class="px-3" style="padding: 0;">
+    <div class="row" style="padding: 0;">
+      <div class="col" style="padding: 0;">
+        <div class="card-detail row padd" style="width:100%;padding: 0;border-right: 0;">
+
+          <div  class="out"    style="width:50%; padding: 0; display: flex">
+              <div class="col-2" style="border-right: thin solid rgba(0,0,0,.12);border-left: 4px solid #2d2d44; border-radius: 4px;">
+                <br><br>
+                <span><i class="fa fa-th" aria-hidden="true" style="color: #757575;"></i></span>
+                <br>
+              </div>
+              <div class="col-10">
+                   <!--<angular-editor (input)="showHTML()" (input)="calcultotal( 'descriptionproduct', $event)" [(ngModel)]="htmlContent" [config]="config"></angular-editor>-->
+
+                <angular-editor (input)="calcultotal( 'descriptionproduct', $event)"  [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+
+                <div  style="display:none;">
+                    <div id="htmlDiv" class="html" [innerHTML]="htmlContent"></div>
+                   <!--hetha eli 7achetna bech ne5thouh-->
+                    <div class="html" > {{htmlContentWithoutStyles}}</div>
+                 </div>
+              </div>
+              </div>
+
+          <div  class="out" style="width:10%; padding: 0;display: flex">
+              <div>
+                <br><br>
+                <span  style="color: #757575; padding-left: 8px;  padding-right: 8px;">x</span>
+                <br>
+              </div>
+              <div style="padding-right: 0;max-width: 70.333333%;">
+                <br><br>
+                <span>
+                <input type="number" min="1" [value]='line.quantite' (input)="calcultotal( 'quantite', $event)"class="inputstyle" style="padding-right: 0;">
+              </span>
+                <br>
+              </div>
+            </div>
+          <div  class="out" style="width:10%; padding: 0; display: flex">
+              <div style="padding: 0;">
+                <br><br>
+                <span  style=" padding-left: 8px;  padding-right: 8px;color: #757575;">
+                  <i class="fa fa-money" aria-hidden="true"></i>
+                </span>
+                <br><br>
+              </div>
+              <div  style="padding-right: 0;">
+                <br><br>
+                <span>
+                <input type="text" pattern="[0-9]{3}" [value]='line.prixunitaire' (input)="calcultotal( 'prixunitaire', $event)"  class="inputstyle" style="padding-right: 0;">
+              </span>
+                <br>
+              </div>
+
+            </div>
+          <div  class="out" style="width:10%; padding: 0;  display: flex">
+            <div  style="padding: 0;">
+              <br><br>
+              <span  style=" padding-left: 8px;  padding-right: 8px;color: #757575;">
+
+                </span>
+              <br><br>
+            </div>
+            <div style="color:red">
+              <br><br>
+
+              <span>
+                <b>{{line.prixtotal}}</b>
+                <b>{{devise}}</b>
+              </span>
+              <br>
+            </div>
+          </div>
+          <div  class="out" style="width:10%; padding: 0;display: flex">
+            <div>
+              <br><br>
+              <span  style=" padding-left: 8px;  padding-right: 8px;color: #757575;">
+                <img style="width: 20px" src="https://cdn1.iconfinder.com/data/icons/business-and-finance-outline-46/128/business_finance_tax_taxes-512.png">
+              </span>
+              <br>
+            </div>
+            <div style="padding-right: 0;max-width: 70.333333%;">
+              <br><br>
+              <span>
+                <input  *ngIf="assujtva === true" type="number" min="1" [value]='line.tva' (keyup)="calcultotal( 'tva', $event)" (change)="calcultotal( 'tva', $event)" class="inputstyle" style="padding-right: 0;">
+                </span>
+              <br>
+            </div>
+          </div>
+          <div  class="out" style="width:10%; padding: 0;display: flex">
+            <div style=" text-align: center; color: red; ">
+              <br><br>
+              <span style="padding-left: 8px;  padding-right: 8px;">
+                <b>{{line.prixnet}}</b>
+                <b>{{devise}}</b>
+              </span>
+              <br>
+            </div>
+<!--            <div class="col-3" style="border-left: thin solid rgba(0,0,0,.12);">-->
+<!--              <br><br>-->
+
+<!--              <div class="dropdown">-->
+<!--                <span class="dropbtn"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>-->
+<!--                <div class="dropdown-content">-->
+<!--                  <a href="#"><i class="fa fa-clipboard" aria-hidden="true"></i><span style=" margin-left: 1em;">Dupliquer</span></a>-->
+<!--                  <a href="#"><i class="fa fa-pencil" aria-hidden="true"></i><span style=" margin-left: 1em;">Modifier</span></a>-->
+<!--                  <a href="#" style="border-top: thin solid rgba(0,0,0,.12);"> <i class="fa fa-trash" aria-hidden="true"></i><span style=" margin-left: 1em;">Supprimer</span> </a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <br>-->
+<!--            </div>-->
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,180 @@
+
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">
+            Template:</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Info
+           Création de Template</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info" style=" background: transparent; border: 0px;">
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body" style="    padding: 0;">
+        <div class="col-12" style="display:flex">
+          <div class="col-4" >
+            <h2>Ajouter Article</h2>
+            <form id="form1" role="form" class="mt-5" #testForm="ngForm" ngNativeValidate style="margin-top: 0 !important;">
+            <div class="row"  cdkDropListGroup >
+              <div class="contacts">
+                <ul class="tags">
+                  <li  *ngFor="let tag of tags; let id1 = index">
+                    <a class="tag" href="javascript: void(0)" (drag)="drag(tag)">{{tag.name}}</a>
+              </li>
+                </ul>
+              </div>
+              <div class="col-lg-12 col-12">
+            <ckeditor [editor]="editor"   [(ngModel)]="clause.clauseText"  name="editordata" (keyup)="cut($event)" (ready)="onReady($event)" >
+            </ckeditor>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-lg-12 col-12">
+                <div class="form-group focused" style="display: flex">
+                  <div class="col-12 text-right" style="float: right">
+                    <a (click)="ajouter()"
+                       class="btn btn-sm btn-neutral"
+                       style="color: black;background: #ffcf03;border: #ffcf03;padding: 4%;margin-top: 4%;">Ajouter</a>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            </form>
+          </div>
+          <div cdkDropListGroup class="col-8" style="display:flex">
+          <div class="example-container col-6" >
+            <h2>Les Clauses</h2>
+
+            <div
+              cdkDropList
+              [cdkDropListData]="clauses"
+              class="example-list"
+              (cdkDropListDropped)="drop($event, null, null)"
+              >
+              <div (cdkDragStarted)="startdrag()"  innerHTML="{{item.clauseText}}" class="example-box" *ngFor="let item of clauses" cdkDrag>{{item.clauseText}}</div>
+            </div>
+          </div>
+          <div class="example-container col-6" style="display: grid">
+            <h2>Le contenu du Document de Contrat</h2>
+            <div class="row" style="display: flex; ">
+              <div class="col-12">
+                <div class="form-group focused">
+                  <label class="" style="font-weight: bold;">Titre de document de contrat</label>
+                  <div class=" input-group input-group-alternative ">
+                    <input [(ngModel)]="contractDocument.documentRefderence" name="reference"
+                           [ngModelOptions]="{standalone: true}"
+                           class="form-control" type="text" required
+                           >
+
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <h5 class="adddept"><span>Translater ici les clauses pour rédiger le document de contrat</span></h5>
+
+              <div *ngFor="let clause of ArticleList; let id = index;" id="{{id}}">
+              <h5 style="font-family: monospace; padding-top: 2em;">Article {{id + 1}}
+                <span style=" float: right; color: #c00000; font-weight: bolder; padding-right: 1em; ">
+                  <button style=" color: #c00000; border: none;" (click)="hideTeam(id)" > X </button>
+                  </span>
+              </h5>
+              <div
+              cdkDropList
+              [cdkDropListData]="clause.content"
+              class="example-list cdk-drop-list-receiving"
+              (cdkDropListDropped)="drop($event,id,clause)">
+              <div class="example-box" innerHTML="{{item.clauseText}}" *ngFor="let item of clause.content; let j = index" cdkDrag>
+               {{item.clauseText}} </div>
+            </div>
+
+
+            </div>
+            <div class="row " style="float: right;margin-left: 40%;">
+              <div class="col-lg-12 col-12" style="display: flex">
+                <div class="form-group focused" style="display: flex">
+                  <div class="col-12 text-right" style="float: right">
+                    <a (click)="createContractDocument()"
+                       class="btn btn-sm btn-neutral"
+                       style="color: black;background: #ffcf03;border: #ffcf03;padding: 7%;margin-top: 4%;">Ajouter un document</a>
+                  </div>
+
+                </div>
+                <div class="form-group focused" style="display: flex">
+                  <div class="col-12 text-right" style="float: right">
+                    <a  (click)="open(content)"
+                       class="btn btn-sm btn-neutral"
+                       style="color: white;background: #2d2d44;border: #ffcf03;padding: 11%;margin-top: 4%;">Prévisulaiser</a>
+
+                  </div>
+
+
+                </div>
+              </div>
+
+            </div>
+
+              <div class="row">
+                <div class="col-lg-12 col-12">
+                  <div class="alert alert-success " style="display: none">
+                    <strong>Succès!</strong> Le document de contrat est ajouté avec succès .
+                  </div>
+
+                </div>
+
+              </div>
+            <ng-template id="ng-template" #content let-c="close" let-d="dismiss" style="z-index: 99999; max-width: 65%; margin-left: 20%; ">
+              <div class="modal-header">
+<!--                <h4 class="modal-title" id="modal-basic-title">Document de contrat </h4>-->
+                <a class="lightbox__close" (click)="d('Cross click')" >X</a>
+              </div>
+              <div class="modal-body" id="modal-body">
+                <!--                             table collaborator leave-->
+                <div class="col-md-12" style="display: flex;border-bottom: #d2d2d2 solid 1px;padding: 2%;background: #f4f5f7;">
+                  <div class="col-md-3"  style="    margin-top: 4%; width: 40%">{{date}}</div>
+                  <div class="col-md-6" style="width: 40%"><h4 class="modal-title" >Document de Contrat de travail</h4></div>
+                  <div class="col-md-3" style="width: 20%">
+                  <img src="../../../../../assets/img/windc_1.png" height="58" width="103"/>
+                  </div>
+                </div>
+                <div *ngFor="let clause of ArticleList; let id = index;">
+                  <h5 style="font-family: monospace; padding-top: 2em;" *ngIf="id < ArticleList.length-1">Article {{id + 1}}
+                  </h5>
+                  <div *ngFor="let elt of clause.content" innerHTML="{{elt.clauseText}}">
+                    {{elt.clauseText}}
+                  </div>
+                </div>
+                <div class="col-md-12 footer" style="display: flex;border-top: #d2d2d2 solid 1px;padding-top: 1%;">
+                  <div class="col-md-4" style="width: 25%"></div>
+                  <div class="col-md-5" style="width: 50%"></div>
+                  <div class="col-md-3" style="width: 25%">
+                   Wind Consulting Tunisia
+                  </div>
+                </div>
+                <!--                             end table collaborator leave-->
+              </div>
+              <div class="modal-footer" style="border: none">
+                <input (click)=" onPreview()" class="btn btn-outline-dark" type="button" style="color: black;background: #ffcf03;border: #ffcf03;float: right;font-family: monospace;" value="Imprimer">
+              </div>
+            </ng-template>
+          </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

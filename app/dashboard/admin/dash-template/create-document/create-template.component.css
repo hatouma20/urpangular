@@ -1,0 +1,124 @@
+.show{
+  display: block !important;
+}
+.example-container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.example-list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.notshowing{
+  display: none;
+}
+ .ck-editor__editable >p >a  {
+   content: close-quote;
+   display: block;
+cursor: pointer !important;
+ }
+::ng-deep a:-webkit-any-link:read-write{
+
+  -webkit-user-modify: read-only;
+  -moz-user-modify: read-only;
+  user-modify: read-only;
+  pointer-events:none !important;
+  background: var(--ck-color-link-selected-background);
+  padding: 1%;
+  border-radius: 5px;
+
+}
+
+ ::ng-deep .ck.ck-balloon-panel.ck-balloon-panel_visible{
+   display: none !important;
+ }
+
+.tags {
+  list-style: none !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.tags li {
+  float: left !important;
+}
+
+.tag {
+  background: var(--ck-color-link-selected-background) !important;
+  border-radius: 3px 0 0 3px !important;
+  color: #5e72e4 !important;
+  display: inline-block !important;
+  height: 26px !important;
+  line-height: 26px !important;
+  padding: 0 20px 0 23px !important;
+  position: relative !important;
+  margin: 0 10px 10px 0 !important;
+  text-decoration: none !important;
+  -webkit-transition: color 0.2s !important;
+}
+
+.tag:hover {
+  background-color: #2d2d44 !important;
+  color: white !important;
+}
+
+.tag:hover::after {
+  border-left-color: #2d2d44 !important;
+}
+
+@media print {
+  body {
+   background: red !important;
+  }
+  .col-md-6{
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+}

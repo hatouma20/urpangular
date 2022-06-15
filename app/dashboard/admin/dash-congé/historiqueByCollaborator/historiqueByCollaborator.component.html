@@ -1,0 +1,162 @@
+<div class="header " style="    background: #c1c1c12e;">
+  <div class="container-fluid">
+    <div class="header-body" style=" margin-right: 5%; margin-left: 5%; ">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2  d-inline-block mb-0"
+              style=" color: #1c1c2b !important; font-family: auto; font-size: 25px;     font-weight: bold;">Congé
+            :</h6>
+          <br>
+          <p aria-current="page" class="breadcrumb-item active" style="color: #0080ad;    font-weight: bold;">Historique de
+            Congés
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+
+<div class="accordion mt-5" id="accordionExample">
+  <div class="card card-info">
+    <div class="card-header card-info-header" id="headingOne">
+      <h2 class="mb-0">
+        <button aria-controls="collapseOne" aria-expanded="true" class="btn btn-link" data-target="#collapseOne"
+                data-toggle="collapse" style="color: #0080ad;" type="button">
+          Historique de Congés
+        </button>
+      </h2>
+    </div>
+
+    <div aria-labelledby="headingOne" class="collapse show" data-parent="#accordionExample" id="collapseOne">
+      <div class="card-body "
+           style="display: -webkit-flex;-webkit-flex-wrap: wrap;-webkit-justify-content: center;width:100%;">
+        <div class="container-fluid mt--7">
+          <div class="row">
+            <div class="col-xl-1"></div>
+            <div class="col-xl-5" >
+              <div style="display: none" class="card shadow" >
+                <div class="card-header bg-transparent">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
+                      <h2 class="mb-0">Total orders</h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <!-- Chart -->
+                  <div class="chart">
+                    <canvas id="chart-orders" class="chart-canvas"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div >
+                <div class="card card-stats mb-4 mb-lg-0">
+                  <div class="card-body" style="padding: 20.3%;">
+                    <div class="row">
+                      <div class="">
+                        <span class="h5 mb-0">Nom & Prenom: <span style="font-size: 15px;" class="card-title text-uppercase text-muted mb-0">{{collaborator.collaboratorname}}</span></span><br>
+                      </div>
+                      <div class="">
+                        <span class="h5 mb-0">Solde Congé Payé: <span style="font-size: 15px;" class="card-title text-uppercase text-muted mb-0">{{collaborator.current_payed_leave_credit}}</span></span>
+                      </div>
+                      <div class="">
+                        <span class="h5 mb-0">Solde Congé Maladie: <span style="font-size: 15px;" class="card-title text-uppercase text-muted mb-0">{{collaborator.current_sick_leave_credit}}</span></span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-5  mb-xl-0">
+              <div class="card bg-gradient-default shadow" style="background: transparent !important;">
+                <div class="card-body">
+                  <!-- Chart -->
+                  <div class="chart">
+                    <!-- Chart wrapper -->
+                    <div class="chart-wrapper" style="float: right;">
+                      <select  (change)="filterWithYear($event)" placeholder="2020" >
+                        <option  hidden>select Year</option>
+                        <option *ngFor="let year of allDistinctsYears" value="{{year}}">{{year}}</option>
+                      </select>
+                    </div>
+                    <canvas baseChart
+                            [datasets]="lineChartData"
+                            [labels]="lineChartLabels"
+                            [options]="lineChartOptions"
+                            [colors]="lineChartColors"
+                            [legend]="lineChartLegend"
+                            [chartType]="lineChartType"
+                            [plugins]="lineChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-1"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <div *ngIf="this.approvedLeaveList.length == 0"><p style="text-align: center;">Vous n'avez pas des données enregistrés</p></div>
+
+
+      <div class="table-editable" id="table">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" style="    font-family: monospace;">
+          <thead  *ngIf="this.approvedLeaveList.length != 0" >
+          <tr>
+            <th >#</th>
+            <th >Date fin</th>
+            <th >Date Debut</th>
+            <th >Nombres des heures</th>
+            <th >Type</th>
+            <th >Raison</th>
+
+          </tr>
+          </thead >
+          <tbody  *ngIf="this.approvedLeaveList.length != 0">
+          <tr *ngFor="let leave of approvedLeaveList, let id = index;">
+            <td>
+                <span
+                >{{id + 1}}</span>
+            </td>
+            <td>
+                <span >{{leave.end_date}}</span>
+            </td>
+            <td>
+                <span >{{leave.start_date}}</span>
+            </td>
+            <td>
+                <span >{{leave.hours}}</span>
+            </td>
+           <td>
+                <span >{{leave.leave.type}}</span>
+            </td>
+
+            <td>
+              <!--                <span >{{leave.reason}}</span>-->
+              <span class="tooltip1" maxlength="10" style="cursor: pointer;">{{leave.reason  | slice:0:20 }}{{ leave.reason.length > 20 ? '...' : ''}}
+                <span class="tooltiptext">{{leave.reason}}</span></span>
+            </td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <input type='button'  (click)="backClicked()" style=" color: white; background: #2d2d44; border: #ffcf03;     padding: 1%; float: left; font-family: monospace " value="<-Back"/>
+      <input type='button' (click)=" onPreview()"  style=" color: black; background: #ffcf03; border: #ffcf03;     padding: 1%; float: right; font-family: monospace " value="Imprimer"/>
+
+    </div>
+
+  </div>
+</div>
